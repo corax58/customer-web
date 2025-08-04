@@ -16,6 +16,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLocation } from "@/contexts/LocationContext";
@@ -66,36 +67,39 @@ const AddressListItem = ({ address }: AddressListItemProps) => {
     >
       <CardHeader className="p-0">
         <div className="flex items-start justify-between">
-          <div className="space-y-2">
-            <CardTitle className="text-lg">{address.title}</CardTitle>
-          </div>
+          <CardTitle className="text-lg">{address.title}</CardTitle>
+
           <div>
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button variant="ghost" size="sm" disabled={isDeleting}>
-                  {isDeleting ? (
-                    <Loader2 className="size-4 animate-spin" />
-                  ) : (
-                    <Trash className="h-4 w-4 text-red-500" />
-                  )}
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    This action cannot be undone. This will permanently delete
-                    your this address. and remove the data from our servers.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleDeleteAddress}>
-                    Continue
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+            {address.is_default == 0 && (
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="ghost" size="sm" disabled={isDeleting}>
+                    {isDeleting ? (
+                      <Loader2 className="size-4 animate-spin" />
+                    ) : (
+                      <Trash className="h-4 w-4 text-red-500" />
+                    )}
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Are you absolutely sure?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will permanently delete
+                      your this address. and remove the data from our servers.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleDeleteAddress}>
+                      Continue
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            )}
           </div>
         </div>
       </CardHeader>
@@ -106,15 +110,26 @@ const AddressListItem = ({ address }: AddressListItemProps) => {
           <p>{address.pincode}</p>
         </div>
         <div>
-          <Button
-            size={"sm"}
-            variant={"link"}
-            disabled={isUpdating || address.is_default == 1}
-            onClick={handleSetDefaultAddress}
-            className="w-24"
-          >
-            {isUpdating ? <Loader2 className="animate-spin" /> : "Set Default"}
-          </Button>
+          {address.is_default === 1 && (
+            <Badge className="bg-card text-foreground border-border border text-sm">
+              Default
+            </Badge>
+          )}
+          {address.is_default == 0 && (
+            <Button
+              size={"sm"}
+              variant={"link"}
+              disabled={isUpdating}
+              onClick={handleSetDefaultAddress}
+              className="w-24"
+            >
+              {isUpdating ? (
+                <Loader2 className="animate-spin" />
+              ) : (
+                "Set Default"
+              )}
+            </Button>
+          )}
         </div>
       </CardContent>
     </Card>
