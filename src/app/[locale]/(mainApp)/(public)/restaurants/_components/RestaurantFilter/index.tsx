@@ -95,7 +95,7 @@ const RestaurantFilter = ({ className, setOpen }: RestaurantFilterProps) => {
       params.set("sort_by", filters.sort_by);
     }
 
-    router.replace(`/restaurants?${params.toString()}`);
+    router.replace(`/restaurants?${params.toString()}`, { scroll: false });
 
     if (setOpen) {
       setOpen((prev) => !prev);
@@ -116,10 +116,13 @@ const RestaurantFilter = ({ className, setOpen }: RestaurantFilterProps) => {
 
     Object.keys(filters).forEach((key) => params.delete(key));
 
-    router.replace({
-      pathname: "/restaurants",
-      query: Object.fromEntries(params),
-    });
+    router.replace(
+      {
+        pathname: "/restaurants",
+        query: Object.fromEntries(params),
+      },
+      { scroll: false },
+    );
   };
 
   const handleOfferChange = (value: string) => {

@@ -17,14 +17,19 @@ import {
 import { useBanner } from "@/hooks/useBanner";
 import { cn } from "@/lib/utils";
 
-const Banner = () => {
-  const { data, error, isPending } = useBanner();
+interface BannerProps {
+  lat?: string;
+  lon?: string;
+}
+
+const Banner = ({ lat, lon }: BannerProps) => {
+  const { data, error, isPending } = useBanner({ lat, lon });
 
   if (isPending) {
     return (
       <div className="flex h-80 w-full gap-4 p-4">
-        <div className="h-full w-full animate-pulse rounded-xl bg-gray-300 dark:bg-gray-900" />
-        <div className="h-full w-full animate-pulse rounded-xl bg-gray-300 max-lg:hidden dark:bg-gray-900" />
+        <div className="bg-accent h-full w-full animate-pulse rounded-xl" />
+        <div className="bg-accent h-full w-full animate-pulse rounded-xl max-lg:hidden" />
       </div>
     );
   }

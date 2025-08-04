@@ -10,8 +10,13 @@ import {
 } from "@/components/ui/carousel";
 import { isRestaurantOpenNow } from "@/lib/utils";
 
-const PopularRestaurants = async () => {
-  const { data: restaurants } = await getTopRestaurants();
+interface PopularRestaurantsProps {
+  lat?: string;
+  lon?: string;
+}
+
+const PopularRestaurants = async ({ lat, lon }: PopularRestaurantsProps) => {
+  const { data: restaurants } = await getTopRestaurants(lat, lon);
 
   if (restaurants && restaurants.length > 0)
     return (

@@ -48,12 +48,15 @@ const LocationProvider = ({ children }: PropsWithChildren) => {
 
   const updateParams = useCallback(
     (location: Location) => {
-      if (pathname !== "/restaurants" || !location) return;
+      const personalizedPath =
+        pathname.includes("/restaurants") ||
+        pathname.includes("/home") ||
+        pathname.includes("/categories");
+      if (!personalizedPath || !location) return;
 
       const latInUrl = searchParams.get("lat");
       const lonInUrl = searchParams.get("lon");
-      // A latitude/longitude of 0,0 is when we cant get the location
-      //  in our system, so we represent it as "none" in the URL.
+
       const newLat =
         location.latitude === 0 ? "none" : location.latitude.toString();
       const newLon =
@@ -67,7 +70,7 @@ const LocationProvider = ({ children }: PropsWithChildren) => {
       params.set("lat", newLat);
       params.set("lon", newLon);
 
-      router.replace(`${pathname}?${params.toString()}`);
+      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
     },
     [pathname, router, searchParams],
   );

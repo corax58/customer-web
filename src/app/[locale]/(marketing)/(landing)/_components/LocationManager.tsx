@@ -20,7 +20,7 @@ export default function LocationManager() {
         params.set("lat", latitude.toString());
         params.set("lon", longitude.toString());
 
-        router.replace(`${pathname}?${params.toString()}`);
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
       },
       (error) => {
         console.error("Geolocation error:", error);

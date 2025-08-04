@@ -63,7 +63,7 @@ export default function LanguageSelector({
       router.replace(
         // @ts-expect-error -- TypeScript will validate that only known `params`
         { pathname, params },
-        { locale: nextLocale },
+        { scroll: false, locale: nextLocale },
       );
     });
   }

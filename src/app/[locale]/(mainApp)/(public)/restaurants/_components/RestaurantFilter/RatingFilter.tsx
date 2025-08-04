@@ -34,10 +34,13 @@ const RatingFilter = ({ className }: RatingFilterProps) => {
       setValue("");
       params.delete("rating");
       params.delete("highRating");
-      router.replace({
-        pathname,
-        query: Object.fromEntries(params),
-      });
+      router.replace(
+        {
+          pathname,
+          query: Object.fromEntries(params),
+        },
+        { scroll: false },
+      );
       return;
     }
 
@@ -51,10 +54,13 @@ const RatingFilter = ({ className }: RatingFilterProps) => {
       params.set("rating", rating);
     }
 
-    router.replace({
-      pathname,
-      query: Object.fromEntries(params),
-    });
+    router.replace(
+      {
+        pathname,
+        query: Object.fromEntries(params),
+      },
+      { scroll: false },
+    );
   };
 
   return (

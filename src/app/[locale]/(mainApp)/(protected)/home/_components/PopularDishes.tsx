@@ -9,8 +9,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export async function PopularDishes() {
-  const { data: dishes } = await getPopularDishes();
+interface PopularDishesProps {
+  lat?: string;
+  lon?: string;
+}
+export async function PopularDishes({ lat, lon }: PopularDishesProps) {
+  const { data: dishes } = await getPopularDishes(lat, lon);
   if (dishes && dishes.length > 0)
     return (
       <Carousel
@@ -26,12 +30,12 @@ export async function PopularDishes() {
           </h2>
 
           <div className="flex items-center gap-4 max-sm:flex-col">
-            <CustomLink
+            {/* <CustomLink
               href="#"
               className="group text-muted-foreground flex items-center font-semibold text-nowrap hover:text-orange-600"
             >
               See All
-            </CustomLink>
+            </CustomLink> */}
             <div className="flex gap-2">
               <CarouselPrevious className="bg-secondary text-foreground static -top-0 size-8 -translate-y-0 border-0 opacity-100" />
               <CarouselNext className="bg-secondary text-foreground static size-8 -translate-y-0 border-0 opacity-100" />

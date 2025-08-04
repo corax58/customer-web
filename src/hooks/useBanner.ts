@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState, useTransition } from "react";
 import { getBannerItems } from "@/actions/actions";
 import { BannerDetail } from "@/types/restaurant.types";
 
-export function useBanner() {
+export function useBanner({ lat, lon }: { lat?: string; lon?: string }) {
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<BannerDetail[] | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -12,7 +12,7 @@ export function useBanner() {
     setError(null);
 
     startTransition(async () => {
-      const result = await getBannerItems();
+      const result = await getBannerItems(lat, lon);
       if (result.error) {
         setError(result.error);
       }
@@ -20,7 +20,7 @@ export function useBanner() {
         setData(result.data);
       }
     });
-  }, []);
+  }, [lat, lon]);
 
   useEffect(() => {
     fetchBannerData();

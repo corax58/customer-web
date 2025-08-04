@@ -5,12 +5,19 @@ import MenuItemCard from "@/components/MenuItemCard";
 
 import CategoryHeader from "../../_components/CategoryHeader";
 
+import ItemsListSkeleton from "./ItemsListSkeleton";
+
 interface ItemsListProps {
   id: string;
   title?: string;
+  lat?: string;
+  lon?: string;
 }
-const ItemsList = async ({ id, title }: ItemsListProps) => {
-  const { data: items, error } = await getCategoryItems(id);
+const ItemsList = async ({ id, title, lat, lon }: ItemsListProps) => {
+  if (lat === undefined || lon === undefined) {
+    return <ItemsListSkeleton />;
+  }
+  const { data: items, error } = await getCategoryItems(id, lat, lon);
   if (error) {
     return (
       <div className="col-span-1 flex h-dvh w-full flex-col items-center justify-center gap-5 sm:col-span-2 lg:col-span-3 xl:col-span-4">

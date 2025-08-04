@@ -1,7 +1,6 @@
 import { getBestSellingDishes } from "@/actions/actions";
 import CustomLink from "@/components/CustomLink";
 import LandingDishCard from "@/components/LandingDishCard";
-import MenuItemCard from "@/components/MenuItemCard";
 import {
   Carousel,
   CarouselContent,
@@ -10,8 +9,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export async function BestSellingDishes() {
-  const { data: dishes } = await getBestSellingDishes();
+interface BestSellingDishesProps {
+  lat?: string;
+  lon?: string;
+}
+export async function BestSellingDishes({ lat, lon }: BestSellingDishesProps) {
+  const { data: dishes } = await getBestSellingDishes(lat, lon);
   if (dishes && dishes.length > 0)
     return (
       <Carousel
@@ -27,12 +30,12 @@ export async function BestSellingDishes() {
           </h2>
 
           <div className="flex items-center gap-4 max-sm:flex-col">
-            <CustomLink
+            {/* <CustomLink
               href="#"
               className="group text-muted-foreground flex items-center font-semibold text-nowrap hover:text-orange-600"
             >
               See All
-            </CustomLink>
+            </CustomLink> */}
             <div className="flex gap-2">
               <CarouselPrevious className="bg-secondary text-foreground static -top-0 size-8 -translate-y-0 border-0 opacity-100" />
               <CarouselNext className="bg-secondary text-foreground static size-8 -translate-y-0 border-0 opacity-100" />

@@ -1,5 +1,4 @@
 import { getOffersList } from "@/actions/actions";
-import CustomLink from "@/components/CustomLink";
 import {
   Carousel,
   CarouselContent,
@@ -10,8 +9,12 @@ import {
 
 import OffersCard from "./OffersCard";
 
-const Offers = async () => {
-  const { data } = await getOffersList();
+interface OffersProps {
+  lat?: string;
+  lon?: string;
+}
+const Offers = async ({ lat, lon }: OffersProps) => {
+  const { data } = await getOffersList(lat, lon);
 
   if (data && data.length > 0)
     return (
@@ -26,12 +29,12 @@ const Offers = async () => {
           <h2 className="text-2xl font-bold md:mb-2 md:text-3xl">Offers</h2>
 
           <div className="flex items-center gap-4">
-            <CustomLink
+            {/* <CustomLink
               href="#"
               className="group text-muted-foreground flex items-center font-semibold hover:text-orange-600"
             >
               See All
-            </CustomLink>
+            </CustomLink> */}
             <div className="flex gap-2">
               <CarouselPrevious className="bg-secondary text-foreground static -top-0 size-8 -translate-y-0 border-0 opacity-100" />
               <CarouselNext className="bg-secondary text-foreground static size-8 -translate-y-0 border-0 opacity-100" />

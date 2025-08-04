@@ -21,29 +21,36 @@ export const metadata: Metadata = {
     "Find and order food from restaurants near you. Browse menus, view ratings, and enjoy fast delivery with Time-Delivery.",
 };
 
-const HomePage = () => {
+interface HomePageProps {
+  searchParams: Promise<{
+    lat: string;
+    lon: string;
+  }>;
+}
+const HomePage = async ({ searchParams }: HomePageProps) => {
+  const { lat, lon } = await searchParams;
   return (
     <div className="h-full min-h-dvh">
       <Header />
       <div className="flex flex-col items-center pt-36 pb-20 md:px-10 md:pt-28 lg:px-14">
         <div className="container flex w-full flex-col justify-center gap-10">
           <div className="flex w-full flex-col gap-4">
-            <Banner />
+            <Banner lat={lat} lon={lon} />
             <div className="flex flex-col gap-10 p-5 md:gap-14">
               <Suspense fallback={<CategoriesSkeleton />}>
                 <Categories />
               </Suspense>
               <Suspense fallback={<PopularRestaurantsSkeleton />}>
-                <PopularRestaurants />
+                <PopularRestaurants lat={lat} lon={lon} />
               </Suspense>
               <Suspense fallback={<PopularDishesSkeleton />}>
-                <PopularDishes />
+                <PopularDishes lat={lat} lon={lon} />
               </Suspense>
               <Suspense fallback={<BestSellingDishesSkeleton />}>
-                <BestSellingDishes />
+                <BestSellingDishes lat={lat} lon={lon} />
               </Suspense>
               <Suspense fallback={<OffersSkeleton />}>
-                <Offers />
+                <Offers lat={lon} lon={lon} />
               </Suspense>
             </div>
           </div>

@@ -1,6 +1,7 @@
 "use server";
 
 import { fetchOnCondition } from "@/lib/fetchWrappers";
+import { buildApiUrl } from "@/lib/utils";
 import {
   GetMenuItemDetailResult,
   GetRestaurantDetailsResult,
@@ -42,7 +43,7 @@ export async function getTopRestaurants(
   lat?: string,
   lon?: string,
 ): Promise<GetRestaurantsResult> {
-  const url = `/api/restaurant/add-home-page?lat=${lat}&lon=${lon}`;
+  const url = buildApiUrl("/api/restaurant/add-home-page", { lat, lon });
   try {
     const responseData: RestaurantResponce =
       await fetchOnCondition<RestaurantResponce>(url, {
@@ -61,9 +62,11 @@ export async function getRestaurantDetails(
   lat?: string,
   lon?: string,
 ): Promise<GetRestaurantDetailsResult> {
-  const url = lat
-    ? `/api/restaurant/restaurant-detail?id=${restaurantId}&lat=${lat}&lon=${lon}`
-    : `/api/restaurant/restaurant-detail?id=${restaurantId}`;
+  const url = buildApiUrl("/api/restaurant/restaurant-detail", {
+    id: restaurantId,
+    lat,
+    lon,
+  });
 
   try {
     const responseData: RestaurantDetailResponce =
