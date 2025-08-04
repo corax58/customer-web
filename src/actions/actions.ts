@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { fetchOnCondition, fetchWithAuth } from "@/lib/fetchWrappers";
+import { buildApiUrl } from "@/lib/utils";
 import {
   ForgotPasswordPayload,
   ForgotPasswordResponse,
@@ -46,10 +47,15 @@ export async function updateProfileAction(body: string) {
   }
 }
 
-export async function getBannerItems(): Promise<GetBannerItemsResult> {
+export async function getBannerItems(
+  lat?: string,
+  lon?: string,
+): Promise<GetBannerItemsResult> {
+  const url = buildApiUrl("/api/cart-item/banners", { lat, lon });
+
   try {
     const responseData: BannerDataResponse =
-      await fetchWithAuth<BannerDataResponse>(`/api/cart-item/banners`, {
+      await fetchWithAuth<BannerDataResponse>(url, {
         retry: { retries: 3, delay: 1000 },
       });
     return { success: true, data: responseData.banners };
@@ -85,7 +91,7 @@ export async function getPopularDishes(
   lat?: string,
   lon?: string,
 ): Promise<GetPopularDishesResult> {
-  const url = `/api/cart-item/popular-dish?lat=${lat}&lon=${lon}`;
+  const url = buildApiUrl("/api/cart-item/popular-dish", { lat, lon });
   try {
     const responseData: PopularDishesResponse =
       await fetchOnCondition<PopularDishesResponse>(url, {
@@ -103,7 +109,7 @@ export async function getBestSellingDishes(
   lat?: string,
   lon?: string,
 ): Promise<GetPopularDishesResult> {
-  const url = `/api/restaurant/best-selling-dishes?lat=${lat}&lon=${lon}`;
+  const url = buildApiUrl("/api/restaurant/best-selling-dishes", { lat, lon });
   try {
     const responseData: BestSellingDishesResponse =
       await fetchOnCondition<BestSellingDishesResponse>(url, {
@@ -117,11 +123,13 @@ export async function getBestSellingDishes(
   }
 }
 
-export async function getOffersList(id?: string): Promise<GetOffersListResult> {
+export async function getOffersList(
+  id?: string,
+  lat?: string,
+  lon?: string,
+): Promise<GetOffersListResult> {
   try {
-    const url = id
-      ? `/api/offer/coupon-list?id=${id}`
-      : `/api/offer/coupon-list`;
+    const url = buildApiUrl("/api/offer/coupon-list", { id, lat, lon });
     const responseData: OffersListResponse =
       await fetchWithAuth<OffersListResponse>(url, {
         retry: { retries: 3, delay: 1000 },
@@ -152,15 +160,19 @@ export async function addToFavorites(
 
 export async function getCategoryItems(
   id: string,
+  lat?: string,
+  lon?: string,
 ): Promise<CategoryItemsResult> {
   try {
+    const url = buildApiUrl("/api/cart-item/items-by-category", {
+      category_id: id,
+      lat,
+      lon,
+    });
     const responseData: CategoryItemsResponse =
-      await fetchOnCondition<CategoryItemsResponse>(
-        `/api/cart-item/items-by-category?category_id=${id}`,
-        {
-          retry: { retries: 3, delay: 1000 },
-        },
-      );
+      await fetchOnCondition<CategoryItemsResponse>(url, {
+        retry: { retries: 3, delay: 1000 },
+      });
 
     return { success: true, data: responseData.list };
   } catch (error) {

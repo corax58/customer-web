@@ -46,3 +46,6 @@ export interface GeocodingResponse {
   results: GeocodingResult[];
   error_message?: string;
 }
+export type UrlValues = {
+  [key: string]: string | string[] | undefined;
+};

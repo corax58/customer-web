@@ -38,15 +38,16 @@ export async function getRestaurants(
     return { success: false, error: "Failed to fetch restaurants." };
   }
 }
-export async function getTopRestaurants(): Promise<GetRestaurantsResult> {
+export async function getTopRestaurants(
+  lat?: string,
+  lon?: string,
+): Promise<GetRestaurantsResult> {
+  const url = `/api/restaurant/add-home-page?lat=${lat}&lon=${lon}`;
   try {
     const responseData: RestaurantResponce =
-      await fetchOnCondition<RestaurantResponce>(
-        "/api/restaurant/add-home-page",
-        {
-          retry: { retries: 3, delay: 1000 },
-        },
-      );
+      await fetchOnCondition<RestaurantResponce>(url, {
+        retry: { retries: 3, delay: 1000 },
+      });
 
     return { success: true, data: responseData.list };
   } catch (error) {

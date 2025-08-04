@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge";
 
 import { CartItem } from "@/types/cart.types";
 import { AddOn, Availability, MenuItem } from "@/types/restaurant.types";
+import { UrlValues } from "@/types/shared.types";
 
 import { HttpError } from "./HttpError";
 
@@ -167,3 +168,14 @@ export function formateDateMDYT(dateString: string) {
   if (!date) return;
   return format(date, "MMM dd',' yyyy',' hh:mm aa");
 }
+
+export const buildApiUrl = (endPoint: string, values?: UrlValues) => {
+  if (!values) {
+    return endPoint;
+  }
+
+  const params = buildUrlSearchParams(values);
+  const queryString = params.toString();
+
+  return `${endPoint}${queryString ? `?${queryString}` : ""}`;
+};

@@ -9,8 +9,15 @@ import {
 
 import LandingDishCard from "../../../../../components/LandingDishCard";
 
-const BestSellingItemsCarousel = async () => {
-  const { data: dishes } = await getBestSellingDishes();
+interface BestSellingItemsCarouselProps {
+  lat?: string;
+  lon?: string;
+}
+const BestSellingItemsCarousel = async ({
+  lat,
+  lon,
+}: BestSellingItemsCarouselProps) => {
+  const { data: dishes } = await getBestSellingDishes(lat, lon);
 
   if (dishes && dishes.length > 0)
     return (

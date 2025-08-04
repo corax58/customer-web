@@ -7,15 +7,19 @@ import { CategoriesSkeleton } from "./CategoriesSkeleton";
 import PopularItemsCarousel from "./PopularItemsCarousel";
 import PopularItemsCarouselSkeleton from "./PopularItemsCarouselSkeleton";
 
-const PopularItems = async () => {
+interface PopularItemsProps {
+  lat?: string;
+  lon?: string;
+}
+const PopularItems = async ({ lat, lon }: PopularItemsProps) => {
   return (
     <div className="parent-container flex w-full flex-col items-center gap-20 py-20">
       <div className="container flex flex-col gap-20">
         <Suspense fallback={<PopularItemsCarouselSkeleton />}>
-          <PopularItemsCarousel />
+          <PopularItemsCarousel lat={lat} lon={lon} />
         </Suspense>
         <Suspense fallback={<BestSellingItemsSkeleton />}>
-          <BestSellingItemsCarousel />
+          <BestSellingItemsCarousel lat={lat} lon={lon} />
         </Suspense>
         <Suspense fallback={<CategoriesSkeleton />}>
           <Categories />

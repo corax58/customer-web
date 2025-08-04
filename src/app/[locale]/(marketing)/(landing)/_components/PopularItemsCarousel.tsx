@@ -10,10 +10,17 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-const PopularItemsCarousel = async () => {
+interface PopularItemsCarouselProps {
+  lat?: string;
+  lon?: string;
+}
+const PopularItemsCarousel = async ({
+  lat,
+  lon,
+}: PopularItemsCarouselProps) => {
   const t = await getTranslations("landing.popular_food_items");
 
-  const { data: dishes } = await getPopularDishes();
+  const { data: dishes } = await getPopularDishes(lat, lon);
 
   if (dishes && dishes.length > 0)
     return (
