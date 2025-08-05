@@ -33,8 +33,6 @@ const RestaurantCard = ({
     ? `/restaurants/${restaurant.id}?lat=${location?.latitude}&lon=${location?.longitude}`
     : `/restaurants/${restaurant.id}`;
 
-  console.log(restaurantLink);
-
   return (
     <Card
       className={cn(

@@ -7,10 +7,15 @@ import { Restaurant } from "@/types/restaurant.types";
 interface RestaurantHeaderProps {
   restaurant: Restaurant;
   isOpen: boolean;
+  className?: string;
 }
-const RestaurantHeader = ({ restaurant, isOpen }: RestaurantHeaderProps) => {
+const RestaurantHeader = ({
+  restaurant,
+  isOpen,
+  className,
+}: RestaurantHeaderProps) => {
   return (
-    <>
+    <div className={className}>
       <div className="flex w-full items-center justify-between gap-5 py-6 pt-3 max-lg:flex-col">
         <div className="flex items-center gap-2">
           <p className="text-xl font-semibold lg:text-3xl">
@@ -74,7 +79,7 @@ const RestaurantHeader = ({ restaurant, isOpen }: RestaurantHeaderProps) => {
         <FadingDivider className="to-border" />
         <FadingDivider className="from-border" />
       </div>
-    </>
+    </div>
   );
 };
 
