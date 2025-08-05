@@ -15,6 +15,8 @@ import RestaurantOffers from "./RestaurantOffers";
 import RestaurantPhotos from "./RestaurantPhotos";
 import RestaurantReviews from "./RestaurantReviews";
 import RestaurantReviewsSkeleton from "./RestaurantReviewsSkeleton";
+import TopRatedItems from "./TopRatedItems";
+import { TopRatedItemsSkeleton } from "./TopRatedItemsSkeleton";
 
 interface RestaurantDetailProps {
   restaurantId: string;
@@ -23,6 +25,10 @@ interface RestaurantDetailProps {
 }
 
 const tabs = [
+  {
+    title: "Top rated",
+    value: "top",
+  },
   {
     title: "Menu",
     value: "menu",
@@ -80,6 +86,12 @@ const RestaurantDetail = async ({
               ))}
               <FadingDivider className="max-lg:hidden" />
             </TabsList>
+
+            <TabsContent value="top" className="space-y-6">
+              <Suspense fallback={<TopRatedItemsSkeleton />}>
+                <TopRatedItems restaurantId={restaurantId} isOpen={isOpen} />
+              </Suspense>
+            </TabsContent>
 
             <TabsContent value="menu" className="space-y-6 lg:w-4/5">
               <Suspense fallback={<MenuListSkeleton />}>
