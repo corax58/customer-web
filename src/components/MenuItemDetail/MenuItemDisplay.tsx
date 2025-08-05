@@ -1,5 +1,5 @@
 import DOMPurify from "isomorphic-dompurify";
-import { CookingPot, Dot, Eye } from "lucide-react";
+import { CookingPot } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { getMenuItemPrice } from "@/lib/utils";
@@ -10,7 +10,6 @@ import FormattedAfghani from "../FormattedAfghani";
 import QuantityControl from "../QuantityControl";
 
 import AddOnList from "./AddOnList";
-import { Button } from "../ui/button";
 
 interface MenuItemDisplayProps {
   menuItem: MenuItem;
@@ -27,7 +26,6 @@ const MenuItemDisplay = ({
   setSelectedAddonIds,
   itemQuantity,
   setItemQuantity,
-  setIsOpen,
 }: MenuItemDisplayProps) => {
   const sanitizedDescription = DOMPurify.sanitize(menuItem.description || "", {
     USE_PROFILES: { html: true },
@@ -45,14 +43,6 @@ const MenuItemDisplay = ({
               {menuItem.cuisine_type_name}
             </Badge>
             <p className="text-lg font-medium">{menuItem.title}</p>
-            <Button
-              variant="link"
-              className="text-muted-foreground flex items-center justify-center gap-1 text-sm"
-              onClick={() => setIsOpen(false)}
-            >
-              <Eye />
-              <span>See restaurant</span>
-            </Button>
           </div>
           <p className="text-xl font-semibold">
             <FormattedAfghani amount={getMenuItemPrice(menuItem)} />

@@ -2,13 +2,14 @@ import DOMPurify from "isomorphic-dompurify";
 import { Eye, Star } from "lucide-react";
 
 import CustomImage from "@/components/CustomImage";
-import CustomLink from "@/components/CustomLink";
 import FormattedAfghani from "@/components/FormattedAfghani";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getMenuItemPrice } from "@/lib/utils";
 import { MenuItem } from "@/types/restaurant.types";
+
+import RestaurantDetailsLink from "./RestaurantDetailsLink";
 
 interface LandingDishCardCardProps {
   menuItem: MenuItem;
@@ -64,9 +65,13 @@ const LandingDishCard = ({ menuItem }: LandingDishCardCardProps) => {
               </div>
               <div>
                 <Button asChild>
-                  <CustomLink href={`/restaurants/${menuItem.restaurant_id}`}>
-                    <Eye />
-                  </CustomLink>
+                  <Button size={"icon"} asChild>
+                    <RestaurantDetailsLink
+                      restaurantId={menuItem.restaurant_id}
+                    >
+                      <Eye />
+                    </RestaurantDetailsLink>
+                  </Button>
                 </Button>
               </div>
             </div>

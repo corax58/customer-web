@@ -6,10 +6,10 @@ import { getMenuItemPrice } from "@/lib/utils";
 import { MenuItem } from "@/types/restaurant.types";
 
 import CustomImage from "../CustomImage";
-import CustomLink from "../CustomLink";
 import FavoriteButton from "../FavoriteButton";
 import FormattedAfghani from "../FormattedAfghani";
 import MenuItemDetail from "../MenuItemDetail";
+import RestaurantDetailsLink from "../RestaurantDetailsLink";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
@@ -66,9 +66,9 @@ const MenuItemCard = ({
               )
             ) : (
               <Button size={"icon"} asChild>
-                <CustomLink href={`/restaurants/${menuItem.restaurant_id}`}>
+                <RestaurantDetailsLink restaurantId={menuItem.restaurant_id}>
                   <Eye />
-                </CustomLink>
+                </RestaurantDetailsLink>
               </Button>
             )}
           </div>
