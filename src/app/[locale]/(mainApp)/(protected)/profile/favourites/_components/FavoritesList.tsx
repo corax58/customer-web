@@ -7,14 +7,15 @@ import { isRestaurantOpenNow } from "@/lib/utils";
 
 const FavoritesList = async () => {
   const { data, error } = await getFavoritesList();
+
   if (data)
     return (
       <div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {data.map((favourite) => {
-            const isOpen = isRestaurantOpenNow(
-              favourite.model_detail.availability,
-            );
+            const isOpen = favourite.model_detail.availability
+              ? isRestaurantOpenNow(favourite.model_detail.availability)
+              : true;
             return (
               <RestaurantCard
                 key={favourite.model_detail.id}
