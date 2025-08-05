@@ -262,10 +262,10 @@ export interface NotificationListResponse {
   list: Notification[];
 }
 export interface GetFavoritesListResult extends ActionResult {
-  data?: { id: number; model_detail: Restaurant }[];
+  data?: { model_detail: Restaurant }[];
 }
 export interface FavoritesListResponse {
-  list: { id: number; model_detail: Restaurant }[];
+  list: { model_detail: Restaurant }[];
 }
 export interface GetFaqResults extends ActionResult {
   data?: FAQ[];

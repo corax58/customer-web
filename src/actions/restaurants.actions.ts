@@ -100,6 +100,25 @@ export async function getRestaurantMenuList(
   }
 }
 
+export async function getRestaurantTopItems(
+  restaurantId: string,
+): Promise<GetRestaurantMenuListResults> {
+  try {
+    const responseData: RestaurantMenuListResponse =
+      await fetchOnCondition<RestaurantMenuListResponse>(
+        `/api/restaurant/menu-list?id=${restaurantId}`,
+        {
+          retry: { retries: 3, delay: 1000 },
+        },
+      );
+
+    return { success: true, data: responseData.list };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "Failed to fetch top items." };
+  }
+}
+
 export async function getMenuItemDetail(
   menuItemId: string,
 ): Promise<GetMenuItemDetailResult> {
