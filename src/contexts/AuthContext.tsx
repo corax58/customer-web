@@ -50,6 +50,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setIsAuthenticated(false);
         setUser(null);
         localStorage.removeItem("user");
+        localStorage.removeItem("defaultAddress");
+
         await clearTokenCookie();
         // If the user is in the restaurant page refresh the same page, otherwise redirect to the restaurants page
         if (pathname.includes("/restaurants")) {
@@ -101,6 +103,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setUser(null);
           await clearTokenCookie();
           localStorage.removeItem("user");
+          localStorage.removeItem("defaultAddress");
         }
       }
 
