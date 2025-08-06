@@ -1,5 +1,4 @@
 import { getPopularDishes } from "@/actions/actions";
-import CustomLink from "@/components/CustomLink";
 import MenuItemCard from "@/components/MenuItemCard";
 import {
   Carousel,
@@ -9,12 +8,18 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+import { PopularDishesSkeleton } from "./PopularDishesSkeleton";
+
 interface PopularDishesProps {
   lat?: string;
   lon?: string;
 }
 export async function PopularDishes({ lat, lon }: PopularDishesProps) {
+  if (lat === undefined || lon === undefined) {
+    return <PopularDishesSkeleton />;
+  }
   const { data: dishes } = await getPopularDishes(lat, lon);
+
   if (dishes && dishes.length > 0)
     return (
       <Carousel

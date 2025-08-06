@@ -1,5 +1,4 @@
 import { getBestSellingDishes } from "@/actions/actions";
-import CustomLink from "@/components/CustomLink";
 import LandingDishCard from "@/components/LandingDishCard";
 import {
   Carousel,
@@ -9,12 +8,18 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+import { BestSellingDishesSkeleton } from "./BestSellingDishesSkeleton";
+
 interface BestSellingDishesProps {
   lat?: string;
   lon?: string;
 }
 export async function BestSellingDishes({ lat, lon }: BestSellingDishesProps) {
+  if (lat === undefined || lon === undefined) {
+    return <BestSellingDishesSkeleton />;
+  }
   const { data: dishes } = await getBestSellingDishes(lat, lon);
+
   if (dishes && dishes.length > 0)
     return (
       <Carousel

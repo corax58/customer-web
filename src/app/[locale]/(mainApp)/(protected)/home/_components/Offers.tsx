@@ -8,12 +8,16 @@ import {
 } from "@/components/ui/carousel";
 
 import OffersCard from "./OffersCard";
+import { OffersSkeleton } from "./OffersSkeleton";
 
 interface OffersProps {
   lat?: string;
   lon?: string;
 }
 const Offers = async ({ lat, lon }: OffersProps) => {
+  if (lat === undefined || lon === undefined) {
+    return <OffersSkeleton />;
+  }
   const { data } = await getOffersList(lat, lon);
 
   if (data && data.length > 0)

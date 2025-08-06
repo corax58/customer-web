@@ -25,7 +25,7 @@ interface BannerProps {
 const Banner = ({ lat, lon }: BannerProps) => {
   const { data, error, isPending } = useBanner({ lat, lon });
 
-  if (isPending) {
+  if (isPending || lat === undefined || lon === undefined) {
     return (
       <div className="flex h-80 w-full gap-4 p-4">
         <div className="bg-accent h-full w-full animate-pulse rounded-xl" />
