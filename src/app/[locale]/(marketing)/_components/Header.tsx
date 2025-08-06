@@ -8,6 +8,7 @@ import LanguageSelector from "@/components/LanguageSelector";
 import Logo from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import UnAuthUserPopover from "@/components/UnAuthUserPopover";
+import { useAuth } from "@/contexts/AuthContext";
 import { cn } from "@/lib/utils";
 
 import MobileSheet from "./MobileSheet";
@@ -15,6 +16,7 @@ import MobileSheet from "./MobileSheet";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const t = useTranslations("header");
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,8 +40,8 @@ const Header = () => {
       )}
     >
       <div className="flex w-1/3 items-center gap-2">
-        <MobileSheet />
-        <CustomLink href="/">
+        <MobileSheet isAuthenticated={isAuthenticated} />
+        <CustomLink href={isAuthenticated ? "/home" : "/"}>
           <Logo />
         </CustomLink>
       </div>
@@ -57,7 +59,7 @@ const Header = () => {
       <div className="flex items-center justify-end lg:w-1/3 lg:gap-8">
         <LanguageSelector className="max-lg:hidden" />
         <ThemeToggle className="dark:hover:bg-secondary/50 hover:bg-secondary/30 border-0 bg-transparent shadow-none max-lg:hidden dark:bg-transparent" />
-        <UnAuthUserPopover />
+        {!isAuthenticated && <UnAuthUserPopover />}
       </div>
     </div>
   );

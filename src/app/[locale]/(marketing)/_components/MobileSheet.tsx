@@ -23,7 +23,11 @@ const navigationItems = [
   { href: "/about-us", label: "about_us" },
   { href: "/contact-us", label: "contact_us" },
 ];
-const MobileSheet = () => {
+
+interface MobileSheetProps {
+  isAuthenticated: boolean;
+}
+const MobileSheet = ({ isAuthenticated }: MobileSheetProps) => {
   const t = useTranslations("header");
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +49,7 @@ const MobileSheet = () => {
         <SheetHeader>
           <SheetTitle className="sr-only">mobile navigation sheet</SheetTitle>
           <div className="flex items-center justify-between">
-            <CustomLink href="/">
+            <CustomLink href={isAuthenticated ? "/home" : "/"}>
               <Logo />
             </CustomLink>
 
@@ -73,15 +77,16 @@ const MobileSheet = () => {
               {t(item.label)}
             </CustomLink>
           ))}
-
-          <div className="flex w-full flex-col space-y-2">
-            <Button asChild>
-              <CustomLink href={"/login"}>{t("login")}</CustomLink>
-            </Button>
-            <Button variant={"outline"} className="border-primary" asChild>
-              <CustomLink href={"/signup"}>{t("signup")}</CustomLink>
-            </Button>
-          </div>
+          {!isAuthenticated && (
+            <div className="flex w-full flex-col space-y-2">
+              <Button asChild>
+                <CustomLink href={"/login"}>{t("login")}</CustomLink>
+              </Button>
+              <Button variant={"outline"} className="border-primary" asChild>
+                <CustomLink href={"/signup"}>{t("signup")}</CustomLink>
+              </Button>
+            </div>
+          )}
         </div>
       </SheetContent>
     </Sheet>
