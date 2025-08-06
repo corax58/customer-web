@@ -46,21 +46,7 @@ const RestaurantHeader = ({
               </div>
             </>
           )}
-          {restaurant.location && (
-            <>
-              <div className="flex h-full flex-col items-center justify-start max-lg:gap-2 lg:items-end">
-                <p className="text-muted-foreground text-sm max-sm:text-xs">
-                  Location
-                </p>
-                <p className="font-medium max-lg:text-sm">
-                  {restaurant.location}
-                </p>
-              </div>
-              <div className="flex h-16 w-fit max-w-px flex-1 items-center">
-                <div className="bg-border h-8 w-px" />
-              </div>
-            </>
-          )}
+
           {restaurant.delivery_info.delivery_fee && (
             <div className="flex h-full flex-col items-center justify-start max-lg:gap-2 lg:items-end">
               <p className="text-muted-foreground text-sm max-sm:text-xs">
