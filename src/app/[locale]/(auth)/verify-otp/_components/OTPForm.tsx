@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import CustomLink from "@/components/CustomLink";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import {
@@ -77,14 +78,18 @@ export function OTPForm({ className, ...props }: React.ComponentProps<"div">) {
       setCountry_code(unVerifiedUserData.country_code);
     }
   }, [router]);
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-6">
             <div className="flex flex-col items-center gap-2">
-              <Logo href="/" className="mb-4 h-9 w-24" />
+              <CustomLink href="/" className="mb-4">
+                <Logo className="h-9 w-24" />
+              </CustomLink>
               <h1 className="text-xl font-bold">{t("title")}</h1>
+
               <div className="text-muted-foreground text-center text-sm">
                 {t("enter_code_prompt")}{" "}
               </div>

@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 import { forgotPassword } from "@/actions/actions";
+import CustomLink from "@/components/CustomLink";
 import Logo from "@/components/Logo";
 import { PhoneInput } from "@/components/PhoneNumberInput";
 import { Button } from "@/components/ui/button";
@@ -82,7 +83,9 @@ export function ForgotPasswordForm({
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-6">
             <div className="flex flex-col items-center gap-2">
-              <Logo href="/" className="mb-4" />
+              <CustomLink href="/" className="mb-4">
+                <Logo />
+              </CustomLink>
               <h1 className="text-xl font-bold">{t("title")}</h1>
               <div className="text-muted-foreground text-center text-sm">
                 {t("instruction")}

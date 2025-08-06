@@ -39,7 +39,9 @@ const Header = () => {
     >
       <div className="flex w-1/3 items-center gap-2">
         <MobileSheet />
-        <Logo href="/" />
+        <CustomLink href="/">
+          <Logo />
+        </CustomLink>
       </div>
       <div className="flex w-1/3 items-center justify-evenly font-medium max-lg:hidden">
         <CustomLink href={"/restaurants"} className="hover:text-primary">

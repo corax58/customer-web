@@ -45,7 +45,9 @@ const MobileSheet = () => {
         <SheetHeader>
           <SheetTitle className="sr-only">mobile navigation sheet</SheetTitle>
           <div className="flex items-center justify-between">
-            <Logo href="/" />
+            <CustomLink href="/">
+              <Logo />
+            </CustomLink>
 
             <div className="flex items-center gap-2">
               <LanguageSelector />

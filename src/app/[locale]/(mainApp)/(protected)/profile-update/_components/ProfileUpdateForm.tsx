@@ -12,6 +12,7 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import LocationLink from "@/components/LocationLink";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
@@ -76,7 +77,9 @@ const ProfileUpdateForm = ({
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-10">
             <div className="flex flex-col items-center gap-2">
-              <Logo href="/" className="mb-4 h-9 w-24" />
+              <LocationLink href="/home" className="mb-4">
+                <Logo className="h-9 w-24" />
+              </LocationLink>
               <h1 className="text-xl font-bold">{t("title")}</h1>
             </div>
             <div className="flex flex-col gap-6">

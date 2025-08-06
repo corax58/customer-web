@@ -99,7 +99,9 @@ const SignupForm = ({ className, ...props }: React.ComponentProps<"div">) => {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-10">
             <div className="flex flex-col items-center gap-2">
-              <Logo href="/" className="mb-4 h-9 w-24" />
+              <CustomLink href="/" className="mb-4">
+                <Logo className="h-9 w-24" />
+              </CustomLink>
               <h1 className="text-xl font-bold">{t("title")}</h1>
               <h3 className="text-muted-foreground font-bold">
                 {t("create_account")}
