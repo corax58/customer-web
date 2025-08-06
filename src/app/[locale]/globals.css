@@ -123,7 +123,7 @@
 
 @layer components {
   .parent-container {
-    @apply px-5 md:px-10 lg:px-20 xl:px-32;
+    @apply px-5 md:px-10 lg:px-20 xl:px-24;
   }
 }
 

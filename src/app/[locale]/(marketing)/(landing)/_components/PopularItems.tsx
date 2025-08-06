@@ -13,7 +13,7 @@ interface PopularItemsProps {
 }
 const PopularItems = async ({ lat, lon }: PopularItemsProps) => {
   return (
-    <div className="parent-container flex w-full flex-col items-center gap-20 py-20">
+    <div className="flex w-full flex-col items-center gap-20 px-4 py-20 md:px-16">
       <div className="container flex flex-col gap-20">
         <Suspense fallback={<PopularItemsCarouselSkeleton />}>
           <PopularItemsCarousel lat={lat} lon={lon} />

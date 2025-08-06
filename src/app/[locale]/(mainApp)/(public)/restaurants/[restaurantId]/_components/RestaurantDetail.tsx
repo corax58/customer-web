@@ -106,7 +106,7 @@ const RestaurantDetail = async ({
                 </Suspense>
               </TabsContent>
 
-              <TabsContent value="menu" className="space-y-6 lg:w-4/5">
+              <TabsContent value="menu" className="space-y-6">
                 <Suspense fallback={<MenuListSkeleton />}>
                   <MenuList restaurantId={restaurantId} isOpen={isOpen} />
                 </Suspense>

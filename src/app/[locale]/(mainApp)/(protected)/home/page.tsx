@@ -32,7 +32,7 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
   return (
     <div className="h-full min-h-dvh">
       <Header />
-      <div className="flex flex-col items-center pt-36 pb-20 md:px-10 md:pt-28 lg:px-14">
+      <div className="flex flex-col items-center pt-36 pb-20 md:px-10 md:pt-28">
         <div className="container flex w-full flex-col justify-center gap-10">
           <div className="flex w-full flex-col gap-4">
             <Banner lat={lat} lon={lon} />

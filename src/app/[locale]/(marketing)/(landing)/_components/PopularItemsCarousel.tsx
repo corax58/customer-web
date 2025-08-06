@@ -43,7 +43,7 @@ const PopularItemsCarousel = async ({
           {dishes.map((item, index) => (
             <CarouselItem
               key={index}
-              className="md:basis-1/3 lg:basis-1/4 xl:basis-1/4"
+              className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
             >
               <MenuItemCard menuItem={item} isInRestaurant={false} isOpen />
             </CarouselItem>

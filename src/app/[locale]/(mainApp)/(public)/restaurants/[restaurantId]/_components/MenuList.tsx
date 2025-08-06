@@ -21,7 +21,7 @@ const MenuList = async ({ restaurantId, isOpen }: MenuListProps) => {
 
   if (menuList && menuList.length > 0)
     return (
-      <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+      <div className="grid w-full grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
         {menuList.map((menuItem) => (
           <MenuItemCard
             key={menuItem.id}

@@ -74,7 +74,7 @@ const MenuItemCard = ({
           </div>
         </div>
       </div>
-      <div className="lg:w- absolute top-0 left-5 h-28 w-36 overflow-hidden rounded-2xl shadow-lg sm:w-[155px]">
+      <div className="absolute top-0 left-5 h-28 w-36 overflow-hidden rounded-2xl shadow-lg sm:w-[155px] lg:w-40">
         <div className="relative h-full w-full">
           <CustomImage
             placeholderImage={foodPlaceholder}
