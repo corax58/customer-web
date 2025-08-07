@@ -7,25 +7,24 @@ import { useCart } from "@/contexts/CartContext";
 import { Offer } from "@/types/restaurant.types";
 
 interface OrderButtonProps {
-  selectedPaymentMethod: string | null;
   handlePayment: () => void;
-  isOrdering: boolean;
-  emptyCart: boolean;
+
   selectedOffer: Offer | null;
   deliveryFee: number | null;
   isPendingDeliveryFee: boolean;
+  disableOrder: boolean;
 }
 const OrderButton = ({
-  selectedPaymentMethod,
   handlePayment,
-  isOrdering,
-  emptyCart,
+
   selectedOffer,
   deliveryFee,
   isPendingDeliveryFee,
+  disableOrder,
 }: OrderButtonProps) => {
   const { isLoadingTotalPrice, totalPrice } = useCart();
   const discount: number = selectedOffer ? parseInt(selectedOffer.discount) : 0;
+  const total = deliveryFee && totalPrice + deliveryFee - discount;
   return (
     <div>
       <div className="space-y-2">
@@ -61,16 +60,11 @@ const OrderButton = ({
         <FadingDivider />
         <div className="flex justify-between text-lg">
           <span className="font-semibold">Total price</span>
-          {isLoadingTotalPrice ? (
+          {isLoadingTotalPrice || !deliveryFee ? (
             <Loader2 className="size-5 animate-spin" />
           ) : (
             <span className="font-bold text-orange-500">
-              <FormattedAfghani
-                amount={
-                  (deliveryFee ? totalPrice + deliveryFee : totalPrice) -
-                  discount
-                }
-              />
+              <FormattedAfghani amount={total ? total : 0} />
             </span>
           )}
         </div>
@@ -78,12 +72,7 @@ const OrderButton = ({
       <Button
         className="mt-6 w-full rounded-xl bg-orange-500 py-3 font-semibold text-white hover:bg-orange-600"
         onClick={handlePayment}
-        disabled={
-          selectedPaymentMethod == null ||
-          isOrdering ||
-          emptyCart ||
-          !totalPrice
-        }
+        disabled={disableOrder}
       >
         Order Now
       </Button>

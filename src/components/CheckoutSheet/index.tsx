@@ -56,6 +56,15 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
 
   const discount: number = selectedOffer ? parseInt(selectedOffer.discount) : 0;
 
+  const disableOrder =
+    !totalPrice ||
+    !deliveryFee ||
+    isPendingDeliveryFee ||
+    isOrdering ||
+    !selectedAddress ||
+    totalItems == 0 ||
+    !selectedPaymentMethod;
+
   const getItemArray = () => {
     if (!cartItems || cartItems.length === 0) return [];
     return cartItems.map((item: CartItem) => ({
@@ -79,7 +88,7 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
       return;
     }
 
-    if (!currentRestaurantId) return;
+    if (!currentRestaurantId || !deliveryFee) return;
 
     const orderItems = getItemArray();
     startOrdering(async () => {
@@ -87,8 +96,9 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
         Detail: {
           store_id: currentRestaurantId,
           address: selectedAddress.id.toString(),
-          total_price: (totalPrice - discount).toString(),
-          payable_amount: totalPrice.toString(),
+          payable_amount: (totalPrice - discount + deliveryFee).toString(),
+          delivery_fee: deliveryFee?.toString(),
+          total_price: totalPrice.toString(),
           type_id: parseInt(selectedPaymentMethod!),
           item: JSON.stringify(orderItems),
         },
@@ -162,10 +172,8 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
             deliveryFee={deliveryFee}
             isPendingDeliveryFee={isPendingDeliveryFee}
             selectedOffer={selectedOffer}
-            selectedPaymentMethod={selectedPaymentMethod}
             handlePayment={handleOrder}
-            isOrdering={isOrdering}
-            emptyCart={totalItems == 0}
+            disableOrder={disableOrder}
           />
         </SheetFooter>
       </SheetContent>
