@@ -44,6 +44,8 @@ export function NotificationPopover({
     fetchNotifications();
   }, [fetchNotifications]);
 
+  console.log(notifications);
+
   const renderNotifications = () => {
     if (error)
       return (
@@ -58,7 +60,7 @@ export function NotificationPopover({
         </div>
       );
 
-    if (notifications?.length && notifications.length == 0) {
+    if (notifications && notifications.length == 0) {
       return (
         <div className="text-muted-foreground py-8 text-center">
           <p>{t("no_notifications")}</p>
