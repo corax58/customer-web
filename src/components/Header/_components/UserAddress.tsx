@@ -135,8 +135,8 @@ const UserAddress = ({ className, skeletonClassName }: UserAddressProps) => {
               </div>
             )}
             {}
-            <Button className="mt-2 w-full" asChild>
-              <CustomLink href="/profile">
+            <Button className="mt-2 w-full" onClick={() => setIsOpen(false)}>
+              <CustomLink href="/profile#delivery-info">
                 {addressList && addressList.length == 0
                   ? "Add an address"
                   : "Edit addresses"}

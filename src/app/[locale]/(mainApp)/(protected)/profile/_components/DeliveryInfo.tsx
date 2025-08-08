@@ -8,7 +8,7 @@ import AddressListSkeleton from "./AddressListSkeleton";
 
 const DeliveryInfo = () => {
   return (
-    <Card className="p-6 py-6 shadow-none">
+    <Card className="p-6 py-6 shadow-none" id="delivery-info">
       <CardHeader className="px-0">
         <CardTitle className="text-lg">Delivery Address</CardTitle>
       </CardHeader>
@@ -17,11 +17,9 @@ const DeliveryInfo = () => {
           <div className="text-muted-foreground">
             Select default address or add other Delivery location
           </div>
-<Suspense fallback={<AddressListSkeleton/>}
->
-
-          <AddAddressModal />
-</Suspense>
+          <Suspense fallback={<AddressListSkeleton />}>
+            <AddAddressModal />
+          </Suspense>
         </div>
         <AddressList />
       </CardContent>

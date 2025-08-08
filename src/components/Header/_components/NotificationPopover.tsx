@@ -45,8 +45,6 @@ export function NotificationPopover({
     fetchNotifications();
   }, [fetchNotifications]);
 
-  console.log(notifications);
-
   const renderNotifications = () => {
     if (error)
       return (

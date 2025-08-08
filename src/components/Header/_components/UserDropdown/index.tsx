@@ -35,9 +35,9 @@ const UserDropdown = ({ className }: React.ComponentProps<"button">) => {
             <AvatarImage src={user?.profile_file} alt={`@${user?.full_name}`} />
             <AvatarFallback>
               {user?.full_name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")}
+                ?.split(" ")
+                ?.map((n) => n[0])
+                ?.join("")}
             </AvatarFallback>
           </Avatar>
         </Button>
