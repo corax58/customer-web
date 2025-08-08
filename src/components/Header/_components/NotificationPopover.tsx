@@ -25,6 +25,7 @@ export function NotificationPopover({
   );
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const fetchNotifications = useCallback(async () => {
     setIsLoading(true);
@@ -88,7 +89,7 @@ export function NotificationPopover({
   };
 
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button
           variant={"ghost"}
@@ -114,7 +115,11 @@ export function NotificationPopover({
 
           <Separator />
           <div className="p-2">
-            <Button variant="ghost" className="hover:bg-primary w-full" asChild>
+            <Button
+              variant="ghost"
+              className="hover:bg-primary w-full"
+              onClick={() => setIsOpen(false)}
+            >
               <CustomLink href="/profile/notifications">
                 {t("view_all")}
               </CustomLink>
