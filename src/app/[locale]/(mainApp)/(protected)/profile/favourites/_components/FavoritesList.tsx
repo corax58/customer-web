@@ -13,6 +13,7 @@ const FavoritesList = async () => {
       <div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {data.map((favourite) => {
+            if (!favourite.model_detail) return;
             const isOpen = favourite.model_detail.availability
               ? isRestaurantOpenNow(favourite.model_detail.availability)
               : true;
