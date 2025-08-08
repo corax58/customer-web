@@ -17,11 +17,12 @@ const DeliveryInfo = () => {
           <div className="text-muted-foreground">
             Select default address or add other Delivery location
           </div>
-          <Suspense fallback={<AddressListSkeleton />}>
-            <AddAddressModal />
-          </Suspense>
+          <AddAddressModal />
         </div>
-        <AddressList />
+
+        <Suspense fallback={<AddressListSkeleton />}>
+          <AddressList />
+        </Suspense>
       </CardContent>
     </Card>
   );
