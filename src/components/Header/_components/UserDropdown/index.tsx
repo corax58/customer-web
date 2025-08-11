@@ -1,6 +1,7 @@
+import { usePathname } from "next/navigation";
+
 import { Heart, ShoppingBag, User } from "lucide-react";
 
-import CustomLink from "@/components/CustomLink";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/contexts/AuthContext";
+import { useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 import LogoutButton from "../LogoutButton";
@@ -18,8 +20,32 @@ import UserAddress from "../UserAddress";
 
 import LanguageDropDown from "./LanguageDropdown";
 
+const dropdownItems = [
+  {
+    label: "Profile",
+    link: "/profile",
+    icon: User,
+  },
+  {
+    label: "Favourites",
+    link: "/profile/favourites",
+    icon: Heart,
+  },
+  {
+    label: "Orders",
+    link: "/profile/orders",
+    icon: ShoppingBag,
+  },
+];
 const UserDropdown = ({ className }: React.ComponentProps<"button">) => {
   const { user } = useAuth();
+  const pathname = usePathname();
+  const router = useRouter();
+  const handleNav = (link: string) => {
+    if (pathname !== link) {
+      router.push(link);
+    }
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -78,37 +104,17 @@ const UserDropdown = ({ className }: React.ComponentProps<"button">) => {
         </div>
 
         <DropdownMenuSeparator className="" />
-
         <div className="px-2 py-1">
-          <DropdownMenuItem
-            className="flex cursor-pointer items-center gap-3 px-2 py-3"
-            asChild
-          >
-            <CustomLink href="/profile">
-              <User className="mr-2 h-4 w-4" />
-              <span>Profile</span>
-            </CustomLink>
-          </DropdownMenuItem>
-
-          <DropdownMenuItem
-            className="flex cursor-pointer items-center gap-3 px-2 py-3"
-            asChild
-          >
-            <CustomLink href="/profile/favourites">
-              <Heart className="mr-2 h-4 w-4" />
-              <span>Favourites</span>
-            </CustomLink>
-          </DropdownMenuItem>
-
-          <DropdownMenuItem
-            className="flex cursor-pointer items-center gap-3 px-2 py-3"
-            asChild
-          >
-            <CustomLink href="/profile/orders">
-              <ShoppingBag className="mr-2 h-4 w-4" />
-              <span>Orders</span>
-            </CustomLink>
-          </DropdownMenuItem>
+          {dropdownItems.map(({ label, icon: Icon, link }) => (
+            <DropdownMenuItem
+              key={link}
+              className="flex cursor-pointer items-center gap-3 px-2 py-3"
+              onClick={() => handleNav(link)}
+            >
+              <Icon className="mr-2 h-4 w-4" />
+              <span>{label}</span>
+            </DropdownMenuItem>
+          ))}
         </div>
 
         <DropdownMenuSeparator />
