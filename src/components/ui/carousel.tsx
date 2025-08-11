@@ -27,8 +27,10 @@ type CarouselContextProps = {
   api: ReturnType<typeof useEmblaCarousel>[1];
   scrollPrev: () => void;
   scrollNext: () => void;
+  scrollTo: (index: number) => void;
   canScrollPrev: boolean;
   canScrollNext: boolean;
+  selectedIndex: number;
 } & CarouselProps;
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null);
@@ -61,11 +63,15 @@ function Carousel({
   );
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
   const [canScrollNext, setCanScrollNext] = React.useState(false);
+  const [selectedIndex, setSelectedIndex] = React.useState(
+    opts?.startIndex || 0,
+  );
 
   const onSelect = React.useCallback((api: CarouselApi) => {
     if (!api) return;
     setCanScrollPrev(api.canScrollPrev());
     setCanScrollNext(api.canScrollNext());
+    setSelectedIndex(api.selectedScrollSnap());
   }, []);
 
   const scrollPrev = React.useCallback(() => {
@@ -75,6 +81,16 @@ function Carousel({
   const scrollNext = React.useCallback(() => {
     api?.scrollNext();
   }, [api]);
+
+  const scrollTo = React.useCallback(
+    (index: number) => {
+      if (index === api?.selectedScrollSnap()) return;
+      const autoplay = api?.plugins()?.autoplay;
+      autoplay?.reset();
+      api?.scrollTo(index);
+    },
+    [api],
+  );
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -109,14 +125,16 @@ function Carousel({
     <CarouselContext.Provider
       value={{
         carouselRef,
-        api: api,
+        api,
         opts,
         orientation:
           orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
         scrollPrev,
         scrollNext,
+        scrollTo,
         canScrollPrev,
         canScrollNext,
+        selectedIndex,
       }}
     >
       <div
@@ -150,6 +168,44 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
         )}
         {...props}
       />
+    </div>
+  );
+}
+
+/**
+ * CarouselDots by @plettj, 2025-04-30
+ *
+ * Currently only works with horizontal orientation.
+ */
+function CarouselDots({ className, ...props }: React.ComponentProps<"div">) {
+  const { selectedIndex, scrollTo, api } = useCarousel();
+
+  return (
+    <div
+      role="tablist"
+      className={cn(
+        "absolute bottom-0 flex w-full items-center justify-center gap-2",
+        className,
+      )}
+      {...props}
+    >
+      {api
+        ?.scrollSnapList()
+        .map((_, index) => (
+          <button
+            key={index}
+            role="tab"
+            data-slot="carousel-dot"
+            aria-selected={index === selectedIndex}
+            aria-controls="carousel-item"
+            aria-label={`Slide ${index + 1}`}
+            className={cn(
+              "border-ring size-2.5 cursor-pointer rounded-full border",
+              index === selectedIndex ? "bg-ring" : "bg-transparent",
+            )}
+            onClick={() => scrollTo(index)}
+          />
+        ))}
     </div>
   );
 }
@@ -236,6 +292,7 @@ export {
   Carousel,
   type CarouselApi,
   CarouselContent,
+  CarouselDots,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,

@@ -6,6 +6,7 @@ import { MapPin, Star } from "lucide-react";
 import CustomLink from "@/components/CustomLink";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import { BannerDetail } from "@/types/restaurant.types";
 
 interface BannerItemProps {
@@ -13,14 +14,19 @@ interface BannerItemProps {
 }
 const BannerItem = ({ bannerDetail }: BannerItemProps) => {
   return (
-    <Card className="dark:border-secondary relative flex h-full justify-end overflow-hidden rounded-3xl border-8 border-white bg-gradient-to-r from-orange-500 to-orange-600 p-0 shadow-xl max-md:rounded-none dark:from-orange-600 dark:to-orange-700">
+    <Card className="dark:border-secondary relative flex h-full justify-end overflow-hidden rounded-3xl border-8 border-white bg-gradient-to-r from-orange-500 to-orange-600 p-0 shadow-xl dark:from-orange-600 dark:to-orange-700">
       <div className="absolute inset-0 bg-[url('/assets/images/banner_background.webp')] bg-[size:100%_100%] bg-repeat"></div>
 
       <CardContent className="z-10 flex h-full w-full gap-2 py-2 text-white max-md:flex-col-reverse max-md:px-4 md:py-6">
         <div className="flex h-full justify-between md:w-1/2 md:flex-col md:px-8">
           <div className="flex h-full flex-col justify-around gap-2 md:gap-4">
             <div className="flex h-full flex-col justify-around gap-2">
-              <h2 className="font-sigmar line-clamp-2 text-xl font-bold md:-rotate-6 md:text-6xl">
+              <h2
+                className={cn(
+                  "font-sigmar line-clamp-2 text-xl font-bold md:-rotate-6 md:text-5xl",
+                  bannerDetail.restaurant.name.length > 10 && "text-4xl",
+                )}
+              >
                 {bannerDetail.restaurant.name}
               </h2>
               <div className="flex h-min flex-col gap-2 text-sm md:hidden">
@@ -56,7 +62,7 @@ const BannerItem = ({ bannerDetail }: BannerItemProps) => {
                 ))}
             </div>
           </div>
-          <div className="flex gap-2 pt-10 max-md:flex-col max-md:justify-end md:items-end md:gap-5">
+          <div className="flex gap-2 max-md:flex-col max-md:justify-end md:items-end md:gap-5">
             <div className="hidden h-full flex-col justify-between gap-2 text-sm md:flex">
               <div className="flex gap-4">
                 <div className="flex items-center space-x-1">
