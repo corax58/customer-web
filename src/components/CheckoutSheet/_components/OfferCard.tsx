@@ -1,4 +1,5 @@
 import FormattedAfghani from "@/components/FormattedAfghani";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useCart } from "@/contexts/CartContext";
 import { cn } from "@/lib/utils";
@@ -74,15 +75,18 @@ const OfferCard = ({
         </CardContent>
       </Card>
       {!reachMinPrice && (
-        <div className="absolute top-15 left-20 w-fit rounded-full bg-red-500 px-2 py-0.5">
-          Order is below minimum amount
-        </div>
+        <Badge
+          variant={"destructive"}
+          className="absolute top-2 left-2 border border-red-700 bg-red-500 text-white"
+        >
+          Below min order
+        </Badge>
       )}
 
       {offer.id == selectedOffer?.id && (
-        <div className="absolute top-2 left-2 rounded-full bg-green-500/80 px-2">
+        <Badge className="absolute top-2 left-2 rounded-full border border-green-900 bg-green-600 px-2 text-white">
           Selected
-        </div>
+        </Badge>
       )}
     </button>
   );
