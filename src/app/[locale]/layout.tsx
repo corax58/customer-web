@@ -1,4 +1,4 @@
-import { Poppins } from "next/font/google";
+import { Poppins, Sigmar } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import type { Metadata } from "next";
@@ -14,6 +14,12 @@ import "./globals.css";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
+});
+const sigmar = Sigmar({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-sigmar",
 });
 
 export const metadata: Metadata = {
@@ -35,7 +41,7 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={` ${poppins.className} antialiased`}>
+      <body className={` ${poppins.variable} ${sigmar.variable} antialiased`}>
         <NextIntlClientProvider>
           <AuthProvider>
             <ThemeProvider
