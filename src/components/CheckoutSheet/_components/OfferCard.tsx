@@ -1,5 +1,3 @@
-import { Tag } from "lucide-react";
-
 import FormattedAfghani from "@/components/FormattedAfghani";
 import { Card, CardContent } from "@/components/ui/card";
 import { useCart } from "@/contexts/CartContext";
@@ -34,7 +32,7 @@ const OfferCard = ({
     >
       <Card
         className={cn(
-          "group border-primary dark:border-primary/50 cursor-pointer rounded-none border-2 border-dashed p-0",
+          "group border-primary dark:border-primary/50 cursor-pointer overflow-hidden rounded-xl border-2 border-dashed p-0",
           !reachMinPrice &&
             "cursor-not-allowed border-red-500 dark:border-red-500",
         )}
@@ -42,36 +40,23 @@ const OfferCard = ({
         <CardContent className="rounded-none p-0">
           <div className="flex">
             {/* Left side - Discount stub */}
-            <div className="flex w-16 flex-col items-center justify-center border-r-2 border-dashed border-orange-300 bg-gradient-to-b from-orange-500 to-amber-500 text-white dark:border-orange-700 dark:from-orange-600 dark:to-amber-600">
+            <div className="flex w-fit flex-col items-center justify-center border-r-2 border-dashed border-orange-300 bg-gradient-to-b from-orange-500 to-amber-500 text-white dark:border-orange-700 dark:from-orange-600 dark:to-amber-600">
               <div className="py-4 text-center">
-                <div className="text-lg leading-none font-bold">
-                  - <FormattedAfghani amount={offer.discount} />
+                <div className="flex flex-col items-center justify-center px-2 font-semibold">
+                  <p className="text-nowrap">
+                    - {parseFloat(offer.discount).toFixed(2)}
+                  </p>
+                  <p>AFN</p>
                 </div>
               </div>
             </div>
 
             <div className="flex-1 p-2">
               <div className="space-y-3">
-                <div className="flex items-start justify-between">
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-base font-semibold text-gray-900 transition-colors group-hover:text-orange-600 dark:text-gray-100 dark:group-hover:text-orange-400">
-                      {offer.title}
-                    </h3>
-                  </div>
-                </div>
-
-                <div className="border-border bg-secondary dark:border-border dark:bg-secondary rounded border border-dashed p-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Tag className="h-4 w-4 text-orange-500" />
-                      <span className="text-sm text-gray-600 dark:text-gray-400">
-                        Code:
-                      </span>
-                      <code className="font-mono text-sm font-semibold text-orange-600 dark:text-orange-400">
-                        {offer.code}
-                      </code>
-                    </div>
-                  </div>
+                <div className="flex items-start">
+                  <h3 className="text-base font-semibold text-gray-900 transition-colors group-hover:text-orange-600 dark:text-gray-100 dark:group-hover:text-orange-400">
+                    {offer.title}
+                  </h3>
                 </div>
 
                 {/* Footer */}

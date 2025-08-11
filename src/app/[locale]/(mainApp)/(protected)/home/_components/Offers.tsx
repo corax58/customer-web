@@ -46,11 +46,11 @@ const Offers = async ({ lat, lon }: OffersProps) => {
           </div>
         </div>
 
-        <CarouselContent className="overflow-visible">
+        <CarouselContent className="-ml-4 overflow-visible">
           {data?.map((offer) => (
             <CarouselItem
               key={offer.id}
-              className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+              className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
             >
               <OffersCard offer={offer} />
             </CarouselItem>

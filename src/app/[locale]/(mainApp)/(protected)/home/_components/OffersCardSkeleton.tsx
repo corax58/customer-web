@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const OffersCardSkeleton = () => {
   return (
-    <Card className="w-80 overflow-hidden border p-0 shadow-none">
+    <Card className="w-full overflow-hidden border p-0 shadow-none">
       <CardContent className="p-0">
         <div className="relative">
           <div className="bg-secondary absolute top-0 right-0 left-0 h-1" />
@@ -14,10 +14,6 @@ const OffersCardSkeleton = () => {
                 <Skeleton className="h-4 w-1/2" />
               </div>
               <Skeleton className="h-7 w-24 rounded-md" />
-            </div>
-
-            <div className="bg-secondary mb-3 rounded-lg border-2 border-dashed p-3">
-              <Skeleton className="h-5 w-full" />
             </div>
 
             <Skeleton className="h-3 w-1/3" />

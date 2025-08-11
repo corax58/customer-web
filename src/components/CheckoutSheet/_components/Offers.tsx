@@ -87,12 +87,12 @@ const Offers = ({ selectedOffer, setSelectedOffer }: OffersProps) => {
             </Button>
           )}
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="max-h-dvh overflow-y-auto max-md:px-2">
           <DialogHeader>
             <DialogTitle>Appl an Offer</DialogTitle>
             <DialogDescription>Select an Offer to apply</DialogDescription>
           </DialogHeader>
-          <div>
+          <div className="flex flex-col gap-4">
             {offersList && offersList.length === 0 ? (
               <div className="flex h-full w-full items-center justify-center gap-4">
                 <BadgePercent size={25} />
@@ -109,6 +109,7 @@ const Offers = ({ selectedOffer, setSelectedOffer }: OffersProps) => {
                 />
               ))
             )}
+
             {error && <p>Couldnt fetch offers</p>}
           </div>
         </DialogContent>

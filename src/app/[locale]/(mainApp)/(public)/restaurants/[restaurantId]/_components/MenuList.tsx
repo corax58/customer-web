@@ -30,6 +30,38 @@ const MenuList = async ({ restaurantId, isOpen }: MenuListProps) => {
             isInRestaurant
           />
         ))}
+        {menuList.map((menuItem) => (
+          <MenuItemCard
+            key={menuItem.id}
+            menuItem={menuItem}
+            isOpen={isOpen}
+            isInRestaurant
+          />
+        ))}
+        {menuList.map((menuItem) => (
+          <MenuItemCard
+            key={menuItem.id}
+            menuItem={menuItem}
+            isOpen={isOpen}
+            isInRestaurant
+          />
+        ))}
+        {menuList.map((menuItem) => (
+          <MenuItemCard
+            key={menuItem.id}
+            menuItem={menuItem}
+            isOpen={isOpen}
+            isInRestaurant
+          />
+        ))}
+        {menuList.map((menuItem) => (
+          <MenuItemCard
+            key={menuItem.id}
+            menuItem={menuItem}
+            isOpen={isOpen}
+            isInRestaurant
+          />
+        ))}
       </div>
     );
 };

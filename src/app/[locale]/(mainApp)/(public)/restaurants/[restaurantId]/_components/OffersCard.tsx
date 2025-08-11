@@ -1,4 +1,4 @@
-import { Clock, Store, Tag } from "lucide-react";
+import { Clock, Store } from "lucide-react";
 
 import FormattedAfghani from "@/components/FormattedAfghani";
 import { Card, CardContent } from "@/components/ui/card";
@@ -24,32 +24,30 @@ const OffersCard = ({ offer }: OffersCardProps) => {
       day: "numeric",
     });
   };
-  const getDiscountText = () => {
-    if (offer.title.toLowerCase().includes("free delivery")) {
-      return { main: "FREE", sub: "DELIVERY" };
-    }
-    if (
-      offer.title.toLowerCase().includes("buy") &&
-      offer.title.toLowerCase().includes("get")
-    ) {
-      return { main: "B2G1", sub: "FREE" };
-    }
-    return { main: offer.discount, sub: "% OFF" };
-  };
+  // const getDiscountText = () => {
+  //   if (offer.title.toLowerCase().includes("free delivery")) {
+  //     return { main: "FREE", sub: "DELIVERY" };
+  //   }
+  //   if (
+  //     offer.title.toLowerCase().includes("buy") &&
+  //     offer.title.toLowerCase().includes("get")
+  //   ) {
+  //     return { main: "B2G1", sub: "FREE" };
+  //   }
+  //   return { main: offer.discount, sub: "% OFF" };
+  // };
 
-  const discount = getDiscountText();
+  // const discount = getDiscountText();
   return (
-    <Card className="group border-primary dark:border-primary/50 overflow-hidden rounded-xl border-2 border-dashed p-0">
+    <Card className="group border-primary dark:border-primary/50 w-full min-w-72 overflow-hidden rounded-lg border-2 border-dashed p-0">
       <CardContent className="rounded-none p-0">
         <div className="flex">
-          <div className="from-primary flex w-16 flex-col items-center justify-center border-r-2 border-dashed border-orange-300 bg-gradient-to-b to-amber-500 text-white dark:border-orange-700 dark:from-orange-600 dark:to-amber-600">
-            <div className="py-4 text-center">
-              <div className="text-lg leading-none font-bold">
-                {discount.main}
-              </div>
-              <div className="mt-1 text-xs leading-none font-medium">
-                {discount.sub}
-              </div>
+          <div className="from-primary flex w-20 flex-col items-center justify-center border-r-2 border-dashed border-orange-300 bg-gradient-to-b to-amber-500 text-white dark:border-orange-700 dark:from-orange-600 dark:to-amber-600">
+            <div className="flex flex-col items-center justify-center px-2 font-semibold">
+              <p className="text-nowrap">
+                - {parseFloat(offer.discount).toFixed(2)}
+              </p>
+              <p>AFN</p>
             </div>
           </div>
 
@@ -71,18 +69,6 @@ const OffersCard = ({ offer }: OffersCardProps) => {
                 <div className="text-muted-foreground flex items-center gap-1 text-xs">
                   <Clock className="h-3 w-3" />
                   <span>{formatEndTime(offer.end_time)}</span>
-                </div>
-              </div>
-
-              <div className="border-border bg-secondary dark:border-border dark:bg-secondary rounded border border-dashed p-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Tag className="text-primary h-4 w-4" />
-                    <span className="text-muted-foreground text-sm">Code:</span>
-                    <code className="font-mono text-sm font-semibold text-orange-600 dark:text-orange-400">
-                      {offer.code}
-                    </code>
-                  </div>
                 </div>
               </div>
 

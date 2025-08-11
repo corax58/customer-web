@@ -23,7 +23,7 @@ const RestaurantOffers = async ({ restaurantId }: RestaurantOffersProps) => {
 
   if (offers && offers.length > 0)
     return (
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
         {offers.map((offer) => (
           <OffersCard key={offer.id} offer={offer} />
         ))}

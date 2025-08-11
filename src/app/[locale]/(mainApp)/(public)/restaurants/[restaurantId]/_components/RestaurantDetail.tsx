@@ -14,6 +14,7 @@ import RestaurantDetailError from "./RestaurantDetailError";
 import RestaurantHeader from "./RestaurantHeader";
 import RestaurantInfo from "./RestaurantInfo";
 import RestaurantOffers from "./RestaurantOffers";
+import RestaurantOffersSkeleton from "./RestaurantOffersSkeleton";
 import RestaurantPhotos from "./RestaurantPhotos";
 import RestaurantReviews from "./RestaurantReviews";
 import RestaurantReviewsSkeleton from "./RestaurantReviewsSkeleton";
@@ -85,7 +86,7 @@ const RestaurantDetail = async ({
           />
           <Tabs
             defaultValue={"top"}
-            className="bg-red flex w-full py-5 lg:flex-row lg:gap-10"
+            className="flex w-full py-5 lg:flex-row lg:gap-10"
           >
             <TabsList className="lg:bg-background text-muted-foreground mb-6 grid h-fit w-full grid-cols-5 max-md:rounded-none lg:flex lg:w-1/5 lg:flex-col">
               {tabs.map((tab) => (
@@ -126,7 +127,9 @@ const RestaurantDetail = async ({
                 <RestaurantInfo restaurant={restaurant} />
               </TabsContent>
               <TabsContent value="offers" className="space-y-6">
-                <RestaurantOffers restaurantId={restaurant.id.toString()} />
+                <Suspense fallback={<RestaurantOffersSkeleton />}>
+                  <RestaurantOffers restaurantId={restaurant.id.toString()} />
+                </Suspense>
               </TabsContent>
             </div>
           </Tabs>
