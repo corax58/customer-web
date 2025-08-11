@@ -18,7 +18,7 @@ const Offers = async ({ lat, lon }: OffersProps) => {
   if (lat === undefined || lon === undefined) {
     return <OffersSkeleton />;
   }
-  const { data } = await getOffersList(lat, lon);
+  const { data } = await getOffersList({ lat, lon });
 
   if (data && data.length > 0)
     return (

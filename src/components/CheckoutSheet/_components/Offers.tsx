@@ -33,7 +33,9 @@ const Offers = ({ selectedOffer, setSelectedOffer }: OffersProps) => {
     if (!offersList && !isPending) {
       startTransition(async () => {
         if (!currentRestaurantId) return;
-        const result = await getOffersList(currentRestaurantId?.toString());
+        const result = await getOffersList({
+          id: currentRestaurantId?.toString(),
+        });
         if (result.data) {
           setOffersList(result.data);
         } else if (result.error) {
