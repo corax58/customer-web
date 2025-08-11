@@ -85,7 +85,7 @@ const LanguageDropDown = () => {
             )}
           </DropdownMenuItem>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-48" side="left">
+        <DropdownMenuContent className="w-48" side="bottom">
           {languages.map((language) => (
             <DropdownMenuItem
               key={language.code}
