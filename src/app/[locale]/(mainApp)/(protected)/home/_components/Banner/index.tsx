@@ -22,7 +22,7 @@ interface BannerProps {
 }
 
 const Banner = ({ lat, lon }: BannerProps) => {
-  const { data, isPending } = useBanner({ lat, lon });
+  const { data, error, isPending } = useBanner({ lat, lon });
 
   if (isPending) {
     return (
@@ -33,25 +33,42 @@ const Banner = ({ lat, lon }: BannerProps) => {
     );
   }
 
-  return (
-    <Carousel
-      className="w-full"
-      plugins={[Autoplay({ delay: 10000, stopOnInteraction: true })]}
-      opts={{ loop: true, align: "start" }}
-    >
-      <CarouselContent className="-ml-4 h-80 pb-10">
-        {data?.map((item, index) => (
-          <CarouselItem key={index} className={cn("lg:basis-1/2")}>
-            <BannerItem bannerDetail={item} />
-          </CarouselItem>
-        ))}
-        <DefaultBannerItems currentBanners={data ? data.length : 0} />
-      </CarouselContent>
-      <CarouselPrevious className="bg-secondary dark:bg-secondary ml-12 border max-md:opacity-60 md:ml-8" />
-      <CarouselNext className="bg-secondary dark:bg-secondary mr-12 border max-md:opacity-60 md:mr-8" />
-      <CarouselDots />
-    </Carousel>
-  );
+  if (error)
+    return (
+      <Carousel
+        className="w-full"
+        plugins={[Autoplay({ delay: 10000, stopOnInteraction: true })]}
+        opts={{ loop: true, align: "start" }}
+      >
+        <CarouselContent className="-ml-4 h-80 pb-10">
+          <DefaultBannerItems currentBanners={0} />
+        </CarouselContent>
+        <CarouselPrevious className="bg-secondary dark:bg-secondary ml-12 border max-md:opacity-60 md:ml-8" />
+        <CarouselNext className="bg-secondary dark:bg-secondary mr-12 border max-md:opacity-60 md:mr-8" />
+        <CarouselDots />
+      </Carousel>
+    );
+
+  if (data)
+    return (
+      <Carousel
+        className="w-full"
+        plugins={[Autoplay({ delay: 10000, stopOnInteraction: true })]}
+        opts={{ loop: true, align: "start" }}
+      >
+        <CarouselContent className="-ml-4 h-80 pb-10">
+          {data?.map((item, index) => (
+            <CarouselItem key={index} className={cn("lg:basis-1/2")}>
+              <BannerItem bannerDetail={item} />
+            </CarouselItem>
+          ))}
+          <DefaultBannerItems currentBanners={data ? data.length : 0} />
+        </CarouselContent>
+        <CarouselPrevious className="bg-secondary dark:bg-secondary ml-12 border max-md:opacity-60 md:ml-8" />
+        <CarouselNext className="bg-secondary dark:bg-secondary mr-12 border max-md:opacity-60 md:mr-8" />
+        <CarouselDots />
+      </Carousel>
+    );
 };
 
 export default Banner;
