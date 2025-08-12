@@ -52,10 +52,10 @@ const MenuItemHeader = ({ menuItem }: MenuItemHeaderProps) => {
         </Button>
       </DialogClose>
       <Carousel opts={{ loop: true }} className="w-full pt-0">
-        <CarouselContent className="-ml-0 h-64 w-full">
+        <CarouselContent className="-ml-0 h-48 w-full sm:h-56">
           {menuItem.menuImages.map((img) => (
             <CarouselItem key={img.id} className="w-full pl-0">
-              <div className="relative h-64 w-full overflow-hidden rounded-lg max-sm:rounded-t-none">
+              <div className="relative h-48 w-full overflow-hidden rounded-lg max-sm:rounded-t-none sm:h-56">
                 <CustomImage
                   imgUrl={img.url}
                   title={img.name}

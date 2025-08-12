@@ -158,9 +158,9 @@ const MenuItemDetail = ({ menuItemId, className }: MenuItemDetailProps) => {
         </DialogTrigger>
         <DialogContent
           showCloseButton={false}
-          className="h-dvh min-w-72 gap-0 overflow-auto border-0 p-0 max-sm:w-dvw max-sm:min-w-dvw"
+          className="flex max-h-dvh min-w-72 flex-col gap-0 overflow-hidden border-0 p-0 max-sm:w-dvw max-sm:min-w-dvw"
         >
-          <DialogHeader>
+          <DialogHeader className="hidden">
             <DialogTitle className="hidden" />
             <DialogDescription className="hidden" />
           </DialogHeader>
@@ -170,24 +170,27 @@ const MenuItemDetail = ({ menuItemId, className }: MenuItemDetailProps) => {
             menuItem && (
               <>
                 <MenuItemHeader menuItem={menuItem} />
-                <MenuItemDisplay
-                  menuItem={menuItem}
-                  selectedAddonIds={selectedAddonIds}
-                  setSelectedAddonIds={setSelectedAddonIds}
-                  itemQuantity={itemQuantity}
-                  setItemQuantity={setItemQuantity}
-                  setIsOpen={setIsOpen}
-                />
-                <AddToCartForm
-                  menuItem={menuItem}
-                  itemQuantity={itemQuantity}
-                  handleSubmit={handleSubmit}
-                  isPending={isPending}
-                  selectedAddonIds={selectedAddonIds}
-                  setPreviousPath={() =>
-                    localStorage.setItem("previousPath", currentPath)
-                  }
-                />
+
+                <div className="flex-grow overflow-y-auto">
+                  <MenuItemDisplay
+                    menuItem={menuItem}
+                    selectedAddonIds={selectedAddonIds}
+                    setSelectedAddonIds={setSelectedAddonIds}
+                    itemQuantity={itemQuantity}
+                    setItemQuantity={setItemQuantity}
+                    setIsOpen={setIsOpen}
+                  />
+                  <AddToCartForm
+                    menuItem={menuItem}
+                    itemQuantity={itemQuantity}
+                    handleSubmit={handleSubmit}
+                    isPending={isPending}
+                    selectedAddonIds={selectedAddonIds}
+                    setPreviousPath={() =>
+                      localStorage.setItem("previousPath", currentPath)
+                    }
+                  />
+                </div>
               </>
             )
           )}
