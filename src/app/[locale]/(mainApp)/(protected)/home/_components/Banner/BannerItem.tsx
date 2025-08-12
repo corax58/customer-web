@@ -44,23 +44,6 @@ const BannerItem = ({ bannerDetail }: BannerItemProps) => {
                 </div>
               </div>
             </div>
-            <div className="mb-4 flex gap-2 max-md:h-min">
-              {bannerDetail.sample_item_images
-                .slice(0, 3)
-                .map((image, index) => (
-                  <div
-                    key={index}
-                    className="relative size-10 overflow-hidden rounded-full border-2 border-white"
-                  >
-                    <Image
-                      src={image}
-                      alt={`${bannerDetail.restaurant.name} sample item ${index}`}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-            </div>
           </div>
           <div className="flex gap-2 max-md:flex-col max-md:justify-end md:items-end md:gap-5">
             <div className="hidden h-full flex-col justify-between gap-2 text-sm md:flex">
