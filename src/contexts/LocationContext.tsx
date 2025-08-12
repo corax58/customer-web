@@ -20,7 +20,6 @@ interface LocationContextType {
   location: Location | null;
   isPending: boolean;
   addressList: Address[] | null;
-  defaultAddress: Address | null;
   addressError: string | null;
   refreshAddress: () => void;
 }
@@ -37,7 +36,7 @@ const LocationProvider = ({ children }: PropsWithChildren) => {
   const [isPending, startTransition] = useTransition();
   const { isAuthenticated, isLoading } = useAuth();
   const { getGuestUserLocation, guestLocation } = useGeolocation();
-  const { defaultAddress, addressError, addressList, fetchLocations } =
+  const { noDefaultAddress, addressError, addressList, fetchLocations } =
     useAddress();
 
   const refreshAddress = useCallback(() => {
@@ -54,38 +53,23 @@ const LocationProvider = ({ children }: PropsWithChildren) => {
         pathname.includes("/categories");
       if (!personalizedPath || !location) return;
 
-      const latInUrl = searchParams.get("lat");
-      const lonInUrl = searchParams.get("lon");
-
-      const newLat =
-        location.latitude === 0 ? "none" : location.latitude.toString();
-      const newLon =
-        location.longitude === 0 ? "none" : location.longitude.toString();
-
-      if (latInUrl === newLat && lonInUrl === newLon) {
-        return;
-      }
-
       const params = new URLSearchParams(searchParams.toString());
-      params.set("lat", newLat);
-      params.set("lon", newLon);
 
+      if (location.latitude !== 0 && location.latitude !== 0) {
+        params.set("lat", location.latitude.toString());
+        params.set("lon", location.longitude.toString());
+      }
+      params.set("personalized", "true");
       router.replace(`${pathname}?${params.toString()}`, { scroll: false });
     },
     [pathname, router, searchParams],
   );
 
   useEffect(() => {
-    if ((!isLoading && !isAuthenticated) || (addressList && !defaultAddress)) {
+    if (!isLoading && !isAuthenticated) {
       getGuestUserLocation();
     }
-  }, [
-    isLoading,
-    isAuthenticated,
-    addressList,
-    defaultAddress,
-    getGuestUserLocation,
-  ]);
+  }, [isLoading, isAuthenticated, getGuestUserLocation]);
 
   useEffect(() => {
     if (!isLoading && isAuthenticated) {
@@ -94,58 +78,53 @@ const LocationProvider = ({ children }: PropsWithChildren) => {
   }, [isLoading, isAuthenticated, refreshAddress]);
 
   useEffect(() => {
-    if (
-      (guestLocation && !isAuthenticated) ||
-      (guestLocation && addressList && !defaultAddress)
-    ) {
+    if (guestLocation && !isAuthenticated) {
       const newLoc = {
         latitude: guestLocation?.latitude,
         longitude: guestLocation?.longitude,
       };
       updateParams({ latitude: newLoc.latitude, longitude: newLoc.longitude });
-      setLocation((prev) =>
-        prev?.latitude === newLoc.latitude &&
-        prev?.longitude === newLoc.longitude
-          ? prev
-          : newLoc,
-      );
+      console.log(newLoc);
+      if (newLoc.latitude !== 0 && newLoc.longitude !== 0)
+        setLocation((prev) =>
+          prev?.latitude === newLoc.latitude &&
+          prev?.longitude === newLoc.longitude
+            ? prev
+            : newLoc,
+        );
     }
 
-    if (defaultAddress && isAuthenticated) {
-      const newLoc = {
-        latitude: parseFloat(defaultAddress.latitude),
-        longitude: parseFloat(defaultAddress.longitude),
-      };
+    if (!noDefaultAddress && isAuthenticated) {
       updateParams({
-        latitude: newLoc.latitude,
-        longitude: newLoc.longitude,
+        latitude: 0,
+        longitude: 0,
       });
-      setLocation((prev) =>
-        prev?.latitude === newLoc.latitude &&
-        prev?.longitude === newLoc.longitude
-          ? prev
-          : newLoc,
-      );
     }
   }, [
     guestLocation,
-    defaultAddress,
     updateParams,
     isAuthenticated,
     addressList,
+    noDefaultAddress,
   ]);
 
   const value = {
     location,
     isPending,
     addressList,
-    defaultAddress,
     addressError,
     refreshAddress,
   };
   return (
     <LocationContext.Provider value={value}>
-      {children}
+      <div className="relative">
+        {noDefaultAddress && (
+          <div className="ablsolute font-sigmar fixed top-96 right-10 z-50 rounded-full border-8 border-red-800 bg-red-500 p-10 text-4xl">
+            No defaultAddress
+          </div>
+        )}
+        {children}
+      </div>
     </LocationContext.Provider>
   );
 };

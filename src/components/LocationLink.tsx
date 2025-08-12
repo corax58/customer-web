@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
 
+import { useAuth } from "@/contexts/AuthContext";
 import { useLocation } from "@/contexts/LocationContext";
 import { buildUrlSearchParams } from "@/lib/utils";
 
@@ -12,13 +14,13 @@ interface LocationLinkProps {
 }
 const LocationLink = ({ href, children, className }: LocationLinkProps) => {
   const { location } = useLocation();
+  const { user } = useAuth();
 
   const params = buildUrlSearchParams({
     lat: location?.latitude.toString(),
     lon: location?.longitude.toString(),
   });
-  const queryString = params.toString();
-
+  const queryString = user ? "" : params.toString();
   const url = href + `${queryString ? `?${queryString}` : ``}`;
   return (
     <CustomLink href={url} className={className}>

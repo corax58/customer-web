@@ -19,8 +19,9 @@ const RestaurantsList = async ({
 }: RestaurantListProps) => {
   const lat = params["lat"];
   const lon = params["lon"];
+  const personalized = params["personalized"];
 
-  if (lat === undefined || lon === undefined) {
+  if (personalized === undefined) {
     return <RestaurantListSkeleton />;
   }
 

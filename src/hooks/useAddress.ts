@@ -8,7 +8,7 @@ export default function useAddress() {
   const { isAuthenticated } = useAuth();
 
   const [addressList, setAddressList] = useState<Address[] | null>(null);
-  const [defaultAddress, setDefaulAddress] = useState<Address | null>(null);
+  const [noDefaultAddress, setNoDefaultAddress] = useState<boolean>(false);
   const [addressError, setAddressError] = useState<string | null>(null);
   const [isChecking, startChecking] = useTransition();
 
@@ -23,26 +23,11 @@ export default function useAddress() {
   }, []);
 
   const setCurrentAddress = useCallback(() => {
-    const savedAddressRaw = localStorage.getItem("defaultAddress");
-    if (savedAddressRaw) {
-      try {
-        const address: Address = JSON.parse(savedAddressRaw);
-        setDefaulAddress(address);
-        return;
-      } catch {
-        console.log("Invalid address in localStorage.");
-        localStorage.removeItem("defaultAddress");
-      }
+    const hasNoDefaultAddress = localStorage.getItem("noDefaultAddress");
+    if (hasNoDefaultAddress) {
+      setNoDefaultAddress(true);
     }
-
-    if (addressList) {
-      const apiDefault = addressList.find((item) => item.is_default == 1);
-      if (apiDefault) {
-        setDefaulAddress(apiDefault);
-        localStorage.setItem("defaultAddress", JSON.stringify(apiDefault));
-      }
-    }
-  }, [addressList]);
+  }, []);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -55,26 +40,9 @@ export default function useAddress() {
 
     startChecking(() => {
       const backendDefault = addressList.find((item) => item.is_default == 1);
-      if (!backendDefault) return;
-
-      const savedAddressRaw = localStorage.getItem("defaultAddress");
-      if (savedAddressRaw) {
-        try {
-          const savedAddress: Address = JSON.parse(savedAddressRaw);
-          if (savedAddress.id !== backendDefault.id) {
-            localStorage.setItem(
-              "defaultAddress",
-              JSON.stringify(backendDefault),
-            );
-            setDefaulAddress(backendDefault);
-          }
-        } catch {
-          localStorage.setItem(
-            "defaultAddress",
-            JSON.stringify(backendDefault),
-          );
-          setDefaulAddress(backendDefault);
-        }
+      if (!backendDefault) {
+        setNoDefaultAddress(true);
+        localStorage.setItem("noDefaultAddress", "true");
       }
     });
   }, [addressList]);
@@ -82,8 +50,8 @@ export default function useAddress() {
   return {
     addressList,
     fetchLocations,
-    defaultAddress,
     addressError,
     isChecking,
+    noDefaultAddress,
   };
 }

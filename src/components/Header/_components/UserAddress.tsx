@@ -1,9 +1,9 @@
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 
 import { MapPin } from "lucide-react";
 import { toast } from "sonner";
 
-import { setDefaultAddress } from "@/actions/profile.actions";
+import { setDefaultAddress as setDefaultAddressAction } from "@/actions/profile.actions";
 import CustomLink from "@/components/CustomLink";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -28,17 +28,18 @@ const UserAddress = ({ className, skeletonClassName }: UserAddressProps) => {
   const {
     addressError,
     addressList,
-    defaultAddress,
+
     isPending,
     refreshAddress,
   } = useLocation();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isUpdating, startUpdate] = useTransition();
+  const [defaultAddress, setDefaultAddress] = useState<Address | null>(null);
 
   const handleSetDefaultAddress = (address: Address) => {
     startUpdate(async () => {
-      const results = await setDefaultAddress(address.id.toString());
+      const results = await setDefaultAddressAction(address.id.toString());
       if (results.success) {
         localStorage.removeItem("defaultAddress");
         refreshAddress();
@@ -50,6 +51,15 @@ const UserAddress = ({ className, skeletonClassName }: UserAddressProps) => {
     });
   };
 
+  useEffect(() => {
+    if (!addressList) return;
+    const currentDefaultAddress = addressList.find(
+      (item) => item.is_default == 1,
+    );
+    if (currentDefaultAddress) {
+      setDefaultAddress(currentDefaultAddress);
+    }
+  }, [addressList]);
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       {isUpdating || isPending ? (
