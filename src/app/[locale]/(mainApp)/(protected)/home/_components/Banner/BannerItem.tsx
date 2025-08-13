@@ -3,7 +3,9 @@ import Image from "next/image";
 
 import { MapPin, Star } from "lucide-react";
 
+import CustomImage from "@/components/CustomImage";
 import CustomLink from "@/components/CustomLink";
+import MenuItemDetail from "@/components/MenuItemDetail";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -12,12 +14,15 @@ import { BannerDetail } from "@/types/restaurant.types";
 interface BannerItemProps {
   bannerDetail: BannerDetail;
 }
+
+const foodPlaceholder = "/assets/images/foodPlaceholder.jpg";
+
 const BannerItem = ({ bannerDetail }: BannerItemProps) => {
   return (
     <Card className="dark:border-secondary relative flex h-full justify-end overflow-hidden rounded-3xl border-8 border-white bg-gradient-to-r from-orange-500 to-orange-600 p-0 shadow-xl dark:from-orange-600 dark:to-orange-700">
       <div className="absolute inset-0 bg-[url('/assets/images/banner_background.webp')] bg-[size:100%_100%] bg-repeat"></div>
 
-      <CardContent className="z-10 flex h-full w-full justify-between gap-2 py-2 text-white max-md:flex-col-reverse max-md:px-4 md:py-6">
+      <CardContent className="z-10 flex h-full w-full flex-col-reverse justify-between gap-2 py-2 text-white max-md:px-4 md:flex-row md:py-6">
         <div className="flex h-full justify-between md:w-1/2 md:flex-col md:px-8">
           <div className="flex h-full flex-col justify-around gap-2 md:gap-4">
             <div className="flex h-full flex-col justify-around gap-2">
@@ -29,6 +34,18 @@ const BannerItem = ({ bannerDetail }: BannerItemProps) => {
               >
                 {bannerDetail.restaurant.name}
               </h2>
+
+              {bannerDetail.item && (
+                <MenuItemDetail menuItemId={bannerDetail.item.id.toString()}>
+                  <div className="relative mb-2 size-10 overflow-hidden rounded-full border-2 border-white md:size-12 lg:size-14 xl:size-16">
+                    <CustomImage
+                      imgUrl={bannerDetail.item.image}
+                      title={bannerDetail.item.name}
+                      placeholderImage={foodPlaceholder}
+                    />
+                  </div>
+                </MenuItemDetail>
+              )}
               <div className="flex h-min flex-col gap-2 text-sm md:hidden">
                 <div className="flex gap-4">
                   <div className="flex items-center space-x-1">
@@ -72,7 +89,7 @@ const BannerItem = ({ bannerDetail }: BannerItemProps) => {
           </div>
         </div>
         <div className="flex h-full w-full items-center justify-center md:w-fit">
-          <div className="relative overflow-hidden rounded-xl border-8 border-white/10 bg-white max-md:h-full max-md:w-full md:aspect-square md:size-52 md:rounded-full lg:size-44 xl:size-52">
+          <div className="relative overflow-hidden rounded-xl border-4 border-white/10 bg-white max-md:h-full max-md:w-full md:aspect-square md:size-52 md:rounded-full lg:size-44 lg:border-8 xl:size-52">
             <Image
               src={bannerDetail.restaurant.image}
               alt="banner image"

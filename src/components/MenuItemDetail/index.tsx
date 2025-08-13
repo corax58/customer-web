@@ -36,9 +36,14 @@ import MenuItemHeader from "./MenuItemHeader";
 interface MenuItemDetailProps {
   menuItemId: string;
   className?: string;
+  children: React.ReactNode;
 }
 
-const MenuItemDetail = ({ menuItemId, className }: MenuItemDetailProps) => {
+const MenuItemDetail = ({
+  menuItemId,
+  className,
+  children,
+}: MenuItemDetailProps) => {
   const [menuItem, setMenuItem] = useState<MenuItem>();
   const [isOpen, setIsOpen] = useState(false);
   const currentPath = usePathname();
@@ -151,11 +156,7 @@ const MenuItemDetail = ({ menuItemId, className }: MenuItemDetailProps) => {
         </AlertDialogContent>
       </AlertDialog>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogTrigger asChild>
-          <Button className={className} size={"icon"}>
-            <Plus />
-          </Button>
-        </DialogTrigger>
+        <DialogTrigger asChild>{children}</DialogTrigger>
         <DialogContent
           showCloseButton={false}
           className="flex max-h-dvh min-w-72 flex-col gap-0 overflow-hidden border-0 p-0 max-sm:w-dvw max-sm:min-w-dvw"

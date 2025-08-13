@@ -1,5 +1,5 @@
 "use client";
-import { CookingPot, Eye } from "lucide-react";
+import { CookingPot, Eye, Plus } from "lucide-react";
 
 import { useAuth } from "@/contexts/AuthContext";
 import { getMenuItemPrice } from "@/lib/utils";
@@ -62,7 +62,11 @@ const MenuItemCard = ({
 
             {isInRestaurant ? (
               isAvailable && (
-                <MenuItemDetail menuItemId={menuItem.id.toString()} />
+                <MenuItemDetail menuItemId={menuItem.id.toString()}>
+                  <Button size={"icon"}>
+                    <Plus />
+                  </Button>
+                </MenuItemDetail>
               )
             ) : (
               <Button size={"icon"} asChild>

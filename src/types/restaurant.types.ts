@@ -279,6 +279,19 @@ export interface OrderPayload {
   item: string;
 }
 
+interface BannerFoodItem {
+  id: number;
+  name: string;
+  description: string; // Contains HTML content
+  price: string; // String, as it can be empty
+  cook_time: string;
+  category_id: number;
+  category_name: string | null; // Can be null
+  image: string; // URL string
+  rating: number;
+  is_featured: number; // Represents a boolean (0 for false, 1 for true)
+}
+
 export interface BannerDetail {
   restaurant: {
     id: string;
@@ -286,8 +299,9 @@ export interface BannerDetail {
     image: string;
     location: string;
   };
-  sample_item_images: string[];
+  item: BannerFoodItem;
 }
+
 export interface BannerDataResponse {
   banners: BannerDetail[];
 }
