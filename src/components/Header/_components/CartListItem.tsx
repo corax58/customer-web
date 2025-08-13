@@ -22,6 +22,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import useDebounce from "@/hooks/useDebounce";
+import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { getAddOns } from "@/lib/utils";
 import { CartItem } from "@/types/cart.types";
 
@@ -78,7 +79,7 @@ const CartListItem = ({ cartItem }: CartListItemProps) => {
             <CustomImage
               imgUrl={cartItem.restaurant_items[0].image_file}
               title={cartItem.restaurant_items[0].title}
-              placeholderImage={"/assets/images/foodPlaceholder.jpg"}
+              placeholderImage={PLACEHOLDER_IMAGES.FOOD_ITEM}
             />
           </div>
           <div className="flex h-16 flex-col justify-between">

@@ -3,6 +3,7 @@ import { Dot } from "lucide-react";
 import CustomImage from "@/components/CustomImage";
 import FadingDivider from "@/components/FadingDivider";
 import FormattedAfghani from "@/components/FormattedAfghani";
+import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { ItemDetail } from "@/types/profile.types";
 
 interface OrderedItemsProps {
@@ -20,7 +21,7 @@ const OrderedItems = ({ items }: OrderedItemsProps) => {
                 <CustomImage
                   imgUrl={item.product_image}
                   title={item.product_detail}
-                  placeholderImage={"/assets/images/foodPlaceholder.jpg"}
+                  placeholderImage={PLACEHOLDER_IMAGES.FOOD_ITEM}
                 />
               </div>
               <div className="flex flex-col gap-2">

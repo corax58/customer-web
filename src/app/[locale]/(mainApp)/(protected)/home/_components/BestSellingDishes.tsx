@@ -11,14 +11,15 @@ import {
 import { BestSellingDishesSkeleton } from "./BestSellingDishesSkeleton";
 
 interface BestSellingDishesProps {
-  lat?: string;
-  lon?: string;
+  personalized?: string;
 }
-export async function BestSellingDishes({ lat, lon }: BestSellingDishesProps) {
-  if (lat === undefined || lon === undefined) {
+export async function BestSellingDishes({
+  personalized,
+}: BestSellingDishesProps) {
+  if (personalized === undefined) {
     return <BestSellingDishesSkeleton />;
   }
-  const { data: dishes } = await getBestSellingDishes(lat, lon);
+  const { data: dishes } = await getBestSellingDishes();
 
   if (dishes && dishes.length > 0)
     return (

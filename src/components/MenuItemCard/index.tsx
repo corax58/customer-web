@@ -2,6 +2,7 @@
 import { CookingPot, Eye, Plus } from "lucide-react";
 
 import { useAuth } from "@/contexts/AuthContext";
+import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { getMenuItemPrice } from "@/lib/utils";
 import { MenuItem } from "@/types/restaurant.types";
 
@@ -18,8 +19,6 @@ interface MenuItemCardProps {
   isOpen: boolean;
   isInRestaurant: boolean;
 }
-
-const foodPlaceholder = "/assets/images/foodPlaceholder.jpg";
 
 const MenuItemCard = ({
   menuItem,
@@ -81,7 +80,7 @@ const MenuItemCard = ({
       <div className="absolute top-0 left-5 h-28 w-36 overflow-hidden rounded-2xl shadow-lg sm:w-[155px] lg:w-40">
         <div className="relative h-full w-full">
           <CustomImage
-            placeholderImage={foodPlaceholder}
+            placeholderImage={PLACEHOLDER_IMAGES.FOOD_ITEM}
             imgUrl={menuItem.image_file}
             title={menuItem.title}
           />

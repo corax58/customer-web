@@ -15,13 +15,16 @@ import PopularRestaurantsSkeleton from "./PopularRestaurantsSkeleton";
 interface PopularRestaurantsProps {
   lat?: string;
   lon?: string;
+  personalized?: string;
 }
 
-const PopularRestaurants = async ({ lat, lon }: PopularRestaurantsProps) => {
-  if (lat === undefined || lon === undefined) {
+const PopularRestaurants = async ({
+  personalized,
+}: PopularRestaurantsProps) => {
+  if (personalized === undefined) {
     return <PopularRestaurantsSkeleton />;
   }
-  const { data: restaurants } = await getTopRestaurants(lat, lon);
+  const { data: restaurants } = await getTopRestaurants();
 
   if (restaurants && restaurants.length > 0)
     return (

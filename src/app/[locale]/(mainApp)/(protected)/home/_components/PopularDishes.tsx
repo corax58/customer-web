@@ -13,12 +13,13 @@ import { PopularDishesSkeleton } from "./PopularDishesSkeleton";
 interface PopularDishesProps {
   lat?: string;
   lon?: string;
+  personalized?: string;
 }
-export async function PopularDishes({ lat, lon }: PopularDishesProps) {
-  if (lat === undefined || lon === undefined) {
+export async function PopularDishes({ personalized }: PopularDishesProps) {
+  if (personalized === undefined) {
     return <PopularDishesSkeleton />;
   }
-  const { data: dishes } = await getPopularDishes(lat, lon);
+  const { data: dishes } = await getPopularDishes();
 
   if (dishes && dishes.length > 0)
     return (

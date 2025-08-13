@@ -11,14 +11,13 @@ import OffersCard from "./OffersCard";
 import { OffersSkeleton } from "./OffersSkeleton";
 
 interface OffersProps {
-  lat?: string;
-  lon?: string;
+  personalized?: string;
 }
-const Offers = async ({ lat, lon }: OffersProps) => {
-  if (lat === undefined || lon === undefined) {
+const Offers = async ({ personalized }: OffersProps) => {
+  if (personalized === undefined) {
     return <OffersSkeleton />;
   }
-  const { data } = await getOffersList({ lat, lon });
+  const { data } = await getOffersList({});
 
   if (data && data.length > 0)
     return (

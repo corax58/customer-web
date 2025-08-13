@@ -5,6 +5,7 @@ import CustomImage from "@/components/CustomImage";
 import CustomLink from "@/components/CustomLink";
 import FadingDivider from "@/components/FadingDivider";
 import FormattedAfghani from "@/components/FormattedAfghani";
+import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 
 import OrderCancelModal from "./OrderCancelModal";
 import OrderedItems from "./OrderedItems";
@@ -16,8 +17,6 @@ import { TrackOrder } from "./TrackOrder";
 interface OrderDetailProps {
   orderId: string;
 }
-
-const restaurant_placeholder = "/assets/images/restaurant_placeholder.webp";
 
 const OrderDetail = async ({ orderId }: OrderDetailProps) => {
   const { data: order } = await getOrderDetail(orderId);
@@ -100,7 +99,7 @@ const OrderDetail = async ({ orderId }: OrderDetailProps) => {
                 <CustomImage
                   imgUrl={order.storeDetail.image_file}
                   title={order.store_title}
-                  placeholderImage={restaurant_placeholder}
+                  placeholderImage={PLACEHOLDER_IMAGES.RESTAURANT}
                   className="object-cover"
                 />
               </div>

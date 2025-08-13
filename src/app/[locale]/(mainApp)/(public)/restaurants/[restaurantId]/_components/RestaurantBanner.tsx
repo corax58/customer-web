@@ -2,12 +2,12 @@ import React from "react";
 import Image from "next/image";
 
 import CustomImage from "@/components/CustomImage";
+import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { Restaurant } from "@/types/restaurant.types";
 
 interface RestaurantBannerProps {
   restaurant: Restaurant;
 }
-const restaurantPlaceHolder = "/assets/images/restaurant_placeholder.webp";
 const RestaurantBanner = ({ restaurant }: RestaurantBannerProps) => {
   return (
     <div className="mb-12 w-full">
@@ -16,7 +16,7 @@ const RestaurantBanner = ({ restaurant }: RestaurantBannerProps) => {
           <CustomImage
             title={restaurant.title + " banner"}
             imgUrl={restaurant.image_file}
-            placeholderImage={restaurantPlaceHolder}
+            placeholderImage={PLACEHOLDER_IMAGES.RESTAURANT}
             quality={100}
             priority
             fill

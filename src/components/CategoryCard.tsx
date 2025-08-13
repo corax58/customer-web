@@ -1,11 +1,11 @@
-import Image from "next/image";
-
 import { ArrowRight } from "lucide-react";
 
+import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Category } from "@/types/restaurant.types";
 
 import { Card, CardContent } from "./ui/card";
+import CustomImage from "./CustomImage";
 import CustomLink from "./CustomLink";
 
 interface CategoryCard {
@@ -23,12 +23,11 @@ const CategoryCard = ({ category, className }: CategoryCard) => {
       >
         <CardContent className="px-0 py-0">
           <div className="relative h-32">
-            <Image
-              src={category.image}
-              alt={category.title}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
-            />
+            <CustomImage
+              imgUrl={category.image}
+              title={category.title}
+              placeholderImage={PLACEHOLDER_IMAGES.CATEGORY}
+            ></CustomImage>
           </div>
 
           <div className="relative p-4">

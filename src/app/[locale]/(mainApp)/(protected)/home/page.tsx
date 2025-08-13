@@ -25,32 +25,33 @@ interface HomePageProps {
   searchParams: Promise<{
     lat: string;
     lon: string;
+    personalized: string;
   }>;
 }
 const HomePage = async ({ searchParams }: HomePageProps) => {
-  const { lat, lon } = await searchParams;
+  const { personalized } = await searchParams;
   return (
     <div className="h-full min-h-dvh">
       <Header />
       <div className="flex flex-col items-center pt-36 pb-20 md:px-14 md:pt-36">
         <div className="container flex w-full flex-col justify-center gap-10">
           <div className="flex w-full flex-col gap-4">
-            <Banner lat={lat} lon={lon} />
+            <Banner personalized={personalized} />
             <div className="flex flex-col gap-10 p-5 md:gap-14">
               <Suspense fallback={<CategoriesSkeleton />}>
-                <Categories />
+                <Categories personalized={personalized} />
               </Suspense>
               <Suspense fallback={<PopularRestaurantsSkeleton />}>
-                <PopularRestaurants lat={lat} lon={lon} />
+                <PopularRestaurants personalized={personalized} />
               </Suspense>
               <Suspense fallback={<PopularDishesSkeleton />}>
-                <PopularDishes lat={lat} lon={lon} />
+                <PopularDishes personalized={personalized} />
               </Suspense>
               <Suspense fallback={<BestSellingDishesSkeleton />}>
-                <BestSellingDishes lat={lat} lon={lon} />
+                <BestSellingDishes personalized={personalized} />
               </Suspense>
               <Suspense fallback={<OffersSkeleton />}>
-                <Offers lat={lon} lon={lon} />
+                <Offers personalized={personalized} />
               </Suspense>
             </div>
           </div>

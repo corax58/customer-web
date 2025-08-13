@@ -9,8 +9,15 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export async function Categories() {
+import { CategoriesSkeleton } from "./CategoriesSkeleton";
+
+interface CategoriesProps {
+  personalized?: string;
+}
+export async function Categories({ personalized }: CategoriesProps) {
   const { data: categories } = await getCategiesList();
+
+  if (personalized == undefined) return <CategoriesSkeleton />;
 
   if (categories && categories.length > 0)
     return (

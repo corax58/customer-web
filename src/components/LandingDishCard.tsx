@@ -6,6 +6,7 @@ import FormattedAfghani from "@/components/FormattedAfghani";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { getMenuItemPrice } from "@/lib/utils";
 import { MenuItem } from "@/types/restaurant.types";
 
@@ -14,7 +15,6 @@ import RestaurantDetailsLink from "./RestaurantDetailsLink";
 interface LandingDishCardCardProps {
   menuItem: MenuItem;
 }
-const placeholderImage = "/assets/images/foodPlaceholder.jpg";
 const LandingDishCard = ({ menuItem }: LandingDishCardCardProps) => {
   const description = menuItem.description;
   const sanitizedDesc = DOMPurify.sanitize(description, {
@@ -29,7 +29,7 @@ const LandingDishCard = ({ menuItem }: LandingDishCardCardProps) => {
             <CustomImage
               title={menuItem.title}
               imgUrl={menuItem.image_file}
-              placeholderImage={placeholderImage}
+              placeholderImage={PLACEHOLDER_IMAGES.FOOD_ITEM}
             />
 
             <div className="absolute bottom-2 left-2 flex items-center gap-1 rounded-full bg-white px-2 py-1 text-black">

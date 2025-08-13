@@ -17,14 +17,13 @@ import BannerItem from "./BannerItem";
 import DefaultBannerItems from "./DefaultBannerItems";
 
 interface BannerProps {
-  lat?: string;
-  lon?: string;
+  personalized?: string;
 }
 
-const Banner = ({ lat, lon }: BannerProps) => {
-  const { data, error, isPending } = useBanner({ lat, lon });
+const Banner = ({ personalized }: BannerProps) => {
+  const { data, error, isPending } = useBanner();
 
-  if (isPending) {
+  if (isPending || personalized == undefined) {
     return (
       <div className="flex h-80 w-full gap-4 p-4">
         <div className="bg-accent h-full w-full animate-pulse rounded-xl" />

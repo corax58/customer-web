@@ -4,6 +4,7 @@ import { Bike, Star, User } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/contexts/AuthContext";
+import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { cn, formatTimeHM } from "@/lib/utils";
 import { Restaurant } from "@/types/restaurant.types";
 
@@ -18,8 +19,6 @@ interface RestaurantCardProps {
   restaurant: Restaurant;
   className?: string;
 }
-
-const restaurantImagePlaceHolder = "/assets/images/restaurant_placeholder.webp";
 
 const RestaurantCard = ({
   restaurant,
@@ -41,7 +40,7 @@ const RestaurantCard = ({
             <CustomImage
               imgUrl={restaurant.image_file}
               title={restaurant.title}
-              placeholderImage={restaurantImagePlaceHolder}
+              placeholderImage={PLACEHOLDER_IMAGES.RESTAURANT}
             />
           </RestaurantDetailsLink>
           {user && (

@@ -2,7 +2,6 @@
 import { FormEvent, useEffect, useState, useTransition } from "react";
 
 import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
-import { Plus } from "lucide-react";
 import { toast } from "sonner";
 
 import { addToCartAction } from "@/actions/cart.actions";
@@ -17,7 +16,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -41,7 +39,7 @@ interface MenuItemDetailProps {
 
 const MenuItemDetail = ({
   menuItemId,
-  className,
+
   children,
 }: MenuItemDetailProps) => {
   const [menuItem, setMenuItem] = useState<MenuItem>();

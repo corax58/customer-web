@@ -18,6 +18,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { OrderStatus } from "@/types/profile.types";
 import { Restaurant } from "@/types/restaurant.types";
@@ -67,8 +68,6 @@ const orderStates: {
     status: "DELIVERED",
   },
 ];
-
-const restaurant_placeholder = "/assets/images/restaurant_placeholder.webp";
 
 interface TrackOrderProps {
   order_id: string;
@@ -147,7 +146,7 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
                 <CustomImage
                   imgUrl={restaurant.image_file}
                   title={restaurant.title}
-                  placeholderImage={restaurant_placeholder}
+                  placeholderImage={PLACEHOLDER_IMAGES.RESTAURANT}
                   className="object-cover"
                 />
               </div>

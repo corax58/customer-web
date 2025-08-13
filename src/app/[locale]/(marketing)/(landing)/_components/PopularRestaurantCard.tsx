@@ -7,12 +7,12 @@ import CustomImage from "@/components/CustomImage";
 import CustomLink from "@/components/CustomLink";
 import FormattedAfghani from "@/components/FormattedAfghani";
 import { Card, CardContent } from "@/components/ui/card";
+import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { Restaurant } from "@/types/restaurant.types";
 
 interface PopularRestaurantCardProps {
   restaurant: Restaurant;
 }
-const restaurantPlaceHolder = "/assets/images/restaurant_placeholder.webp";
 const PopularRestaurantCard = ({ restaurant }: PopularRestaurantCardProps) => {
   const descriptionHtml = restaurant.description;
 
@@ -26,7 +26,7 @@ const PopularRestaurantCard = ({ restaurant }: PopularRestaurantCardProps) => {
           <CustomImage
             imgUrl={restaurant.image_file}
             title={restaurant.title}
-            placeholderImage={restaurantPlaceHolder}
+            placeholderImage={PLACEHOLDER_IMAGES.RESTAURANT}
           />
         </div>
         <CardContent className="p-4 pt-0">

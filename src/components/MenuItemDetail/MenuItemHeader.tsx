@@ -3,6 +3,7 @@
 import { X } from "lucide-react";
 
 import { useAuth } from "@/contexts/AuthContext";
+import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { MenuItem } from "@/types/restaurant.types";
 
 import CustomImage from "../CustomImage";
@@ -22,7 +23,6 @@ interface MenuItemHeaderProps {
   menuItem: MenuItem;
 }
 
-const foodPlaceHolder = "/assets/images/foodPlaceholder.jpg";
 const MenuItemHeader = ({ menuItem }: MenuItemHeaderProps) => {
   const { user } = useAuth();
 
@@ -59,7 +59,7 @@ const MenuItemHeader = ({ menuItem }: MenuItemHeaderProps) => {
                 <CustomImage
                   imgUrl={img.url}
                   title={img.name}
-                  placeholderImage={foodPlaceHolder}
+                  placeholderImage={PLACEHOLDER_IMAGES.FOOD_ITEM}
                 />
               </div>
             </CarouselItem>

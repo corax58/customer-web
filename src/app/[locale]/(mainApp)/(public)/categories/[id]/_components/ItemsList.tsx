@@ -12,9 +12,16 @@ interface ItemsListProps {
   title?: string;
   lat?: string;
   lon?: string;
+  personalized?: string;
 }
-const ItemsList = async ({ id, title, lat, lon }: ItemsListProps) => {
-  if (lat === undefined || lon === undefined) {
+const ItemsList = async ({
+  id,
+  title,
+  lat,
+  lon,
+  personalized,
+}: ItemsListProps) => {
+  if (personalized === undefined) {
     return <ItemsListSkeleton />;
   }
   const { data: items, error } = await getCategoryItems(id, lat, lon);

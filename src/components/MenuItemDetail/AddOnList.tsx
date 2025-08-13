@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 
 import { Checkbox } from "@/components/ui/checkbox";
+import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { AddOn } from "@/types/restaurant.types";
 
@@ -14,7 +15,6 @@ interface AddOnListProps {
   setSelectedAddonIds: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
-const add_on_placeholder = "/assets/images/add_on_placeholder.webp";
 const AddOnListItem = ({
   addOn,
   selectedAddonIds,
@@ -48,7 +48,7 @@ const AddOnListItem = ({
           <CustomImage
             imgUrl={addOn.add_on_category_id.image}
             title={addOn.title}
-            placeholderImage={add_on_placeholder}
+            placeholderImage={PLACEHOLDER_IMAGES.ADD_ON}
           />
         </div>
         <div className="flex flex-col justify-center">

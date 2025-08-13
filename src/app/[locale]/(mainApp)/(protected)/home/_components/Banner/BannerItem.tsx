@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 
 import { MapPin, Star } from "lucide-react";
@@ -8,14 +7,13 @@ import CustomLink from "@/components/CustomLink";
 import MenuItemDetail from "@/components/MenuItemDetail";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { BannerDetail } from "@/types/restaurant.types";
 
 interface BannerItemProps {
   bannerDetail: BannerDetail;
 }
-
-const foodPlaceholder = "/assets/images/foodPlaceholder.jpg";
 
 const BannerItem = ({ bannerDetail }: BannerItemProps) => {
   return (
@@ -41,7 +39,7 @@ const BannerItem = ({ bannerDetail }: BannerItemProps) => {
                     <CustomImage
                       imgUrl={bannerDetail.item.image}
                       title={bannerDetail.item.name}
-                      placeholderImage={foodPlaceholder}
+                      placeholderImage={PLACEHOLDER_IMAGES.FOOD_ITEM}
                     />
                   </div>
                 </MenuItemDetail>

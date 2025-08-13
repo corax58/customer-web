@@ -125,15 +125,11 @@ export async function getBestSellingDishes(
 
 export async function getOffersList({
   id,
-  lat,
-  lon,
 }: {
   id?: string;
-  lat?: string;
-  lon?: string;
 }): Promise<GetOffersListResult> {
   try {
-    const url = buildApiUrl("/api/offer/coupon-list", { id, lat, lon });
+    const url = buildApiUrl("/api/restaurant/offer-list", { id });
     console.log(url);
     const responseData: OffersListResponse =
       await fetchWithAuth<OffersListResponse>(url, {
