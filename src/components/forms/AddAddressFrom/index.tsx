@@ -15,8 +15,9 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { addressSchema } from "@/lib/schemas/address.schema";
 
-import { LocationPicker } from "./map/LocationPicker";
 import AddressFormFields from "./AddressFormFields";
+import { LocationPicker } from "./LocationPicker";
+
 interface AddAddressFormProps {
   onCreate: () => void;
 }

@@ -1,20 +1,13 @@
 "use client";
 
-import { useAuth } from "@/contexts/AuthContext";
+import AddAddressForm from "@/components/forms/AddAddressFrom";
 import { useRouter } from "@/i18n/navigation";
 
-import AddAddressForm from "../../profile/_components/AddAddressForm";
-
-const AddressFormWrapper = () => {
+const SetupAddress = () => {
   const router = useRouter();
-  const { user } = useAuth();
 
   const onCreate = () => {
-    if (user?.is_profile_setup == 0) {
-      router.push("/profile-update");
-    } else {
-      router.push("/home");
-    }
+    router.push("/home");
   };
   return (
     <div className="max-w-4xl space-y-10">
@@ -29,4 +22,4 @@ const AddressFormWrapper = () => {
   );
 };
 
-export default AddressFormWrapper;
+export default SetupAddress;

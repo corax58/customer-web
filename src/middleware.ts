@@ -8,7 +8,8 @@ import { isAuthenticated } from "./lib/auth";
 const protectedRoutes = [
   "/home",
   "/change-password",
-  "/profile-update",
+  "/profile-setup",
+  "/setup-address",
   "/profile",
 ];
 

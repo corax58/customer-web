@@ -1,14 +1,14 @@
 import React from "react";
 import Image from "next/image";
 
-import ProfileUpdateForm from "./_components/ProfileUpdateForm";
+import ProfileSetup from "./_components/ProfileSetup";
 
 const ProfileUpdatePage = () => {
   return (
     <div className="flex min-h-svh items-center justify-start">
       <div className="flex w-full justify-center lg:w-2/5">
         <div className="bg-background flex w-fit justify-center rounded-xl p-10 pt-36 max-sm:min-h-dvh max-sm:w-full max-sm:rounded-none lg:pt-24">
-          {<ProfileUpdateForm className="sm:w-sm" />}
+          <ProfileSetup />
         </div>
       </div>
       <div className="absolute top-0 right-0 -z-10 h-svh w-full overflow-hidden lg:w-3/5">

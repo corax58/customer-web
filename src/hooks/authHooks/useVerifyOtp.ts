@@ -52,7 +52,7 @@ export const useVerifyOtp = () => {
           router.push(previousPath);
           localStorage.removeItem(previousPath);
         } else {
-          router.push("/profile-update");
+          router.push("/profile-setup");
         }
       } catch (error) {
         const errorMessage = await processError(error);

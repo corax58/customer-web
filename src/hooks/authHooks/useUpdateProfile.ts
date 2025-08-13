@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { useSearchParams } from "next/navigation";
 
 import { updateProfileAction } from "@/actions/actions";
 import { useAuth } from "@/contexts/AuthContext";
-import { useRouter } from "@/i18n/navigation";
 import { UpdateProfilePayload } from "@/types/auth.types";
 
 export const useUpdateProfile = () => {
@@ -11,9 +9,7 @@ export const useUpdateProfile = () => {
   const [error, setError] = useState<null | string>();
   const [isSuccess, setIsSuccess] = useState(false);
   const { login: contextLogin } = useAuth();
-  const searchParams = useSearchParams();
 
-  const router = useRouter();
   const updateProfile = async (data: UpdateProfilePayload) => {
     setIsSuccess(false);
     setIsLoading(true);
@@ -29,14 +25,6 @@ export const useUpdateProfile = () => {
 
       setIsLoading(false);
       setIsSuccess(true);
-
-      if (searchParams.get("source") == "edit") {
-        router.refresh();
-        router.push("/profile");
-      } else {
-        router.refresh();
-        router.push("/home");
-      }
     }
   };
 

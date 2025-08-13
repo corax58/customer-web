@@ -12,7 +12,6 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { useAuth } from "@/contexts/AuthContext";
@@ -22,10 +21,14 @@ import { cn, formatYYYYMMDD } from "@/lib/utils";
 
 import ProfileUpdateFormFields from "./ProfileUpdateFormFields";
 
+interface ProfileUpdateFormProps {
+  className?: string;
+  onSuccess: () => void;
+}
 const ProfileUpdateForm = ({
+  onSuccess,
   className,
-  ...props
-}: React.ComponentProps<"div">) => {
+}: ProfileUpdateFormProps) => {
   const t = useTranslations("auth.account_update");
   const { user } = useAuth();
   const [country, setCountry] = useState<CountryCode | undefined>("ET");
@@ -67,18 +70,15 @@ const ProfileUpdateForm = ({
     }
     if (isSuccess) {
       toast.success("Updated profile");
+      onSuccess();
     }
-  }, [error, isSuccess]);
+  }, [error, onSuccess, isSuccess]);
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("flex flex-col gap-6", className)}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-10">
-            <div className="flex flex-col items-center gap-2">
-              <Logo className="mb-4 h-9 w-24" />
-              <h1 className="text-xl font-bold">{t("title")}</h1>
-            </div>
             <div className="flex flex-col gap-6">
               <ProfileUpdateFormFields form={form} setCountry={setCountry} />
 

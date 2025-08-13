@@ -32,7 +32,7 @@ const PersonalInfo = () => {
                 </AvatarFallback>
               </Avatar>
               <Button variant="outline" size="lg" asChild>
-                <CustomLink href={"/profile-update?source=edit"}>
+                <CustomLink href={"/profile/edit"}>
                   <Edit className="mr-2 h-4 w-4" />
                   Edit
                 </CustomLink>

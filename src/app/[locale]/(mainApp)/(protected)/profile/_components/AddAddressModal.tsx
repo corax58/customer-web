@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { Plus } from "lucide-react";
 
+import AddAddressForm from "@/components/forms/AddAddressFrom";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -12,8 +13,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
-import AddAddressForm from "./AddAddressForm";
 
 const AddAddressModal = () => {
   const [open, setOpen] = useState(false);
