@@ -22,6 +22,7 @@ interface LocationContextType {
   addressList: Address[] | null;
   addressError: string | null;
   refreshAddress: () => void;
+  setNoDefaultAddress: (value: boolean) => void;
 }
 
 const LocationContext = React.createContext<LocationContextType | undefined>(
@@ -36,8 +37,13 @@ const LocationProvider = ({ children }: PropsWithChildren) => {
   const [isPending, startTransition] = useTransition();
   const { isAuthenticated, isLoading } = useAuth();
   const { getGuestUserLocation, guestLocation } = useGeolocation();
-  const { noDefaultAddress, addressError, addressList, fetchLocations } =
-    useAddress();
+  const {
+    noDefaultAddress,
+    addressError,
+    addressList,
+    fetchLocations,
+    setNoDefaultAddress,
+  } = useAddress();
 
   const refreshAddress = useCallback(() => {
     startTransition(() => {
@@ -114,17 +120,11 @@ const LocationProvider = ({ children }: PropsWithChildren) => {
     addressList,
     addressError,
     refreshAddress,
+    setNoDefaultAddress,
   };
   return (
     <LocationContext.Provider value={value}>
-      <div className="relative">
-        {noDefaultAddress && (
-          <div className="ablsolute font-sigmar fixed top-96 right-10 z-50 rounded-full border-8 border-red-800 bg-red-500 p-10 text-4xl">
-            No defaultAddress
-          </div>
-        )}
-        {children}
-      </div>
+      {children}
     </LocationContext.Provider>
   );
 };
