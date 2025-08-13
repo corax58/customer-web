@@ -5,9 +5,15 @@ import { useRouter } from "@/i18n/navigation";
 
 const SetupAddress = () => {
   const router = useRouter();
+  const previousPath = localStorage.getItem("previousPath");
 
   const onCreate = () => {
-    router.push("/home");
+    if (previousPath) {
+      router.push(previousPath);
+      localStorage.removeItem(previousPath);
+    } else {
+      router.push("/home");
+    }
   };
   return (
     <div className="max-w-4xl space-y-10">

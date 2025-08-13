@@ -40,7 +40,6 @@ export const useVerifyOtp = () => {
         setUser(responseData.detail);
         setIsSuccess(true);
 
-        const previousPath = localStorage.getItem("previousPath");
         const forgotPassword = localStorage.getItem("forgotPassword");
 
         if (forgotPassword) {
@@ -48,12 +47,7 @@ export const useVerifyOtp = () => {
           return;
         }
 
-        if (previousPath) {
-          router.push(previousPath);
-          localStorage.removeItem(previousPath);
-        } else {
-          router.push("/profile-setup");
-        }
+        router.push("/profile-setup");
       } catch (error) {
         const errorMessage = await processError(error);
         setError(errorMessage);

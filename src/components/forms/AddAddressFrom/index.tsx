@@ -38,16 +38,15 @@ const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
   });
 
   function onLocationSelect({
-    address,
     position: { lat, lng },
   }: {
     address: string;
     position: { lat: number; lng: number };
   }) {
     form.clearErrors("address");
-    form.setValue("address", address);
     form.setValue("latitude", lat.toString());
     form.setValue("longitude", lng.toString());
+    console.log(lat, lng);
   }
 
   function onSubmit(values: z.infer<typeof addressSchema>) {

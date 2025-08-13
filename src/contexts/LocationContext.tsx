@@ -8,6 +8,8 @@ import React, {
 } from "react";
 import { useSearchParams } from "next/navigation";
 
+import { toast } from "sonner";
+
 import useAddress from "@/hooks/useAddress";
 import useGeolocation from "@/hooks/useGeolocation";
 import { usePathname, useRouter } from "@/i18n/navigation";
@@ -29,6 +31,9 @@ const LocationContext = React.createContext<LocationContextType | undefined>(
   undefined,
 );
 
+const NoAddressRoutes = ["/setup-address", "/profile-setup", "/profile"];
+const PERSONALIZED_ROUTES = ["/restaurants", "/home", "/categories"];
+
 const LocationProvider = ({ children }: PropsWithChildren) => {
   const pathname = usePathname();
   const router = useRouter();
@@ -37,6 +42,7 @@ const LocationProvider = ({ children }: PropsWithChildren) => {
   const [isPending, startTransition] = useTransition();
   const { isAuthenticated, isLoading } = useAuth();
   const { getGuestUserLocation, guestLocation } = useGeolocation();
+
   const {
     noDefaultAddress,
     addressError,
@@ -53,15 +59,15 @@ const LocationProvider = ({ children }: PropsWithChildren) => {
 
   const updateParams = useCallback(
     (location: Location) => {
-      const personalizedPath =
-        pathname.includes("/restaurants") ||
-        pathname.includes("/home") ||
-        pathname.includes("/categories");
-      if (!personalizedPath || !location) return;
+      const isPersonalizedPath = PERSONALIZED_ROUTES.some((route) =>
+        pathname.includes(route),
+      );
+
+      if (!isPersonalizedPath || !location) return;
 
       const params = new URLSearchParams(searchParams.toString());
 
-      if (location.latitude !== 0 && location.latitude !== 0) {
+      if (location.latitude !== 0 && location.longitude !== 0) {
         params.set("lat", location.latitude.toString());
         params.set("lon", location.longitude.toString());
       }
@@ -99,29 +105,47 @@ const LocationProvider = ({ children }: PropsWithChildren) => {
             : newLoc,
         );
     }
+  }, [guestLocation, updateParams, isAuthenticated]);
 
+  useEffect(() => {
     if (!noDefaultAddress && isAuthenticated) {
       updateParams({
         latitude: 0,
         longitude: 0,
       });
     }
-  }, [
-    guestLocation,
-    updateParams,
-    isAuthenticated,
-    addressList,
-    noDefaultAddress,
-  ]);
+  }, [noDefaultAddress, updateParams, isAuthenticated]);
 
-  const value = {
-    location,
-    isPending,
-    addressList,
-    addressError,
-    refreshAddress,
-    setNoDefaultAddress,
-  };
+  useEffect(() => {
+    if (!isAuthenticated || !noDefaultAddress) return;
+
+    const isNoAddressRoute = NoAddressRoutes.some((item) => item == pathname);
+    console.log(isNoAddressRoute, pathname);
+    if (!isNoAddressRoute) {
+      router.push("/setup-address");
+      toast.message("Set delivery address to continue using the app");
+    }
+  }, [isAuthenticated, noDefaultAddress, pathname, router]);
+
+  const value = React.useMemo(
+    () => ({
+      location,
+      isPending,
+      addressList,
+      addressError,
+      refreshAddress,
+      setNoDefaultAddress,
+    }),
+    [
+      location,
+      isPending,
+      addressList,
+      addressError,
+      refreshAddress,
+      setNoDefaultAddress,
+    ],
+  );
+
   return (
     <LocationContext.Provider value={value}>
       {children}
