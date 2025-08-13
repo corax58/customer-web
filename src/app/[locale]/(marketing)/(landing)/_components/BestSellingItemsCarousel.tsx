@@ -9,6 +9,8 @@ import {
 
 import LandingDishCard from "../../../../../components/LandingDishCard";
 
+import BestSellingItemsSkeleton from "./BestSellingItemsSkeleton";
+
 interface BestSellingItemsCarouselProps {
   lat?: string;
   lon?: string;
@@ -17,7 +19,12 @@ const BestSellingItemsCarousel = async ({
   lat,
   lon,
 }: BestSellingItemsCarouselProps) => {
-  const { data: dishes } = await getBestSellingDishes(lat, lon);
+  if (lat == undefined && lon == undefined) return <BestSellingItemsSkeleton />;
+
+  const latitude = lat == "none" ? "" : lat;
+  const longitude = lon == "none" ? "" : lon;
+
+  const { data: dishes } = await getBestSellingDishes(latitude, longitude);
 
   if (dishes && dishes.length > 0)
     return (

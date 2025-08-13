@@ -12,11 +12,11 @@ export default function LocationManager() {
     if (searchParams.has("lat") && searchParams.has("lon")) {
       return;
     }
+    const params = new URLSearchParams(searchParams.toString());
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
-        const params = new URLSearchParams(searchParams.toString());
         params.set("lat", latitude.toString());
         params.set("lon", longitude.toString());
 
@@ -24,6 +24,11 @@ export default function LocationManager() {
       },
       (error) => {
         console.error("Geolocation error:", error);
+
+        params.set("lat", "none");
+        params.set("lon", "none");
+
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
       },
       {
         enableHighAccuracy: true,

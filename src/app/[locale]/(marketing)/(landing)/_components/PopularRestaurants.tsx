@@ -5,10 +5,25 @@ import CustomLink from "@/components/CustomLink";
 import { Button } from "@/components/ui/button";
 
 import PopularRestaurantCard from "./PopularRestaurantCard";
+import PopularRestaurantsSkeleton from "./PopularRestaurantsSkeleton";
 
-const PopularRestaurants = async () => {
+interface PopularRestaurantsProps {
+  lat?: string;
+  lon?: string;
+}
+const PopularRestaurants = async ({ lat, lon }: PopularRestaurantsProps) => {
   const t = await getTranslations("landing.popular_restaurants");
-  const { data: popularRestaurants } = await getTopRestaurants();
+
+  if (lat == undefined && lon == undefined)
+    return <PopularRestaurantsSkeleton />;
+
+  const latitude = lat == "none" ? "" : lat;
+  const longitude = lon == "none" ? "" : lon;
+
+  const { data: popularRestaurants } = await getTopRestaurants(
+    latitude,
+    longitude,
+  );
   if (popularRestaurants && popularRestaurants.length > 0)
     return (
       <section className="relative w-full bg-[url('/assets/images/landing/popular-resturent-bg.jpg')] bg-cover bg-center">

@@ -182,15 +182,19 @@ export async function getCategoryItems(
   }
 }
 
-export async function getCategiesList(): Promise<getCategoriesList> {
+export async function getCategiesList(
+  lat?: string,
+  lon?: string,
+): Promise<getCategoriesList> {
+  const url = buildApiUrl("/api/restaurant/category-list", {
+    lat,
+    lon,
+  });
   try {
     const responseData: CategoriesListResponse =
-      await fetchOnCondition<CategoriesListResponse>(
-        `/api/restaurant/category-list`,
-        {
-          retry: { retries: 3, delay: 1000 },
-        },
-      );
+      await fetchOnCondition<CategoriesListResponse>(url, {
+        retry: { retries: 3, delay: 1000 },
+      });
 
     return { success: true, data: responseData.list };
   } catch (error) {

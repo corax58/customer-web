@@ -10,6 +10,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+import PopularItemsCarouselSkeleton from "./PopularItemsCarouselSkeleton";
+
 interface PopularItemsCarouselProps {
   lat?: string;
   lon?: string;
@@ -20,7 +22,13 @@ const PopularItemsCarousel = async ({
 }: PopularItemsCarouselProps) => {
   const t = await getTranslations("landing.popular_food_items");
 
-  const { data: dishes } = await getPopularDishes(lat, lon);
+  if (lat == undefined && lon == undefined)
+    return <PopularItemsCarouselSkeleton />;
+
+  const latitude = lat == "none" ? "" : lat;
+  const longitude = lon == "none" ? "" : lon;
+
+  const { data: dishes } = await getPopularDishes(latitude, longitude);
 
   if (dishes && dishes.length > 0)
     return (

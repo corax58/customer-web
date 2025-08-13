@@ -9,8 +9,18 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export async function Categories() {
-  const { data: categories } = await getCategiesList();
+import { CategoriesSkeleton } from "./CategoriesSkeleton";
+
+interface CategoriesProps {
+  lat?: string;
+  lon?: string;
+}
+export async function Categories({ lat, lon }: CategoriesProps) {
+  if (lat == undefined && lon == undefined) return <CategoriesSkeleton />;
+
+  const latitude = lat == "none" ? "" : lat;
+  const longitude = lon == "none" ? "" : lon;
+  const { data: categories } = await getCategiesList(latitude, longitude);
 
   if (categories && categories.length > 0)
     return (
@@ -42,7 +52,7 @@ export async function Categories() {
           {categories?.map((category) => (
             <CarouselItem
               key={category.id}
-              className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+              className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/5"
             >
               <div className="p-1">
                 <CategoryCard category={category} />

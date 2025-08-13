@@ -22,7 +22,7 @@ const PopularItems = async ({ lat, lon }: PopularItemsProps) => {
           <BestSellingItemsCarousel lat={lat} lon={lon} />
         </Suspense>
         <Suspense fallback={<CategoriesSkeleton />}>
-          <Categories />
+          <Categories lat={lat} lon={lon} />
         </Suspense>
       </div>
     </div>

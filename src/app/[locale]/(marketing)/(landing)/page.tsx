@@ -22,7 +22,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <LocationManager />
       </Suspense>
       <Suspense fallback={<PopularRestaurantsSkeleton />}>
-        <PopularRestaurants />
+        <PopularRestaurants lat={lat} lon={lon} />
       </Suspense>
       <Features />
       <SpecialFood />

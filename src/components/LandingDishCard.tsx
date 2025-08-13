@@ -5,7 +5,7 @@ import CustomImage from "@/components/CustomImage";
 import FormattedAfghani from "@/components/FormattedAfghani";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { getMenuItemPrice } from "@/lib/utils";
 import { MenuItem } from "@/types/restaurant.types";
@@ -22,10 +22,10 @@ const LandingDishCard = ({ menuItem }: LandingDishCardCardProps) => {
   });
 
   return (
-    <Card className="group overflow-hidden border p-0 shadow-none transition-all duration-300 hover:shadow-lg">
+    <Card className="group flex h-74 flex-col justify-between gap-0 border p-0 pb-0 shadow-none transition-all duration-300 hover:shadow-lg">
       <CardContent className="p-0">
         <div className="relative">
-          <div className="relative h-40 w-full overflow-hidden rounded-t-lg">
+          <div className="relative h-40 overflow-hidden rounded-t-lg">
             <CustomImage
               title={menuItem.title}
               imgUrl={menuItem.image_file}
@@ -56,28 +56,27 @@ const LandingDishCard = ({ menuItem }: LandingDishCardCardProps) => {
               className="text-muted-foreground line-clamp-2 w-full text-start text-sm"
               dangerouslySetInnerHTML={{ __html: sanitizedDesc }}
             />
-
-            <div className="w-ful flex items-center justify-between">
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-primary text-xl font-semibold">
-                  <FormattedAfghani amount={getMenuItemPrice(menuItem)} />
-                </span>
-              </div>
-              <div>
-                <Button asChild>
-                  <Button size={"icon"} asChild>
-                    <RestaurantDetailsLink
-                      restaurantId={menuItem.restaurant_id}
-                    >
-                      <Eye />
-                    </RestaurantDetailsLink>
-                  </Button>
-                </Button>
-              </div>
-            </div>
           </div>
         </div>
       </CardContent>
+      <CardFooter className="px-4">
+        <div className="w-ful flex grow-2 items-center justify-between pb-2">
+          <div className="flex items-center justify-center gap-2">
+            <span className="text-primary text-xl font-semibold">
+              <FormattedAfghani amount={getMenuItemPrice(menuItem)} />
+            </span>
+          </div>
+          <div>
+            <Button asChild>
+              <Button size={"icon"} asChild>
+                <RestaurantDetailsLink restaurantId={menuItem.restaurant_id}>
+                  <Eye />
+                </RestaurantDetailsLink>
+              </Button>
+            </Button>
+          </div>
+        </div>
+      </CardFooter>
     </Card>
   );
 };
