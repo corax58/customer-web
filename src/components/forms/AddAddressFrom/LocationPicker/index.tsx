@@ -166,7 +166,7 @@ export function LocationPicker({
         className={cn(
           "bg-secondary mt-4 rounded-lg border p-4",
           noAddressError && "ring-2 ring-red-400",
-          locationSelected && "bg-green-50 ring-2 ring-green-400",
+          locationSelected && "bg-green-500/10 ring-2 ring-green-500",
         )}
       >
         <Button

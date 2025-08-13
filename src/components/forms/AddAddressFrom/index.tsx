@@ -13,6 +13,7 @@ import { z } from "zod";
 import { addAddress } from "@/actions/profile.actions";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import { useLocation } from "@/contexts/LocationContext";
 import { addressSchema } from "@/lib/schemas/address.schema";
 
 import AddressFormFields from "./AddressFormFields";
@@ -22,6 +23,7 @@ interface AddAddressFormProps {
   onCreate: () => void;
 }
 const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
+  const { refreshAddress } = useLocation();
   const [country, setCountry] = useState<CountryCode | undefined>("ET");
   const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof addressSchema>>({
@@ -77,6 +79,8 @@ const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
       if (results.success) {
         toast.success("Address Saved!");
         form.reset();
+        localStorage.removeItem("noDefaultAddress");
+        refreshAddress();
         onCreate();
       }
 

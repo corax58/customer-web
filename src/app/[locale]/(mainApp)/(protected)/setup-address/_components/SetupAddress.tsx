@@ -10,7 +10,7 @@ const SetupAddress = () => {
   const onCreate = () => {
     if (previousPath) {
       router.push(previousPath);
-      localStorage.removeItem(previousPath);
+      localStorage.removeItem("previousPath");
     } else {
       router.push("/home");
     }

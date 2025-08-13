@@ -52,10 +52,11 @@ const LocationProvider = ({ children }: PropsWithChildren) => {
   } = useAddress();
 
   const refreshAddress = useCallback(() => {
+    setNoDefaultAddress(false);
     startTransition(() => {
       fetchLocations();
     });
-  }, [fetchLocations]);
+  }, [fetchLocations, setNoDefaultAddress]);
 
   const updateParams = useCallback(
     (location: Location) => {
@@ -120,7 +121,11 @@ const LocationProvider = ({ children }: PropsWithChildren) => {
     if (!isAuthenticated || !noDefaultAddress) return;
 
     const isNoAddressRoute = NoAddressRoutes.some((item) => item == pathname);
-    console.log(isNoAddressRoute, pathname);
+    console.log("isAuthenticated:", isAuthenticated);
+    console.log("noDefaultaddress:", noDefaultAddress);
+    console.log("isnoaddressroute:", isNoAddressRoute);
+    console.log("pathname:", pathname);
+
     if (!isNoAddressRoute) {
       router.push("/setup-address");
       toast.message("Set delivery address to continue using the app");
