@@ -29,7 +29,7 @@ const Hero = () => {
             <div className="relative h-full w-full">
               <Image
                 fill
-                src={"/assets/images/landing/banner-img.png"}
+                src={"/assets/images/landing/heroimage.webp"}
                 alt="banner image"
                 className="object-contain"
                 quality={100}
