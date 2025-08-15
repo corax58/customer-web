@@ -46,7 +46,7 @@ const RestaurantDetailPage = async ({
   const { lat, lon } = await searchParams;
 
   return (
-    <div className="min-h-dvh py-16 pt-32 lg:px-14 xl:px-16">
+    <div className="min-h-dvh py-16 pt-32">
       <Suspense fallback={<RestaurantDetailSkeleton />}>
         <RestaurantDetail restaurantId={restaurantId} lat={lat} lon={lon} />
       </Suspense>

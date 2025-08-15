@@ -45,7 +45,7 @@ const AddToCartForm = ({
 
   return (
     <>
-      <DialogFooter className="bg-secondary border-t p-4">
+      <DialogFooter className="bg-secondary border-t p-4 sm:px-6">
         {user ? (
           <form onSubmit={handleSubmit} className="flex w-full flex-col gap-2">
             <div className="text-muted-foreground flex justify-between rounded-lg text-sm font-medium">

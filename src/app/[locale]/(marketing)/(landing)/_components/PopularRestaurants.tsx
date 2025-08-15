@@ -26,7 +26,7 @@ const PopularRestaurants = async ({ lat, lon }: PopularRestaurantsProps) => {
   );
   if (popularRestaurants && popularRestaurants.length > 0)
     return (
-      <section className="relative w-full bg-[url('/assets/images/landing/popular-resturent-bg.jpg')] bg-cover bg-center">
+      <section className="relative w-full bg-[url('/assets/images/landing/popular-resturent-bg.webp')] bg-cover bg-center">
         <div className="flex w-full justify-center bg-black/60 py-20">
           <div className="content-container flex h-full w-full flex-col justify-center gap-16">
             <div className="flex w-full justify-center">

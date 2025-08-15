@@ -78,7 +78,7 @@ const RestaurantDetail = async ({
     return (
       <div>
         <RestaurantBanner restaurant={restaurant} />
-        <div className="md:px-12">
+        <div className="mx-auto sm:px-6 lg:container lg:px-8">
           <RestaurantHeader
             className="max-md:px-4"
             restaurant={restaurant}

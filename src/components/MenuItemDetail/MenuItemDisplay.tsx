@@ -32,7 +32,7 @@ const MenuItemDisplay = ({
   });
 
   return (
-    <div className="h-auto flex-1 space-y-5 overflow-y-auto px-4 pt-3">
+    <div className="h-auto flex-1 space-y-5 overflow-y-auto px-4 pt-3 sm:px-6">
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-1">

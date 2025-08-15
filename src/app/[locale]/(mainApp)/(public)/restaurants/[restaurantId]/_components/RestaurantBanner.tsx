@@ -10,7 +10,7 @@ interface RestaurantBannerProps {
 }
 const RestaurantBanner = ({ restaurant }: RestaurantBannerProps) => {
   return (
-    <div className="mb-12 w-full">
+    <div className="mx-auto mb-12 w-full lg:container lg:px-8">
       <div className="dark:bg-card relative h-72 w-full border shadow-xl lg:rounded-3xl lg:p-2">
         <div className="relative h-full w-full overflow-hidden lg:rounded-2xl">
           <CustomImage

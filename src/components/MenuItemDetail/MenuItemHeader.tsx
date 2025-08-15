@@ -55,7 +55,7 @@ const MenuItemHeader = ({ menuItem }: MenuItemHeaderProps) => {
         <CarouselContent className="-ml-0 h-48 w-full sm:h-56">
           {menuItem.menuImages.map((img) => (
             <CarouselItem key={img.id} className="w-full pl-0">
-              <div className="relative h-48 w-full overflow-hidden rounded-lg max-sm:rounded-t-none sm:h-56">
+              <div className="relative h-48 w-full overflow-hidden rounded-t-lg sm:h-56">
                 <CustomImage
                   imgUrl={img.url}
                   title={img.name}

@@ -62,7 +62,7 @@ const LandingDishCard = ({ menuItem }: LandingDishCardCardProps) => {
       <CardFooter className="px-4">
         <div className="w-ful flex grow-2 items-center justify-between pb-2">
           <div className="flex items-center justify-center gap-2">
-            <span className="text-primary text-xl font-semibold">
+            <span className="text-primary font-semibold">
               <FormattedAfghani amount={getMenuItemPrice(menuItem)} />
             </span>
           </div>
