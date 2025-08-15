@@ -9,8 +9,8 @@ const SpecialFood = () => {
   const t = useTranslations("landing.special_food");
   return (
     <section className="w-full bg-[url('/assets/images/landing/special-bg.png')] bg-cover bg-center">
-      <div className="parent-container flex h-full w-full justify-center bg-black/30">
-        <div className="container flex gap-5 py-10 max-md:flex-col">
+      <div className="flex h-full w-full justify-center bg-black/30">
+        <div className="content-container flex gap-5 py-10 max-md:flex-col">
           <div className="flex h-full w-full flex-col justify-center gap-8 max-md:items-center md:w-1/2">
             <div className="flex w-full flex-col gap-3 text-white max-md:items-center max-md:text-center">
               <p className="text-primary">50% {t("off")}</p>

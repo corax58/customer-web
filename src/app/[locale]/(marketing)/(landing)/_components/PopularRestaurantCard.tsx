@@ -21,7 +21,7 @@ const PopularRestaurantCard = ({ restaurant }: PopularRestaurantCardProps) => {
   });
   return (
     <CustomLink href={`/restaurants/${restaurant.id}`}>
-      <Card className="w-full max-w-sm gap-4 overflow-hidden border-gray-800 bg-gray-900 py-0 shadow-lg transition-shadow duration-300 hover:shadow-xl">
+      <Card className="w-full gap-4 overflow-hidden border-gray-800 bg-gray-900 py-0 shadow-lg transition-shadow duration-300 hover:shadow-xl">
         <div className="relative h-48 w-full">
           <CustomImage
             imgUrl={restaurant.image_file}

@@ -13,8 +13,8 @@ const Hero = () => {
         alt={"hero section banner"}
         className="object-cover"
       />
-      <div className="parent-container absolute top-0 flex h-full w-full items-center justify-center bg-black/60">
-        <div className="container flex h-full w-full items-center justify-center gap-5 pt-20 pb-5 max-lg:flex-col">
+      <div className="absolute top-0 flex h-full w-full items-center justify-center bg-black/60">
+        <div className="content-container flex h-full w-full items-center justify-center gap-5 pt-20 pb-5 max-lg:flex-col">
           <div className="flex w-full flex-col gap-4 text-white max-lg:text-center lg:w-1/2">
             <h1 className="text-3xl font-bold md:text-5xl lg:text-6xl xl:text-7xl">
               {t.rich("title", {

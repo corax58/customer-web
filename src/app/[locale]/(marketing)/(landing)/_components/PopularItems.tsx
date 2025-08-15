@@ -13,18 +13,16 @@ interface PopularItemsProps {
 }
 const PopularItems = async ({ lat, lon }: PopularItemsProps) => {
   return (
-    <div className="flex w-full flex-col items-center gap-20 px-4 py-20 md:px-16">
-      <div className="container flex flex-col gap-20">
-        <Suspense fallback={<PopularItemsCarouselSkeleton />}>
-          <PopularItemsCarousel lat={lat} lon={lon} />
-        </Suspense>
-        <Suspense fallback={<BestSellingItemsSkeleton />}>
-          <BestSellingItemsCarousel lat={lat} lon={lon} />
-        </Suspense>
-        <Suspense fallback={<CategoriesSkeleton />}>
-          <Categories lat={lat} lon={lon} />
-        </Suspense>
-      </div>
+    <div className="content-container flex flex-col gap-20 py-20">
+      <Suspense fallback={<PopularItemsCarouselSkeleton />}>
+        <PopularItemsCarousel lat={lat} lon={lon} />
+      </Suspense>
+      <Suspense fallback={<BestSellingItemsSkeleton />}>
+        <BestSellingItemsCarousel lat={lat} lon={lon} />
+      </Suspense>
+      <Suspense fallback={<CategoriesSkeleton />}>
+        <Categories lat={lat} lon={lon} />
+      </Suspense>
     </div>
   );
 };

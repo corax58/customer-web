@@ -55,8 +55,8 @@ const testimonials = [
 const Testimonials = () => {
   const t = useTranslations("landing.testimonials");
   return (
-    <section className="bg-background parent-container flex w-full flex-col items-center gap-20 py-20">
-      <div className="container flex w-full flex-col items-center gap-10">
+    <section className="bg-background flex w-full flex-col items-center gap-20 py-20">
+      <div className="content-container flex w-full flex-col items-center gap-10">
         <p className="text-foreground text-center text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">
           {t("title")}
         </p>

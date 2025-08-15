@@ -18,8 +18,8 @@ import Logo from "./Logo";
 export default function Footer() {
   const t = useTranslations("footer");
   return (
-    <footer className="parent-container bg-black text-white">
-      <div className="container mx-auto py-12 lg:py-16">
+    <footer className="bg-black text-white">
+      <div className="content-container mx-auto py-12 lg:py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
           <div className="flex flex-col gap-4">
             <Logo className="mb-2" />

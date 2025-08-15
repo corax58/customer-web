@@ -38,8 +38,8 @@ export const features = [
 const Features = () => {
   const t = useTranslations("landing.features");
   return (
-    <div className="parent-container bg-secondary flex w-full flex-col items-center justify-center overflow-hidden py-28 pb-32">
-      <div className="0 container flex flex-col items-center justify-center gap-48">
+    <div className="bg-secondary flex w-full flex-col items-center justify-center overflow-hidden py-28 pb-32">
+      <div className="content-container flex flex-col items-center justify-center gap-48">
         <div className="flex w-full justify-evenly gap-8 max-lg:flex-col max-lg:justify-center">
           {features.map((feature, index) => (
             <div
