@@ -20,10 +20,14 @@ import {
   getCategoriesList,
   GetOffersListResult,
   GetPopularDishesResult,
+  getPopularSeachResult,
+  getRecentSearchResult,
   OffersListResponse,
   PlaceOrderResponse,
   PlaceOrderResults,
   PopularDishesResponse,
+  PopularSeachesResponse,
+  RecentSearchResponse,
 } from "@/types/restaurant.types";
 import { ActionResult } from "@/types/shared.types";
 
@@ -229,5 +233,43 @@ export async function forgotPassword(
     console.error(error);
     if (typeof error === "string") return { success: false, error: error };
     else return { success: false, error: "Failed to initiate forgot password" };
+  }
+}
+
+export async function getPopularSearches(): Promise<getPopularSeachResult> {
+  const url = buildApiUrl("/api/state/popular-searches", {
+    limit: "5",
+  });
+  try {
+    const responseData: PopularSeachesResponse =
+      await fetchOnCondition<PopularSeachesResponse>(url, {
+        retry: { retries: 3, delay: 1000 },
+      });
+
+    return { success: true, data: responseData.data };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "Failed to fetch popular searches." };
+  }
+}
+export async function getRecentSearches(
+  id: string,
+): Promise<getRecentSearchResult> {
+  const url = buildApiUrl("/api/state/search-history", {
+    user_id: id,
+    limit: "5",
+  });
+  try {
+    const responseData: RecentSearchResponse =
+      await fetchOnCondition<RecentSearchResponse>(url, {
+        retry: { retries: 3, delay: 1000 },
+      });
+
+    console.log(responseData);
+
+    return { success: true, data: responseData.data };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "Failed to fetch recent searches." };
   }
 }

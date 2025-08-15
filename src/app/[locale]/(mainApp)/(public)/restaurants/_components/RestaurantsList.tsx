@@ -11,25 +11,27 @@ interface RestaurantListProps {
   params: {
     [key: string]: string | string[] | undefined;
   };
-  searchString?: string;
 }
-const RestaurantsList = async ({
-  params,
-  searchString,
-}: RestaurantListProps) => {
-  const lat = params["lat"];
-  const lon = params["lon"];
-  const personalized = params["personalized"];
+const RestaurantsList = async ({ params }: RestaurantListProps) => {
+  const queryParamObject = { ...params };
+  const lat = queryParamObject["lat"];
+  const lon = queryParamObject["lon"];
+  const personalized = queryParamObject["personalized"];
+  const searchString = queryParamObject["search"];
 
   if (personalized === undefined) {
     return <RestaurantListSkeleton />;
   }
 
   if (lat == "none" && lon === "none") {
-    delete params.lat;
-    delete params.lon;
+    delete queryParamObject.lat;
+    delete queryParamObject.lon;
   }
-  const queryParams = buildUrlSearchParams(params).toString();
+
+  queryParamObject["user_id"] = queryParamObject["id"];
+  delete queryParamObject.id;
+  delete queryParamObject.personalized;
+  const queryParams = buildUrlSearchParams(queryParamObject).toString();
 
   const {
     data: restaurants,

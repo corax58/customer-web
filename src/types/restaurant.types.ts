@@ -412,3 +412,20 @@ export interface Reviews {
 export interface GetRestaurantReviewsResult extends ActionResult {
   data?: Reviews;
 }
+
+export interface SearchTerm {
+  search_term: string;
+}
+
+export interface PopularSeachesResponse {
+  data: SearchTerm[];
+}
+export interface getPopularSeachResult extends ActionResult {
+  data?: SearchTerm[];
+}
+export interface RecentSearchResponse {
+  data: SearchTerm[];
+}
+export interface getRecentSearchResult extends ActionResult {
+  data?: SearchTerm[];
+}
