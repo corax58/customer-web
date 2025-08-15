@@ -33,27 +33,25 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
   return (
     <div className="h-full min-h-dvh">
       <Header />
-      <div className="flex flex-col items-center pt-36 pb-20 md:px-14 md:pt-36">
-        <div className="container flex w-full flex-col justify-center gap-10">
-          <div className="flex w-full flex-col gap-4">
-            <Banner personalized={personalized} />
-            <div className="flex flex-col gap-10 p-5 md:gap-14">
-              <Suspense fallback={<CategoriesSkeleton />}>
-                <Categories personalized={personalized} />
-              </Suspense>
-              <Suspense fallback={<PopularRestaurantsSkeleton />}>
-                <PopularRestaurants personalized={personalized} />
-              </Suspense>
-              <Suspense fallback={<PopularDishesSkeleton />}>
-                <PopularDishes personalized={personalized} />
-              </Suspense>
-              <Suspense fallback={<BestSellingDishesSkeleton />}>
-                <BestSellingDishes personalized={personalized} />
-              </Suspense>
-              <Suspense fallback={<OffersSkeleton />}>
-                <Offers personalized={personalized} />
-              </Suspense>
-            </div>
+      <div className="content-container flex w-full flex-col justify-center gap-10 pt-36 pb-20 md:pt-36">
+        <div className="flex w-full flex-col gap-4">
+          <Banner personalized={personalized} />
+          <div className="flex flex-col gap-10 p-5 md:gap-14">
+            <Suspense fallback={<CategoriesSkeleton />}>
+              <Categories personalized={personalized} />
+            </Suspense>
+            <Suspense fallback={<PopularRestaurantsSkeleton />}>
+              <PopularRestaurants personalized={personalized} />
+            </Suspense>
+            <Suspense fallback={<PopularDishesSkeleton />}>
+              <PopularDishes personalized={personalized} />
+            </Suspense>
+            <Suspense fallback={<BestSellingDishesSkeleton />}>
+              <BestSellingDishes personalized={personalized} />
+            </Suspense>
+            <Suspense fallback={<OffersSkeleton />}>
+              <Offers personalized={personalized} />
+            </Suspense>
           </div>
         </div>
       </div>

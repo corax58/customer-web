@@ -16,7 +16,7 @@ const TermsPage = () => {
   return (
     <div>
       <TitleBanner title={t("header.title")} />
-      <div className="parent-container flex flex-col gap-12 py-20">
+      <div className="content-container flex flex-col gap-12 py-20">
         <section>
           <h2 className="mb-6 text-2xl font-bold">Our Performance</h2>
           <p className="mb-4 text-justify leading-relaxed">

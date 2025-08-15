@@ -132,12 +132,6 @@
   }
 }
 
-@layer components {
-  .parent-container {
-    @apply px-5 md:px-10 lg:px-20 xl:px-24;
-  }
-}
-
 /* Tailwind 4 is not adding cursor pointer for buttons by default so we need to add it  */
 button {
   cursor: pointer;

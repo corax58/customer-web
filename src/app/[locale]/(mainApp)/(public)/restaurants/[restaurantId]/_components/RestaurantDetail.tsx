@@ -100,7 +100,7 @@ const RestaurantDetail = async ({
               ))}
               <FadingDivider className="max-lg:hidden" />
             </TabsList>
-            <div className="max-md:px-4">
+            <div className="content-container max-md:px-4">
               <TabsContent value="top" className="space-y-6">
                 <Suspense fallback={<TopRatedItemsSkeleton />}>
                   <TopRatedItems restaurantId={restaurantId} isOpen={isOpen} />

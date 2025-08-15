@@ -37,7 +37,7 @@ const ContactUsPage = () => {
   return (
     <div>
       <TitleBanner title={t("header.title")} />
-      <div className="parent-container flex w-full justify-center gap-10 py-20 max-lg:flex-col">
+      <div className="content-container flex w-full justify-center gap-10 py-20 max-lg:flex-col">
         <div className="flex h-full w-full flex-col justify-between gap-8 lg:w-1/3">
           {contactDetails.map((contact, index) => (
             <div

@@ -80,7 +80,7 @@ const AboutUsPage = () => {
     <div>
       <TitleBanner title={t("header.title")} />
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="content-container mx-auto px-4">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div className="relative">
               <div className="relative mx-auto h-80 w-full">

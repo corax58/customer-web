@@ -3,6 +3,13 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import useDebounce from "@/hooks/useDebounce";
 import { usePathname, useRouter } from "@/i18n/navigation";
@@ -33,9 +40,20 @@ const OrderFilter = () => {
 
   return (
     <div>
+      <div className="md:hidden">
+        <Select value={status} onValueChange={(value) => setStatus(value)}>
+          <SelectTrigger className="w-[150px]">
+            <SelectValue placeholder="Filter orders" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="1">Active orders</SelectItem>
+            <SelectItem value="5">Past orders</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
       <ToggleGroup
         type="single"
-        className="bg-secondary p-1"
+        className="bg-secondary hidden p-1 md:flex"
         value={status}
         onValueChange={(status) => setStatus(status)}
       >

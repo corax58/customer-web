@@ -23,8 +23,10 @@ const OrdersPage = async ({ searchParams }: OrdersPageProps) => {
     <div className="w-full space-y-6 px-0 py-5 md:px-10">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-3xl font-bold">Order History</h2>
-          <p className="text-muted-foreground mt-2">
+          <h2 className="text-xl font-bold sm:text-2xl md:text-3xl">
+            Order History
+          </h2>
+          <p className="text-muted-foreground mt-2 text-sm sm:text-base">
             View and track your recent orders.
           </p>
         </div>
