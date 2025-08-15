@@ -18,6 +18,7 @@ interface OrdersPageProps {
 }
 const OrdersPage = async ({ searchParams }: OrdersPageProps) => {
   const params = await searchParams;
+  const key = JSON.stringify(params);
   return (
     <div className="w-full space-y-6 px-0 py-5 md:px-10">
       <div className="flex items-center justify-between">
@@ -32,7 +33,7 @@ const OrdersPage = async ({ searchParams }: OrdersPageProps) => {
 
       <div className="space-y-4">
         <Suspense fallback={<OrdersListSkeleton />}>
-          <OrdersList params={params} />
+          <OrdersList key={key} params={params} />
         </Suspense>
       </div>
     </div>
