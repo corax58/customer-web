@@ -8,17 +8,6 @@ import CustomImage from "@/components/CustomImage";
 import FadingDivider from "@/components/FadingDivider";
 import FormattedAfghani from "@/components/FormattedAfghani";
 import QuantityControl from "@/components/QuantityControl";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import useDebounce from "@/hooks/useDebounce";
@@ -96,39 +85,20 @@ const CartListItem = ({ cartItem }: CartListItemProps) => {
           </div>
         </div>
         <div className="flex w-1/2 flex-col items-end pl-2 md:w-min md:flex-row-reverse md:items-center md:gap-1">
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hover:bg-background h-8 w-8 cursor-pointer hover:text-red-400"
-                disabled={isDeleting}
-              >
-                {isDeleting ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  <Trash className="h-4 w-4" />
-                )}
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Remove cart item</AlertDialogTitle>
-                <AlertDialogDescription>
-                  Are you sure you want to remove this item from your cart?
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction
-                  className="bg-red-500 text-white"
-                  onClick={handleDelete}
-                >
-                  Continue
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="hover:bg-background h-8 w-8 cursor-pointer hover:text-red-400"
+            disabled={isDeleting}
+            onClick={handleDelete}
+          >
+            {isDeleting ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Trash className="h-4 w-4" />
+            )}
+          </Button>
+
           <QuantityControl
             itemQuantity={itemQuantity}
             setItemQuantity={setItemQuantity}

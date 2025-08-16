@@ -5,7 +5,7 @@ const MenuItemDetailSkeleton = () => {
     // The main container matches the DialogContent's flex-col layout
     <div className="flex h-full flex-col">
       {/* Header Carousel Skeleton */}
-      <Skeleton className="h-48 w-full shrink-0 max-sm:rounded-t-none sm:h-56" />
+      <Skeleton className="h-48 w-full shrink-0 rounded-b-none sm:h-56" />
 
       {/* Scrollable container for Display and Form */}
       <div className="flex-grow space-y-5 overflow-y-auto px-4 pt-4">
