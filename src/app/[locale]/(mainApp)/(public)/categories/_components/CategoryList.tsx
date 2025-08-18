@@ -29,7 +29,7 @@ const CategoryList = async () => {
       <div>
         <CategoryHeader title="Categories" amount={categories.length} />
 
-        <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid w-full grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
           {categories.map((category) => (
             <CategoryCard key={category.id} category={category} />
           ))}

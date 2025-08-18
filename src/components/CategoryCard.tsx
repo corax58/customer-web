@@ -22,7 +22,7 @@ const CategoryCard = ({ category, className }: CategoryCard) => {
         )}
       >
         <CardContent className="px-0 py-0">
-          <div className="relative h-24 sm:h-40 lg:h-32 xl:h-48">
+          <div className="relative h-40 lg:h-32 xl:h-48">
             <CustomImage
               imgUrl={category.image}
               title={category.title}
