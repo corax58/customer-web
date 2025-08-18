@@ -52,6 +52,7 @@ export default function ImageViewer({
   return (
     <>
       {/* Thumbnail Image */}
+      {/*eslint-disable-next-line @next/next/no-img-element*/}
       <img
         src={src || "/placeholder.svg"}
         alt={alt}
@@ -60,6 +61,7 @@ export default function ImageViewer({
       />
 
       {/* Full Screen Modal */}
+
       {isFullScreen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
@@ -77,6 +79,7 @@ export default function ImageViewer({
           </Button>
 
           {/* Full Screen Image */}
+          {/*eslint-disable-next-line @next/next/no-img-element*/}
           <img
             src={src || "/placeholder.svg"}
             alt={alt}
