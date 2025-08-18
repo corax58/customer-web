@@ -38,7 +38,6 @@ export const TransactionColumns: ColumnDef<Transaction>[] = [
     header: "Status",
     cell: ({ row }) => {
       const transactionState = row.original.status;
-      console.log(transactionState);
       return <TransactionStatusBadge state={transactionState} />;
     },
   },

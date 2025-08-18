@@ -134,7 +134,6 @@ export async function getOffersList({
 }): Promise<GetOffersListResult> {
   try {
     const url = buildApiUrl("/api/restaurant/offer-list", { id });
-    console.log(url);
     const responseData: OffersListResponse =
       await fetchWithAuth<OffersListResponse>(url, {
         retry: { retries: 3, delay: 1000 },
@@ -264,8 +263,6 @@ export async function getRecentSearches(
       await fetchOnCondition<RecentSearchResponse>(url, {
         retry: { retries: 3, delay: 1000 },
       });
-
-    console.log(responseData);
 
     return { success: true, data: responseData.data };
   } catch (error) {

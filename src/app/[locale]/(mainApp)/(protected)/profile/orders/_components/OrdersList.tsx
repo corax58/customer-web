@@ -15,7 +15,6 @@ const OrdersList = async ({ params }: OrdersListProps) => {
 
   const queryParams = buildUrlSearchParams(params).toString();
 
-  console.log(queryParams);
   const { data, pageData } = await getOrdersList(queryParams);
 
   return (

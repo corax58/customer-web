@@ -48,7 +48,6 @@ const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
     form.clearErrors("address");
     form.setValue("latitude", lat.toString());
     form.setValue("longitude", lng.toString());
-    console.log(lat, lng);
   }
 
   function onSubmit(values: z.infer<typeof addressSchema>) {

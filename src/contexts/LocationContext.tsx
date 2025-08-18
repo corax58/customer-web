@@ -97,7 +97,6 @@ const LocationProvider = ({ children }: PropsWithChildren) => {
         longitude: guestLocation?.longitude,
       };
       updateParams({ latitude: newLoc.latitude, longitude: newLoc.longitude });
-      console.log(newLoc);
       if (newLoc.latitude !== 0 && newLoc.longitude !== 0)
         setLocation((prev) =>
           prev?.latitude === newLoc.latitude &&
@@ -121,10 +120,6 @@ const LocationProvider = ({ children }: PropsWithChildren) => {
     if (!isAuthenticated || !noDefaultAddress) return;
 
     const isNoAddressRoute = NoAddressRoutes.some((item) => item == pathname);
-    console.log("isAuthenticated:", isAuthenticated);
-    console.log("noDefaultaddress:", noDefaultAddress);
-    console.log("isnoaddressroute:", isNoAddressRoute);
-    console.log("pathname:", pathname);
 
     if (!isNoAddressRoute) {
       router.push("/setup-address");
