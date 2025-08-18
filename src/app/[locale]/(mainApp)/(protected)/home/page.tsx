@@ -37,8 +37,12 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
         <div className="flex w-full flex-col gap-4">
           <Banner personalized={personalized} />
           <div className="flex flex-col gap-10 p-5 md:gap-14">
+            <CategoriesSkeleton />
             <Suspense fallback={<CategoriesSkeleton />}>
               <Categories personalized={personalized} />
+            </Suspense>
+            <Suspense fallback={<OffersSkeleton />}>
+              <Offers personalized={personalized} />
             </Suspense>
             <Suspense fallback={<PopularRestaurantsSkeleton />}>
               <PopularRestaurants personalized={personalized} />
@@ -48,9 +52,6 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
             </Suspense>
             <Suspense fallback={<BestSellingDishesSkeleton />}>
               <BestSellingDishes personalized={personalized} />
-            </Suspense>
-            <Suspense fallback={<OffersSkeleton />}>
-              <Offers personalized={personalized} />
             </Suspense>
           </div>
         </div>

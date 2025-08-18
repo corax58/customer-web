@@ -2,17 +2,23 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const CategoryCardSkeleton = () => {
   return (
-    <div className="bg-card flex flex-col space-y-3 overflow-hidden rounded-2xl border p-0">
-      <Skeleton className="h-32 w-full rounded-b-none" />
-
-      <div className="space-y-2 p-4 pt-0">
-        <div className="flex items-start justify-between">
-          <div className="w-full space-y-2">
-            <Skeleton className="h-6 w-3/4" />
-            <Skeleton className="h-4 w-1/2" />
+    <div className="group h-full w-full overflow-hidden p-0 shadow-none">
+      <div className="h-full w-full">
+        <div className="px-0 py-0">
+          <div className="relative h-28 sm:h-40 lg:h-32 xl:h-48">
+            <Skeleton className="h-full w-full" />
           </div>
 
-          <Skeleton className="h-10 w-10 rounded-full" />
+          <div className="relative p-2 sm:p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex-1">
+                <Skeleton className="mb-1 h-5 w-3/4 xl:h-6" />
+                <Skeleton className="h-4 w-1/2" />
+              </div>
+
+              <Skeleton className="h-10 w-10 rounded-full" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
