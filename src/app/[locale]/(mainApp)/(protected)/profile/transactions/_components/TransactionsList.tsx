@@ -4,16 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import { Loader } from "lucide-react";
 
 import { getTransactionsList } from "@/actions/profile.actions";
-import { DataTable } from "@/components/data-table";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import { PaginatedDateTable } from "@/components/ui/paginated-data-table";
 import { useAuth } from "@/contexts/AuthContext";
 import { Transaction } from "@/types/profile.types";
 
@@ -67,25 +59,10 @@ const TransactionsList = () => {
       <div>
         {transactions.length > 0 ? (
           <div className="space-y-4">
-            <DataTable columns={TransactionColumns} data={transactions} />
-            <div className="flex w-full items-start justify-start">
-              <Pagination className="w-fit">
-                <PaginationContent>
-                  <PaginationItem>
-                    <PaginationPrevious href="#" />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#">1</PaginationLink>
-                  </PaginationItem>
-                  {/* <PaginationItem>
-                    <PaginationEllipsis />
-                  </PaginationItem> */}
-                  <PaginationItem>
-                    <PaginationNext href="#" />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </div>
+            <PaginatedDateTable
+              columns={TransactionColumns}
+              data={transactions}
+            />
           </div>
         ) : (
           <Card className="border shadow-none">
