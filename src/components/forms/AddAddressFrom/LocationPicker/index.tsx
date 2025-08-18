@@ -9,7 +9,7 @@ import {
   MapMouseEvent,
   Marker,
 } from "@vis.gl/react-google-maps";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, MapPin } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import useGeolocation from "@/hooks/useGeolocation";
@@ -120,7 +120,7 @@ export function LocationPicker({
 
       <div className="h-96 w-full overflow-hidden rounded-lg">
         {/* Only show tha map when the currentLocation is available */}
-        {currentLocation.lat && currentLocation.lng && (
+        {currentLocation.lat && currentLocation.lng ? (
           <>
             <APIProvider apiKey={API_KEY} libraries={["places", "marker"]}>
               <Map
@@ -159,6 +159,13 @@ export function LocationPicker({
               <AutocompleteResult place={selectedPlace} />
             </APIProvider>
           </>
+        ) : (
+          <div className="flex h-full w-full items-center justify-center gap-2">
+            <MapPin size={16} className="text-muted-foreground" />
+            <p className="text-muted-foreground text-lg">
+              Please allow location permission
+            </p>
+          </div>
         )}
       </div>
 
