@@ -21,15 +21,15 @@ const PopularRestaurantCard = ({ restaurant }: PopularRestaurantCardProps) => {
   });
   return (
     <CustomLink href={`/restaurants/${restaurant.id}`}>
-      <Card className="w-full gap-4 overflow-hidden border-gray-800 bg-gray-900 py-0 shadow-lg transition-shadow duration-300 hover:shadow-xl">
-        <div className="relative h-48 w-full">
+      <Card className="w-full gap-4 overflow-hidden rounded-4xl border-neutral-800 bg-zinc-900 py-0 shadow-lg transition-shadow duration-300 hover:shadow-xl">
+        <div className="relative h-52 w-full">
           <CustomImage
             imgUrl={restaurant.image_file}
             title={restaurant.title}
             placeholderImage={PLACEHOLDER_IMAGES.RESTAURANT}
           />
         </div>
-        <CardContent className="p-4 pt-0">
+        <CardContent className="p-4 pt-0 md:px-6">
           <div className="space-y-4">
             <div>
               <h3 className="mb-2 line-clamp-2 text-xl font-bold text-white">
@@ -45,7 +45,7 @@ const PopularRestaurantCard = ({ restaurant }: PopularRestaurantCardProps) => {
               className="line-clamp-2 h-11 text-sm leading-relaxed text-gray-200"
               dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
             />
-            <div className="border-t border-gray-700 pt-2">
+            <div className="border-t border-neutral-700 pt-2">
               {restaurant.price_per_person &&
                 restaurant.price_per_person != "0" && (
                   <div className="flex items-center justify-between">

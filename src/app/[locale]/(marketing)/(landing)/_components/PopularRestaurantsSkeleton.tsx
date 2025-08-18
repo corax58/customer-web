@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const PopularRestaurantCardSkeleton = () => {
   return (
-    <Card className="w-96 overflow-hidden border-neutral-900 bg-neutral-800 p-0">
+    <Card className="w-96 overflow-hidden rounded-4xl border-neutral-900 bg-neutral-800 p-0">
       <CardContent className="animate-pulse space-y-5 p-0">
         <div className="bg-muted aspect-[4/2] w-full" />
 
@@ -24,7 +24,7 @@ const PopularRestaurantCardSkeleton = () => {
 
 const PopularRestaurantsSkeleton = () => {
   return (
-    <section className="relative w-full bg-[url('/assets/images/landing/popular-resturent-bg.jpg')] bg-cover bg-center">
+    <section className="relative w-full bg-[url('/assets/images/landing/popular-resturent-bg.webp')] bg-cover bg-center">
       <div className="flex w-full justify-center bg-black/60 py-20">
         <div className="content-container flex h-full w-full flex-col justify-center gap-16">
           <div className="flex w-full justify-center">
