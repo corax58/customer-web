@@ -19,35 +19,33 @@ const OrderFilter = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const currentStatus = searchParams.get("state_id") || "1";
+  const currentStatus = searchParams.get("state") || "CURRENT";
   const [status, setStatus] = useState(currentStatus);
 
   const debouncedStatus = useDebounce(status, 300);
 
   useEffect(() => {
-    if (debouncedStatus != currentStatus) {
+    if (debouncedStatus !== currentStatus) {
       const params = new URLSearchParams(searchParams.toString());
-
-      if (debouncedStatus === "5") {
-        params.set("state_id", "5");
+      if (debouncedStatus === "CURRENT") {
+        params.delete("state");
       } else {
-        params.delete("state_id");
+        params.set("state", debouncedStatus);
       }
-
       router.push(`${pathname}?${params.toString()}`);
     }
-  }, [currentStatus, debouncedStatus, router, pathname, searchParams]);
+  }, [debouncedStatus, currentStatus, router, pathname, searchParams]);
 
   return (
     <div>
       <div className="md:hidden">
-        <Select value={status} onValueChange={(value) => setStatus(value)}>
+        <Select value={status} onValueChange={setStatus}>
           <SelectTrigger className="w-[150px]">
             <SelectValue placeholder="Filter orders" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="1">Active orders</SelectItem>
-            <SelectItem value="5">Past orders</SelectItem>
+            <SelectItem value="CURRENT">Active orders</SelectItem>
+            <SelectItem value="PAST">Past orders</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -55,16 +53,16 @@ const OrderFilter = () => {
         type="single"
         className="bg-secondary hidden p-1 md:flex"
         value={status}
-        onValueChange={(status) => setStatus(status)}
+        onValueChange={setStatus}
       >
         <ToggleGroupItem
-          value="1"
+          value="CURRENT"
           className="data-[state=on]:bg-background rounded-md"
         >
           Active orders
         </ToggleGroupItem>
         <ToggleGroupItem
-          value="5"
+          value="PAST"
           className="data-[state=on]:bg-background rounded-md"
         >
           Past orders

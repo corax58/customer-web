@@ -9,8 +9,13 @@ interface OrdersListProps {
   params: { [key: string]: string | string[] | undefined };
 }
 const OrdersList = async ({ params }: OrdersListProps) => {
+  if (!params["state"]) {
+    params["state"] = "CURRENT";
+  }
+
   const queryParams = buildUrlSearchParams(params).toString();
 
+  console.log(queryParams);
   const { data, pageData } = await getOrdersList(queryParams);
 
   return (
