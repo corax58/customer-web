@@ -22,7 +22,7 @@ const CategoryCard = ({ category, className }: CategoryCard) => {
         )}
       >
         <CardContent className="px-0 py-0">
-          <div className="relative h-40 lg:h-32 xl:h-48">
+          <div className="relative aspect-square w-full">
             <CustomImage
               imgUrl={category.image}
               title={category.title}
@@ -30,15 +30,18 @@ const CategoryCard = ({ category, className }: CategoryCard) => {
             ></CustomImage>
           </div>
 
-          <div className="relative p-2 sm:p-4">
+          <div className="relative px-3 py-2">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="group-hover:text-primary mb-1 font-semibold text-nowrap transition-colors duration-200 xl:text-lg">
+                <h3 className="group-hover:text-primary mb-1 text-sm font-semibold text-nowrap transition-colors duration-200 sm:text-base xl:text-lg">
                   {category.title}
                 </h3>
-                <p className="text-muted-foreground text-sm text-nowrap">
+                <p className="text-muted-foreground text-xs text-nowrap sm:text-sm">
                   Explore
-                  <span className="max-sm:hidden"> menu</span>
+                  <span className="max-sm:hidden md:hidden lg:inline">
+                    {" "}
+                    menu
+                  </span>
                 </p>
               </div>
 
