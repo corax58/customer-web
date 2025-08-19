@@ -39,7 +39,7 @@ const MenuItemCard = ({
     <div className="relative flex h-56 w-full items-end">
       <div className="bg-card flex h-48 w-full flex-col justify-between rounded-3xl border p-3 pt-4 max-sm:p-5 sm:min-w-72">
         <div className="flex w-full flex-col items-end justify-end">
-          <p className="text-base font-semibold">
+          <p className="text-sm font-semibold">
             <FormattedAfghani amount={currentPrice} />
           </p>
           <p className="text-muted-foreground text-xs line-through">

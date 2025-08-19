@@ -7,7 +7,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import OffersCard from "./OffersCard";
+import MobileOfferCard from "./MobileOfferCard";
 import { OffersSkeleton } from "./OffersSkeleton";
 
 interface OffersProps {
@@ -51,7 +51,7 @@ const Offers = async ({ personalized }: OffersProps) => {
               key={offer.id}
               className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
             >
-              <OffersCard offer={offer} />
+              <MobileOfferCard offer={offer} />
             </CarouselItem>
           ))}
         </CarouselContent>
