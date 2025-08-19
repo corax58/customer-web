@@ -12,20 +12,26 @@ import {
 } from "@/types/auth.types";
 import {
   BannerDataResponse,
+  GetBannerItemsResult,
+  GetRestaurantAdResult,
+  RestaurantAdResponse,
+} from "@/types/home.types";
+import {
   BestSellingDishesResponse,
   CategoriesListResponse,
   CategoryItemsResponse,
   CategoryItemsResult,
-  GetBannerItemsResult,
   getCategoriesList,
   GetOffersListResult,
   GetPopularDishesResult,
+  OffersListResponse,
+  PopularDishesResponse,
+} from "@/types/home.types";
+import {
   getPopularSeachResult,
   getRecentSearchResult,
-  OffersListResponse,
   PlaceOrderResponse,
   PlaceOrderResults,
-  PopularDishesResponse,
   PopularSeachesResponse,
   RecentSearchResponse,
 } from "@/types/restaurant.types";
@@ -106,6 +112,20 @@ export async function getPopularDishes(
   } catch (error) {
     console.error(error);
     return { success: false, error: "Failed to fetch popular dishes." };
+  }
+}
+export async function getRestaurantAds(): Promise<GetRestaurantAdResult> {
+  const url = "/api/item-detail/banner-images";
+  try {
+    const responseData: RestaurantAdResponse =
+      await fetchOnCondition<RestaurantAdResponse>(url, {
+        retry: { retries: 3, delay: 1000 },
+      });
+
+    return { success: true, data: responseData.list };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "Failed to fetch restaurant ads." };
   }
 }
 

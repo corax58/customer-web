@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { BannerDetail } from "@/types/restaurant.types";
+import { BannerDetail } from "@/types/home.types";
 
 interface BannerItemProps {
   bannerDetail: BannerDetail;

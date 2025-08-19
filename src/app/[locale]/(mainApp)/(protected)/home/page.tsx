@@ -14,6 +14,7 @@ import { PopularDishes } from "./_components/PopularDishes";
 import { PopularDishesSkeleton } from "./_components/PopularDishesSkeleton";
 import PopularRestaurants from "./_components/PopularRestaurants";
 import PopularRestaurantsSkeleton from "./_components/PopularRestaurantsSkeleton";
+import RestaurantAds from "./_components/RestaurantAds";
 
 export const metadata: Metadata = {
   title: "Home | Time delivery",
@@ -43,14 +44,15 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
             <Suspense fallback={<OffersSkeleton />}>
               <Offers personalized={personalized} />
             </Suspense>
-            <Suspense fallback={<PopularRestaurantsSkeleton />}>
-              <PopularRestaurants personalized={personalized} />
-            </Suspense>
             <Suspense fallback={<PopularDishesSkeleton />}>
               <PopularDishes personalized={personalized} />
             </Suspense>
+            <RestaurantAds personalized={personalized} />
             <Suspense fallback={<BestSellingDishesSkeleton />}>
               <BestSellingDishes personalized={personalized} />
+            </Suspense>
+            <Suspense fallback={<PopularRestaurantsSkeleton />}>
+              <PopularRestaurants personalized={personalized} />
             </Suspense>
           </div>
         </div>

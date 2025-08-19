@@ -1,18 +1,18 @@
 import { useCallback, useEffect, useState, useTransition } from "react";
 
-import { getBannerItems } from "@/actions/actions";
-import { BannerDetail } from "@/types/home.types";
+import { getRestaurantAds } from "@/actions/actions";
+import { RestaurantAd } from "@/types/home.types";
 
-export function useBanner() {
+export function useRestaurantAds() {
   const [error, setError] = useState<string | null>(null);
-  const [data, setData] = useState<BannerDetail[] | null>(null);
+  const [data, setData] = useState<RestaurantAd[] | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  const fetchBannerData = useCallback(async () => {
+  const fetchRestaurantAds = useCallback(async () => {
     setError(null);
 
     startTransition(async () => {
-      const result = await getBannerItems();
+      const result = await getRestaurantAds();
       if (result.error) {
         setError(result.error);
       }
@@ -23,8 +23,8 @@ export function useBanner() {
   }, []);
 
   useEffect(() => {
-    fetchBannerData();
-  }, [fetchBannerData]);
+    fetchRestaurantAds();
+  }, [fetchRestaurantAds]);
 
   return {
     data,
