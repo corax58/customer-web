@@ -11,8 +11,11 @@ interface MobileOfferCardProps {
 }
 const MobileOfferCard = ({ offer }: MobileOfferCardProps) => {
   return (
-    <Card className="group border-card relative mb-4 w-full overflow-hidden border-4 bg-gradient-to-b from-red-500 to-red-800 p-0 shadow-lg transition-all duration-300">
-      <CustomLink href={`/restaurants/${offer.restaurant_id}`}>
+    <Card className="group border-card relative mb-4 h-40 w-full overflow-hidden border-4 bg-gradient-to-b from-red-500 to-red-800 p-0 shadow-lg transition-all duration-300">
+      <CustomLink
+        href={`/restaurants/${offer.restaurant_id}`}
+        className="h-full"
+      >
         <div className="absolute h-full w-full">
           <div className="relative h-full w-full opacity-30">
             <Image
@@ -23,8 +26,8 @@ const MobileOfferCard = ({ offer }: MobileOfferCardProps) => {
             />
           </div>
         </div>
-        <CardContent className="p-0">
-          <div className="flex w-full items-center gap-2">
+        <CardContent className="h-full p-0">
+          <div className="flex h-full w-full items-center gap-2">
             {/* <div className="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-orange-400 to-amber-400" /> */}
 
             <div className="w-4/5 p-4 pr-0">
@@ -33,7 +36,7 @@ const MobileOfferCard = ({ offer }: MobileOfferCardProps) => {
                   {offer.title}
                 </h3>
                 <p className="line-clamp-1 w-full truncate text-xs text-white">
-                  {offer.description} jlkfjadlfjalsjdf;lajsdlf;jaskldfj
+                  {offer.description}
                 </p>
               </div>
 
