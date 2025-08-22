@@ -28,7 +28,6 @@ export async function getRestaurants(
         retry: { retries: 3, delay: 1000 },
       });
 
-    console.log("fetched restaurants");
     return {
       success: true,
       data: responseData.list,

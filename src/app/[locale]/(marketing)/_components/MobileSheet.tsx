@@ -40,6 +40,7 @@ const MobileSheet = ({ isAuthenticated }: MobileSheetProps) => {
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger className="lg:hidden">
         <Menu />
+        <span className="sr-only">Open sheet</span>
       </SheetTrigger>
       <SheetContent
         side="left"

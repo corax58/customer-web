@@ -71,6 +71,7 @@ const LandingDishCard = ({ menuItem }: LandingDishCardCardProps) => {
               <Button size={"icon"} asChild>
                 <RestaurantDetailsLink restaurantId={menuItem.restaurant_id}>
                   <Eye />
+                  <span className="sr-only">See restaurant</span>
                 </RestaurantDetailsLink>
               </Button>
             </Button>

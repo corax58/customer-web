@@ -43,7 +43,7 @@ const PopularRestaurants = async ({ lat, lon }: PopularRestaurantsProps) => {
               ))}
             </div>
             <div className="flex w-full justify-center">
-              <Button className="w-fit">
+              <Button className="w-fit" asChild>
                 <CustomLink href={"/restaurants"}>{t("view_all")}</CustomLink>
               </Button>
             </div>

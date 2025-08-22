@@ -32,18 +32,21 @@ export default function Footer() {
                 className="hover:border-primary hover:text-primary flex h-8 w-8 items-center justify-center rounded-full border border-gray-600 transition-colors"
               >
                 <Facebook className="h-4 w-4" />
+                <span className="sr-only">Facebook</span>
               </CustomLink>
               <CustomLink
                 href="#"
                 className="hover:border-primary hover:text-primary flex h-8 w-8 items-center justify-center rounded-full border border-gray-600 transition-colors"
               >
                 <Instagram className="h-4 w-4" />
+                <span className="sr-only">Instagram</span>
               </CustomLink>
               <CustomLink
                 href="#"
                 className="hover:border-primary hover:text-primary flex h-8 w-8 items-center justify-center rounded-full border border-gray-600 transition-colors"
               >
                 <Twitter className="h-4 w-4" />
+                <span className="sr-only">Twitter</span>
               </CustomLink>
             </div>
           </div>
@@ -124,6 +127,7 @@ export default function Footer() {
                 className="bg-primary ml-2 rounded px-4 text-white hover:bg-orange-600"
               >
                 <ArrowRight className="h-4 w-4" />
+                <span className="sr-only">Subscribe</span>
               </Button>
             </div>
           </div>
@@ -136,7 +140,7 @@ export default function Footer() {
                 a: (chunk) => (
                   <a
                     href="https://www.growztech.com/"
-                    className="text-primary hover:underline"
+                    className="text-primary underline"
                     target="_blank"
                   >
                     {chunk}

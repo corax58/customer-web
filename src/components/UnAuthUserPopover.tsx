@@ -19,6 +19,7 @@ const UnAuthUserPopover = ({ className }: React.ComponentProps<"div">) => {
     <Popover>
       <PopoverTrigger className={cn("cursor-pointer", className)}>
         <User />
+        <span className="sr-only">User dropdown button</span>
       </PopoverTrigger>
       <PopoverContent className="flex flex-col gap-2">
         <p>{t("create_an_account")}</p>
