@@ -1,13 +1,6 @@
 import { getCategiesList } from "@/actions/actions";
 import CategoryCard from "@/components/CategoryCard";
 import CustomLink from "@/components/CustomLink";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 import { CategoriesSkeleton } from "./CategoriesSkeleton";
 
