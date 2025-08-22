@@ -28,6 +28,7 @@ export default async function middleware(request: NextRequest) {
   }
 
   let pathnameWithoutLocale = pathname;
+
   for (const locale of routing.locales) {
     if (pathname.startsWith(`/${locale}/`)) {
       pathnameWithoutLocale = pathname.substring(`/${locale}`.length);
