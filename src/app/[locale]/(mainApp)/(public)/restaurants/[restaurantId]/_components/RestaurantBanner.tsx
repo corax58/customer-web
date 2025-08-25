@@ -25,11 +25,13 @@ const RestaurantBanner = ({ restaurant }: RestaurantBannerProps) => {
 
         <div className="absolute -bottom-12 max-lg:flex max-lg:w-full max-lg:justify-center lg:left-12">
           <div className="border-card relative size-24 overflow-hidden rounded-full border-4 shadow-xl">
-            <Image
-              src={restaurant.image_file}
-              alt={restaurant.title}
+            <CustomImage
+              title={restaurant.title + " image"}
+              imgUrl={restaurant.image_file}
+              placeholderImage={PLACEHOLDER_IMAGES.RESTAURANT}
+              quality={100}
+              priority
               fill
-              className="object-cover"
             />
           </div>
         </div>
