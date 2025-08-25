@@ -28,22 +28,14 @@ const MenuItemCard = ({
   const { user } = useAuth();
 
   const currentPrice = getMenuItemPrice(menuItem);
-  const minPercent = 10;
-  const maxPercent = 30;
-  const randomPercent =
-    Math.floor(Math.random() * (maxPercent - minPercent + 1)) + minPercent;
-  const canceledPrice = currentPrice * (1 + randomPercent / 100);
 
   const isAvailable = menuItem.is_available == 1 && isOpen;
   return (
     <div className="relative flex h-56 w-full items-end">
       <div className="bg-card flex h-48 w-full flex-col justify-between rounded-3xl border p-3 pt-4 max-sm:p-5 sm:min-w-72">
         <div className="flex w-full flex-col items-end justify-end">
-          <p className="text-sm font-semibold">
+          <p className="font-semibold">
             <FormattedAfghani amount={currentPrice} />
-          </p>
-          <p className="text-muted-foreground text-xs line-through">
-            <FormattedAfghani amount={canceledPrice} />
           </p>
         </div>
         <div className="space-y-4">

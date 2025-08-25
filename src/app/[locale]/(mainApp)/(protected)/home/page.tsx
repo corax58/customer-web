@@ -37,7 +37,7 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
       <div className="content-container flex w-full flex-col justify-center gap-10 pt-36 pb-20 md:pt-36">
         <div className="flex w-full flex-col gap-4">
           <Banner personalized={personalized} />
-          <div className="flex flex-col gap-10 p-5 md:gap-14">
+          <div className="flex flex-col gap-10 py-5 md:gap-14">
             <Suspense fallback={<CategoriesSkeleton />}>
               <Categories personalized={personalized} />
             </Suspense>
