@@ -5,12 +5,13 @@ import FormattedAfghani from "@/components/FormattedAfghani";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { Offer } from "@/types/restaurant.types";
+import { DeliveryInfo } from "@/types/cart.types";
 
 interface OrderButtonProps {
   handlePayment: () => void;
 
   selectedOffer: Offer | null;
-  deliveryFee: number | null;
+  deliveryInfo: DeliveryInfo | null;
   isPendingDeliveryFee: boolean;
   disableOrder: boolean;
 }
@@ -18,13 +19,13 @@ const OrderButton = ({
   handlePayment,
 
   selectedOffer,
-  deliveryFee,
+  deliveryInfo,
   isPendingDeliveryFee,
   disableOrder,
 }: OrderButtonProps) => {
   const { isLoadingTotalPrice, totalPrice } = useCart();
   const discount: number = selectedOffer ? parseInt(selectedOffer.discount) : 0;
-  const total = deliveryFee && totalPrice + deliveryFee - discount;
+  const total = deliveryInfo && totalPrice + deliveryInfo.fee - discount;
   return (
     <div>
       <div className="space-y-2">
@@ -41,8 +42,8 @@ const OrderButton = ({
             <Loader2 size={14} className="animate-spin" />
           ) : (
             <span className="font-semibold text-orange-500">
-              {deliveryFee ? (
-                <FormattedAfghani amount={deliveryFee} />
+              {deliveryInfo ? (
+                <FormattedAfghani amount={deliveryInfo.fee} />
               ) : (
                 "Select an address"
               )}
@@ -60,7 +61,7 @@ const OrderButton = ({
         <FadingDivider />
         <div className="flex justify-between text-lg">
           <span className="font-semibold">Total price</span>
-          {isLoadingTotalPrice || !deliveryFee ? (
+          {isLoadingTotalPrice || !deliveryInfo ? (
             <Loader2 className="size-5 animate-spin" />
           ) : (
             <span className="font-bold text-orange-500">

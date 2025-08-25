@@ -274,7 +274,9 @@ export interface OrderPayload {
   store_id: number;
   total_price: string;
   payable_amount: string;
-  delivery_fee: string;
+  delivery_charge: string;
+  delivery_time: string;
+  delivery_distance: string;
   address?: string;
   item: string;
 }

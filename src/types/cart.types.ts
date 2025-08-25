@@ -33,10 +33,13 @@ export interface TotalCartPriceResponse {
   total_price: number;
 }
 
+export interface DeliveryInfo{
+  fee: number;
+  time:number;
+  distance:number;
+}
 export interface DeliveryFeeResponse {
-  data: {
-    fee: number;
-  };
+  data: DeliveryInfo
 }
 
 export interface DeliveryFeePayload {
@@ -44,5 +47,5 @@ export interface DeliveryFeePayload {
   restaurant_id: number;
 }
 export interface GetDeliveryFeeResults extends ActionResult {
-  data?: number;
+  data?: DeliveryInfo;
 }

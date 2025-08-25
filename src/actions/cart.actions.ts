@@ -106,7 +106,7 @@ export async function getDeliveryFee(
         body,
       });
 
-    return { success: true, data: responseData.data.fee };
+    return { success: true, data: responseData.data };
   } catch (error) {
     console.error(error);
     if (typeof error === "string") return { success: false, error };

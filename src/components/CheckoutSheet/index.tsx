@@ -21,7 +21,7 @@ import {
 import { useCart } from "@/contexts/CartContext";
 import { useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
-import { CartItem } from "@/types/cart.types";
+import { CartItem, DeliveryInfo } from "@/types/cart.types";
 import { Address } from "@/types/profile.types";
 import { Offer, OrderPayload } from "@/types/restaurant.types";
 
@@ -51,14 +51,14 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
 
   const router = useRouter();
   const [isOrdering, startOrdering] = useTransition();
-  const [deliveryFee, setDeliveryFee] = useState<number | null>(null);
+  const [deliveryInfo, setDeliveryInfo] = useState<DeliveryInfo | null>(null);
   const [isPendingDeliveryFee, startDeliveryFee] = useTransition();
 
   const discount: number = selectedOffer ? parseInt(selectedOffer.discount) : 0;
 
   const disableOrder =
     !totalPrice ||
-    !deliveryFee ||
+    !deliveryInfo ||
     isPendingDeliveryFee ||
     isOrdering ||
     !selectedAddress ||
@@ -88,7 +88,7 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
       return;
     }
 
-    if (!currentRestaurantId || !deliveryFee) return;
+    if (!currentRestaurantId || !deliveryInfo) return;
 
     const orderItems = getItemArray();
     startOrdering(async () => {
@@ -96,8 +96,10 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
         Detail: {
           store_id: currentRestaurantId,
           address: selectedAddress.id.toString(),
-          payable_amount: (totalPrice - discount + deliveryFee).toString(),
-          delivery_fee: deliveryFee?.toString(),
+          payable_amount: (totalPrice - discount + deliveryInfo.fee).toString(),
+          delivery_charge: deliveryInfo.fee?.toString(),
+          delivery_time: deliveryInfo.time?.toString(),
+          delivery_distance: deliveryInfo.distance?.toString(),
           total_price: totalPrice.toString(),
           type_id: parseInt(selectedPaymentMethod!),
           item: JSON.stringify(orderItems),
@@ -130,7 +132,7 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
       });
 
       if (data) {
-        setDeliveryFee(data);
+        setDeliveryInfo(data);
       }
       if (error) {
         toast.error("Error", { description: error });
@@ -169,7 +171,7 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
         </div>
         <SheetFooter>
           <OrderButton
-            deliveryFee={deliveryFee}
+            deliveryInfo={deliveryInfo}
             isPendingDeliveryFee={isPendingDeliveryFee}
             selectedOffer={selectedOffer}
             handlePayment={handleOrder}
