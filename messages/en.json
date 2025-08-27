@@ -62,6 +62,17 @@
         "location_confirmed_success": "✓ Location confirmed! Now fill in your address details on the right.",
         "select_location_error": "Please select a location on the map."
       }
+    },
+    "category_card": {
+      "explore": "Explore",
+      "menu": "menu"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "more": "More Pages",
+      "go_to_next": "Go to next page",
+      "go_to_previous": "Go to previous page"
     }
   },
   "toast": {
@@ -366,5 +377,129 @@
   "setup_address": {
     "title": "Set Up Your Address",
     "subtitle": "Where to deliver your food."
+  },
+  "categories": {
+    "title": "Categories",
+    "messages": {
+      "something_went_wrong": "Something went wrong",
+      "no_categories": "No categories",
+      "no_category_items": "No items in this category"
+    }
+  },
+  "restaurants": {
+    "title": "Restaurants",
+    "filter": {
+      "title": "Restaurants Filter",
+      "price_per_person": "Price per person",
+      "sort": {
+        "title": "Sort",
+        "placeholder": "Select...",
+        "types": {
+          "1": "Price per person: Low to High",
+          "2": "Price per person: High to Low",
+          "3": "Previously Ordered"
+        }
+      },
+      "rating": {
+        "title": "Rating",
+        "placeholder": "Select..."
+      },
+      "categories": {
+        "title": "Categories",
+        "placeholder": "Select...",
+        "searchPlaceholder": "Search...",
+        "clearText": "Clear",
+        "closeText": "Close"
+      },
+      "offers": {
+        "title": "Offers",
+        "offer_item": "Upto {offer}% off"
+      },
+      "buttons": {
+        "filters": "Filters",
+        "apply": "Apply",
+        "clear": "Clear"
+      }
+    },
+    "messages": {
+      "something_went_wrong": "Something went wrong",
+      "no_results": "No results",
+      "failed_categories": "Failed to get categories"
+    },
+    "restaurant_details": {
+      "tabs": {
+        "top": {
+          "short": "Top",
+          "full": "Top Rated"
+        },
+        "menu": "Menu",
+        "reviews": "Reviews",
+        "photos": "Photos",
+        "info": "Info",
+        "offers": "Offers"
+      },
+      "header": {
+        "closed": "Closed",
+        "delivery_fee": "Delivery Fee",
+        "delivery_time": "Delivery Time",
+        "delivered_by": "Delivered by",
+        "time_delivery": "Time Delivery"
+      },
+      "reviews": {
+        "title": "Rating and Reviews",
+        "rating_description": "   Ratings and reviews are verified and come from people who received the same services helping customers get genuine testimonials.",
+        "read_more": "Read More",
+        "read_less": "Read Less"
+      },
+      "error": {
+        "title": "Oops! Something went wrong",
+        "description": "We couldn`t load the restaurant details right now",
+        "details": {
+          "title": "What happened?",
+          "1": "The restaurant might be temporarily unavailable",
+          "2": "There could be a network connection issue",
+          "3": "The restaurant information might have been updated"
+        },
+
+        "button": {
+          "try_again": "Try Again",
+          "back": "Go Back"
+        }
+      },
+      "info": {
+        "title": "Restaurant Information",
+        "about": "About",
+        "address": "Address",
+        "contact_info": "Contact Information",
+        "mobile": "Mobile",
+        "availability": {
+          "title": "Availability",
+          "subtitle": "Here are our working hours",
+          "days": {
+            "opening_hours": "{startTime} - {endTime} ",
+            "0": "Monday",
+            "1": "Tuesday",
+            "2": "Wednesday",
+            "3": "Thursday",
+            "4": "Friday",
+            "5": "Saturday",
+            "6": "Sunday"
+          },
+          "buttons": {
+            "trigger": "Open from <highlight>{startTime}</highlight> to <highlight>{endTime}</highlight>",
+            "close": "Close",
+            "closed": "Closed"
+          }
+        }
+      },
+      "offers": {
+        "no_offers": "No offers",
+        "something_went_wrong": "Something went wrong",
+        "min_order": "Min. Order: <highlight></highlight>",
+        "expired": "Expired",
+        "expires_today": "Expires today",
+        "days_left": "{days} days left"
+      }
+    }
   }
 }

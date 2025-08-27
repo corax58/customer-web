@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 
 import { Star } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 import { getRestaurantDetails } from "@/actions/restaurants.actions";
 import FadingDivider from "@/components/FadingDivider";
@@ -27,39 +28,6 @@ interface RestaurantDetailProps {
   lon: string;
 }
 
-const tabs = [
-  {
-    title: "Top rated",
-    value: "top",
-    display: (
-      <div className="flex items-center">
-        <Star className="mr-2 h-4 w-4 fill-yellow-400 text-yellow-400 max-md:hidden" />
-        <span className="md:hidden">Top</span>
-        <span className="max-md:hidden">Top Rated</span>
-      </div>
-    ),
-  },
-  {
-    title: "Menu",
-    value: "menu",
-  },
-  {
-    title: "Reviews",
-    value: "reviews",
-  },
-  {
-    title: "Photos",
-    value: "photos",
-  },
-  {
-    title: "Info",
-    value: "info",
-  },
-  {
-    title: "Offers",
-    value: "offers",
-  },
-];
 const RestaurantDetail = async ({
   restaurantId,
   lat,
@@ -70,6 +38,42 @@ const RestaurantDetail = async ({
     lat,
     lon,
   );
+
+  const t = await getTranslations("restaurants.restaurant_details.tabs");
+
+  const tabs = [
+    {
+      title: t("top.full"),
+      value: "top",
+      display: (
+        <div className="flex items-center">
+          <Star className="mr-2 h-4 w-4 fill-yellow-400 text-yellow-400 max-md:hidden" />
+          <span className="md:hidden">{t("top.short")}</span>
+          <span className="max-md:hidden">{t("top.full")}</span>
+        </div>
+      ),
+    },
+    {
+      title: t("menu"),
+      value: "menu",
+    },
+    {
+      title: t("reviews"),
+      value: "reviews",
+    },
+    {
+      title: t("photos"),
+      value: "photos",
+    },
+    {
+      title: t("info"),
+      value: "info",
+    },
+    {
+      title: t("offers"),
+      value: "offers",
+    },
+  ];
 
   if (error) return <RestaurantDetailError />;
   if (restaurant) {

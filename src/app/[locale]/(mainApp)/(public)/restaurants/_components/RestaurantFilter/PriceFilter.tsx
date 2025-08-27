@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useTranslations } from "next-intl";
+
 import FormattedAfghani from "@/components/FormattedAfghani";
 import { DualRangeSlider } from "@/components/ui/dual-range-slider";
 import { Label } from "@/components/ui/label";
@@ -11,9 +13,10 @@ interface PriceFilterProps {
   setFilters: React.Dispatch<React.SetStateAction<RestaurantFilters>>;
 }
 const PriceFilter = ({ filters, setFilters }: PriceFilterProps) => {
+  const t = useTranslations("restaurants.filter");
   return (
     <div>
-      <Label className="mb-10">Price per person</Label>
+      <Label className="mb-10">{t("price_per_person")}</Label>
       <div className="flex w-full items-center gap-4 pr-5">
         <DualRangeSlider
           label={(value) => (

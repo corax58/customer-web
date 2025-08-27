@@ -1,6 +1,3 @@
-import React from "react";
-import Image from "next/image";
-
 import CustomImage from "@/components/CustomImage";
 import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { Restaurant } from "@/types/restaurant.types";

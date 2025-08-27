@@ -201,11 +201,11 @@ export const MultiAsyncSelect = React.forwardRef<MultiAsyncSelectRef, Props>(
     const handleInputKeyDown = (
       event: React.KeyboardEvent<HTMLInputElement>,
     ) => {
-      // 如果按下的是回车键，则保持弹窗打开
+      // If the Enter key is pressed, keep the popover open.
       if (event.key === "Enter") {
         setIsPopoverOpen(true);
       } else if (event.key === "Backspace" && !event.currentTarget.value) {
-        // 如果按下的是退格键并且输入框为空，则删除最后一个选中的值
+        // If the Backspace key is pressed and the input field is empty, delete the last selected value.
         const newSelectedValues = [...selectedValues];
         newSelectedValues.pop();
         setSelectedValues(newSelectedValues);

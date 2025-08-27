@@ -1,5 +1,7 @@
 import { Suspense } from "react";
 
+import { getTranslations } from "next-intl/server";
+
 import MobileRestaurantFilter from "./_components/MobileRestaurantFilter";
 import RestaurantFilter from "./_components/RestaurantFilter";
 import RestaurantListSkeleton from "./_components/RestaurantListSkeleton";
@@ -14,6 +16,7 @@ interface RestaurantPageProps {
 }
 
 const RestaurantsPage = async ({ searchParams }: RestaurantPageProps) => {
+  const t = await getTranslations("restaurants");
   const param = await searchParams;
   const key = JSON.stringify(param);
 
@@ -21,7 +24,7 @@ const RestaurantsPage = async ({ searchParams }: RestaurantPageProps) => {
     <div className="flex min-h-dvh pt-36 pb-20 lg:pt-32">
       <div className="content-container flex gap-10 max-lg:flex-col">
         <div className="flex w-full max-lg:justify-between lg:w-1/4 lg:flex-col lg:gap-5">
-          <h2 className="text-3xl font-semibold">Restaurants</h2>
+          <h2 className="text-3xl font-semibold">{t("title")}</h2>
 
           <RestaurantFilter className="bg-card h-fit space-y-6 rounded-xl border p-5 max-lg:hidden" />
           <MobileRestaurantFilter className="w-fit" />

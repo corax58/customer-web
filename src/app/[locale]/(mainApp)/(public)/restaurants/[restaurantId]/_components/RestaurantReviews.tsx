@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import { getRestaurantReviews } from "@/actions/restaurants.actions";
 import FadingDivider from "@/components/FadingDivider";
 
@@ -11,10 +13,11 @@ interface RestaurantReviewsProps {
 const RestaurantReviews = async ({ restaurantId }: RestaurantReviewsProps) => {
   const { data: reviews } = await getRestaurantReviews(restaurantId);
 
+  const t = await getTranslations("restaurants.restaurant_details.reviews");
   if (!reviews || !reviews.average_rating)
     return (
       <div className="">
-        <h3 className="mb-8 text-xl font-semibold">Rating and Review</h3>
+        <h3 className="mb-8 text-xl font-semibold">{t("title")}</h3>
         <ReviewSummary
           averageRating={"0"}
           ratingDistribution={{
@@ -39,7 +42,7 @@ const RestaurantReviews = async ({ restaurantId }: RestaurantReviewsProps) => {
 
   return (
     <div className="space-y-6">
-      <h3 className="mb-8 text-xl font-semibold">Rating and Review</h3>
+      <h3 className="mb-8 text-xl font-semibold">{t("title")}</h3>
       <ReviewSummary
         averageRating={reviews.average_rating}
         ratingDistribution={ratingDistribution}

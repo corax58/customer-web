@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import { MultiAsyncSelect } from "@/components/multi-async-select";
@@ -23,12 +24,15 @@ const mapCategories = (categories: Category[]) => {
   return categoryList;
 };
 const CategoryFilter = ({ filters, setFilters }: CategoryFilterProps) => {
+  const toastTranlation = useTranslations("restaurants.messages");
+  const t = useTranslations("restaurants.filter.categories");
+
   const { categories, isSuccess } = useCategories();
   useEffect(() => {
     if (isSuccess === false) {
-      toast.error("Failed at fetching categories");
+      toast.error(toastTranlation("failed_categories"));
     }
-  }, [isSuccess]);
+  }, [isSuccess, toastTranlation]);
 
   if (categories && categories.length > 0)
     return (
@@ -42,14 +46,17 @@ const CategoryFilter = ({ filters, setFilters }: CategoryFilterProps) => {
           value={filters.category}
           maxCount={3}
           className="dark:bg-secondary w-full"
-          placeholder="Select categories "
+          placeholder={t("placeholder")}
+          searchPlaceholder={t("searchPlaceholder")}
+          clearText={t("clearText")}
+          closeText={t("closeText")}
         />
       </>
     );
   if (isSuccess == false) return;
   return (
     <>
-      <Label className="mb-2">Category</Label>
+      <Label className="mb-2">{t("title")}</Label>
       <Skeleton className="h-10 w-full" />
     </>
   );

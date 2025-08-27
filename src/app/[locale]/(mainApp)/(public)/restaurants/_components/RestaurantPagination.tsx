@@ -2,6 +2,8 @@
 import React from "react";
 import { useSearchParams } from "next/navigation";
 
+import { useFormatter } from "next-intl";
+
 import {
   Pagination,
   PaginationContent,
@@ -23,6 +25,7 @@ const RestaurantPagination = ({ pageData }: RestaurantPaginationProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
+  const format = useFormatter();
 
   const handlePageChange = (page: number) => {
     if (
@@ -57,7 +60,7 @@ const RestaurantPagination = ({ pageData }: RestaurantPaginationProps) => {
                 onClick={() => handlePageChange(page)}
                 isActive={page === pageData.currentPage}
               >
-                {page}
+                {format.number(page)}
               </PaginationLink>
             </PaginationItem>
           ))}

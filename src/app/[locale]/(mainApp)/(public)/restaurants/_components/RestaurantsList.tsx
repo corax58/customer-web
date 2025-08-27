@@ -1,4 +1,5 @@
 import { SearchX } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 import { getRestaurants } from "@/actions/restaurants.actions";
 import RestaurantCard from "@/components/RestaurantCard";
@@ -13,6 +14,7 @@ interface RestaurantListProps {
   };
 }
 const RestaurantsList = async ({ params }: RestaurantListProps) => {
+  const t = await getTranslations("restaurants");
   const queryParamObject = { ...params };
   const lat = queryParamObject["lat"];
   const lon = queryParamObject["lon"];
@@ -43,7 +45,7 @@ const RestaurantsList = async ({ params }: RestaurantListProps) => {
     return (
       <div className="col-span-1 flex h-dvh w-full flex-col items-center justify-center gap-5 sm:col-span-2 lg:col-span-3 xl:col-span-4">
         <SearchX size={50} />
-        <p className="text-xl">Something went wrong</p>
+        <p className="text-xl">{t("messages.something_went_wrong")}</p>
       </div>
     );
   }
@@ -52,7 +54,7 @@ const RestaurantsList = async ({ params }: RestaurantListProps) => {
     return (
       <div className="col-span-1 flex h-dvh w-full flex-col items-center justify-center gap-5 sm:col-span-2 lg:col-span-3 xl:col-span-4">
         <SearchX size={50} />
-        <p className="text-xl">No Results</p>
+        <p className="text-xl"> {t("messages.no_results")}</p>
       </div>
     );
 

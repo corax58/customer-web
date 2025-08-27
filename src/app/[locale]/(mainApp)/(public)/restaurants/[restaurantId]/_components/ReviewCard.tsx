@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 
-import { format } from "date-fns";
+import { useFormatter, useTranslations } from "next-intl";
 
 import ReviewStars from "@/components/ReviewStars";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -12,6 +12,8 @@ interface ReviewCardProps {
   review: ReviewItem;
 }
 const ReviewCard = ({ review }: ReviewCardProps) => {
+  const formatter = useFormatter();
+  const t = useTranslations("restaurants.restaurant_details.reviews");
   const [isExpanded, setIsExpanded] = useState(false);
   const maxLength = 150;
   const shouldTruncate = review.restaurant_comment.length > maxLength;
@@ -39,7 +41,9 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
 
             <span className="text-muted-foreground text-xs whitespace-nowrap">
               {review.created_on &&
-                format(new Date(review.created_on), "MMM dd',' yyyy")}
+                formatter.dateTime(new Date(review.created_on), {
+                  dateStyle: "medium",
+                })}
             </span>
           </div>
         </div>
@@ -57,7 +61,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
             onClick={() => setIsExpanded(!isExpanded)}
             className="ml-1 h-auto p-0 font-medium text-orange-600 hover:text-orange-700"
           >
-            {isExpanded ? "Read less" : "Read more"}
+            {isExpanded ? t("read_less") : t("read_more")}
           </Button>
         )}
       </div>

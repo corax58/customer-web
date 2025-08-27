@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { Star } from "lucide-react";
+import { useFormatter, useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -41,6 +42,8 @@ interface RestaurantFilterProps {
 const RestaurantFilter = ({ className, setOpen }: RestaurantFilterProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useTranslations("restaurants.filter");
+  const formater = useFormatter();
 
   const initialValue: RestaurantFilters = {
     category: searchParams.getAll("category"),
@@ -138,7 +141,7 @@ const RestaurantFilter = ({ className, setOpen }: RestaurantFilterProps) => {
       <SortRestaurants setFilters={setFilter} filters={filters} />
       <CategoryFilter setFilters={setFilter} filters={filters} />
       <div className="w-full">
-        <Label className="mb-4">Rating</Label>
+        <Label className="mb-4">{t("rating.title")}</Label>
         <Select
           value={filters.rating}
           defaultValue={filters.rating}
@@ -151,16 +154,16 @@ const RestaurantFilter = ({ className, setOpen }: RestaurantFilterProps) => {
           }}
         >
           <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select rating" />
+            <SelectValue placeholder={t("rating.placeholder")} />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>Rating</SelectLabel>
+              <SelectLabel>{t("rating.title")}</SelectLabel>
               {Array.from({ length: 5 }).map((_, index) => (
                 <div key={index} className="flex flex-col items-center gap-2">
                   <SelectItem value={`${index + 1}`} id={`${index + 1}-star`}>
                     <Star size={12} className="fill-primary text-primary" />
-                    {index + 1}
+                    {formater.number(index + 1)}
                   </SelectItem>
                 </div>
               ))}
@@ -171,7 +174,7 @@ const RestaurantFilter = ({ className, setOpen }: RestaurantFilterProps) => {
       <PriceFilter filters={filters} setFilters={setFilter} />
 
       <div>
-        <Label className="mb-4">Offers</Label>
+        <Label className="mb-4">{t("offers.title")}</Label>
         <RadioGroup value={filters.offer}>
           {offers.map((offer) => (
             <div key={offer} className="flex items-center space-x-2">
@@ -181,21 +184,23 @@ const RestaurantFilter = ({ className, setOpen }: RestaurantFilterProps) => {
                 // Add an onClick handler to each item.
                 onClick={() => handleOfferChange(offer.toString())}
               />
-              <Label htmlFor={`offer_${offer}`}>Upto {offer}% off</Label>
+              <Label htmlFor={`offer_${offer}`}>
+                {t("offers.offer_item", { offer })}
+              </Label>
             </div>
           ))}
         </RadioGroup>
       </div>
 
       <Button className="w-full" onClick={applyFilters}>
-        Apply
+        {t("buttons.apply")}
       </Button>
       <Button
         variant={"outline"}
         className="border-primary w-full"
         onClick={clearFilters}
       >
-        Clear
+        {t("buttons.clear")}
       </Button>
     </div>
   );

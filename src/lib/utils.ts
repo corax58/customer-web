@@ -151,6 +151,7 @@ export const formatTimeHM = (
 };
 
 function extractMinutesFromTime(time: string): number {
+  if (!time) return 0;
   const hours = +(time[11] + time[12]);
   const minutes = +(time[14] + time[15]);
   return hours * 60 + minutes;

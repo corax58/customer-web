@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -13,6 +14,7 @@ interface CategoryCard {
   className?: string;
 }
 const CategoryCard = ({ category, className }: CategoryCard) => {
+  const t = useTranslations("components.category_card");
   return (
     <CustomLink href={`/categories/${category.id}?title=${category.title}`}>
       <Card
@@ -37,10 +39,10 @@ const CategoryCard = ({ category, className }: CategoryCard) => {
                   {category.title}
                 </h3>
                 <p className="text-muted-foreground text-xs text-nowrap sm:text-sm">
-                  Explore
+                  {t("explore")}
                   <span className="max-sm:hidden md:hidden lg:inline">
                     {" "}
-                    menu
+                    {t("menu")}
                   </span>
                 </p>
               </div>

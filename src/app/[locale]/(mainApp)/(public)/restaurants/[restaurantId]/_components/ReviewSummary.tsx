@@ -1,3 +1,5 @@
+import { getFormatter, getTranslations } from "next-intl/server";
+
 import FadingDivider from "@/components/FadingDivider";
 import ReviewStars from "@/components/ReviewStars";
 import { Progress } from "@/components/ui/progress";
@@ -13,7 +15,7 @@ interface ReviewSummaryProps {
     "1_star": string;
   };
 }
-const ReviewSummary = ({
+const ReviewSummary = async ({
   averageRating,
   totalRatings,
   ratingDistribution,
@@ -32,16 +34,19 @@ const ReviewSummary = ({
     { stars: 2, count: ratingDistribution["2_star"] },
     { stars: 1, count: ratingDistribution["1_star"] },
   ];
-
+  const t = await getTranslations("restaurants.restaurant_details.reviews");
+  const formatter = await getFormatter();
   return (
     <div className="flex items-center gap-4 lg:gap-8">
       <div className="flex h-full w-fit flex-col items-center justify-between">
         <div className="flex items-end gap-2">
           <div className="mb-1 text-5xl font-medium">
-            {Number.parseFloat(averageRating).toFixed(1)}
+            {formatter.number(Number.parseFloat(averageRating), {
+              maximumFractionDigits: 1,
+            })}
           </div>
           <div className="text-muted-foreground mb-2 text-sm">
-            ({totalRatings})
+            ({formatter.number(parseInt(totalRatings))})
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -57,7 +62,7 @@ const ReviewSummary = ({
             {ratingBars.map((bar) => (
               <div key={bar.stars} className="flex items-center gap-3">
                 <span className="text-muted-foreground text-xs">
-                  {bar.stars}
+                  {formatter.number(bar.stars)}
                 </span>
 
                 <Progress
@@ -72,8 +77,7 @@ const ReviewSummary = ({
       <div className="flex w-1/2 items-center gap-4 max-md:hidden lg:gap-8">
         <FadingDivider className="h-28 w-px min-w-px bg-gradient-to-b max-md:hidden" />
         <p className="text-muted-foreground text-sm max-md:hidden">
-          Ratings and reviews are verified and come from people who received the
-          same services helping customers get genuine testimonials.
+          {t("rating_description")}
         </p>
       </div>
     </div>

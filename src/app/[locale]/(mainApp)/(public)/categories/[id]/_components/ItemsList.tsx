@@ -1,4 +1,5 @@
 import { SearchX } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 import { getCategoryItems } from "@/actions/actions";
 import MenuItemCard from "@/components/MenuItemCard";
@@ -24,12 +25,13 @@ const ItemsList = async ({
   if (personalized === undefined) {
     return <ItemsListSkeleton />;
   }
+  const t = await getTranslations("categories");
   const { data: items, error } = await getCategoryItems(id, lat, lon);
   if (error) {
     return (
       <div className="col-span-1 flex h-dvh w-full flex-col items-center justify-center gap-5 sm:col-span-2 lg:col-span-3 xl:col-span-4">
         <SearchX size={50} />
-        <p className="text-xl">Something went wrong</p>
+        <p className="text-xl">{t("messages.something_went_wrong")}</p>
       </div>
     );
   }
@@ -38,7 +40,7 @@ const ItemsList = async ({
     return (
       <div className="col-span-1 flex h-dvh w-full flex-col items-center justify-center gap-5 sm:col-span-2 lg:col-span-3 xl:col-span-4">
         <SearchX size={50} />
-        <p className="text-xl">No items in this category</p>
+        <p className="text-xl">{t("messages.no_category_items")}</p>
       </div>
     );
 

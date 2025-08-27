@@ -143,7 +143,7 @@ export async function getRestaurantOffers(
   try {
     const responseData: RestaurantOffersResponse =
       await fetchOnCondition<RestaurantOffersResponse>(
-        `/api/offer/coupon-list?id=${id}`,
+        `/api/restaurant/offer-list?id=${id}`,
         {
           retry: { retries: 3, delay: 1000 },
         },

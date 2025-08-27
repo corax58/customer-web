@@ -1,5 +1,7 @@
 import React from "react";
 
+import { getTranslations } from "next-intl/server";
+
 import { getRestaurantOffers } from "@/actions/restaurants.actions";
 
 import OffersCard from "./OffersCard";
@@ -9,15 +11,15 @@ interface RestaurantOffersProps {
 }
 const RestaurantOffers = async ({ restaurantId }: RestaurantOffersProps) => {
   const { data: offers, error } = await getRestaurantOffers(restaurantId);
-
+  const t = await getTranslations("restaurants.restaurant_details.offers");
   if (error) {
-    return <div> Something went wrong </div>;
+    return <div> {t("something_went_wrong")} </div>;
   }
 
   if (offers && offers.length == 0)
     return (
       <div className="flex h-52 w-full items-center justify-center">
-        <p>No offers</p>
+        <p>{t("no_offers")}</p>
       </div>
     );
 

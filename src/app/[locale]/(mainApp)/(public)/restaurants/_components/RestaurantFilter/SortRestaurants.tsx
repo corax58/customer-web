@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -29,9 +31,10 @@ interface SortRestaurantsProps {
   setFilters: React.Dispatch<React.SetStateAction<RestaurantFilters>>;
 }
 const SortRestaurants = ({ filters, setFilters }: SortRestaurantsProps) => {
+  const t = useTranslations("restaurants.filter.sort");
   return (
     <div>
-      <Label className="mb-2">Sort</Label>
+      <Label className="mb-2">{t("title")}</Label>
       <Select
         value={filters.sort_by}
         defaultValue={filters.sort_by}
@@ -46,7 +49,7 @@ const SortRestaurants = ({ filters, setFilters }: SortRestaurantsProps) => {
           <SelectItem value="none">None</SelectItem>
           {restaurantSortTypes.map((sort) => (
             <SelectItem key={sort.value} value={sort.value}>
-              {sort.label}
+              {t(`types.${sort.value}`)}
             </SelectItem>
           ))}
         </SelectContent>
