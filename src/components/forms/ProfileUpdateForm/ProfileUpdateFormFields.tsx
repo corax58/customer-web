@@ -33,7 +33,7 @@ const ProfileUpdateFormFields = ({
   form,
   setCountry,
 }: ProfileUpdateFormFieldsProps) => {
-  const t = useTranslations("auth.account_update");
+  const t = useTranslations("components.profile_update_form");
   const { user } = useAuth();
 
   return (
@@ -45,7 +45,7 @@ const ProfileUpdateFormFields = ({
           <FormItem>
             <FormLabel>{t("first_name")}</FormLabel>
             <FormControl>
-              <Input placeholder="John" {...field} />
+              <Input {...field} />
             </FormControl>
 
             <FormMessage />
@@ -59,7 +59,7 @@ const ProfileUpdateFormFields = ({
           <FormItem>
             <FormLabel>{t("last_name")}</FormLabel>
             <FormControl>
-              <Input placeholder="Doe" {...field} />
+              <Input {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

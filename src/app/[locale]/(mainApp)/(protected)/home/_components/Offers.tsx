@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import { getOffersList } from "@/actions/actions";
 import {
   Carousel,
@@ -14,6 +16,7 @@ interface OffersProps {
   personalized?: string;
 }
 const Offers = async ({ personalized }: OffersProps) => {
+  const t = await getTranslations("home.offers");
   if (personalized === undefined) {
     return <OffersSkeleton />;
   }
@@ -29,7 +32,9 @@ const Offers = async ({ personalized }: OffersProps) => {
         className="space-y-5 overflow-visible"
       >
         <div className="flex w-full items-center justify-between gap-5">
-          <h2 className="text-2xl font-bold md:mb-2 md:text-3xl">Offers</h2>
+          <h2 className="text-2xl font-bold md:mb-2 md:text-3xl">
+            {t("title")}
+          </h2>
 
           <div className="flex items-center gap-4">
             {/* <CustomLink

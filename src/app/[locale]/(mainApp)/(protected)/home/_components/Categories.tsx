@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import { getCategiesList } from "@/actions/actions";
 import CategoryCard from "@/components/CategoryCard";
 import CustomLink from "@/components/CustomLink";
@@ -8,6 +10,7 @@ interface CategoriesProps {
   personalized?: string;
 }
 export async function Categories({ personalized }: CategoriesProps) {
+  const t = await getTranslations("home.categories");
   const { data: categories } = await getCategiesList();
 
   if (personalized == undefined) return <CategoriesSkeleton />;
@@ -16,13 +19,15 @@ export async function Categories({ personalized }: CategoriesProps) {
     return (
       <div className="space-y-5 overflow-visible">
         <div className="flex w-full items-center justify-between">
-          <h2 className="text-xl font-bold md:mb-2 md:text-4xl">Categories</h2>
+          <h2 className="text-xl font-bold md:mb-2 md:text-4xl">
+            {t("title")}
+          </h2>
 
           <CustomLink
             href="/categories"
             className="group text-muted-foreground flex items-center font-semibold text-nowrap hover:text-orange-600"
           >
-            See All
+            {t("see_all")}
           </CustomLink>
         </div>
 

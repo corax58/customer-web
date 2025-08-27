@@ -1,9 +1,75 @@
 {
+  "time": {
+    "hoursAndMinutes": "{hours, number}h {minutes, number}m",
+    "hoursOnly": "{hours, number}h",
+    "minutesOnly": "{minutes, number}m",
+    "zeroMinutes": "0m"
+  },
+  "components": {
+    "menu_item_card": {
+      "cookTimeShort": "{duration, plural, one {# min} other {# min}}",
+      "see_restaurant": "See restaurant",
+      "not_available": "Not available"
+    },
+    "restaurant_card": {
+      "delivery_time": "{}",
+      "closed": "Closed"
+    },
+    "profile_update_form": {
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "mobile_number": "Mobile Number",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "other": "Other",
+      "date_of_birth": "Date of Birth",
+      "save_button": "Save"
+    },
+    "add_address_form": {
+      "labels": {
+        "save_as": "Save address as*",
+        "title": "Title",
+        "address": "Address",
+        "floor": "Floor",
+        "landmark": "Nearby Landmark",
+        "mobile_number": "Mobile Number",
+        "pincode": "Pincode"
+      },
+      "placeholders": {
+        "title": "e.g. Home",
+        "address": "e.g. Near St. George's Church",
+        "floor": "e.g. 3rd Floor, Apt 301",
+        "landmark": "(Optional)",
+        "pincode": "Enter pin code"
+      },
+      "address_types": {
+        "home": "Home",
+        "office": "Office",
+        "hotel": "Hotel",
+        "other": "Other"
+      },
+      "buttons": {
+        "save_address": "Save Address",
+        "confirm_location": "Confirm Location",
+        "location_confirmed": "Location Confirmed"
+      },
+      "messages": {
+        "save_success": "Address Saved!",
+        "save_error": "Failed at adding address, please try again.",
+        "map_instruction": "Click on the map or search to select a location.",
+        "allow_location_permission": "Please allow location permission",
+        "location_confirmed_success": "✓ Location confirmed! Now fill in your address details on the right.",
+        "select_location_error": "Please select a location on the map."
+      }
+    }
+  },
   "toast": {
     "welcome": "Welcome",
     "welcome_back": "Welcome back",
     "here_otp": "Here is your otp",
-    "error": "Error"
+    "error": "Error",
+    "success": "Successfully changed password"
   },
   "auth": {
     "login": {
@@ -20,7 +86,6 @@
       "terms_of_service": "Terms of Service",
       "and": "and",
       "privacy_policy": "Privacy Policy",
-
       "google_login": "Continue with Google",
       "facebook_login": "Continue with Facebook"
     },
@@ -37,7 +102,11 @@
       "signup_button": "Signup",
       "already_have_account": "Already have an account?",
       "login_link": "Login",
-      "or_divider": "Or"
+      "or_divider": "Or",
+      "referral-code": "Referrak Code",
+      "john": "John",
+      "doe": "Doe",
+      "optional": "(Optional)"
     },
     "verification": {
       "title": "Verification",
@@ -53,18 +122,7 @@
       "mobile_number": "Mobile Number",
       "send_button": "Send"
     },
-    "account_update": {
-      "title": "Setup Your Account",
-      "first_name": "First Name",
-      "last_name": "Last Name",
-      "mobile_number": "Mobile Number",
-      "gender": "Gender",
-      "male": "Male",
-      "female": "Female",
-      "other": "Other",
-      "date_of_birth": "Date of Birth",
-      "save_button": "Save"
-    },
+
     "marketing": {
       "headline": "Delicious food, delivered to your door",
       "subheadline": "Order from your favorite restaurants and get fresh, hot meals delivered in minutes.",
@@ -97,19 +155,28 @@
   },
   "landing": {
     "hero": {
+      "subtitle": "Hot & Fresh Delivery.",
       "title": "Your Favourite <span>Food Delivered</span> Hot & Fresh",
-      "description": "Get hot, fresh meals from your favorite local restaurants delivered right to your door. Order online now!"
+      "description": "Get hot, fresh meals from your favorite local restaurants delivered right to your door. Order online now!",
+      "order_now": "Order Now",
+      "contact_us": "Contact Us"
     },
-    "popular_food_items": {
-      "title": "Popular Food Items",
-      "start_from": "Start from",
-      "order_button": "Order Now",
-      "this_week": "ON THIS WEEK",
-      "limited_offer": "Limited Time Offer"
+    "popular_items": {
+      "popular_foods": {
+        "title": "Popular Foods"
+      },
+      "best_selling_dishes": {
+        "title": "Best Selling Dishes"
+      },
+      "categories": {
+        "title": "Categories",
+        "see_all": "See All"
+      }
     },
     "popular_restaurants": {
       "title": "Popular Restaurants",
-      "view_all": "View All Restaurants"
+      "view_all": "View All Restaurants",
+      "per_person": "Per Person"
     },
     "features": {
       "feature1": {
@@ -128,7 +195,6 @@
         "title": "Support 24/7",
         "description": "Our customer support team is available 24/7 to assist you."
       },
-
       "app_promo": "Get Your Favourite Food Fast with the App"
     },
     "special_food": {
@@ -224,7 +290,6 @@
         "value": "123 Food Street, City"
       }
     },
-
     "contact_form": {
       "labels": {
         "full_name": "Full Name",
@@ -246,5 +311,60 @@
     "header": {
       "title": "Terms and Conditions"
     }
+  },
+  "home": {
+    "banners": {
+      "dynamic": {
+        "order_now": "Order Now"
+      },
+      "static": {
+        "banner_1": {
+          "title": "Delicious Food, Fast Delivery",
+          "subtitle": "Get Orders In a Minutes",
+          "button": "Try Time Now!"
+        },
+        "banner_2": {
+          "title": "Fast Bites, Faster Orders",
+          "subtitle": "Up to 3 Orders In time.",
+          "button": "Order Now!"
+        },
+        "banner_3": {
+          "title": "Fast Bites, Faster Orders",
+          "subtitle": "Up to 3 Orders In time.",
+          "button": "Order Now!"
+        }
+      }
+    },
+    "offers": {
+      "title": "Offers",
+      "see_detail": "See Detail"
+    },
+    "categories": {
+      "title": "Categories",
+      "see_all": "See All"
+    },
+    "popular_dishes": {
+      "title": "Popular Dishes"
+    },
+    "best_selling_dishes": {
+      "title": "Best Selling Dishes"
+    },
+    "popular_restaurants": {
+      "title": "Popular Restaurants",
+      "see_all": "See All"
+    }
+  },
+  "profile_setup": {
+    "title": "Setup Your Account"
+  },
+  "change_password": {
+    "title": "Change password",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "change_password": "Change Password"
+  },
+  "setup_address": {
+    "title": "Set Up Your Address",
+    "subtitle": "Where to deliver your food."
   }
 }

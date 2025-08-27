@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 
+import { useTranslations } from "next-intl";
+
 import CustomLink from "@/components/CustomLink";
 import { Button } from "@/components/ui/button";
 import { CarouselItem } from "@/components/ui/carousel";
@@ -11,6 +13,7 @@ const defaultBanners = [
     title: "Delicious Food, Fast Delivery",
     subtitle: "Get Orders In a Minutes",
     button: "Try Time Now!",
+    key: "banner_1",
     img: "/assets/images/defaultBanner3.webp",
   },
   {
@@ -18,6 +21,7 @@ const defaultBanners = [
     title: "Fast Bites, Faster Orders",
     subtitle: "Up to 3 Orders In time.",
     button: "Order Now!",
+    key: "banner_1",
     img: "/assets/images/defaultBanner2.webp",
   },
   {
@@ -25,6 +29,7 @@ const defaultBanners = [
     title: "Fast Bites, Faster Orders",
     subtitle: "Up to 3 Orders In time.",
     button: "Order Now!",
+    key: "banner_1",
     img: "/assets/images/defaultBanner1.webp",
   },
 ];
@@ -44,7 +49,9 @@ const calculateVisibleBanner = (currentBanners: number) => {
   }
 };
 const DefaultBannerItems = ({ currentBanners }: DefaultBannerItemsProps) => {
+  const t = useTranslations("home.banners.static");
   return defaultBanners
+
     .slice(0, calculateVisibleBanner(currentBanners))
     .map((banner) => (
       <CarouselItem key={banner.id} className={"lg:basis-1/2"}>
@@ -60,17 +67,19 @@ const DefaultBannerItems = ({ currentBanners }: DefaultBannerItemsProps) => {
           <div className="absolute flex h-full w-2/3 flex-col justify-between py-8 pl-6 md:w-1/2 md:py-8 md:pl-12">
             <div className="flex flex-col gap-2">
               <p className="font-sigmar text-2xl text-white md:text-3xl">
-                {banner.title}
+                {t(`${banner.key}.title`)}
               </p>
               <p className="text-lg font-medium text-white">
-                {banner.subtitle}
+                {t(`${banner.key}.subtitle`)}
               </p>
             </div>
             <Button
               className="w-min bg-white text-black hover:text-white"
               asChild
             >
-              <CustomLink href={`/restaurants`}>{banner.button}</CustomLink>
+              <CustomLink href={`/restaurants`}>
+                {t(`${banner.key}.button`)}
+              </CustomLink>
             </Button>
           </div>
         </div>

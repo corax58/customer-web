@@ -20,7 +20,7 @@ const PopularItemsCarousel = async ({
   lat,
   lon,
 }: PopularItemsCarouselProps) => {
-  const t = await getTranslations("landing.popular_food_items");
+  const t = await getTranslations("landing.popular_items.popular_foods");
 
   if (lat == undefined && lon == undefined)
     return <PopularItemsCarouselSkeleton />;

@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import { getBestSellingDishes } from "@/actions/actions";
 import LandingDishCard from "@/components/LandingDishCard";
 import {
@@ -19,6 +21,8 @@ export async function BestSellingDishes({
   if (personalized === undefined) {
     return <BestSellingDishesSkeleton />;
   }
+  const t = await getTranslations("home.best_selling_dishes");
+
   const { data: dishes } = await getBestSellingDishes();
 
   if (dishes && dishes.length > 0)
@@ -32,16 +36,10 @@ export async function BestSellingDishes({
       >
         <div className="flex w-full items-center justify-between gap-5">
           <h2 className="text-xl font-bold md:mb-2 md:text-3xl">
-            Best Selling Dishes
+            {t("title")}
           </h2>
 
           <div className="flex items-center gap-4 max-sm:flex-col">
-            {/* <CustomLink
-              href="#"
-              className="group text-muted-foreground flex items-center font-semibold text-nowrap hover:text-orange-600"
-            >
-              See All
-            </CustomLink> */}
             <div className="flex gap-2">
               <CarouselPrevious className="bg-secondary text-foreground static -top-0 size-8 -translate-y-0 border-0 opacity-100" />
               <CarouselNext className="bg-secondary text-foreground static size-8 -translate-y-0 border-0 opacity-100" />

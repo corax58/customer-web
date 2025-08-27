@@ -2,6 +2,7 @@ import React from "react";
 import { UseFormReturn } from "react-hook-form";
 
 import { CountryCode } from "libphonenumber-js";
+import { useTranslations } from "next-intl";
 import { z } from "zod";
 
 import { PhoneInput } from "@/components/PhoneNumberInput";
@@ -22,23 +23,25 @@ interface AddressFormFieldsProps {
 }
 const addressTypes = [
   {
-    title: "Home",
+    key: "home",
     value: "1",
   },
   {
-    title: "Office",
+    key: "office",
     value: "2",
   },
   {
-    title: "Hotel",
+    key: "hotel",
     value: "3",
   },
   {
-    title: "Other",
+    key: "other",
     value: "4",
   },
 ];
 const AddressFormFields = ({ form, setCountry }: AddressFormFieldsProps) => {
+  const t = useTranslations("components.add_address_form");
+
   return (
     <>
       <FormField
@@ -46,7 +49,7 @@ const AddressFormFields = ({ form, setCountry }: AddressFormFieldsProps) => {
         name="addressType"
         render={({ field }) => (
           <FormItem className="space-y-3">
-            <FormLabel>Save address as*</FormLabel>
+            <FormLabel>{t("labels.save_as")}</FormLabel>
             <FormControl>
               <RadioGroup
                 onValueChange={field.onChange}
@@ -62,7 +65,7 @@ const AddressFormFields = ({ form, setCountry }: AddressFormFieldsProps) => {
                       <RadioGroupItem value={addressType.value} />
                     </FormControl>
                     <FormLabel className="font-normal">
-                      {addressType.title}
+                      {t(`address_types.${addressType.key}`)}
                     </FormLabel>
                   </FormItem>
                 ))}
@@ -78,9 +81,9 @@ const AddressFormFields = ({ form, setCountry }: AddressFormFieldsProps) => {
         name="title"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Title</FormLabel>
+            <FormLabel>{t("labels.title")}</FormLabel>
             <FormControl>
-              <Input placeholder="e.g. Home" {...field} />
+              <Input placeholder={t("placeholders.title")} {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -91,9 +94,9 @@ const AddressFormFields = ({ form, setCountry }: AddressFormFieldsProps) => {
         name="address"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Address</FormLabel>
+            <FormLabel>{t("labels.address")}</FormLabel>
             <FormControl>
-              <Input placeholder="e.g. Near St. George's Church" {...field} />
+              <Input placeholder={t("placeholders.address")} {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -106,22 +109,23 @@ const AddressFormFields = ({ form, setCountry }: AddressFormFieldsProps) => {
           name="floor"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Floor</FormLabel>
+              <FormLabel>{t("labels.floor")}</FormLabel>
               <FormControl>
-                <Input placeholder="e.g. 3rd Floor, Apt 301" {...field} />
+                <Input placeholder={t("placeholders.floor")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
+
         <FormField
           control={form.control}
           name="landmark"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nearby Landmark</FormLabel>
+              <FormLabel>{t("labels.landmark")}</FormLabel>
               <FormControl>
-                <Input placeholder="(Optional)" {...field} />
+                <Input placeholder={t("placeholders.landmark")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -134,7 +138,7 @@ const AddressFormFields = ({ form, setCountry }: AddressFormFieldsProps) => {
         name="contact_no"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Mobile Number</FormLabel>
+            <FormLabel>{t("labels.mobile_number")}</FormLabel>
             <PhoneInput
               id="phone-number"
               defaultCountry="ET"
@@ -151,9 +155,9 @@ const AddressFormFields = ({ form, setCountry }: AddressFormFieldsProps) => {
         name="pinCode"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Pincode</FormLabel>
+            <FormLabel>{t("labels.pincode")}</FormLabel>
             <FormControl>
-              <Input placeholder="Enter pin code" {...field} />
+              <Input placeholder={t("placeholders.pincode")} {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

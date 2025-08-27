@@ -1,14 +1,17 @@
 import React from "react";
 import Image from "next/image";
 
+import { getTranslations } from "next-intl/server";
+
 import ChangePasswordForm from "./_components/ChangePasswordForm";
 
-const ChangePassWordPage = () => {
+const ChangePasswordPage = async () => {
+  const t = await getTranslations("auth.marketing");
   return (
     <div className="flex min-h-svh items-center justify-start">
       <div className="flex w-full justify-center lg:w-2/5">
-        <div className="bg-background flex w-fit justify-center rounded-xl p-10 pt-36 max-sm:min-h-dvh max-sm:w-full max-sm:rounded-none lg:pt-24">
-          <ChangePasswordForm className="sm:w-sm" />
+        <div className="bg-background flex w-full justify-center rounded-xl p-10 pt-36 max-sm:min-h-dvh max-sm:w-full max-sm:rounded-none lg:pt-24">
+          <ChangePasswordForm />
         </div>
       </div>
       <div className="absolute top-0 right-0 -z-10 h-svh w-full overflow-hidden lg:w-3/5">
@@ -25,24 +28,23 @@ const ChangePassWordPage = () => {
             <div className="flex flex-col justify-end p-12 text-white">
               <div className="max-w-md text-end">
                 <h1 className="mb-4 text-end text-4xl font-bold">
-                  Delicious food, delivered to your door
+                  {t("headline")}
                 </h1>
                 <p className="tex mb-6 text-lg text-white/90">
-                  Order from your favorite restaurants and get fresh, hot meals
-                  delivered in minutes.
+                  {t("subheadline")}
                 </p>
                 <div className="flex items-center justify-end space-x-6 text-sm">
                   <div className="flex items-center space-x-2">
                     <div className="h-2 w-2 rounded-full bg-green-400"></div>
-                    <span>Fast Delivery</span>
+                    <span>{t("feature1")}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="h-2 w-2 rounded-full bg-blue-400"></div>
-                    <span>Fresh Food</span>
+                    <span>{t("feature2")}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="h-2 w-2 rounded-full bg-purple-400"></div>
-                    <span>Best Prices</span>
+                    <span>{t("feature3")}</span>
                   </div>
                 </div>
               </div>
@@ -54,4 +56,4 @@ const ChangePassWordPage = () => {
   );
 };
 
-export default ChangePassWordPage;
+export default ChangePasswordPage;

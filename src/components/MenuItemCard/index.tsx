@@ -1,5 +1,6 @@
 "use client";
 import { CookingPot, Eye, Plus } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { useAuth } from "@/contexts/AuthContext";
 import { PLACEHOLDER_IMAGES } from "@/lib/constants";
@@ -25,6 +26,8 @@ const MenuItemCard = ({
   isOpen,
   isInRestaurant = true,
 }: MenuItemCardProps) => {
+  const t = useTranslations("components.menu_item_card");
+
   const { user } = useAuth();
 
   const currentPrice = getMenuItemPrice(menuItem);
@@ -46,7 +49,9 @@ const MenuItemCard = ({
               {menuItem.cook_time.trim() && (
                 <div className="flex items-center gap-2">
                   <CookingPot size={14} />
-                  <span>{menuItem.cook_time} min</span>
+                  <span>
+                    {t("cookTimeShort", { duration: menuItem.cook_time })}
+                  </span>
                 </div>
               )}
             </div>
@@ -63,7 +68,7 @@ const MenuItemCard = ({
               <Button size={"icon"} asChild>
                 <RestaurantDetailsLink restaurantId={menuItem.restaurant_id}>
                   <Eye />
-                  <span className="sr-only">See restaurant</span>
+                  <span className="sr-only">{t("see_restaurant")}</span>
                 </RestaurantDetailsLink>
               </Button>
             )}
@@ -88,7 +93,7 @@ const MenuItemCard = ({
         )}
         {!isAvailable && (
           <Badge className="absolute bottom-2.5 left-2.5 z-10 border-red-700 bg-red-500/80">
-            Not available
+            {t("not_available")}
           </Badge>
         )}
       </div>

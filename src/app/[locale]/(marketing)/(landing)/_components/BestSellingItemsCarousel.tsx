@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import { getBestSellingDishes } from "@/actions/actions";
 import {
   Carousel,
@@ -20,6 +22,7 @@ const BestSellingItemsCarousel = async ({
   lon,
 }: BestSellingItemsCarouselProps) => {
   if (lat == undefined && lon == undefined) return <BestSellingItemsSkeleton />;
+  const t = await getTranslations("landing.popular_items.best_selling_dishes");
 
   const latitude = lat == "none" ? "" : lat;
   const longitude = lon == "none" ? "" : lon;
@@ -36,9 +39,7 @@ const BestSellingItemsCarousel = async ({
         className="space-y-5 overflow-visible"
       >
         <div className="flex items-center justify-center gap-5 max-md:flex-col md:justify-between">
-          <h2 className="text-foreground text-4xl font-bold">
-            Best Selling Dishes
-          </h2>
+          <h2 className="text-foreground text-4xl font-bold">{t("title")}</h2>
           <div className="flex gap-4">
             <CarouselPrevious className="bg-primary dark:bg-primary static -top-0 size-14 -translate-y-0 border-0 text-white opacity-100" />
             <CarouselNext className="bg-primary dark:bg-primary static size-14 -translate-y-0 border-0 text-white opacity-100" />

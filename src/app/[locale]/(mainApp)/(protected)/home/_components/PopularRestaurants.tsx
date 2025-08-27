@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import { getTopRestaurants } from "@/actions/restaurants.actions";
 import CustomLink from "@/components/CustomLink";
 import RestaurantCard from "@/components/RestaurantCard";
@@ -24,6 +26,8 @@ const PopularRestaurants = async ({
   if (personalized === undefined) {
     return <PopularRestaurantsSkeleton />;
   }
+  const t = await getTranslations("home.popular_restaurants");
+
   const { data: restaurants } = await getTopRestaurants();
 
   if (restaurants && restaurants.length > 0)
@@ -37,7 +41,7 @@ const PopularRestaurants = async ({
       >
         <div className="flex w-full items-center justify-between">
           <h2 className="text-2xl font-bold md:mb-2 md:text-3xl">
-            Popular Restaurants
+            {t("title")}
           </h2>
 
           <div className="flex items-center gap-4">
@@ -45,7 +49,7 @@ const PopularRestaurants = async ({
               href="/restaurants"
               className="group text-muted-foreground flex items-center font-semibold text-nowrap hover:text-orange-600"
             >
-              See All
+              {t("see_all")}
             </CustomLink>
             <div className="flex gap-2">
               <CarouselPrevious className="bg-secondary text-foreground static -top-0 size-8 -translate-y-0 border-0 opacity-100" />

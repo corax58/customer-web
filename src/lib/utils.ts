@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { format } from "date-fns";
+import { useTranslations } from "next-intl";
 import { twMerge } from "tailwind-merge";
 
 import { CartItem } from "@/types/cart.types";
@@ -119,18 +120,34 @@ export const getMenuItemPrice = (menuItem: MenuItem): number => {
   return value;
 };
 
-export const formatTimeHM = (totalMinutes: number) => {
+type Translator = ReturnType<typeof useTranslations<"time">>;
+
+export const formatTimeHM = (
+  totalMinutes: number,
+  t: Translator, // Accept the translator function as an argument
+) => {
+  // Handle invalid or zero input by using a translated string
   if (
-    totalMinutes < 0 ||
+    totalMinutes <= 0 ||
     totalMinutes === null ||
     typeof totalMinutes !== "number"
   ) {
-    return "0m";
+    return t("zeroMinutes");
   }
+
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
 
-  return `${hours > 0 ? hours + "h" : ""} ${minutes}m`;
+  if (hours > 0 && minutes > 0) {
+    return t("hoursAndMinutes", { hours, minutes });
+  }
+
+  if (hours > 0) {
+    return t("hoursOnly", { hours });
+  }
+
+  // Default to minutes only
+  return t("minutesOnly", { minutes });
 };
 
 function extractMinutesFromTime(time: string): number {

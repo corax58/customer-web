@@ -29,7 +29,7 @@ const ProfileUpdateForm = ({
   onSuccess,
   className,
 }: ProfileUpdateFormProps) => {
-  const t = useTranslations("auth.account_update");
+  const t = useTranslations("components.profile_update_form");
   const { user } = useAuth();
   const [country, setCountry] = useState<CountryCode | undefined>("ET");
 

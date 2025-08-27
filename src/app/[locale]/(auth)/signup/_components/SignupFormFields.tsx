@@ -36,7 +36,7 @@ const SignupFormFields = ({ form, setCountry }: SignupFormFieldsProps) => {
             <FormItem>
               <FormLabel>{t("first_name")}</FormLabel>
               <FormControl>
-                <Input placeholder="John" {...field} />
+                <Input placeholder={t("john")} {...field} />
               </FormControl>
 
               <FormMessage />
@@ -50,7 +50,7 @@ const SignupFormFields = ({ form, setCountry }: SignupFormFieldsProps) => {
             <FormItem>
               <FormLabel>{t("last_name")}</FormLabel>
               <FormControl>
-                <Input placeholder="Doe" {...field} />
+                <Input placeholder={t("doe")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -141,8 +141,10 @@ const SignupFormFields = ({ form, setCountry }: SignupFormFieldsProps) => {
         render={({ field }) => (
           <FormItem>
             <FormLabel>
-              {"Referral code"}{" "}
-              <span className="text-muted-foreground text-sm">(optional)</span>
+              {t("referral-code")}{" "}
+              <span className="text-muted-foreground text-sm">
+                {t("optional")}
+              </span>
             </FormLabel>
             <FormControl>
               <Input id="referral_code" {...field} className="font-semibold" />

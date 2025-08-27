@@ -2,6 +2,7 @@
 
 import DOMPurify from "isomorphic-dompurify";
 import { MapPin } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import CustomImage from "@/components/CustomImage";
 import CustomLink from "@/components/CustomLink";
@@ -14,6 +15,7 @@ interface PopularRestaurantCardProps {
   restaurant: Restaurant;
 }
 const PopularRestaurantCard = ({ restaurant }: PopularRestaurantCardProps) => {
+  const t = useTranslations("landing.popular_restaurants");
   const descriptionHtml = restaurant.description;
 
   const sanitizedDescription = DOMPurify.sanitize(descriptionHtml, {
@@ -52,7 +54,9 @@ const PopularRestaurantCard = ({ restaurant }: PopularRestaurantCardProps) => {
                     <span className="text-xl font-bold text-orange-600">
                       <FormattedAfghani amount={restaurant.price_per_person} />
                     </span>
-                    <span className="text-sm text-gray-400">per person</span>
+                    <span className="text-sm text-gray-400">
+                      {t("per_person")}
+                    </span>
                   </div>
                 )}
             </div>

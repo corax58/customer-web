@@ -10,6 +10,7 @@ import {
   Marker,
 } from "@vis.gl/react-google-maps";
 import { CheckCircle2, MapPin } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import useGeolocation from "@/hooks/useGeolocation";
@@ -33,6 +34,7 @@ export function LocationPicker({
   noAddressError,
 }: LocationPickerProps) {
   const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API!;
+  const t = useTranslations("components.add_address_form");
 
   const { getGuestUserLocation, guestLocation } = useGeolocation();
   const [currentLocation, setCurrentLocation] =
@@ -115,7 +117,7 @@ export function LocationPicker({
   return (
     <div className={cn("w-full", className)}>
       <p className="text-muted-foreground mb-2 text-sm">
-        Click on the map or search to select a location.
+        {t("messages.map_instruction")}
       </p>
 
       <div className="h-96 w-full overflow-hidden rounded-lg">
@@ -163,7 +165,7 @@ export function LocationPicker({
           <div className="flex h-full w-full items-center justify-center gap-2">
             <MapPin size={16} className="text-muted-foreground" />
             <p className="text-muted-foreground text-lg">
-              Please allow location permission
+              {t("messages.allow_location_permission")}
             </p>
           </div>
         )}
@@ -184,22 +186,24 @@ export function LocationPicker({
           {locationSelected ? (
             <>
               <CheckCircle2 className="mr-2 h-4 w-4" />
-              Location Confirmed
+              {t("buttons.location_confirmed")}
             </>
           ) : (
-            "Confirm Location"
+            t("buttons.confirm_location")
           )}
         </Button>
       </div>
 
       {locationSelected && (
         <div className="mt-2 text-sm text-green-600">
-          ✓ Location confirmed! Now fill in your address details on the right.
+          {t("messages.location_confirmed_success")}
         </div>
       )}
 
       {noAddressError && !locationSelected && (
-        <div className="text-red-400">Please select a location on the map.</div>
+        <div className="text-red-400">
+          {t("messages.select_location_error")}
+        </div>
       )}
     </div>
   );

@@ -7,6 +7,7 @@ import parsePhoneNumberFromString, {
   CountryCode,
   getCountryCallingCode,
 } from "libphonenumber-js";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -23,6 +24,7 @@ interface AddAddressFormProps {
   onCreate: () => void;
 }
 const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
+  const t = useTranslations("components.add_address_form");
   const { refreshAddress } = useLocation();
   const [country, setCountry] = useState<CountryCode | undefined>("ET");
   const [isPending, startTransition] = useTransition();
@@ -76,7 +78,7 @@ const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
       const results = await addAddress(data);
 
       if (results.success) {
-        toast.success("Address Saved!");
+        toast.success(t("messages.save_success"));
         form.reset();
         localStorage.removeItem("noDefaultAddress");
         refreshAddress();
@@ -84,7 +86,7 @@ const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
       }
 
       if (results.error) {
-        toast.error("Failed at adding address,please try again.");
+        toast.error(t("messages.save_error"));
       }
     });
   }
@@ -103,7 +105,7 @@ const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
           <AddressFormFields form={form} setCountry={setCountry} />
 
           <Button type="submit" className="!mt-8 w-full" disabled={isPending}>
-            Save Address
+            {t("buttons.save_address")}
           </Button>
         </form>
       </Form>

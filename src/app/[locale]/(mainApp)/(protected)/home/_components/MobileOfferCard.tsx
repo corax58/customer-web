@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { ArrowRight } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 import CustomLink from "@/components/CustomLink";
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,7 +10,9 @@ import { Offer } from "@/types/restaurant.types";
 interface MobileOfferCardProps {
   offer: Offer;
 }
-const MobileOfferCard = ({ offer }: MobileOfferCardProps) => {
+const MobileOfferCard = async ({ offer }: MobileOfferCardProps) => {
+  const t = await getTranslations("home.offers");
+
   return (
     <Card className="group border-card relative mb-4 h-40 w-full overflow-hidden border-4 bg-gradient-to-b from-red-500 to-red-800 p-0 shadow-lg transition-all duration-300">
       <CustomLink
@@ -41,7 +44,7 @@ const MobileOfferCard = ({ offer }: MobileOfferCardProps) => {
               </div>
 
               <div className="flex items-center gap-2 py-2 text-sm font-semibold text-orange-400">
-                See Detail{" "}
+                {t("see_detail")}
                 <ArrowRight
                   size={16}
                   className="transition group-hover:translate-x-2"

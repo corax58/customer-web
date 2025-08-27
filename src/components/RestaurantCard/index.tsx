@@ -1,6 +1,7 @@
 "use client";
 
 import { Bike, Star, User } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/contexts/AuthContext";
@@ -26,6 +27,8 @@ const RestaurantCard = ({
   isOpen,
 }: RestaurantCardProps) => {
   const { user } = useAuth();
+  const time = useTranslations("time");
+  const t = useTranslations("components.restaurant_card");
 
   return (
     <Card
@@ -53,7 +56,7 @@ const RestaurantCard = ({
           )}
           {!isOpen && (
             <Badge className="absolute top-4 right-4 z-10 border-red-700 bg-red-500/90 text-white">
-              Closed
+              {t("closed")}
             </Badge>
           )}
           {restaurant.price_per_person && (
@@ -84,6 +87,7 @@ const RestaurantCard = ({
                   <p>
                     {formatTimeHM(
                       restaurant.delivery_info.delivery_time_minutes,
+                      time,
                     )}
                   </p>
                 </div>
