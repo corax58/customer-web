@@ -1,4 +1,5 @@
 import { X } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 import { getFavoritesList } from "@/actions/profile.actions";
 import RestaurantCard from "@/components/RestaurantCard";
@@ -7,6 +8,7 @@ import { isRestaurantOpenNow } from "@/lib/utils";
 
 const FavoritesList = async () => {
   const { data, error } = await getFavoritesList();
+  const t = await getTranslations("profile.favourites");
 
   if (data)
     return (
@@ -31,12 +33,9 @@ const FavoritesList = async () => {
           <Card>
             <CardContent className="pt-8 pb-8 text-center">
               <h3 className="mb-2 text-lg font-semibold">
-                You have no favorite restaurants yet.
+                {t("no_fav_title")}
               </h3>
-              <p className="text-muted-foreground">
-                Tap the heart icon on any restaurant to save it here for easy
-                access.
-              </p>
+              <p className="text-muted-foreground">{t("no_fav_desc")}</p>
             </CardContent>
           </Card>
         )}
@@ -45,7 +44,7 @@ const FavoritesList = async () => {
             <CardContent className="pt-8 pb-8 text-center">
               <X className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
               <h3 className="mb-2 text-lg font-semibold">
-                Failed to fetch Favourites
+                {t("errors.failed_fetch")}
               </h3>
             </CardContent>
           </Card>

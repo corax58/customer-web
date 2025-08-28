@@ -1,4 +1,7 @@
+"use client";
 import React from "react";
+
+import { useTranslations } from "next-intl";
 
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -26,10 +29,11 @@ interface TransactionStatusBadgeProps {
 }
 
 const TransactionStatusBadge = ({ state }: TransactionStatusBadgeProps) => {
-  const { label, className } =
+  const t = useTranslations("profile.transactions.status");
+  const { className } =
     TransactionStates[state] || TransactionStates["pending"];
 
-  return <Badge className={cn("rounded-full", className)}>{label}</Badge>;
+  return <Badge className={cn("rounded-full", className)}>{t(state)}</Badge>;
 };
 
 export default TransactionStatusBadge;

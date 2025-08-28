@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { Loader } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { getTransactionsList } from "@/actions/profile.actions";
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,14 +10,16 @@ import { PaginatedDateTable } from "@/components/ui/paginated-data-table";
 import { useAuth } from "@/contexts/AuthContext";
 import { Transaction } from "@/types/profile.types";
 
-import { TransactionColumns } from "./columns";
+import useTransactionColumns from "./useTransactionsColumns";
 
 const TransactionsList = () => {
   const { user } = useAuth();
+  const t = useTranslations("profile.transactions");
   const [transactions, setTransactions] = useState<Transaction[]>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const { transactionColumns } = useTransactionColumns();
   const fetchTransactions = useCallback(async () => {
     setIsLoading(true);
     if (!user) return;
@@ -48,7 +51,9 @@ const TransactionsList = () => {
     return (
       <Card className="border shadow-none">
         <CardContent className="flex h-28 items-center justify-center">
-          <div className="text-muted-foreground text-lg">{error}</div>
+          <div className="text-muted-foreground text-lg">
+            {t("error.something_went_wrong")}
+          </div>
         </CardContent>
       </Card>
     );
@@ -60,7 +65,7 @@ const TransactionsList = () => {
         {transactions.length > 0 ? (
           <div className="space-y-4">
             <PaginatedDateTable
-              columns={TransactionColumns}
+              columns={transactionColumns}
               data={transactions}
             />
           </div>
@@ -68,7 +73,7 @@ const TransactionsList = () => {
           <Card className="border shadow-none">
             <CardContent className="flex h-28 items-center justify-center">
               <div className="text-muted-foreground text-lg">
-                No transactions found
+                {t("no_transactions")}
               </div>
             </CardContent>
           </Card>

@@ -2,6 +2,7 @@
 import { useState, useTransition } from "react";
 
 import { Loader } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import { addRating } from "@/actions/profile.actions";
@@ -24,6 +25,7 @@ interface ReviewModalProps {
 }
 
 const ReviewModal = ({ order, className }: ReviewModalProps) => {
+  const t = useTranslations("profile.orders.order_detail.review_modal");
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
@@ -35,7 +37,7 @@ const ReviewModal = ({ order, className }: ReviewModalProps) => {
 
   const handleSaveReview = () => {
     if (restaurantRating === 0 && riderRating === 0) {
-      toast.error("Please provide a rating for the restaurant or the rider.");
+      toast.error(t("message.no_review"));
       return;
     }
 
@@ -76,11 +78,11 @@ const ReviewModal = ({ order, className }: ReviewModalProps) => {
 
         await Promise.all(ratingPromises);
 
-        toast.success("Thank you for your review!");
+        toast.success(t("message.success"));
         setIsReviewModalOpen(false); // Close modal on success
       } catch (error) {
         console.error("Failed to submit review:", error);
-        toast.error("Sorry, we couldn't submit your review. Please try again.");
+        toast.error(t("message.error"));
       }
     });
   };
@@ -89,31 +91,33 @@ const ReviewModal = ({ order, className }: ReviewModalProps) => {
     <Dialog open={isReviewModalOpen} onOpenChange={setIsReviewModalOpen}>
       <DialogTrigger asChild>
         <Button className={className} disabled={isPending}>
-          {isPending ? <Loader className="animate-spin" /> : "Leave a Review"}
+          {isPending ? <Loader className="animate-spin" /> : t("trigger")}
         </Button>
       </DialogTrigger>
       <DialogContent className="mx-auto max-h-screen max-w-md overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-primary text-lg font-medium">
-            How was your experience?
+            {t("title")}{" "}
           </DialogTitle>
         </DialogHeader>
 
         <div className="space-y-6 pt-4">
           <div className="bg-secondary flex items-center gap-3 rounded-lg p-3">
             <p className="font-medium">
-              Order delivered to {order.customer_address_deatil.title}
+              {t("delivered_to", {
+                address: order.customer_address_deatil.title,
+              })}
             </p>
           </div>
 
           <div className="space-y-3">
-            <h3 className="font-medium">Rate the Restaurant</h3>
+            <h3 className="font-medium">{t("rate_restaurant")}</h3>
             <StarRating
               rating={restaurantRating}
               onRatingChange={setRestaurantRating}
             />
             <Textarea
-              placeholder="How was the food and service?"
+              placeholder={t("restaurant_placeholder")}
               value={restaurantComment}
               onChange={(e) => setRestaurantComment(e.target.value)}
               className="bg-secondary mt-3 resize-none border"
@@ -123,13 +127,13 @@ const ReviewModal = ({ order, className }: ReviewModalProps) => {
 
           {order.driver_id && (
             <div className="space-y-3">
-              <h3 className="font-medium">Rate Your Rider</h3>
+              <h3 className="font-medium">{t("rate_rider")}</h3>
               <StarRating
                 rating={riderRating}
                 onRatingChange={setRiderRating}
               />
               <Textarea
-                placeholder="How was the delivery experience?"
+                placeholder={t("rider_placeholder")}
                 value={riderComment}
                 onChange={(e) => setRiderComment(e.target.value)}
                 className="bg-secondary mt-3 resize-none border"
@@ -143,7 +147,7 @@ const ReviewModal = ({ order, className }: ReviewModalProps) => {
             disabled={isPending}
             className="w-full"
           >
-            {isPending ? <Loader className="animate-spin" /> : "Submit Review"}
+            {isPending ? <Loader className="animate-spin" /> : t("submit")}
           </Button>
         </div>
       </DialogContent>

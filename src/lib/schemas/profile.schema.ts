@@ -25,3 +25,13 @@ export const deleteAccountSchema = z.object({
     .string()
     .min(8, { message: "Password must be at least 8 characters" }),
 });
+export const CancelOrderSchema = z.object({
+  reason: z
+    .string()
+    .min(10, {
+      message: "Your reason must be at least 10 characters.",
+    })
+    .max(100, {
+      message: "Your reason must not be longer than 100 characters.",
+    }),
+});

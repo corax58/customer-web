@@ -2,6 +2,7 @@
 import { useTransition } from "react";
 
 import { Loader2, Trash } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import { deleteAddress, setDefaultAddress } from "@/actions/profile.actions";
@@ -27,6 +28,7 @@ interface AddressListItemProps {
   address: Address;
 }
 const AddressListItem = ({ address }: AddressListItemProps) => {
+  const t = useTranslations("profile.delivery_info.address_list");
   const [isDeleting, startDelete] = useTransition();
   const [isUpdating, startUpdate] = useTransition();
   const { refreshAddress } = useLocation();
@@ -36,11 +38,11 @@ const AddressListItem = ({ address }: AddressListItemProps) => {
     startDelete(async () => {
       const results = await deleteAddress(address.id.toString());
       if (results.success) {
-        toast.success("Successfully deleted address");
+        toast.success(t("messages.success_delete"));
         router.refresh();
       }
       if (results.error) {
-        toast.error("Failed at deleting address");
+        toast.error(t("messages.failed_delete"));
       }
     });
   };
@@ -54,7 +56,7 @@ const AddressListItem = ({ address }: AddressListItemProps) => {
         router.refresh();
       }
       if (results.error) {
-        toast.error("Failed at setting default address");
+        toast.error(t("messages.failed_set_default"));
       }
     });
   };
@@ -84,17 +86,18 @@ const AddressListItem = ({ address }: AddressListItemProps) => {
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle>
-                      Are you absolutely sure?
+                      {t("delete_dialog.title")}
                     </AlertDialogTitle>
                     <AlertDialogDescription>
-                      This action cannot be undone. This will permanently delete
-                      your this address. and remove the data from our servers.
+                      {t("delete_dialog.description")}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogCancel>
+                      {t("delete_dialog.buttons.cancel")}
+                    </AlertDialogCancel>
                     <AlertDialogAction onClick={handleDeleteAddress}>
-                      Continue
+                      {t("delete_dialog.buttons.confirm")}
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
@@ -112,7 +115,7 @@ const AddressListItem = ({ address }: AddressListItemProps) => {
         <div>
           {address.is_default === 1 && (
             <Badge className="bg-card text-foreground border-border border text-sm">
-              Default
+              {t("default")}
             </Badge>
           )}
           {address.is_default == 0 && (
@@ -126,7 +129,7 @@ const AddressListItem = ({ address }: AddressListItemProps) => {
               {isUpdating ? (
                 <Loader2 className="animate-spin" />
               ) : (
-                "Set Default"
+                t("set_default")
               )}
             </Button>
           )}

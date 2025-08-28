@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+import { useTranslations } from "next-intl";
+
 import {
   Select,
   SelectContent,
@@ -15,6 +17,7 @@ import useDebounce from "@/hooks/useDebounce";
 import { usePathname, useRouter } from "@/i18n/navigation";
 
 const OrderFilter = () => {
+  const t = useTranslations("profile.orders.filter");
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -41,11 +44,11 @@ const OrderFilter = () => {
       <div className="md:hidden">
         <Select value={status} onValueChange={setStatus}>
           <SelectTrigger className="w-[150px]">
-            <SelectValue placeholder="Filter orders" />
+            <SelectValue placeholder={t("placeholder")} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="CURRENT">Active orders</SelectItem>
-            <SelectItem value="PAST">Past orders</SelectItem>
+            <SelectItem value="CURRENT">{t("active")}</SelectItem>
+            <SelectItem value="PAST">{t("past")}</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -59,13 +62,13 @@ const OrderFilter = () => {
           value="CURRENT"
           className="data-[state=on]:bg-background rounded-md"
         >
-          Active orders
+          {t("active")}
         </ToggleGroupItem>
         <ToggleGroupItem
           value="PAST"
           className="data-[state=on]:bg-background rounded-md"
         >
-          Past orders
+          {t("past")}
         </ToggleGroupItem>
       </ToggleGroup>
     </div>

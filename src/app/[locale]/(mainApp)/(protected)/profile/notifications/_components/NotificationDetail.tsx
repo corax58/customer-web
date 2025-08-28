@@ -1,6 +1,4 @@
-import React from "react";
-
-import { format } from "date-fns";
+import { getFormatter, getTranslations } from "next-intl/server";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,12 +14,16 @@ import { Notification } from "@/types/profile.types";
 interface NotificationDetailProps {
   notification: Notification;
 }
-const NotificationDetail = ({ notification }: NotificationDetailProps) => {
+const NotificationDetail = async ({
+  notification,
+}: NotificationDetailProps) => {
+  const t = await getTranslations("profile.notifications");
+  const formatter = await getFormatter();
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button variant={"outline"} size={"sm"} className="ml-1">
-          View
+          {t("view")}
         </Button>
       </DialogTrigger>
       <DialogContent className="flex flex-col gap-0 p-4">
@@ -32,7 +34,10 @@ const NotificationDetail = ({ notification }: NotificationDetailProps) => {
         <div>{notification.title}</div>
         {notification.createdOn && (
           <div className="text-muted-foreground mb-4">
-            {format(new Date(notification.createdOn), "dd/MM/yyyy hh:mmaa")}
+            {formatter.dateTime(new Date(notification.createdOn), {
+              dateStyle: "short",
+              timeStyle: "short",
+            })}
           </div>
         )}
 

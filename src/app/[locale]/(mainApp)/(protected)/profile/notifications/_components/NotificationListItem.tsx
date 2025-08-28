@@ -1,6 +1,4 @@
-import React from "react";
-
-import { format } from "date-fns";
+import { getFormatter, getTranslations } from "next-intl/server";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,7 +10,11 @@ import NotificationDetail from "./NotificationDetail";
 interface NotificationListItemProps {
   notification: Notification;
 }
-const NotificationListItem = ({ notification }: NotificationListItemProps) => {
+const NotificationListItem = async ({
+  notification,
+}: NotificationListItemProps) => {
+  const formatter = await getFormatter();
+  const t = await getTranslations("profile.notifications");
   return (
     <Card
       key={notification.id}
@@ -41,10 +43,10 @@ const NotificationListItem = ({ notification }: NotificationListItemProps) => {
                 </p>
                 {notification.createdOn && (
                   <div className="text-muted-foreground mb-4">
-                    {format(
-                      new Date(notification.createdOn),
-                      "dd/MM/yyyy hh:mmaa",
-                    )}
+                    {formatter.dateTime(new Date(notification.createdOn), {
+                      dateStyle: "short",
+                      timeStyle: "short",
+                    })}
                   </div>
                 )}
               </div>
@@ -52,7 +54,7 @@ const NotificationListItem = ({ notification }: NotificationListItemProps) => {
               <div className="flex gap-1">
                 {!notification.isRead && (
                   <Button variant="outline" size="sm" className="text-xs">
-                    Mark Read
+                    {t("mark_read")}
                   </Button>
                 )}
                 <NotificationDetail notification={notification} />

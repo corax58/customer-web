@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { MapPin, Phone, RefreshCcw } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import { getOrderStatus } from "@/actions/profile.actions";
@@ -74,6 +75,7 @@ interface TrackOrderProps {
   restaurant: Restaurant;
 }
 export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
+  const t = useTranslations("profile.orders.order_detail.track_order");
   const [isLoading, setisLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [currentStage, setCurrentStage] = useState<number>(1);
@@ -93,7 +95,7 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
     setFetchFailed(false);
     const { status, success } = await getOrderStatus(order_id);
     if (!success) {
-      toast.error("Failed to get order status");
+      toast.error(t("error.failed_fetch"));
       setFetchFailed(true);
     }
     if (status) {
@@ -101,7 +103,7 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
       checkCurrentStage(status.status_history.delivery_status);
     }
     setisLoading(false);
-  }, [order_id, checkCurrentStage]);
+  }, [order_id, checkCurrentStage, t]);
 
   const handleRefresh = () => {
     fetchOrderStatus();
@@ -131,7 +133,7 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
       <DialogTrigger asChild>
         <Button>
           <MapPin className="mr-2 h-4 w-4" />
-          Track Order
+          {t("trigger")}
         </Button>
       </DialogTrigger>
 
@@ -171,7 +173,7 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
         ) : fetchFailed ? (
           <div className="py-4">
             <div className="flex h-80 w-full flex-col items-center justify-center gap-4">
-              <p>Failed to get order status</p>
+              <p>{t("error.failed_fetch")}</p>
               <Button
                 variant={"outline"}
                 size={"lg"}
@@ -180,7 +182,7 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
                 className="py-0 text-base"
               >
                 <RefreshCcw />
-                Try again
+                {t("buttons.try_againt")}
               </Button>
             </div>
           </div>
@@ -209,7 +211,9 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
               >
                 {state.stage % 2 === 1 ? (
                   <div className={cn("-ml-px w-1/2 pr-6 text-right")}>
-                    <p className="text-muted-foreground text-sm">Status</p>
+                    <p className="text-muted-foreground text-sm">
+                      {t("status")}
+                    </p>
                     <p
                       className={cn(
                         "font-medium",
@@ -218,7 +222,7 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
                         currentStage > state.stage && "text-foreground",
                       )}
                     >
-                      {state.label}
+                      {t(state.status)}
                     </p>
                   </div>
                 ) : (
@@ -231,7 +235,9 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
 
                 {state.stage % 2 === 0 ? (
                   <div className="-mr-px w-1/2 pl-5 text-left">
-                    <p className="text-muted-foreground text-sm">Status</p>
+                    <p className="text-muted-foreground text-sm">
+                      {t("status")}
+                    </p>
                     <p
                       className={cn(
                         "font-medium",
@@ -240,7 +246,7 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
                         currentStage > state.stage && "text-foreground",
                       )}
                     >
-                      {state.label}
+                      {t(state.status)}
                     </p>
                   </div>
                 ) : (
@@ -252,7 +258,7 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
         )}
         <DialogFooter className="mt-5 flex w-full justify-center">
           <DialogClose className="w-full">
-            <Button className="w-full">Close</Button>
+            <Button className="w-full">{t("buttons.close")}</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

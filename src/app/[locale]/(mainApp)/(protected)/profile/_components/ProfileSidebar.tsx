@@ -10,6 +10,7 @@ import {
   ShoppingBag,
   User,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import CustomLink from "@/components/CustomLink";
 import LogoutButton from "@/components/Header/_components/LogoutButton";
@@ -79,12 +80,13 @@ const navigationItems = [
 ];
 
 const ProfileSidebar = () => {
+  const t = useTranslations("profile.sidebar");
   const pathname = usePathname();
   const router = useRouter();
   return (
     <>
       <nav className="max-w-72 min-w-72 flex-1 space-y-5 p-4 max-lg:hidden">
-        <p className="text-muted-foreground">Account</p>
+        <p className="text-muted-foreground">{t("title")}</p>
         <ul className="space-y-2">
           {navigationItems.map((item) => (
             <li key={item.id}>
@@ -97,7 +99,7 @@ const ProfileSidebar = () => {
                 )}
               >
                 <item.icon className="h-5 w-5" />
-                <span>{item.title}</span>
+                <span>{t(item.id)}</span>
               </CustomLink>
             </li>
           ))}
@@ -110,7 +112,7 @@ const ProfileSidebar = () => {
       <div className="flex w-full justify-center border-b p-5 lg:hidden">
         <Select value={pathname} onValueChange={(value) => router.push(value)}>
           <SelectTrigger className="w-72">
-            <SelectValue placeholder="Theme" />
+            <SelectValue />
           </SelectTrigger>
           <SelectContent>
             {navigationItems.map((item) => (
@@ -120,7 +122,7 @@ const ProfileSidebar = () => {
                   className="flex h-full items-center gap-2 p-2"
                 >
                   <item.icon className="h-4 w-4" />
-                  {item.title}
+                  {t(item.id)}
                 </CustomLink>
               </SelectItem>
             ))}

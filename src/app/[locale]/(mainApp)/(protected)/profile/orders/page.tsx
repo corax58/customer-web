@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
 
+import { getTranslations } from "next-intl/server";
+
 import OrderFilter from "./_components/OrderFilter";
 import OrdersList from "./_components/OrdersList";
 import OrdersListSkeleton from "./_components/OrdersListSkeleton";
@@ -18,16 +20,17 @@ interface OrdersPageProps {
 }
 const OrdersPage = async ({ searchParams }: OrdersPageProps) => {
   const params = await searchParams;
+  const t = await getTranslations("profile.orders");
   const key = JSON.stringify(params);
   return (
     <div className="w-full space-y-6 px-0 py-5 md:px-10">
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-bold sm:text-2xl md:text-3xl">
-            Order History
+            {t("title")}
           </h2>
           <p className="text-muted-foreground mt-2 text-sm sm:text-base">
-            View and track your recent orders.
+            {t("description")}{" "}
           </p>
         </div>
         <OrderFilter />

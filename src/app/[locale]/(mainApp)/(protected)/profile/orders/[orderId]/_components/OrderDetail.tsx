@@ -1,4 +1,5 @@
 import { ChevronRight, Layers2, ServerCrash, Stars } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 import { getOrderDetail } from "@/actions/profile.actions";
 import CustomImage from "@/components/CustomImage";
@@ -20,6 +21,7 @@ interface OrderDetailProps {
 
 const OrderDetail = async ({ orderId }: OrderDetailProps) => {
   const { data: order } = await getOrderDetail(orderId);
+  const t = await getTranslations("profile.orders.order_detail");
 
   if (!order)
     return (
@@ -29,11 +31,9 @@ const OrderDetail = async ({ orderId }: OrderDetailProps) => {
         </div>
         <div className="space-y-2">
           <h2 className="text-foreground text-xl font-semibold">
-            Could Not Load Order Details
+            {t("error.title")}
           </h2>
-          <p className="text-muted-foreground">
-            It looks like there was a problem fetching the order information.
-          </p>
+          <p className="text-muted-foreground">{t("error.description")} </p>
         </div>
       </div>
     );
@@ -48,7 +48,7 @@ const OrderDetail = async ({ orderId }: OrderDetailProps) => {
       return (
         <div className="flex h-14 w-full items-center justify-center gap-2 rounded-2xl border">
           <Stars className="fill-yellow-500 stroke-1 text-yellow-500" />
-          Thank you for your feedback.
+          {t("thanks_feedback")}
         </div>
       );
 
@@ -67,7 +67,7 @@ const OrderDetail = async ({ orderId }: OrderDetailProps) => {
 
       <div className="bg-card flex items-center rounded-2xl border px-4 py-3">
         <div className="flex h-full min-w-fit flex-col justify-between">
-          <p className="text-muted-foreground text-sm">Order No.</p>
+          <p className="text-muted-foreground text-sm">{t("order_no")}</p>
           <p className="text-lg font-medium">#{order.order_no}</p>
         </div>
         {order.state_id > 5 && (
@@ -77,7 +77,7 @@ const OrderDetail = async ({ orderId }: OrderDetailProps) => {
         )}
       </div>
       <div>
-        <p className="mb-4 font-medium">Delivery Address</p>
+        <p className="mb-4 font-medium">{t("delivery_address")}</p>
         <div className="bg-card flex w-full items-center gap-5 rounded-2xl border px-4 py-3">
           <Layers2 className="text-primary" />
           <div>
@@ -124,13 +124,15 @@ const OrderDetail = async ({ orderId }: OrderDetailProps) => {
       <OrderedItems items={order.item_detail} />
 
       <div>
-        <p className="mb-4 font-medium">Payment</p>
+        <p className="mb-4 font-medium">{t("payment")}</p>
         <div className="bg-card flex w-full items-center justify-between gap-5 rounded-2xl border px-4 py-3">
           <div className="flex flex-col gap-2">
-            <p className="text-muted-foreground text-sm">Payment Method</p>
+            <p className="text-muted-foreground text-sm">
+              {t("payment_method")}
+            </p>
             <p className="font-medium sm:text-lg">
-              {order.payment_type == 1 && "Cash on Delivery"}
-              {order.payment_type == 4 && "HesabPay"}
+              {order.payment_type == 1 && t("cash_on_delivery")}
+              {order.payment_type == 4 && t("hesab_pay")}
             </p>
           </div>
           {(order.payment_status === 1 || order.payment_status == 0) && (
@@ -142,21 +144,23 @@ const OrderDetail = async ({ orderId }: OrderDetailProps) => {
       <div className="mb-6 space-y-4">
         <FadingDivider />
         <div className="flex justify-between">
-          <span className="text-secondary-foreground">Item Total</span>
+          <span className="text-secondary-foreground">{t("item_total")}</span>
           <span className="font-medium">
             <FormattedAfghani amount={parseFloat(order.total_price)} />
           </span>
         </div>
 
         <div className="flex justify-between">
-          <span className="text-secondary-foreground">Delivery Charges</span>
+          <span className="text-secondary-foreground">
+            {t("delivery_charges")}
+          </span>
           <span className="font-medium">
             <FormattedAfghani amount={parseFloat(order.delivery_charge)} />
           </span>
         </div>
         <FadingDivider />
         <div className="flex justify-between text-lg font-bold">
-          <span className="">Total</span>
+          <span className="">{t("total")}</span>
           <span className="">
             <FormattedAfghani amount={parseFloat(order.payable_amount)} />
           </span>

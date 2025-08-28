@@ -2,6 +2,7 @@
 import { useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -25,35 +26,26 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "@/i18n/navigation";
+import { CancelOrderSchema } from "@/lib/schemas/profile.schema";
 interface OrderCancelModalProps {
   orderId: number;
 }
 
-const FormSchema = z.object({
-  reason: z
-    .string()
-    .min(10, {
-      message: "Your reason must be at least 10 characters.",
-    })
-    .max(100, {
-      message: "Your reason must not be longer than 100 characters.",
-    }),
-});
-
 const OrderCancelModal = ({ orderId }: OrderCancelModalProps) => {
+  const t = useTranslations("profile.orders.order_detail.order_cancel_modal");
   const router = useRouter();
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof CancelOrderSchema>>({
+    resolver: zodResolver(CancelOrderSchema),
   });
 
-  async function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof CancelOrderSchema>) {
     const { success, error } = await cancelOrder(orderId, data.reason);
 
     if (success) {
       router.push("/profile/orders");
-      toast.success("Successfully cancelled order");
+      toast.success(t("messages.success"));
     } else if (error) {
-      toast.error(error);
+      toast.error(t("messages.error"));
     }
   }
 
@@ -61,12 +53,12 @@ const OrderCancelModal = ({ orderId }: OrderCancelModalProps) => {
     <Dialog>
       <DialogTrigger asChild>
         <Button className="bg-primary w-full py-3 text-lg font-semibold text-white hover:bg-orange-600">
-          Cancel Order
+          {t("trigger")}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Cancel order</DialogTitle>
+          <DialogTitle>{t("title")}</DialogTitle>
           <DialogDescription />
         </DialogHeader>
         <Form {...form}>
@@ -76,7 +68,7 @@ const OrderCancelModal = ({ orderId }: OrderCancelModalProps) => {
               name="reason"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Your reason for canceling</FormLabel>
+                  <FormLabel>{t("reason")}</FormLabel>
                   <FormControl>
                     <Textarea className="w-full resize-none" {...field} />
                   </FormControl>
@@ -85,7 +77,7 @@ const OrderCancelModal = ({ orderId }: OrderCancelModalProps) => {
                 </FormItem>
               )}
             />
-            <Button type="submit">Cancel</Button>
+            <Button type="submit">{t("cancel")}</Button>
           </form>
         </Form>
       </DialogContent>

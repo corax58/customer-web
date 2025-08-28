@@ -1,4 +1,5 @@
 import { Dot } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 import CustomImage from "@/components/CustomImage";
 import FadingDivider from "@/components/FadingDivider";
@@ -9,10 +10,11 @@ import { ItemDetail } from "@/types/profile.types";
 interface OrderedItemsProps {
   items: ItemDetail[];
 }
-const OrderedItems = ({ items }: OrderedItemsProps) => {
+const OrderedItems = async ({ items }: OrderedItemsProps) => {
+  const t = await getTranslations("profile.orders.order_detail");
   return (
     <div>
-      <p className="mb-4 font-medium">Order Items</p>
+      <p className="mb-4 font-medium">{t("order_item")}</p>
       {items.map((item) => (
         <div key={item.id}>
           <div className="flex w-full items-center justify-between gap-5 rounded-2xl px-4 py-3">
@@ -27,7 +29,9 @@ const OrderedItems = ({ items }: OrderedItemsProps) => {
               <div className="flex flex-col gap-2">
                 <p className="font-medium">{item.product_detail}</p>
                 <p className="text-muted-foreground text-sm">
-                  Quantity: {item.quantity}
+                  {t("quantity", {
+                    quantity: item.quantity,
+                  })}
                 </p>
               </div>
             </div>
@@ -39,7 +43,7 @@ const OrderedItems = ({ items }: OrderedItemsProps) => {
             <div>
               <div className="text-muted-foreground flex items-center text-sm font-medium">
                 <Dot />
-                Add-ons
+                {t("add_ons")}
               </div>
 
               <div className="grid grid-cols-2 px-8 max-sm:grid-cols-1 max-sm:px-4">

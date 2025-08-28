@@ -1,5 +1,6 @@
 "use client";
 import { Edit } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import CustomLink from "@/components/CustomLink";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -12,15 +13,14 @@ import PersonalInfoSkeleton from "./PersonalInfoSkeleton";
 const gender = ["male", "female", "other"];
 const PersonalInfo = () => {
   const { user } = useAuth();
+  const t = useTranslations("profile.personal_info");
 
   if (user)
     return (
       <div className="space-y-4">
         <div>
-          <h2 className="text-2xl font-bold md:text-3xl">My Profile </h2>
-          <p className="text-muted-foreground mt-2">
-            Manage your personal details and preferences.
-          </p>
+          <h2 className="text-2xl font-bold md:text-3xl">{t("title")} </h2>
+          <p className="text-muted-foreground mt-2">{t("subtitle")} </p>
         </div>
         <div className="space-y-6">
           <Card className="p-0 shadow-none">
@@ -34,47 +34,66 @@ const PersonalInfo = () => {
               <Button variant="outline" size="lg" asChild>
                 <CustomLink href={"/profile/edit"}>
                   <Edit className="mr-2 h-4 w-4" />
-                  Edit
+                  {t("buttons.edit")}
                 </CustomLink>
               </Button>
             </CardContent>
           </Card>
           <Card className="p-6 py-6 shadow-none">
             <CardHeader className="px-0">
-              <CardTitle className="text-lg">Profile Information.</CardTitle>
+              <CardTitle className="text-lg">{t("personal_info")}</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-7 px-0 py-0 md:grid-cols-2">
               <div className="space-y-2">
-                <p className="text-muted-foreground text-sm">First Name</p>
-                <p className="font-medium">{user.first_name || "N/A"}</p>
+                <p className="text-muted-foreground text-sm">
+                  {t("labels.first_name")}
+                </p>
+                <p className="font-medium">{user.first_name || t("na")}</p>
               </div>
 
               <div className="space-y-2">
-                <p className="text-muted-foreground text-sm">Last Name</p>
-                <p className="font-medium">{user.last_name || "N/A"}</p>
+                <p className="text-muted-foreground text-sm">
+                  {t("labels.last_name")}
+                </p>
+                <p className="font-medium">{user.last_name || t("na")}</p>
               </div>
 
               <div className="space-y-2">
-                <p className="text-muted-foreground text-sm">Gender</p>
-                <p className="font-medium">{gender[user.gender] || "N/A"}</p>
+                <p className="text-muted-foreground text-sm">
+                  {t("labels.gender")}
+                </p>
+                {gender[user.gender] ? (
+                  <p className="font-medium">
+                    {t(`genders.${gender[user.gender]}`)}
+                  </p>
+                ) : (
+                  <p className="font-medium">{t("na")}</p>
+                )}
               </div>
 
               <div className="space-y-2">
-                <p className="text-muted-foreground text-sm">Date of Birth</p>
-                <p className="font-medium">{user.date_of_birth || "N/A"}</p>
+                <p className="text-muted-foreground text-sm">
+                  {" "}
+                  {t("labels.date_of_birth")}
+                </p>
+                <p className="font-medium">{user.date_of_birth || t("na")}</p>
               </div>
 
               <div className="space-y-2">
-                <p className="text-muted-foreground text-sm">Email</p>
-                <p className="font-medium">{user.email || "N/A"}</p>
+                <p className="text-muted-foreground text-sm">
+                  {t("labels.email")}
+                </p>
+                <p className="font-medium">{user.email || t("na")}</p>
               </div>
 
               <div className="space-y-2">
-                <p className="text-muted-foreground text-sm">Phone Number</p>
+                <p className="text-muted-foreground text-sm">
+                  {t("labels.phone_number")}
+                </p>
                 <p className="font-medium">
                   {user.contact_no
                     ? `${user.country_code}${user.contact_no}`
-                    : "N/A"}
+                    : t("na")}
                 </p>
               </div>
             </CardContent>

@@ -1,6 +1,7 @@
 "use client";
-import React from "react";
 import { useSearchParams } from "next/navigation";
+
+import { useFormatter } from "next-intl";
 
 import {
   Pagination,
@@ -23,7 +24,7 @@ const CommonPagination = ({ pageData }: CommonPaginationProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
-
+  const formatter = useFormatter();
   const handlePageChange = (page: number) => {
     if (
       page < 1 ||
@@ -58,7 +59,7 @@ const CommonPagination = ({ pageData }: CommonPaginationProps) => {
                 onClick={() => handlePageChange(page)}
                 isActive={page === pageData.currentPage}
               >
-                {page}
+                {formatter.number(page)}
               </PaginationLink>
             </PaginationItem>
           ))}
