@@ -1,4 +1,5 @@
 import { Clock } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -18,25 +19,26 @@ interface HistoryTabsProps {
   referredUsers: ReferredUserEntry[];
 }
 
-export function HistoryTabs({
+export async function HistoryTabs({
   pointsHistory,
   usageHistory,
   referredUsers,
 }: HistoryTabsProps) {
+  const t = await getTranslations("profile.referrals.history_tabs");
   return (
     <Card className="border shadow-none">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Clock className="h-5 w-5" />
-          Activity & History
+          {t("title")}
         </CardTitle>
       </CardHeader>
       <CardContent>
         <Tabs defaultValue="points" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="points">Points History</TabsTrigger>
-            <TabsTrigger value="usage">Usage History</TabsTrigger>
-            <TabsTrigger value="referrals">Referred Users</TabsTrigger>
+            <TabsTrigger value="points">{t("points")}</TabsTrigger>
+            <TabsTrigger value="usage">{t("usage")}</TabsTrigger>
+            <TabsTrigger value="referrals">{t("users")}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="points" className="mt-4">

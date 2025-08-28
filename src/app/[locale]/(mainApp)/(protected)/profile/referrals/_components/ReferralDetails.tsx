@@ -1,4 +1,5 @@
 import { AlertTriangle } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 import { getReferralInfo } from "@/actions/profile.actions";
 
@@ -10,6 +11,7 @@ import { ReferralStatsCard } from "./ReferralStatsCard";
 
 const ReferralDetails = async () => {
   const { data } = await getReferralInfo();
+  const t = await getTranslations("profile.referrals");
 
   if (!data) {
     return (
@@ -19,13 +21,11 @@ const ReferralDetails = async () => {
         </div>
 
         <h2 className="text-foreground text-xl font-semibold md:text-2xl">
-          Failed to Load Referral Details
+          {t("error.title")}
         </h2>
 
         <p className="text-muted-foreground mt-2 max-w-md text-sm">
-          We encountered an issue while trying to retrieve your referral
-          information. This might be a temporary problem. Please try again in a
-          few moments.
+          {t("error.desc")}
         </p>
       </div>
     );

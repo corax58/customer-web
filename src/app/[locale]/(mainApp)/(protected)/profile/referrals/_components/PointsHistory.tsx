@@ -1,6 +1,7 @@
 "use client";
 
 import { format } from "date-fns";
+import { useFormatter, useTranslations } from "next-intl";
 
 import { Badge } from "@/components/ui/badge";
 import {
@@ -19,6 +20,8 @@ interface PointsHistoryProps {
 }
 const itemPerPage = 5;
 const PointsHistory = ({ pointsHistory }: PointsHistoryProps) => {
+  const t = useTranslations("profile.referrals.history_tabs");
+  const formatter = useFormatter();
   const {
     currentPage,
     goNextPage,
@@ -37,7 +40,7 @@ const PointsHistory = ({ pointsHistory }: PointsHistoryProps) => {
     <div className="space-y-4">
       {pointsHistory.length == 0 && (
         <div className="flex h-96 w-full items-center justify-center">
-          <p className="text-muted-foreground">No point history available</p>
+          <p className="text-muted-foreground">{t("no_points")}</p>
         </div>
       )}
       {pointsHistory.length > 0 &&
@@ -50,7 +53,7 @@ const PointsHistory = ({ pointsHistory }: PointsHistoryProps) => {
               <p className="text-sm font-medium">{entry.reason}</p>
               {entry.created_at && (
                 <p className="text-muted-foreground text-xs">
-                  {format(
+                  {formatter.dateTime(
                     new Date(entry.created_at),
                     "MMM dd',' yyyy',' hh:mm aa",
                   )}
@@ -66,8 +69,13 @@ const PointsHistory = ({ pointsHistory }: PointsHistoryProps) => {
                     : "border border-red-500 bg-red-500/10 text-red-500 hover:bg-red-500/10"
                 }
               >
-                {entry.type === "earned" ? "+" : ""}
-                {entry.points}
+                {entry.type === "earned"
+                  ? t("gained_points", {
+                      points: formatter.number(entry.points),
+                    })
+                  : t("used_points", {
+                      points: formatter.number(entry.points),
+                    })}
               </Badge>
             </div>
           </div>
@@ -78,7 +86,6 @@ const PointsHistory = ({ pointsHistory }: PointsHistoryProps) => {
             <PaginationItem>
               <PaginationPrevious
                 onClick={goPrevPage}
-                // Simplified conditional logic
                 aria-disabled={isFirstPage}
                 className={cn(
                   "cursor-pointer border",
@@ -87,16 +94,14 @@ const PointsHistory = ({ pointsHistory }: PointsHistoryProps) => {
               />
             </PaginationItem>
 
-            {/* FIXED: Use totalPages from the hook */}
             {Array.from({ length: totalPages }, (_, index) => (
               <PaginationItem key={index + 1}>
                 <PaginationLink
                   onClick={() => goToPage(index + 1)}
-                  // A slightly better way to show the active state
                   isActive={currentPage === index + 1}
                   className="cursor-pointer"
                 >
-                  {index + 1}
+                  {formatter.number(index + 1)}
                 </PaginationLink>
               </PaginationItem>
             ))}

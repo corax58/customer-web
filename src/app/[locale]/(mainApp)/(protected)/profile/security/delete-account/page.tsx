@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Eye, EyeOff } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -21,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { deleteAccountSchema } from "@/lib/schemas/profile.schema";
 
 const DeleteAccountPage = () => {
+  const t = useTranslations("profile.security.delete-account");
   const [showPassword, setShowPassword] = useState(false);
   const form = useForm<z.infer<typeof deleteAccountSchema>>({
     resolver: zodResolver(deleteAccountSchema),
@@ -43,18 +45,13 @@ const DeleteAccountPage = () => {
           <ArrowLeft />
         </BackButton>
         <div>
-          <h2 className="text-3xl font-bold text-red-500">
-            Delete your account
-          </h2>
-          <p className="text-muted-foreground mt-2 mb-2">
-            Once you delete your account, there is no going back. This action
-            cannot be undone and will:
-          </p>
+          <h2 className="text-3xl font-bold text-red-500">{t("title")}</h2>
+          <p className="text-muted-foreground mt-2 mb-2">{t("description")}</p>
           <ul className="text-muted-foreground mb-4 ml-4 space-y-1 text-sm">
-            <li>• Permanently delete your profile and account data</li>
-            <li>• Remove all your referral history and stats</li>
-            <li>• Cancel any pending rewards or payouts</li>
-            <li>• Revoke access to all services</li>
+            <li>{t("list-item-1")}</li>
+            <li>{t("list-item-2")}</li>
+            <li>{t("list-item-3")}</li>
+            <li>{t("list-item-4")}</li>
           </ul>
         </div>
       </div>
@@ -69,13 +66,12 @@ const DeleteAccountPage = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{t("password-label")}</FormLabel>
                 <FormControl>
                   <div className="flex">
                     <Input
                       id="password"
                       type={showPassword ? "text" : "password"}
-                      placeholder="********"
                       {...field}
                     />
                     <button
@@ -98,7 +94,7 @@ const DeleteAccountPage = () => {
             variant={"outline"}
             className="w-full border-red-500 bg-transparent text-red-500 dark:border-red-500"
           >
-            Delete Account
+            {t("delete-account-button")}
           </Button>
         </form>
       </Form>

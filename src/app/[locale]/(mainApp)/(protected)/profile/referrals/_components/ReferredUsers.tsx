@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+
+import { useFormatter, useTranslations } from "next-intl";
 
 import FormattedAfghani from "@/components/FormattedAfghani";
 import { Badge } from "@/components/ui/badge";
@@ -12,13 +13,15 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import usePagination from "@/hooks/usePagination";
-import { cn, formateDateMDYT } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { ReferredUserEntry } from "@/types/profile.types";
 interface ReferredUsers {
   referredUsers: ReferredUserEntry[];
 }
 const itemPerPage = 5;
 const ReferredUsers = ({ referredUsers }: ReferredUsers) => {
+  const t = useTranslations("profile.referrals.history_tabs");
+  const formatter = useFormatter();
   const {
     currentPage,
     goNextPage,
@@ -37,9 +40,7 @@ const ReferredUsers = ({ referredUsers }: ReferredUsers) => {
     <div className="space-y-4">
       {referredUsers.length == 0 && (
         <div className="flex h-96 w-full items-center justify-center">
-          <p className="text-muted-foreground">
-            No users joined with your referral code
-          </p>
+          <p className="text-muted-foreground">{t("no_users")}</p>
         </div>
       )}
       {referredUsers.length > 0 &&
@@ -54,7 +55,12 @@ const ReferredUsers = ({ referredUsers }: ReferredUsers) => {
               <p className="text-muted-foreground text-xs">{user.phone}</p>
               {user.joined_at && (
                 <p className="text-secondary-foreground text-xs">
-                  Joined {formateDateMDYT(user.joined_at)}
+                  {t("joined_at", {
+                    joined_at: formatter.dateTime(
+                      new Date(user.joined_at),
+                      "MMM dd',' yyyy',' hh:mm aa",
+                    ),
+                  })}
                 </p>
               )}
             </div>
@@ -71,7 +77,16 @@ const ReferredUsers = ({ referredUsers }: ReferredUsers) => {
               </Badge>
               {user.total_spent && (
                 <p className="mt-1 text-xs text-blue-600">
-                  Total spent: <FormattedAfghani amount={user.total_spent} />
+                  {t.rich("total_spent", {
+                    total_spent: (chunk) => (
+                      <span>
+                        {user.total_spent && (
+                          <FormattedAfghani amount={user.total_spent} />
+                        )}
+                        {chunk}
+                      </span>
+                    ),
+                  })}
                 </p>
               )}
             </div>
@@ -98,7 +113,7 @@ const ReferredUsers = ({ referredUsers }: ReferredUsers) => {
                   isActive={currentPage === index + 1}
                   className="cursor-pointer"
                 >
-                  {index + 1}
+                  {formatter.number(index + 1)}
                 </PaginationLink>
               </PaginationItem>
             ))}

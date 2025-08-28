@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { Check, Copy, Share2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,7 @@ interface ReferralSharingProps {
 }
 
 export function ReferralSharing({ referralCode }: ReferralSharingProps) {
+  const t = useTranslations("profile.referrals.referral_sharing");
   const [codeCopied, setCodeCopied] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
 
@@ -32,13 +34,19 @@ export function ReferralSharing({ referralCode }: ReferralSharingProps) {
       } else {
         setLinkCopied(true);
       }
-      toast("Copied!", {
-        description: `Referral ${type} copied to clipboard`,
-      });
+      if (type == "code") {
+        toast(t("copied"), {
+          description: t("code_copied"),
+        });
+      } else {
+        toast(t("copied"), {
+          description: t("link_copied"),
+        });
+      }
       setTimeout(() => setCodeCopied(false), 2000);
     } catch (err) {
       console.log(err);
-      toast("Failed to copy");
+      toast(t("error.failed_copy"));
     }
   };
 
@@ -48,16 +56,14 @@ export function ReferralSharing({ referralCode }: ReferralSharingProps) {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Share2 className="h-5 w-5" />
-            Share & Earn
+            {t("title")}
           </CardTitle>
-          <CardDescription>
-            Share your referral code or link with friends to earn points
-          </CardDescription>
+          <CardDescription>{t("description")} </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
             <label className="text-secondary-foreground mb-2 block text-sm font-medium">
-              Referral Code
+              {t("referral_code")}
             </label>
             <div className="flex items-center gap-2">
               <div className="bg-secondary flex-1 rounded-lg border px-4 py-3 font-mono text-lg">
@@ -80,7 +86,7 @@ export function ReferralSharing({ referralCode }: ReferralSharingProps) {
 
           <div>
             <label className="text-secondary-foreground mb-2 block text-sm font-medium">
-              Referral Link
+              {t("referral_link")}
             </label>
             <div className="flex items-center gap-2">
               <div className="bg-secondary flex-1 rounded-lg border px-4 py-3 text-sm break-all">

@@ -579,131 +579,255 @@
       "mark_read": "Mark Read",
       "view": "View"
     },
-    "transactions": {
-      "title": "Transaction History",
-      "description": " View all your payment transactions and their status. ",
+    "referrals": {
+      "title": "Your Referral Code",
+      "description": " Share your referral code with friends and earn rewards when they sign up.",
 
       "error": {
-        "something_went_wrong": "Something went wrong"
+        "title": "Failed to Load Referral Details",
+        "desc": "We encountered an issue while trying to retrieve your referral information. This might be a temporary problem. Please try again in a few moments."
       },
-      "no_transactions": "No transactions found",
-      "status": {
-        "pending": "Pending",
-        "success": "Success",
-        "completed": "Completed",
-        "failed": "Failed"
+      "points_overview": {
+        "available_points_title": "Available Points",
+        "max_discount": "{discount} max discount available",
+        "total_earned": "Total Earned",
+        "all_time_earning": "All Time Earning",
+        "referrals": "Referrals",
+        "friends_referred": "Friends Referred",
+        "discount_earned": "Discount Earned",
+        "total_savings": "Total Savings"
       },
+      "referral_sharing": {
+        "copied": "Copied",
+        "code_copied": "Referral code copied to clipboard",
+        "link_copied": "Referral link copied to clipboard",
+        "error": {
+          "failed_copy": "Failed to copy"
+        },
+        "title": "  Share & Earn",
+        "description": "Share your referral code or link with friends to earn points",
+        "referral_code": "Referral Code",
+        "referral_link": "Referral Link",
+        "copy": "Copy Code",
+        "share": "Share"
+      },
+      "history_tabs": {
+        "title": " Activity & History",
+        "points": "Points History",
+        "no_points": "No points history available",
+        "gained_points": "+{points}",
+        "used_points": "-{points}",
+        "usage": "Usage History",
+        "no_usage": "You haven't used any points",
+        "order_no": "Order No:{order_no}",
+        "status": "Status: {status}",
+        "users": "Referred Users",
+        "no_users": "No users joined with your referral code",
+        "joined_at": "Joined at {joined_at}",
+        "total_spent": "Total spent: <total_spent></total_spent>"
+      },
+      "redemption_rules": {
+        "title": "Redemption Rules",
+        "min_points": "Minimum to redeem",
+        "points_per_percent": "Points per 1% discount",
+        "max_discount_per_order": "Max discount per order",
+        "max_discount_percent": "{discount}%",
+        "points": "{points} points",
+        "current_discount": "Current discount potential"
+      },
+      "referral_stats_card": {
+        "title": "Your Impact",
+        "friends_joined": "Friends Joined",
+        "orders_with_discount": "Orders with Discount",
+        "total_discount": "Total Discount"
+      }
+    }
+  },
+  "transactions": {
+    "title": "Transaction History",
+    "description": " View all your payment transactions and their status. ",
 
-      "columns": {
-        "transaction_id": "Transaction ID",
-        "restaurant": "Restaurant",
+    "error": {
+      "something_went_wrong": "Something went wrong"
+    },
+    "no_transactions": "No transactions found",
+    "status": {
+      "pending": "Pending",
+      "success": "Success",
+      "completed": "Completed",
+      "failed": "Failed"
+    },
+
+    "columns": {
+      "transaction_id": "Transaction ID",
+      "restaurant": "Restaurant",
+      "status": "Status",
+      "order_no": "Order No",
+      "placed_on": "Placed on",
+      "method": "Method",
+      "amount": "Amount",
+      "na": "N/A"
+    }
+  },
+  "orders": {
+    "title": "Order History",
+    "description": "View and track your orders.",
+    "filter": {
+      "placeholder": "Filter orders",
+      "active": "Active Orders",
+      "past": "Past Orders"
+    },
+    "columns": {
+      "restaurant": "Restaurant",
+      "order_no": "Order No",
+      "order_status": "Order Status",
+      "amount": "Amount",
+      "placed_on": "Placed on",
+      "view": "View"
+    },
+    "error": {
+      "something_went_wrong": "Something went wrong"
+    },
+    "no_orders_title": "You have no orders yet. ",
+    "no_orders_desc": "Your orders will appear here.",
+    "order_detail": {
+      "title": "Order Detail",
+      "description": "Track your order detail.",
+      "order_no": "Order No",
+      "delivery_address": "Delivery Address",
+      "payment": "Payment",
+      "payment_method": "Payment Method",
+      "cash_on_delivery": "Cash on Delivery",
+      "hesab_pay": "HesabPay",
+      "payment_status": {
+        "paid": "Paid",
+        "unpaid": "Unpaid"
+      },
+      "item_total": "Item Total",
+      "delivery_charges": "Delivery Charges",
+      "total": "total",
+      "order_item": "Order Items",
+      "quantity": "Quantity: {quantity}",
+      "add_ons": "Add-ons",
+      "track_order": {
+        "trigger": "Track Order",
+
         "status": "Status",
-        "order_no": "Order No",
-        "placed_on": "Placed on",
-        "method": "Method",
-        "amount": "Amount",
-        "na": "N/A"
+        "error": {
+          "failed_fetch": "Failed to get order status"
+        },
+        "buttons": {
+          "close": "Close",
+          "try_againt": "Try Again"
+        },
+        "PENDING": "Order Placed",
+        "ASSIGNED": "Order Confirmed",
+        "WAITING": "Ready for Pickup",
+        "PICKED_UP": "Picked Up",
+        "DELIVERED": "Delivered"
+      },
+      "order_status": {
+        "order_placed": "Order Placed",
+        "order_confirmed": "Order Confirmed",
+        "ready_for_pickup": "Ready for Pickup",
+        "picked_up": "Picked Up",
+        "delivered": "Delivered",
+        "cancelled": "Cancelled",
+        "rejected": "Rejected"
+      },
+      "order_cancel_modal": {
+        "trigger": "Cancel Order",
+        "title": "Cancel Order",
+        "description": "Are you sure you want to cancel this order?",
+        "reason": "Your reason for canceling",
+        "cancel": "Cancel",
+        "messages": {
+          "success": "Successfully cancelled order",
+          "error": "Failed at cancelling order"
+        }
+      },
+      "review_modal": {
+        "trigger": "Leave a Review",
+        "title": "How was your experience",
+        "delivered_to": "Order delivered to {address}",
+        "rate_restaurant": "Rate Restaurant",
+        "restaurant_placeholder": "How was the food and the service?",
+        "rate_rider": "Rate Your Rider",
+        "rider_placeholder": "How was the delivery experience?",
+
+        "submit": "Submit review",
+        "message": {
+          "no_review": "Please provide a rating for the restaurant and the rider.",
+          "success": "Thank you for your review!",
+          "error": "Sorry, we couldn't submit your review. Please try again."
+        }
+      },
+      "error": {
+        "title": "Could Not Load Order Details",
+        "description": "It looks like there was a problem fetching the order information."
+      },
+      "thanks_feedback": "Thanks for your feedback."
+    }
+  },
+  "help": {
+    "title": "Help & Support",
+    "description": "Get help and contact our support team.",
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "description": "Find answers to common questions",
+      "error": {
+        "failed_fetch": "Failed to fetch frequently asked questions"
       }
     },
-    "orders": {
-      "title": "Order History",
-      "description": "View and track your orders.",
-      "filter": {
-        "placeholder": "Filter orders",
-        "active": "Active Orders",
-        "past": "Past Orders"
-      },
-      "columns": {
-        "restaurant": "Restaurant",
-        "order_no": "Order No",
-        "order_status": "Order Status",
-        "amount": "Amount",
-        "placed_on": "Placed on",
-        "view": "View"
-      },
+    "faq_card": {
+      "title": "Frequently Asked Questions",
+      "description": "Find answers to common questions",
+      "button": "Browse FAQ"
+    },
+    "chat": {
+      "title": "Live chat",
+      "description": "Connect with one of our support agents for immediate assistance.",
       "error": {
-        "something_went_wrong": "Something went wrong"
-      },
-      "no_orders_title": "You have no orders yet. ",
-      "no_orders_desc": "Your orders will appear here.",
-      "order_detail": {
-        "title": "Order Detail",
-        "description": "Track your order detail.",
-        "order_no": "Order No",
-        "delivery_address": "Delivery Address",
-        "payment": "Payment",
-        "payment_method": "Payment Method",
-        "cash_on_delivery": "Cash on Delivery",
-        "hesab_pay": "HesabPay",
-        "payment_status": {
-          "paid": "Paid",
-          "unpaid": "Unpaid"
-        },
-        "item_total": "Item Total",
-        "delivery_charges": "Delivery Charges",
-        "total": "total",
-        "order_item": "Order Items",
-        "quantity": "Quantity: {quantity}",
-        "add_ons": "Add-ons",
-        "track_order": {
-          "trigger": "Track Order",
-
-          "status": "Status",
-          "error": {
-            "failed_fetch": "Failed to get order status"
-          },
-          "buttons": {
-            "close": "Close",
-            "try_againt": "Try Again"
-          },
-          "PENDING": "Order Placed",
-          "ASSIGNED": "Order Confirmed",
-          "WAITING": "Ready for Pickup",
-          "PICKED_UP": "Picked Up",
-          "DELIVERED": "Delivered"
-        },
-        "order_status": {
-          "order_placed": "Order Placed",
-          "order_confirmed": "Order Confirmed",
-          "ready_for_pickup": "Ready for Pickup",
-          "picked_up": "Picked Up",
-          "delivered": "Delivered",
-          "cancelled": "Cancelled",
-          "rejected": "Rejected"
-        },
-        "order_cancel_modal": {
-          "trigger": "Cancel Order",
-          "title": "Cancel Order",
-          "description": "Are you sure you want to cancel this order?",
-          "reason": "Your reason for canceling",
-          "cancel": "Cancel",
-          "messages": {
-            "success": "Successfully cancelled order",
-            "error": "Failed at cancelling order"
-          }
-        },
-        "review_modal": {
-          "trigger": "Leave a Review",
-          "title": "How was your experience",
-          "delivered_to": "Order delivered to {address}",
-          "rate_restaurant": "Rate Restaurant",
-          "restaurant_placeholder": "How was the food and the service?",
-          "rate_rider": "Rate Your Rider",
-          "rider_placeholder": "How was the delivery experience?",
-
-          "submit": "Submit review",
-          "message": {
-            "no_review": "Please provide a rating for the restaurant and the rider.",
-            "success": "Thank you for your review!",
-            "error": "Sorry, we couldn't submit your review. Please try again."
-          }
-        },
-        "error": {
-          "title": "Could Not Load Order Details",
-          "description": "It looks like there was a problem fetching the order information."
-        },
-        "thanks_feedback": "Thanks for your feedback."
+        "fetch_failed": "Failed to fetch message history"
       }
+    },
+    "chat_card": {
+      "title": "Live chat",
+      "description": "Chat with our support team",
+      "button": "Start Chat"
+    }
+  },
+  "security": {
+    "title": "Security",
+    "description": "Manage your account security settings",
+    "change_password_card": {
+      "title": "Change your password",
+      "description": "Update your password below.",
+      "button": "Change password"
+    },
+    "change_password": {
+      "title": "Change your password",
+      "description": "For your security, we recommend choosing a strong password that you don't use elsewhere.",
+      "password": "Password",
+      "confirm_password": "Confirm Password",
+      "change_password": "Change password",
+      "success": "Successfully changed password",
+      "error": "Error"
+    },
+    "delete_acc_card": {
+      "title": "Delete your accounts",
+      "description": "Your account will be permanently erased.",
+      "button": "Delete account"
+    },
+    "delete-account": {
+      "title": "Delete your account",
+      "description": "Once you delete your account, there is no going back. This action cannot be undone and will:",
+      "list-item-1": "• Permanently delete your profile and account data",
+      "list-item-2": "• Remove all your referral history and stats",
+      "list-item-3": "• Cancel any pending rewards or payouts",
+      "list-item-4": "• Revoke access to all services",
+      "password-label": "Password",
+      "delete-account-button": "Delete Account"
     }
   }
 }

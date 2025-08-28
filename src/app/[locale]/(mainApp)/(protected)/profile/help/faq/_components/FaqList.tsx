@@ -1,6 +1,7 @@
 import React from "react";
 
 import { X } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 import { getFaqList } from "@/actions/profile.actions";
 import {
@@ -13,13 +14,14 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const FaqList = async () => {
   const { data: faqList, error } = await getFaqList();
+  const t = await getTranslations("profile.help.faq");
   if (error)
     return (
       <Card>
         <CardContent className="pt-8 pb-8 text-center">
           <X className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
           <h3 className="mb-2 text-lg font-semibold">
-            Failed to frequently asked questions
+            {t("error.failed_fetch")}
           </h3>
         </CardContent>
       </Card>

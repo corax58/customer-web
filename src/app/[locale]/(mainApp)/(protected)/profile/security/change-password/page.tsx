@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Eye, EyeOff, Loader } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -22,6 +23,7 @@ import { Input } from "@/components/ui/input";
 import { changePasswordSchema } from "@/lib/schemas/profile.schema";
 
 const ChangePasswordPage = () => {
+  const t = useTranslations("profile.security.change_password");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -34,10 +36,10 @@ const ChangePasswordPage = () => {
     setIsLoading(true);
     const result = await changePassword({ User: values });
     if (result.error) {
-      toast.error("Error", { description: result.error });
+      toast.error(t("error"), { description: result.error });
     }
     if (result.success) {
-      toast.success("Successfully changed password");
+      toast.success(t("success"));
     }
     setIsLoading(false);
   }
@@ -48,11 +50,8 @@ const ChangePasswordPage = () => {
           <ArrowLeft />
         </BackButton>
         <div>
-          <h2 className="text-3xl font-bold">Change your password</h2>
-          <p className="text-muted-foreground mt-2">
-            For your security, we recommend choosing a strong password that you
-            don&apos;t use elsewhere.
-          </p>
+          <h2 className="text-3xl font-bold">{t("title")}</h2>
+          <p className="text-muted-foreground mt-2">{t("description")}</p>
         </div>
       </div>
 
@@ -66,7 +65,7 @@ const ChangePasswordPage = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{t("password")}</FormLabel>
                 <FormControl>
                   <div className="flex">
                     <Input
@@ -94,7 +93,7 @@ const ChangePasswordPage = () => {
             name="confirm_password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Confirm Password</FormLabel>
+                <FormLabel>{t("confirm_password")}</FormLabel>
                 <FormControl>
                   <div className="flex">
                     <Input
@@ -124,7 +123,7 @@ const ChangePasswordPage = () => {
             {isLoading ? (
               <Loader className="animate-spin" />
             ) : (
-              "Change password"
+              t("change_password")
             )}
           </Button>
         </form>

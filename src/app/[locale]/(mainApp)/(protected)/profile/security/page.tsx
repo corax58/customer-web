@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import CustomLink from "@/components/CustomLink";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,26 +10,27 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-const SecurityPage = () => {
+const SecurityPage = async () => {
+  const t = await getTranslations("profile.security");
   return (
     <div className="w-full space-y-6 px-1 py-5 md:px-10">
       <div>
-        <h2 className="text-3xl font-bold">Security</h2>
-        <p className="text-muted-foreground mt-2">
-          Manage your accounts security settings.
-        </p>
+        <h2 className="text-3xl font-bold">{t("title")}</h2>
+        <p className="text-muted-foreground mt-2">{t("description")} </p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Change your password</CardTitle>
-            <CardDescription>Update your password below.</CardDescription>
+            <CardTitle>{t("change_password_card.title")}</CardTitle>
+            <CardDescription>
+              {t("change_password_card.description")}
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <Button variant="outline" className="w-full bg-transparent" asChild>
               <CustomLink href={"/profile/security/change-password"}>
-                Change password
+                {t("change_password_card.button")}
               </CustomLink>
             </Button>
           </CardContent>
@@ -35,9 +38,9 @@ const SecurityPage = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Delete your accounts</CardTitle>
+            <CardTitle>{t("delete_acc_card.title")}</CardTitle>
             <CardDescription>
-              Your account will be permanently erased.
+              {t("delete_acc_card.description")}{" "}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -47,7 +50,7 @@ const SecurityPage = () => {
               asChild
             >
               <CustomLink href={"/profile/security/delete-account"}>
-                Delete account
+                {t("delete_acc_card.button")}
               </CustomLink>
             </Button>
           </CardContent>
