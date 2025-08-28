@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState, useTransition } from "react";
 
 import { Edit, MapPin, Plus } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { getAddressList } from "@/actions/profile.actions";
 import { Badge } from "@/components/ui/badge";
@@ -28,6 +29,7 @@ const SelectAddress = ({
   const [addressList, setAddressList] = useState<Address[] | null>();
   const [error, setError] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations("components.checkout_sheet.delivery_address");
 
   const [isPending, startTransition] = useTransition();
 
@@ -64,7 +66,7 @@ const SelectAddress = ({
 
   return (
     <div className="">
-      <h3 className="mb-3 font-medium">Delivery Address</h3>
+      <h3 className="mb-3 font-medium">{t("title")}</h3>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
           {selectedAddress ? (
@@ -97,7 +99,7 @@ const SelectAddress = ({
                 <div className="rounded-full bg-orange-500 p-2">
                   <MapPin className="h-4 w-4 text-white" />
                 </div>
-                <span className="font-medium">Add Address</span>
+                <span className="font-medium">{t("add_new_address")}</span>
               </div>
               <div className="rounded-full bg-orange-500 p-1">
                 <Plus className="h-4 w-4 text-white" />
@@ -107,10 +109,8 @@ const SelectAddress = ({
         </DialogTrigger>
         <DialogContent className="max-h-dvh overflow-y-auto max-sm:min-w-screen">
           <DialogHeader>
-            <DialogTitle>Select an Addresss</DialogTitle>
-            <DialogDescription>
-              Select an address for you order
-            </DialogDescription>
+            <DialogTitle>{t("select_address")}</DialogTitle>
+            <DialogDescription>{t("select_address_desc")}</DialogDescription>
           </DialogHeader>
           <div>
             {addressList &&
@@ -139,7 +139,7 @@ const SelectAddress = ({
 
                         {address.is_default == 1 && (
                           <Badge className="h-4 text-xs" variant={"secondary"}>
-                            Default
+                            {t("default")}
                           </Badge>
                         )}
                       </div>
@@ -150,7 +150,7 @@ const SelectAddress = ({
                   </div>
                 </Button>
               ))}
-            {error && <p>Couldnt fetch addresses</p>}
+            {error && <p>{t("fetch_failed")}</p>}
           </div>
         </DialogContent>
       </Dialog>

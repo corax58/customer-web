@@ -1,8 +1,9 @@
+"use client";
 import { useState, useTransition } from "react";
 import { useParams } from "next/navigation";
 
 import { Check, ChevronDown, Languages, Loader } from "lucide-react";
-import { Locale, useLocale } from "next-intl";
+import { Locale, useLocale, useTranslations } from "next-intl";
 
 import {
   DropdownMenu,
@@ -40,6 +41,7 @@ const getLanguage = (code: string) => {
 };
 const LanguageDropDown = () => {
   const currentLocale = useLocale();
+  const t = useTranslations("header");
   const router = useRouter();
   const [selectedLanguage, setSeletectedLanguage] =
     useState<string>(currentLocale);
@@ -70,7 +72,7 @@ const LanguageDropDown = () => {
           <DropdownMenuItem className="flex cursor-pointer items-center gap-3 px-2 py-3">
             <Languages className="h-5 w-5" />
             <div className="flex-1">
-              <span>Language</span>
+              <span>{t("language")}</span>
             </div>
             {isPending ? (
               <Loader className="mr-2 h-10 w-32 animate-spin" />

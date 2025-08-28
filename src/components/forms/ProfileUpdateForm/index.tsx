@@ -16,7 +16,10 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { useAuth } from "@/contexts/AuthContext";
 import { useUpdateProfile } from "@/hooks/authHooks/useUpdateProfile";
-import { profileUpdateSchema } from "@/lib/schemas/auth.schema";
+import {
+  ProfileUpdateValues,
+  useProfileUpdateSchema,
+} from "@/lib/schemas/auth.schema";
 import { cn, formatYYYYMMDD } from "@/lib/utils";
 
 import ProfileUpdateFormFields from "./ProfileUpdateFormFields";
@@ -29,13 +32,14 @@ const ProfileUpdateForm = ({
   onSuccess,
   className,
 }: ProfileUpdateFormProps) => {
+  const profileUpdateSchema = useProfileUpdateSchema();
   const t = useTranslations("components.profile_update_form");
   const { user } = useAuth();
   const [country, setCountry] = useState<CountryCode | undefined>("ET");
 
   const { error, isLoading, updateProfile, isSuccess } = useUpdateProfile();
 
-  const form = useForm<z.infer<typeof profileUpdateSchema>>({
+  const form = useForm<ProfileUpdateValues>({
     resolver: zodResolver(profileUpdateSchema),
     defaultValues: {
       first_name: user?.first_name,

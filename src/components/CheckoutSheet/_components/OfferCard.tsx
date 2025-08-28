@@ -1,3 +1,5 @@
+import { useFormatter, useTranslations } from "next-intl";
+
 import FormattedAfghani from "@/components/FormattedAfghani";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,6 +18,8 @@ const OfferCard = ({
   setSelectedOffer,
 }: OfferCardProps) => {
   const { totalPrice } = useCart();
+  const t = useTranslations("components.checkout_sheet.offers");
+  const formatter = useFormatter();
 
   const reachMinPrice = totalPrice >= parseInt(offer.minimum_amount);
 
@@ -48,6 +52,14 @@ const OfferCard = ({
                     - {parseFloat(offer.discount).toFixed(2)}
                   </p>
                   <p>AFN</p>
+
+                  <p>
+                    {t("discount", {
+                      discoount: formatter.number(parseFloat(offer.discount), {
+                        minimumFractionDigits: 2,
+                      }),
+                    })}
+                  </p>
                 </div>
               </div>
             </div>
@@ -63,9 +75,14 @@ const OfferCard = ({
                 {/* Footer */}
                 <div className="flex items-center justify-between">
                   <div className="text-xs text-gray-500 dark:text-gray-400">
-                    <span>Min. Order: </span>
-                    <span className="font-medium text-orange-600 dark:text-orange-400">
-                      <FormattedAfghani amount={offer.minimum_amount} />
+                    <span>
+                      {t.rich("min_order", {
+                        highlight: () => (
+                          <span className="font-medium text-orange-600 dark:text-orange-400">
+                            <FormattedAfghani amount={offer.minimum_amount} />
+                          </span>
+                        ),
+                      })}
                     </span>
                   </div>
                 </div>
@@ -79,13 +96,13 @@ const OfferCard = ({
           variant={"destructive"}
           className="absolute top-2 left-2 border border-red-700 bg-red-500 text-white"
         >
-          Below min order
+          {t("below_min")}
         </Badge>
       )}
 
       {offer.id == selectedOffer?.id && (
         <Badge className="absolute top-2 left-2 rounded-full border border-green-900 bg-green-600 px-2 text-white">
-          Selected
+          {t("selected")}
         </Badge>
       )}
     </button>

@@ -1,6 +1,8 @@
+"use client";
 import { useEffect, useState, useTransition } from "react";
 
 import { MapPin } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import { setDefaultAddress as setDefaultAddressAction } from "@/actions/profile.actions";
@@ -33,6 +35,7 @@ const UserAddress = ({ className, skeletonClassName }: UserAddressProps) => {
     refreshAddress,
   } = useLocation();
 
+  const t = useTranslations("header.address");
   const [isOpen, setIsOpen] = useState(false);
   const [isUpdating, startUpdate] = useTransition();
   const [defaultAddress, setDefaultAddress] = useState<Address | null>(null);
@@ -46,7 +49,7 @@ const UserAddress = ({ className, skeletonClassName }: UserAddressProps) => {
         setIsOpen(false);
       }
       if (results.error) {
-        toast.error("Failed at setting default address");
+        toast.error(t("failed_default"));
       }
     });
   };
@@ -93,7 +96,7 @@ const UserAddress = ({ className, skeletonClassName }: UserAddressProps) => {
               <MapPin className="h-4 w-4 min-w-4" />
               <div className="flex flex-col items-start">
                 <span className="truncate text-sm font-medium text-nowrap">
-                  Select Address
+                  {t("select_address")}
                 </span>
               </div>
             </button>
@@ -103,7 +106,7 @@ const UserAddress = ({ className, skeletonClassName }: UserAddressProps) => {
 
       <DialogContent className="max-h-dvh overflow-y-auto max-sm:min-w-screen">
         <DialogHeader>
-          <DialogTitle>Select Default Addresss</DialogTitle>
+          <DialogTitle>{t("select_default")}</DialogTitle>
           <DialogDescription />
         </DialogHeader>
         {addressError ? (
@@ -128,7 +131,7 @@ const UserAddress = ({ className, skeletonClassName }: UserAddressProps) => {
 
                         {address.is_default == 1 && (
                           <Badge className="h-4 text-xs" variant={"secondary"}>
-                            Default
+                            {t("default")}
                           </Badge>
                         )}
                       </div>
@@ -141,15 +144,15 @@ const UserAddress = ({ className, skeletonClassName }: UserAddressProps) => {
               ))
             ) : (
               <div className="flex h-40 w-full items-center justify-center">
-                No addresses found.
+                {t("no_address")}
               </div>
             )}
             {}
             <Button className="mt-2 w-full" onClick={() => setIsOpen(false)}>
               <CustomLink href="/profile#delivery-info">
                 {addressList && addressList.length == 0
-                  ? "Add an address"
-                  : "Edit addresses"}
+                  ? t("add_new_address")
+                  : t("edit_addresses")}
               </CustomLink>
             </Button>
           </div>

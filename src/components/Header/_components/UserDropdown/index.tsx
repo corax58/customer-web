@@ -1,6 +1,7 @@
 import { usePathname } from "next/navigation";
 
 import { Heart, ShoppingBag, User } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -22,16 +23,19 @@ import LanguageDropDown from "./LanguageDropdown";
 
 const dropdownItems = [
   {
+    key: "profile",
     label: "Profile",
     link: "/profile",
     icon: User,
   },
   {
+    key: "favourites",
     label: "Favourites",
     link: "/profile/favourites",
     icon: Heart,
   },
   {
+    key: "orders",
     label: "Orders",
     link: "/profile/orders",
     icon: ShoppingBag,
@@ -39,6 +43,7 @@ const dropdownItems = [
 ];
 const UserDropdown = ({ className }: React.ComponentProps<"button">) => {
   const { user } = useAuth();
+  const t = useTranslations("header");
   const pathname = usePathname();
   const router = useRouter();
   const handleNav = (link: string) => {
@@ -105,14 +110,14 @@ const UserDropdown = ({ className }: React.ComponentProps<"button">) => {
 
         <DropdownMenuSeparator className="" />
         <div className="px-2 py-1">
-          {dropdownItems.map(({ label, icon: Icon, link }) => (
+          {dropdownItems.map(({ label, key, icon: Icon, link }) => (
             <DropdownMenuItem
               key={link}
               className="flex cursor-pointer items-center gap-3 px-2 py-3"
               onClick={() => handleNav(link)}
             >
               <Icon className="mr-2 h-4 w-4" />
-              <span>{label}</span>
+              <span>{t(key)}</span>
             </DropdownMenuItem>
           ))}
         </div>

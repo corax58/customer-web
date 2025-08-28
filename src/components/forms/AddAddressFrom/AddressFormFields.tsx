@@ -3,7 +3,6 @@ import { UseFormReturn } from "react-hook-form";
 
 import { CountryCode } from "libphonenumber-js";
 import { useTranslations } from "next-intl";
-import { z } from "zod";
 
 import { PhoneInput } from "@/components/PhoneNumberInput";
 import {
@@ -15,10 +14,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { addressSchema } from "@/lib/schemas/address.schema";
+import { AddressFormValues } from "@/lib/schemas/address.schema";
 
 interface AddressFormFieldsProps {
-  form: UseFormReturn<z.infer<typeof addressSchema>>;
+  form: UseFormReturn<AddressFormValues>;
   setCountry: React.Dispatch<React.SetStateAction<CountryCode | undefined>>;
 }
 const addressTypes = [

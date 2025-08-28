@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Eye, EyeOff, Loader } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { z } from "zod";
 
 import { changePassword } from "@/actions/profile.actions";
 import BackButton from "@/components/BackButton";
@@ -20,19 +19,23 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { changePasswordSchema } from "@/lib/schemas/profile.schema";
+import {
+  ChangePasswordFormValues,
+  useChangePasswordSchema,
+} from "@/lib/schemas/profile.schema";
 
 const ChangePasswordPage = () => {
+  const changePasswordSchema = useChangePasswordSchema();
   const t = useTranslations("profile.security.change_password");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const form = useForm<z.infer<typeof changePasswordSchema>>({
+  const form = useForm<ChangePasswordFormValues>({
     resolver: zodResolver(changePasswordSchema),
     defaultValues: { password: "", confirm_password: "" },
   });
 
-  async function onSubmit(values: z.infer<typeof changePasswordSchema>) {
+  async function onSubmit(values: ChangePasswordFormValues) {
     setIsLoading(true);
     const result = await changePassword({ User: values });
     if (result.error) {

@@ -58,7 +58,7 @@ const SearchBar = ({ className }: React.ComponentProps<"div">) => {
       query: Object.fromEntries(params),
     });
   };
-  const t = useTranslations("header");
+  const t = useTranslations("header.search");
   return (
     <form onSubmit={handleSubmit} className="w-full">
       <Popover open={open} onOpenChange={setOpen}>

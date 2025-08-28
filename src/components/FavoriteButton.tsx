@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { Heart } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import { addToFavorites } from "@/actions/actions";
@@ -33,22 +34,23 @@ const FavoriteButton = ({
 }: FavoriteButtonProps) => {
   const [isFavorite, setIsFavorite] = useState(is_favorite);
 
+  const t = useTranslations("components.favourite_button");
   const debouncedValue = useDebounce(isFavorite, 500);
 
   const toggleFavorite = useCallback(async () => {
     const result = await addToFavorites(itemId, typeMap[type].toString());
     if (result.success) {
       if (debouncedValue) {
-        toast.success("Removed from favorites");
+        toast.success(t("removed_from_fav"));
       } else {
-        toast.success("Added to favorites");
+        toast.success(t("added_to_fav"));
       }
       return;
     } else {
-      toast.error("Failed to toggle favorite status");
+      toast.error(t("failed"));
       return;
     }
-  }, [itemId, type, debouncedValue]);
+  }, [itemId, type, t, debouncedValue]);
 
   useEffect(() => {
     if (debouncedValue !== isFavorite) {

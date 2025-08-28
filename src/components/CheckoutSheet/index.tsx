@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState, useTransition } from "react";
 
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import { placeOrder } from "@/actions/actions";
@@ -49,6 +50,8 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
     string | null
   >(null);
 
+  const t = useTranslations("components.checkout_sheet");
+
   const router = useRouter();
   const [isOrdering, startOrdering] = useTransition();
   const [deliveryInfo, setDeliveryInfo] = useState<DeliveryInfo | null>(null);
@@ -80,11 +83,11 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
 
   const handleOrder = () => {
     if (!selectedAddress) {
-      toast.info("Please select an address");
+      toast.info(t("messages.select_address"));
       return;
     }
     if (!cartItems) {
-      toast.info("Empty cart");
+      toast.info(t("messages.empty_cart"));
       return;
     }
 
@@ -109,7 +112,7 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
       const results = await placeOrder(JSON.stringify(rawData));
 
       if (results.error) {
-        toast.error("Failed at placing order");
+        toast.error(t("messages.failed_order"));
         return;
       }
 
@@ -118,7 +121,7 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
       } else {
         refreshCart();
         router.push("/profile/orders");
-        toast.success("Order placed successfully");
+        toast.success(t("messages.success_order"));
       }
     });
   };
@@ -135,20 +138,22 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
         setDeliveryInfo(data);
       }
       if (error) {
-        toast.error("Error", { description: error });
+        toast.error(t("messages.error"), { description: error });
       }
     });
-  }, [selectedAddress, currentRestaurantId]);
+  }, [selectedAddress, t, currentRestaurantId]);
   return (
     <Sheet>
       <SheetTrigger asChild>
         <Button className={cn(className)} disabled={disabled}>
-          Checkout
+          {t("trigger")}
         </Button>
       </SheetTrigger>
       <SheetContent className="h-dvh gap-0 overflow-y-auto rounded-l-2xl max-sm:w-dvw">
         <SheetHeader>
-          <SheetTitle className="text-xl font-semibold">Check out</SheetTitle>
+          <SheetTitle className="text-xl font-semibold">
+            {t("title")}
+          </SheetTitle>
           <SheetDescription className="hidden"></SheetDescription>
         </SheetHeader>
         <div className="flex flex-col gap-6 px-5">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useTransition } from "react";
 
 import { BadgePercent, Edit, Plus, TicketPercent } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { getOffersList } from "@/actions/actions";
 import FormattedAfghani from "@/components/FormattedAfghani";
@@ -24,6 +25,7 @@ interface OffersProps {
 }
 
 const Offers = ({ selectedOffer, setSelectedOffer }: OffersProps) => {
+  const t = useTranslations("components.checkout_sheet.offers");
   const { currentRestaurantId } = useCart();
   const [offersList, setOffersList] = useState<Offer[] | null>();
   const [error, setError] = useState("");
@@ -47,7 +49,7 @@ const Offers = ({ selectedOffer, setSelectedOffer }: OffersProps) => {
 
   return (
     <div className="">
-      <h3 className="mb-3 font-medium">Apply Offer</h3>
+      <h3 className="mb-3 font-medium">{t("apply_offer")}</h3>
       <Dialog>
         <DialogTrigger asChild>
           {selectedOffer ? (
@@ -79,7 +81,7 @@ const Offers = ({ selectedOffer, setSelectedOffer }: OffersProps) => {
                 <div className="rounded-full bg-orange-500 p-2">
                   <TicketPercent className="h-4 w-4 text-white" />
                 </div>
-                <span className="font-medium">Apply Offer</span>
+                <span className="font-medium">{t("apply_offer")}</span>
               </div>
               <div className="rounded-full bg-orange-500 p-1">
                 <Plus className="h-4 w-4 text-white" />
@@ -89,14 +91,14 @@ const Offers = ({ selectedOffer, setSelectedOffer }: OffersProps) => {
         </DialogTrigger>
         <DialogContent className="max-h-dvh overflow-y-auto max-md:px-2">
           <DialogHeader>
-            <DialogTitle>Appl an Offer</DialogTitle>
-            <DialogDescription>Select an Offer to apply</DialogDescription>
+            <DialogTitle>{t("dialog_title")}</DialogTitle>
+            <DialogDescription>{t("dialog_description")}</DialogDescription>
           </DialogHeader>
           <div className="flex flex-col gap-4">
             {offersList && offersList.length === 0 ? (
               <div className="flex h-full w-full items-center justify-center gap-4">
                 <BadgePercent size={25} />
-                <p className="">No Offers Available</p>
+                <p className="">{t("no_offers")}</p>
               </div>
             ) : (
               offersList &&
@@ -110,7 +112,7 @@ const Offers = ({ selectedOffer, setSelectedOffer }: OffersProps) => {
               ))
             )}
 
-            {error && <p>Couldnt fetch offers</p>}
+            {error && <p>{t("fetch_error")}</p>}
           </div>
         </DialogContent>
       </Dialog>

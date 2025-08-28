@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useTranslations } from "next-intl";
+
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
@@ -12,11 +14,13 @@ interface PaymentMethodsProps {
 const paymentMethods = [
   {
     type_id: 1,
+    key: "cash_on_delivery",
     title: "Cash on Delivery",
     imgUrl: "/assets/images/Money_Flat_icon.svg",
   },
   {
     type_id: 4,
+    key: "hesab_pay",
     title: "HesabPay",
     imgUrl: "/assets/images/hesabpay_logo.png",
   },
@@ -25,9 +29,10 @@ const PaymentMethods = ({
   selectedPaymentMethod,
   setSelectedPaymentMethod,
 }: PaymentMethodsProps) => {
+  const t = useTranslations("components.checkout_sheet.payment_methods");
   return (
     <div>
-      <h3 className="mb-4 font-medium">Payment Method</h3>
+      <h3 className="mb-4 font-medium">{t("title")}</h3>
 
       <RadioGroup
         value={selectedPaymentMethod}
@@ -43,7 +48,7 @@ const PaymentMethods = ({
                 "border-primary",
             )}
           >
-            <Label htmlFor={`option_${method.type_id}`}>{method.title}</Label>
+            <Label htmlFor={`option_${method.type_id}`}>{t(method.key)}</Label>
             <RadioGroupItem
               value={method.type_id.toString()}
               id={`option_${method.type_id}`}

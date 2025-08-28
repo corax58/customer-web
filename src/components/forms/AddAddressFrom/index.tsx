@@ -15,7 +15,7 @@ import { addAddress } from "@/actions/profile.actions";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { useLocation } from "@/contexts/LocationContext";
-import { addressSchema } from "@/lib/schemas/address.schema";
+import { useAddressSchema } from "@/lib/schemas/address.schema";
 
 import AddressFormFields from "./AddressFormFields";
 import { LocationPicker } from "./LocationPicker";
@@ -24,6 +24,8 @@ interface AddAddressFormProps {
   onCreate: () => void;
 }
 const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
+  const addressSchema = useAddressSchema();
+
   const t = useTranslations("components.add_address_form");
   const { refreshAddress } = useLocation();
   const [country, setCountry] = useState<CountryCode | undefined>("ET");

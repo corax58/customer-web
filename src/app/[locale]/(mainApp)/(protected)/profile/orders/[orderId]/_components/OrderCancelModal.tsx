@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { z } from "zod";
 
 import { cancelOrder } from "@/actions/profile.actions";
 import { Button } from "@/components/ui/button";
@@ -26,19 +25,23 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "@/i18n/navigation";
-import { CancelOrderSchema } from "@/lib/schemas/profile.schema";
+import {
+  CancelOrderValues,
+  useCancelOrderSchema,
+} from "@/lib/schemas/profile.schema";
 interface OrderCancelModalProps {
   orderId: number;
 }
 
 const OrderCancelModal = ({ orderId }: OrderCancelModalProps) => {
   const t = useTranslations("profile.orders.order_detail.order_cancel_modal");
+  const CancelOrderSchema = useCancelOrderSchema();
   const router = useRouter();
-  const form = useForm<z.infer<typeof CancelOrderSchema>>({
+  const form = useForm<CancelOrderValues>({
     resolver: zodResolver(CancelOrderSchema),
   });
 
-  async function onSubmit(data: z.infer<typeof CancelOrderSchema>) {
+  async function onSubmit(data: CancelOrderValues) {
     const { success, error } = await cancelOrder(orderId, data.reason);
 
     if (success) {

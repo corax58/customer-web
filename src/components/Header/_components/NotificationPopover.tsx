@@ -49,7 +49,7 @@ export function NotificationPopover({
     if (error)
       return (
         <div className="flex h-full w-full items-center justify-center gap-4">
-          <CircleX size={25} /> Couldnt fetch notification
+          <CircleX size={25} /> {t("failed_fetch")}
         </div>
       );
     if (isLoading)

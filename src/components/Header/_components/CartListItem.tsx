@@ -1,6 +1,8 @@
+"use client";
 import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 
 import { Dot, Loader2, Trash } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import { deleteCartItem, updateCartItem } from "@/actions/cart.actions";
@@ -21,6 +23,8 @@ interface CartListItemProps {
 const CartListItem = ({ cartItem }: CartListItemProps) => {
   const [itemQuantity, setItemQuantity] = useState(cartItem.quantity);
 
+  const t = useTranslations("header.cart");
+
   const [isDeleting, startDeleteTransition] = useTransition();
 
   const { refreshCart, silentRefreshCart } = useCart();
@@ -36,9 +40,9 @@ const CartListItem = ({ cartItem }: CartListItemProps) => {
     );
     if (result.success) silentRefreshCart();
     if (result.error) {
-      toast.error("Error", { description: result.error });
+      toast.error(t("messages.failed_quantity_update"));
     }
-  }, [cartItem.id, silentRefreshCart, debouncedQuantity]);
+  }, [cartItem.id, silentRefreshCart, debouncedQuantity, t]);
 
   useEffect(() => {
     if (initialRender.current) {
@@ -54,7 +58,7 @@ const CartListItem = ({ cartItem }: CartListItemProps) => {
     startDeleteTransition(async () => {
       const result = await deleteCartItem(cartItem.id.toString());
       if (result.error) {
-        toast.error("Error", { description: result.error });
+        toast.error(t("messages.failed_remove_cart"));
       }
       if (result.success) refreshCart();
     });
@@ -110,7 +114,7 @@ const CartListItem = ({ cartItem }: CartListItemProps) => {
         <div className="flex w-full flex-col gap-2 pl-4">
           <div className="text-muted-foreground flex items-center text-sm font-medium">
             <Dot size={20} />
-            Add-ons
+            {t("add_ons")}
           </div>
           <div className="flex flex-col gap-4">
             {getAddOns(cartItem).map((addOn) => (

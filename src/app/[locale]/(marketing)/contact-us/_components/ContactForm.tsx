@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,12 +17,16 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { contactSchema } from "@/lib/schemas/marketing.schema";
+import {
+  ContactFormValues,
+  useContactSchema,
+} from "@/lib/schemas/marketing.schema";
 import { cn } from "@/lib/utils";
 
 const ContactForm = ({ className }: React.ComponentProps<"div">) => {
+  const contactSchema = useContactSchema();
   const t = useTranslations("contact_us.contact_form");
-  const form = useForm<z.infer<typeof contactSchema>>({
+  const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
       name: "",
@@ -32,7 +35,7 @@ const ContactForm = ({ className }: React.ComponentProps<"div">) => {
     },
   });
 
-  function onSubmit(data: z.infer<typeof contactSchema>) {
+  function onSubmit(data: ContactFormValues) {
     toast("You submitted the following values", {
       description: (
         <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">

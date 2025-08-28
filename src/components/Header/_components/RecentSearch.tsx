@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { History } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { getRecentSearches } from "@/actions/actions";
 import FadingDivider from "@/components/FadingDivider";
@@ -24,6 +25,7 @@ const RecentSearch = ({
 }: RecentSearchProps) => {
   const { user } = useAuth();
   const [recentSearches, setRecetSearches] = useState<SearchTerm[]>([]);
+  const t = useTranslations("header.search");
 
   const fetchRecentSeach = useCallback(async () => {
     if (!user) return;
@@ -43,7 +45,9 @@ const RecentSearch = ({
       {recentSearches.length > 0 && (
         <>
           <div className="flex flex-col p-4">
-            <p className="text-muted-foreground text-sm">Recent search</p>
+            <p className="text-muted-foreground text-sm">
+              {t("recent_searches")}
+            </p>
             <div>
               {recentSearches.map((searchItem) => (
                 <div

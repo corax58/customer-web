@@ -4,7 +4,6 @@ import { UseFormReturn } from "react-hook-form";
 import { CountryCode } from "libphonenumber-js";
 import { Eye, EyeOff } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { z } from "zod";
 
 import { PhoneInput } from "@/components/PhoneNumberInput";
 import {
@@ -15,10 +14,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { loginSchema } from "@/lib/schemas/auth.schema";
+import { LoginFormValues } from "@/lib/schemas/auth.schema";
 
 interface LoginFormFieldsProps {
-  form: UseFormReturn<z.infer<typeof loginSchema>>;
+  form: UseFormReturn<LoginFormValues>;
   setCountry: React.Dispatch<React.SetStateAction<CountryCode | undefined>>;
 }
 const LoginFormFields = ({ form, setCountry }: LoginFormFieldsProps) => {

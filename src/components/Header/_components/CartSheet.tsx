@@ -1,6 +1,7 @@
 "use client";
 
 import { Loader, ShoppingCart } from "lucide-react";
+import { useFormatter, useTranslations } from "next-intl";
 
 import CheckoutSheet from "@/components/CheckoutSheet";
 import FadingDivider from "@/components/FadingDivider";
@@ -22,6 +23,8 @@ export function CartSheet() {
   const { cartItems, isPending, totalItems, isLoadingTotalPrice, totalPrice } =
     useCart();
 
+  const t = useTranslations("header.cart");
+  const formatter = useFormatter();
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -34,14 +37,16 @@ export function CartSheet() {
           <ShoppingCart size={18} />
           {totalItems > 0 && (
             <span className="bg-primary text-primary-foreground absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full text-xs">
-              {totalItems}
+              {formatter.number(totalItems)}
             </span>
           )}
         </Button>
       </SheetTrigger>
       <SheetContent className="flex w-full flex-col rounded-l-2xl border-0 px-2 md:px-6">
         <SheetHeader className="px-0">
-          <SheetTitle className="text-lg font-semibold">My Cart</SheetTitle>
+          <SheetTitle className="text-lg font-semibold">
+            {t("title")}
+          </SheetTitle>
         </SheetHeader>
 
         {isPending ? (
@@ -63,7 +68,7 @@ export function CartSheet() {
             <SheetFooter className="p-0 pb-4">
               <div className="w-full space-y-4">
                 <div className="flex items-center justify-between font-semibold">
-                  <span>Subtotal</span>
+                  <span>{t("subtotal")}</span>
                   <span className="">
                     {isLoadingTotalPrice ? (
                       <Loader className="size-3.5 animate-spin" />
@@ -80,9 +85,11 @@ export function CartSheet() {
         ) : (
           <div className="flex h-full flex-col items-center justify-center text-center">
             <ShoppingCart className="text-muted-foreground h-16 w-16" />
-            <p className="mt-4 text-lg font-semibold">Your cart is empty</p>
+            <p className="mt-4 text-lg font-semibold">
+              {t("empty_cart_title")}
+            </p>
             <p className="text-muted-foreground text-sm">
-              Add some delicious food to get started!
+              {t("empty_cart_desc")}
             </p>
           </div>
         )}

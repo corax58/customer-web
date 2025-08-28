@@ -1,12 +1,11 @@
 "use client";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, Loader } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { z } from "zod";
 
 import { changePassword } from "@/actions/profile.actions";
 import CustomLink from "@/components/CustomLink";
@@ -22,25 +21,29 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "@/i18n/navigation";
-import { changePasswordSchema } from "@/lib/schemas/profile.schema";
+import {
+  ChangePasswordFormValues,
+  useChangePasswordSchema,
+} from "@/lib/schemas/profile.schema";
 import { cn } from "@/lib/utils";
 
 interface ChangePasswordFormProps {
   className?: string;
 }
 const ChangePasswordForm = ({ className }: ChangePasswordFormProps) => {
+  const changePasswordSchema = useChangePasswordSchema();
   const toastTranslation = useTranslations("toast");
   const t = useTranslations("change_password");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const form = useForm<z.infer<typeof changePasswordSchema>>({
+  const form = useForm<ChangePasswordFormValues>({
     resolver: zodResolver(changePasswordSchema),
     defaultValues: { password: "", confirm_password: "" },
   });
 
-  async function onSubmit(values: z.infer<typeof changePasswordSchema>) {
+  async function onSubmit(values: ChangePasswordFormValues) {
     setIsLoading(true);
     const result = await changePassword({ User: values });
     if (result.error) {

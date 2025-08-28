@@ -1,74 +1,88 @@
 // lib/schemas/auth.schema.ts
 import { isValidPhoneNumber } from "react-phone-number-input";
 
+import { useTranslations } from "next-intl";
 import { z } from "zod";
 
-export const loginSchema = z.object({
-  contact_no: z
-    .string()
-    .nonempty({ message: "Phone number is required" })
-    .refine(isValidPhoneNumber, {
-      message: "Invalid phone number",
-    }),
-  password: z
-    .string()
-    .min(8, { message: "Password must be at least 8 characters" }),
-});
-
-export const signupSchema = z
-  .object({
-    first_name: z.string().min(1, { message: "First name is required" }),
-    last_name: z.string().min(1, { message: "Last name is required" }),
+export const useLoginSchema = () => {
+  const t = useTranslations("zod");
+  return z.object({
     contact_no: z
       .string()
-      .nonempty({ message: "Phone number is required" })
-      .refine(isValidPhoneNumber, {
-        message: "Invalid phone number",
-      }),
-    password: z
-      .string()
-      .min(8, "Password must be at least 8 characters long")
-      .max(64, "Password must be no more than 64 characters long")
-      .regex(/[a-z]/, "Password must contain at least one lowercase letter")
-      .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
-      .regex(/[0-9]/, "Password must contain at least one number")
-      .regex(
-        /[^a-zA-Z0-9]/,
-        "Password must contain at least one special character (e.g., !@#$%^&*)",
-      ),
-    confirm_password: z.string(),
-    referral_code: z.string().max(12, "Referral code too long").optional(),
-  })
-  .refine((data) => data.password === data.confirm_password, {
-    path: ["confirm_password"],
-    message: "Passwords do not match",
+      .nonempty(t("required"))
+      .refine(isValidPhoneNumber, t("invalid_phone")),
+    password: z.string().min(8, t("password_length_min", { minimum: 8 })),
   });
+};
 
-export const forgotPasswordSchema = z.object({
-  contact_no: z
-    .string()
-    .nonempty({ message: "Phone number is required" })
-    .refine(isValidPhoneNumber, {
-      message: "Invalid phone number",
-    }),
-});
-export const oTPSchema = z.object({
-  code: z.string().min(4, {
-    message: "Your one-time password must be 4 characters.",
-  }),
-});
+export const useSignupSchema = () => {
+  const t = useTranslations("zod");
+  return z
+    .object({
+      first_name: z.string().min(1, t("first_name_required")),
+      last_name: z.string().min(1, t("last_name_required")),
+      contact_no: z
+        .string()
+        .nonempty(t("required"))
+        .refine(isValidPhoneNumber, t("invalid_phone")),
+      password: z
+        .string()
+        .min(8, t("password_length_min", { minimum: 8 }))
+        .max(64, t("password_length_max", { maximum: 64 }))
+        .regex(/[a-z]/, t("password_lowercase"))
+        .regex(/[A-Z]/, t("password_uppercase"))
+        .regex(/[0-9]/, t("password_number"))
+        .regex(/[^a-zA-Z0-9]/, t("password_special")),
+      confirm_password: z.string(),
+      referral_code: z
+        .string()
+        .max(12, t("too_big_string", { maximum: 12 }))
+        .optional(),
+    })
+    .refine((data) => data.password === data.confirm_password, {
+      path: ["confirm_password"],
+      message: t("passwords_do_not_match"),
+    });
+};
 
-export const profileUpdateSchema = z.object({
-  first_name: z.string().min(1, { message: "First name is required" }),
-  last_name: z.string().min(1, { message: "Last name is required" }),
-  contact_no: z
-    .string()
-    .nonempty({ message: "Phone number is required" })
-    .refine(isValidPhoneNumber, {
-      message: "Invalid phone number",
+export const useForgotPasswordSchema = () => {
+  const t = useTranslations("zod");
+  return z.object({
+    contact_no: z
+      .string()
+      .nonempty(t("required"))
+      .refine(isValidPhoneNumber, t("invalid_phone")),
+  });
+};
+
+export const useOTPSchema = () => {
+  const t = useTranslations("zod");
+  return z.object({
+    code: z.string().min(4, t("otp_length", { length: 4 })),
+  });
+};
+
+export const useProfileUpdateSchema = () => {
+  const t = useTranslations("zod");
+  return z.object({
+    first_name: z.string().min(1, t("first_name_required")),
+    last_name: z.string().min(1, t("last_name_required")),
+    contact_no: z
+      .string()
+      .nonempty(t("required"))
+      .refine(isValidPhoneNumber, t("invalid_phone")),
+    gender: z.string(),
+    dob: z.date({
+      required_error: t("required_dob"),
     }),
-  gender: z.string(),
-  dob: z.date({
-    required_error: "A date of birth is required.",
-  }),
-});
+  });
+};
+export type LoginFormValues = z.infer<ReturnType<typeof useLoginSchema>>;
+export type SignupFormValues = z.infer<ReturnType<typeof useSignupSchema>>;
+export type ForgotPasswordValues = z.infer<
+  ReturnType<typeof useForgotPasswordSchema>
+>;
+export type OTPValues = z.infer<ReturnType<typeof useOTPSchema>>;
+export type ProfileUpdateValues = z.infer<
+  ReturnType<typeof useProfileUpdateSchema>
+>;

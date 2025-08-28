@@ -26,18 +26,19 @@ import {
 } from "@/components/ui/input-otp";
 import { useVerifyOtp } from "@/hooks/authHooks/useVerifyOtp";
 import { useRouter } from "@/i18n/navigation";
-import { oTPSchema } from "@/lib/schemas/auth.schema";
+import { OTPValues, useOTPSchema } from "@/lib/schemas/auth.schema";
 import { cn } from "@/lib/utils";
 
 import ResendOtp from "./ResendOtp";
 
 export function OTPForm({ className, ...props }: React.ComponentProps<"div">) {
+  const oTPSchema = useOTPSchema();
   const toastTrans = useTranslations("toast");
   const t = useTranslations("auth.verification");
   const [contact_no, setContact_no] = useState("");
   const [country_code, setCountry_code] = useState("");
   const router = useRouter();
-  const form = useForm<z.infer<typeof oTPSchema>>({
+  const form = useForm<OTPValues>({
     resolver: zodResolver(oTPSchema),
     defaultValues: {
       code: "",

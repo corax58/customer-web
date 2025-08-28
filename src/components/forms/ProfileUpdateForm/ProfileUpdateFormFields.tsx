@@ -3,7 +3,6 @@ import { UseFormReturn } from "react-hook-form";
 
 import { CountryCode } from "libphonenumber-js";
 import { useTranslations } from "next-intl";
-import { z } from "zod";
 
 import { PhoneInput } from "@/components/PhoneNumberInput";
 import { DatePicker } from "@/components/ui/date-picker";
@@ -23,10 +22,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useAuth } from "@/contexts/AuthContext";
-import { profileUpdateSchema } from "@/lib/schemas/auth.schema";
+import { ProfileUpdateValues } from "@/lib/schemas/auth.schema";
 
 interface ProfileUpdateFormFieldsProps {
-  form: UseFormReturn<z.infer<typeof profileUpdateSchema>>;
+  form: UseFormReturn<ProfileUpdateValues>;
   setCountry: React.Dispatch<React.SetStateAction<CountryCode | undefined>>;
 }
 const ProfileUpdateFormFields = ({

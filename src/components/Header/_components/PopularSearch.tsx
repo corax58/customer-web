@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { TrendingUp } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { getPopularSearches } from "@/actions/actions";
 import { useAuth } from "@/contexts/AuthContext";
@@ -21,6 +22,7 @@ const PopularSearch = ({
 }: PopularSearches) => {
   const { user } = useAuth();
   const [popularSearches, setPopularSearch] = useState<SearchTerm[]>([]);
+  const t = useTranslations("header.search");
 
   const fetchPopularSearch = useCallback(async () => {
     if (!user) return;
@@ -40,7 +42,9 @@ const PopularSearch = ({
       {popularSearches.length > 0 && (
         <>
           <div className="flex flex-col p-4">
-            <p className="text-muted-foreground text-sm">Popular search</p>
+            <p className="text-muted-foreground text-sm">
+              {t("popular_searches")}
+            </p>
             <div>
               {popularSearches.map((searchItem) => (
                 <div

@@ -11,7 +11,6 @@ import {
 import { Loader } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { z } from "zod";
 
 import CustomLink from "@/components/CustomLink";
 import Logo from "@/components/Logo";
@@ -20,7 +19,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Form } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
 import { useLogin } from "@/hooks/authHooks/useLogin";
-import { loginSchema } from "@/lib/schemas/auth.schema";
+import { LoginFormValues, useLoginSchema } from "@/lib/schemas/auth.schema";
 import { cn } from "@/lib/utils";
 
 import { GoogleLoginButton } from "../../_components/GoogleLoginButton";
@@ -32,13 +31,14 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const loginSchema = useLoginSchema();
   const toastTrans = useTranslations("toast");
   const t = useTranslations("auth.login");
   const [country, setCountry] = useState<CountryCode | undefined>("ET");
 
   const { error, isLoading, isSuccess, login, user } = useLogin();
 
-  const form = useForm<z.infer<typeof loginSchema>>({
+  const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       contact_no: "",
@@ -46,7 +46,7 @@ export function LoginForm({
     },
   });
 
-  function onSubmit(values: z.infer<typeof loginSchema>) {
+  function onSubmit(values: LoginFormValues) {
     const phoneNumberObj = parsePhoneNumberFromString(
       form.getValues("contact_no"),
     );

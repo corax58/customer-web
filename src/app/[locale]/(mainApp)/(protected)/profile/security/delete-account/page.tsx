@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { z } from "zod";
 
 import BackButton from "@/components/BackButton";
 import { Button } from "@/components/ui/button";
@@ -19,17 +18,21 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { deleteAccountSchema } from "@/lib/schemas/profile.schema";
+import {
+  DeleteAccountFormValues,
+  useDeleteAccountSchema,
+} from "@/lib/schemas/profile.schema";
 
 const DeleteAccountPage = () => {
+  const deleteAccountSchema = useDeleteAccountSchema();
   const t = useTranslations("profile.security.delete-account");
   const [showPassword, setShowPassword] = useState(false);
-  const form = useForm<z.infer<typeof deleteAccountSchema>>({
+  const form = useForm<DeleteAccountFormValues>({
     resolver: zodResolver(deleteAccountSchema),
     defaultValues: { password: "" },
   });
 
-  function onSubmit(values: z.infer<typeof deleteAccountSchema>) {
+  function onSubmit(values: DeleteAccountFormValues) {
     toast("data", {
       description: (
         <code>

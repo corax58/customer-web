@@ -1,11 +1,12 @@
 import { Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import FadingDivider from "@/components/FadingDivider";
 import FormattedAfghani from "@/components/FormattedAfghani";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
-import { Offer } from "@/types/restaurant.types";
 import { DeliveryInfo } from "@/types/cart.types";
+import { Offer } from "@/types/restaurant.types";
 
 interface OrderButtonProps {
   handlePayment: () => void;
@@ -23,6 +24,7 @@ const OrderButton = ({
   isPendingDeliveryFee,
   disableOrder,
 }: OrderButtonProps) => {
+  const t = useTranslations("components.checkout_sheet.order_button");
   const { isLoadingTotalPrice, totalPrice } = useCart();
   const discount: number = selectedOffer ? parseInt(selectedOffer.discount) : 0;
   const total = deliveryInfo && totalPrice + deliveryInfo.fee - discount;
@@ -31,13 +33,15 @@ const OrderButton = ({
       <div className="space-y-2">
         <FadingDivider />
         <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground text-sm">Item total</span>
+          <span className="text-muted-foreground text-sm">
+            {t("item_total")}
+          </span>
           <span className="font-semibold text-orange-500">
             <FormattedAfghani amount={totalPrice} />
           </span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Delivery fees</span>
+          <span className="text-muted-foreground">{t("delivery_fee")}</span>
           {isPendingDeliveryFee ? (
             <Loader2 size={14} className="animate-spin" />
           ) : (
@@ -45,14 +49,14 @@ const OrderButton = ({
               {deliveryInfo ? (
                 <FormattedAfghani amount={deliveryInfo.fee} />
               ) : (
-                "Select an address"
+                t("select_address")
               )}
             </span>
           )}
         </div>
         {selectedOffer && (
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Discount</span>
+            <span className="text-muted-foreground">{t("discount")}</span>
             <span className="font-semibold text-orange-500">
               - <FormattedAfghani amount={selectedOffer?.discount} />
             </span>
@@ -60,7 +64,7 @@ const OrderButton = ({
         )}
         <FadingDivider />
         <div className="flex justify-between text-lg">
-          <span className="font-semibold">Total price</span>
+          <span className="font-semibold">{t("total_price")}</span>
           {isLoadingTotalPrice || !deliveryInfo ? (
             <Loader2 className="size-5 animate-spin" />
           ) : (
@@ -75,7 +79,7 @@ const OrderButton = ({
         onClick={handlePayment}
         disabled={disableOrder}
       >
-        Order Now
+        {t("order_now")}
       </Button>
     </div>
   );

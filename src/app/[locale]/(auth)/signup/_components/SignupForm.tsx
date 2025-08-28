@@ -20,7 +20,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Form } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
 import { useSignup } from "@/hooks/authHooks/useSignup";
-import { signupSchema } from "@/lib/schemas/auth.schema";
+import { SignupFormValues, useSignupSchema } from "@/lib/schemas/auth.schema";
 import { cn } from "@/lib/utils";
 
 import { GoogleLoginButton } from "../../_components/GoogleLoginButton";
@@ -29,6 +29,7 @@ import TermsAndConditions from "../../_components/TermsAndConditions";
 import SignupFormFields from "./SignupFormFields";
 
 const SignupForm = ({ className, ...props }: React.ComponentProps<"div">) => {
+  const signupSchema = useSignupSchema();
   const toastTrans = useTranslations("toast");
   const t = useTranslations("auth.signup");
 
@@ -40,7 +41,7 @@ const SignupForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   const searchParams = useSearchParams();
   const currentReferralCode = searchParams.get("referral_code") || undefined;
 
-  const form = useForm<z.infer<typeof signupSchema>>({
+  const form = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
       first_name: "",

@@ -4,7 +4,6 @@ import { UseFormReturn } from "react-hook-form";
 import { CountryCode } from "libphonenumber-js";
 import { Eye, EyeOff } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { z } from "zod";
 
 import { PhoneInput } from "@/components/PhoneNumberInput";
 import {
@@ -15,10 +14,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { signupSchema } from "@/lib/schemas/auth.schema";
+import { SignupFormValues } from "@/lib/schemas/auth.schema";
 
 interface SignupFormFieldsProps {
-  form: UseFormReturn<z.infer<typeof signupSchema>>;
+  form: UseFormReturn<SignupFormValues>;
   setCountry: React.Dispatch<React.SetStateAction<CountryCode | undefined>>;
 }
 const SignupFormFields = ({ form, setCountry }: SignupFormFieldsProps) => {

@@ -10,7 +10,6 @@ import parsePhoneNumberFromString, {
 import { Loader } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { z } from "zod";
 
 import { forgotPassword } from "@/actions/actions";
 import CustomLink from "@/components/CustomLink";
@@ -26,19 +25,23 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useRouter } from "@/i18n/navigation";
-import { forgotPasswordSchema } from "@/lib/schemas/auth.schema";
+import {
+  ForgotPasswordValues,
+  useForgotPasswordSchema,
+} from "@/lib/schemas/auth.schema";
 import { cn } from "@/lib/utils";
 
 export function ForgotPasswordForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const forgotPasswordSchema = useForgotPasswordSchema();
   const t = useTranslations("auth.forgot_password");
   const [country, setCountry] = useState<CountryCode | undefined>("ET");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof forgotPasswordSchema>>({
+  const form = useForm<ForgotPasswordValues>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
       contact_no: "",
