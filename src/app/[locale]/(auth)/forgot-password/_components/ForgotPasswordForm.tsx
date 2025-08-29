@@ -11,7 +11,7 @@ import { Loader } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
-import { forgotPassword } from "@/actions/actions";
+import { forgotPassword } from "@/actions/auth.actions";
 import CustomLink from "@/components/CustomLink";
 import Logo from "@/components/Logo";
 import { PhoneInput } from "@/components/PhoneNumberInput";

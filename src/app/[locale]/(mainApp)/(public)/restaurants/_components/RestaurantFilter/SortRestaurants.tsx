@@ -46,7 +46,7 @@ const SortRestaurants = ({ filters, setFilters }: SortRestaurantsProps) => {
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="none">None</SelectItem>
+          <SelectItem value="none">{t("types.none")}</SelectItem>
           {restaurantSortTypes.map((sort) => (
             <SelectItem key={sort.value} value={sort.value}>
               {t(`types.${sort.value}`)}

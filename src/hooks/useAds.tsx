@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, useTransition } from "react";
 
-import { getRestaurantAds } from "@/actions/actions";
+import { getRestaurantAds } from "@/actions/home.actions";
 import { RestaurantAd } from "@/types/home.types";
 
 export function useRestaurantAds() {

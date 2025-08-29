@@ -62,8 +62,7 @@ const MenuItemDetailSkeleton = () => {
           </div>
         </div>
 
-        {/* --- AddToCartForm Skeleton --- */}
-        {/* This container mimics the DialogFooter styling */}
+
         <div className="bg-secondary !mt-8 space-y-4 border-t p-4">
           <div className="flex w-full flex-col gap-2">
             {/* Price breakdown */}

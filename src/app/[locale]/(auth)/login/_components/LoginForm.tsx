@@ -32,7 +32,6 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const loginSchema = useLoginSchema();
-  const toastTrans = useTranslations("toast");
   const t = useTranslations("auth.login");
   const [country, setCountry] = useState<CountryCode | undefined>("ET");
 
@@ -70,12 +69,16 @@ export function LoginForm({
 
   useEffect(() => {
     if (error) {
-      toast.error(toastTrans("error"), { description: error });
+      toast.error(t("messages.error"), { description: error });
     }
     if (isSuccess) {
-      toast.success(`${toastTrans("welcome_back")} ${user?.full_name}`);
+      toast.success(
+        t("messages.welcome_back", {
+          fullName: user?.full_name ? user?.full_name : "",
+        }),
+      );
     }
-  }, [error, isSuccess, user, toastTrans]);
+  }, [error, isSuccess, user, t]);
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>

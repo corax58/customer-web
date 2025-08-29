@@ -2,6 +2,7 @@
 import { FormEvent, useState } from "react";
 
 import { SendHorizontal } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import { sendMessage } from "@/actions/profile.actions";
@@ -15,6 +16,7 @@ interface ChatFooterProps {
 
 const ChatFooter = ({ fetchMessages }: ChatFooterProps) => {
   const [message, setMessage] = useState("");
+  const t = useTranslations("profile.help.chat");
   const { user } = useAuth();
 
   const handleSubmit = async (e: FormEvent) => {
@@ -50,7 +52,7 @@ const ChatFooter = ({ fetchMessages }: ChatFooterProps) => {
       onSubmit={handleSubmit}
     >
       <Input
-        placeholder="Type a message"
+        placeholder={t("placeholder")}
         className="h-12 w-full rounded-full"
         value={message}
         onChange={(e) => setMessage(e.target.value)}

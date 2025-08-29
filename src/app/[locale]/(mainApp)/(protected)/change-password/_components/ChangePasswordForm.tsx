@@ -32,7 +32,6 @@ interface ChangePasswordFormProps {
 }
 const ChangePasswordForm = ({ className }: ChangePasswordFormProps) => {
   const changePasswordSchema = useChangePasswordSchema();
-  const toastTranslation = useTranslations("toast");
   const t = useTranslations("change_password");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -47,10 +46,10 @@ const ChangePasswordForm = ({ className }: ChangePasswordFormProps) => {
     setIsLoading(true);
     const result = await changePassword({ User: values });
     if (result.error) {
-      toast.error(toastTranslation("error"), { description: result.error });
+      toast.error(t("messages.error"), { description: result.error });
     }
     if (result.success) {
-      toast.success(toastTranslation("success"));
+      toast.success(t("messages.success"));
       router.push("/home");
     }
     setIsLoading(false);

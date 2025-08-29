@@ -4,18 +4,7 @@ import { revalidatePath } from "next/cache";
 
 import { fetchOnCondition, fetchWithAuth } from "@/lib/fetchWrappers";
 import { buildApiUrl } from "@/lib/utils";
-import {
-  ForgotPasswordPayload,
-  ForgotPasswordResponse,
-  ForgotPasswordResult,
-  LoginResponse,
-} from "@/types/auth.types";
-import {
-  BannerDataResponse,
-  GetBannerItemsResult,
-  GetRestaurantAdResult,
-  RestaurantAdResponse,
-} from "@/types/home.types";
+import { LoginResponse } from "@/types/auth.types";
 import {
   BestSellingDishesResponse,
   CategoriesListResponse,
@@ -57,25 +46,6 @@ export async function updateProfileAction(body: string) {
   }
 }
 
-export async function getBannerItems(
-  lat?: string,
-  lon?: string,
-): Promise<GetBannerItemsResult> {
-  const url = buildApiUrl("/api/cart-item/banners", { lat, lon });
-
-  try {
-    const responseData: BannerDataResponse =
-      await fetchWithAuth<BannerDataResponse>(url, {
-        retry: { retries: 3, delay: 1000 },
-      });
-    return { success: true, data: responseData.banners };
-  } catch (error) {
-    console.error(error);
-    if (typeof error === "string") return { success: false, error };
-    else return { success: false, error: "Failed to fetch banner items" };
-  }
-}
-
 export async function placeOrder(data: string): Promise<PlaceOrderResults> {
   try {
     const responseData: PlaceOrderResponse =
@@ -114,21 +84,6 @@ export async function getPopularDishes(
     return { success: false, error: "Failed to fetch popular dishes." };
   }
 }
-export async function getRestaurantAds(): Promise<GetRestaurantAdResult> {
-  const url = "/api/item-detail/banner-images";
-  try {
-    const responseData: RestaurantAdResponse =
-      await fetchOnCondition<RestaurantAdResponse>(url, {
-        retry: { retries: 3, delay: 1000 },
-      });
-
-    return { success: true, data: responseData.list };
-  } catch (error) {
-    console.error(error);
-    return { success: false, error: "Failed to fetch restaurant ads." };
-  }
-}
-
 export async function getBestSellingDishes(
   lat?: string,
   lon?: string,
@@ -223,35 +178,6 @@ export async function getCategiesList(
   } catch (error) {
     console.error(error);
     return { success: false, error: "Failed to fetch categories list." };
-  }
-}
-
-export async function forgotPassword(
-  data: ForgotPasswordPayload,
-): Promise<ForgotPasswordResult> {
-  const body = JSON.stringify(data);
-  try {
-    const responseData = await fetchOnCondition<ForgotPasswordResponse>(
-      "/api/user/forgot-password",
-      {
-        method: "POST",
-
-        body,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-    );
-
-    return {
-      succes: true,
-      detail: responseData.detail,
-      message: responseData.message,
-    };
-  } catch (error) {
-    console.error(error);
-    if (typeof error === "string") return { success: false, error: error };
-    else return { success: false, error: "Failed to initiate forgot password" };
   }
 }
 

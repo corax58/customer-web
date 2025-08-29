@@ -1,6 +1,5 @@
 "use client";
 
-import { format } from "date-fns";
 import { useFormatter, useTranslations } from "next-intl";
 
 import { Badge } from "@/components/ui/badge";
@@ -53,10 +52,10 @@ const PointsHistory = ({ pointsHistory }: PointsHistoryProps) => {
               <p className="text-sm font-medium">{entry.reason}</p>
               {entry.created_at && (
                 <p className="text-muted-foreground text-xs">
-                  {formatter.dateTime(
-                    new Date(entry.created_at),
-                    "MMM dd',' yyyy',' hh:mm aa",
-                  )}
+                  {formatter.dateTime(new Date(entry.created_at), {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                  })}
                 </p>
               )}
             </div>

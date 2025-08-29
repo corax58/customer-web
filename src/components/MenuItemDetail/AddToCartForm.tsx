@@ -2,6 +2,7 @@
 import { FormEvent } from "react";
 
 import { Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { DialogFooter } from "@/components/ui/dialog";
@@ -31,6 +32,8 @@ const AddToCartForm = ({
 }: AddToCartFormProps) => {
   const { user } = useAuth();
 
+  const t = useTranslations("components.menu_item_detail");
+
   const calculateAddOnPrice = () => {
     return menuItem.addOnsList.reduce((total, item) => {
       return selectedAddonIds.includes(item.id)
@@ -50,8 +53,8 @@ const AddToCartForm = ({
           <form onSubmit={handleSubmit} className="flex w-full flex-col gap-2">
             <div className="text-muted-foreground flex justify-between rounded-lg text-sm font-medium">
               <div>
-                <p>Item price</p>
-                <p>Add-on price</p>
+                <p>{t("item_price")}</p>
+                <p>{t("add_on_price")}</p>
               </div>
               <div className="text-right">
                 <p>
@@ -64,7 +67,7 @@ const AddToCartForm = ({
             </div>
             <FadingDivider />
             <div className="mb-6 flex w-full justify-between">
-              <p className="font-bold">Total price</p>
+              <p className="font-bold">{t("total_price")}</p>
               <p className="text-primary font-bold">
                 <FormattedAfghani amount={totalPrice} />
               </p>
@@ -79,7 +82,7 @@ const AddToCartForm = ({
           </form>
         ) : (
           <Button className="w-full" asChild onClick={setPreviousPath}>
-            <CustomLink href="/login">Login to Order</CustomLink>
+            <CustomLink href="/login">{t("login_to_order")}</CustomLink>
           </Button>
         )}
       </DialogFooter>

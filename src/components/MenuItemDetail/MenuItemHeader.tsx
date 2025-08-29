@@ -1,6 +1,7 @@
 "use client";
 
 import { X } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { useAuth } from "@/contexts/AuthContext";
 import { PLACEHOLDER_IMAGES } from "@/lib/constants";
@@ -25,12 +26,13 @@ interface MenuItemHeaderProps {
 
 const MenuItemHeader = ({ menuItem }: MenuItemHeaderProps) => {
   const { user } = useAuth();
+  const t = useTranslations("components.menu_item_detail");
 
   return (
     <div className="relative">
       {menuItem.is_available && (
         <Badge className="absolute bottom-6 left-8 z-10 border-green-700 bg-green-500/50">
-          Available
+          {t("available")}
         </Badge>
       )}
       {user && (

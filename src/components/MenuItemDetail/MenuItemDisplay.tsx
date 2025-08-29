@@ -1,5 +1,6 @@
 import DOMPurify from "isomorphic-dompurify";
 import { CookingPot } from "lucide-react";
+import { useFormatter, useTranslations } from "next-intl";
 
 import { Badge } from "@/components/ui/badge";
 import { getMenuItemPrice } from "@/lib/utils";
@@ -27,6 +28,8 @@ const MenuItemDisplay = ({
   itemQuantity,
   setItemQuantity,
 }: MenuItemDisplayProps) => {
+  const t = useTranslations("components.menu_item_detail");
+  const formatter = useFormatter();
   const sanitizedDescription = DOMPurify.sanitize(menuItem.description || "", {
     USE_PROFILES: { html: true },
   });
@@ -50,13 +53,15 @@ const MenuItemDisplay = ({
         </div>
 
         <div className="text-muted-foreground flex items-center gap-1">
-          <CookingPot size={16} /> {menuItem.cook_time}
-          <span> min</span>
+          <CookingPot size={16} />{" "}
+          {t("cook_time", {
+            cook_time: formatter.number(parseInt(menuItem.cook_time)),
+          })}
         </div>
       </div>
 
       <div className="space-y-2 pb-4">
-        <p className="font-bold">Description</p>
+        <p className="font-bold">{t("description")}</p>
 
         <p
           className="text-muted-foreground"
@@ -65,7 +70,7 @@ const MenuItemDisplay = ({
       </div>
 
       <div className="flex items-center justify-between">
-        <p>Quantity</p>
+        <p>{t("quantity")}</p>
         <QuantityControl
           setItemQuantity={setItemQuantity}
           itemQuantity={itemQuantity}

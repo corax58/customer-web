@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, useTransition } from "react";
 
-import { getBannerItems } from "@/actions/actions";
+import { getBannerItems } from "@/actions/home.actions";
 import { BannerDetail } from "@/types/home.types";
 
 export function useBanner() {

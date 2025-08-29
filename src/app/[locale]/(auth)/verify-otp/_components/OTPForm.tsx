@@ -33,7 +33,6 @@ import ResendOtp from "./ResendOtp";
 
 export function OTPForm({ className, ...props }: React.ComponentProps<"div">) {
   const oTPSchema = useOTPSchema();
-  const toastTrans = useTranslations("toast");
   const t = useTranslations("auth.verification");
   const [contact_no, setContact_no] = useState("");
   const [country_code, setCountry_code] = useState("");
@@ -59,12 +58,12 @@ export function OTPForm({ className, ...props }: React.ComponentProps<"div">) {
 
   useEffect(() => {
     if (error) {
-      toast.error(toastTrans("error"), { description: error });
+      toast.error(t("messages.error"), { description: error });
     }
     if (isSuccess) {
-      toast.success(`${toastTrans("welcome")} ${user?.full_name}`);
+      toast.success(`${t("messages.welcome")} ${user?.full_name}`);
     }
-  }, [error, isSuccess, user, toastTrans]);
+  }, [error, isSuccess, user, t]);
 
   useEffect(() => {
     const unVerifiedUserItem = localStorage.getItem("unVerifiedUser");

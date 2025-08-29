@@ -2,6 +2,7 @@
 import { FormEvent, useEffect, useState, useTransition } from "react";
 
 import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import { addToCartAction } from "@/actions/cart.actions";
@@ -44,13 +45,17 @@ const MenuItemDetail = ({
 }: MenuItemDetailProps) => {
   const [menuItem, setMenuItem] = useState<MenuItem>();
   const [isOpen, setIsOpen] = useState(false);
-  const currentPath = usePathname();
-  const [isPending, startTransition] = useTransition();
   const [itemQuantity, setItemQuantity] = useState(1);
   const [selectedAddonIds, setSelectedAddonIds] = useState<number[]>([]);
-  const { refreshCart, currentRestaurantId, cartItems } = useCart();
   const [isClearCartOpen, setClearCartOpen] = useState(false);
+
+  const currentPath = usePathname();
+  const [isPending, startTransition] = useTransition();
   const [isLoadingItem, startLoadingItem] = useTransition();
+
+  const { refreshCart, currentRestaurantId, cartItems } = useCart();
+
+  const t = useTranslations("components.menu_item_detail");
 
   const checkIfInCart = (): boolean => {
     const itemInCart = cartItems?.find(
@@ -79,7 +84,7 @@ const MenuItemDetail = ({
     if (!menuItem) return;
 
     if (checkIfInCart()) {
-      toast.message("This item is already in cart");
+      toast.message(t("messages.item_in_cart"));
       return;
     }
 
@@ -108,11 +113,11 @@ const MenuItemDetail = ({
     startTransition(async () => {
       const results = await addToCartAction(data, clearCart);
       if (results.error) {
-        toast.error("Failed to add item to cart", {
+        toast.error(t("messages.failed_add_to_cart"), {
           description: results.error,
         });
       } else {
-        toast.success("Successfully added item to cart");
+        toast.success(t("messages.success_add_to_cart"));
         setIsOpen(false);
         refreshCart();
       }
@@ -124,7 +129,7 @@ const MenuItemDetail = ({
     startLoadingItem(async () => {
       const data = await getMenuItemDetail(menuItemId);
       if (data.error) {
-        toast.error("Failed to fetch menu item details", {
+        toast.error(t("messages.failed_fetch"), {
           description: data.error,
         });
         setIsOpen(false);
@@ -132,23 +137,24 @@ const MenuItemDetail = ({
         setMenuItem(data.data);
       }
     });
-  }, [menuItemId, isOpen]);
+  }, [menuItemId, isOpen, t]);
 
   return (
     <>
       <AlertDialog open={isClearCartOpen} onOpenChange={setClearCartOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Clear cart?</AlertDialogTitle>
+            <AlertDialogTitle>{t("clear_cart.title")}</AlertDialogTitle>
             <AlertDialogDescription>
-              The items in your cart are from another restaurant. If you
-              proceed, the items currently in your cart will be cleared.
+              {t("clear_cart.description")}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>
+              {t("clear_cart.buttons.cancel")}
+            </AlertDialogCancel>
             <AlertDialogAction onClick={() => handleAddToCart(true)}>
-              Continue
+              {t("clear_cart.buttons.continue")}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

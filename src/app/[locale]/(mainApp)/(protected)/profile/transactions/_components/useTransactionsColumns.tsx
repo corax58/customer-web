@@ -73,11 +73,12 @@ const useTransactionColumns = () => {
     },
     {
       accessorKey: "gateway",
-      header: t("method"),
+      header: t("method.title"),
       cell: ({ row }) => (
         <span className="font-medium">
-          {row.original.gateway == "cash_on_delivery" && "Cash on Delivery"}
-          {row.original.gateway == "hesabpay" && "Hesab Pay"}
+          {row.original.gateway == "cash_on_delivery" &&
+            t("method.cash_on_delivery")}
+          {row.original.gateway == "hesabpay" && t("method.hesab_pay")}
         </span>
       ),
     },

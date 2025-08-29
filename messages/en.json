@@ -36,6 +36,31 @@
       "see_restaurant": "See restaurant",
       "not_available": "Not available"
     },
+    "menu_item_detail": {
+      "available": "Available",
+      "cook_time": "{minutes} min",
+      "description": "Description",
+      "quantity": "Quantity",
+      "add_ons": "Add-ons",
+      "item_price": "Item Price",
+      "add_on_price": "Add-on Price",
+      "total_price": "Total Price",
+      "login_to_order": "Login to order",
+      "messages": {
+        "failed_fetch": "Failed to fetch menu item details",
+        "item_in_cart": "Item is already in cart",
+        "failed_add_to_cart": "Failed to add item to cart",
+        "success_add_to_cart": "Item added to cart"
+      },
+      "clear_cart": {
+        "title": "Clear Cart",
+        "description": "The items in your cart are from another restaurant. If you proceed, the items currently in your cart will be cleared.",
+        "buttons": {
+          "cancel": "Cancel",
+          "continue": "Continue"
+        }
+      }
+    },
     "restaurant_card": {
       "delivery_time": "{}",
       "closed": "Closed"
@@ -176,7 +201,12 @@
       "and": "and",
       "privacy_policy": "Privacy Policy",
       "google_login": "Continue with Google",
-      "facebook_login": "Continue with Facebook"
+      "facebook_login": "Continue with Facebook",
+      "messages": {
+        "error": "Error",
+        "welcome_back": "Welcome back {fullName}",
+        "success": "Successfully logged in"
+      }
     },
     "signup": {
       "title": "Join Time Delivery",
@@ -195,7 +225,11 @@
       "referral-code": "Referrak Code",
       "john": "John",
       "doe": "Doe",
-      "optional": "(Optional)"
+      "optional": "(Optional)",
+      "messages": {
+        "error": "Error",
+        "here_otp": "Here is your otp"
+      }
     },
     "verification": {
       "title": "Verification",
@@ -203,7 +237,12 @@
       "verify_button": "Verify",
       "no_code_received": "Didn't receive the code?",
       "resend_link": "Resend",
-      "otp_message": "Here is your OTP"
+      "otp_message": "Here is your OTP",
+      "messages": {
+        "error": "Error",
+        "welcome": "Welcome  {fullName}",
+        "here_otp": "Here is your otp"
+      }
     },
     "forgot_password": {
       "title": "Forgot Password",
@@ -478,7 +517,11 @@
     "title": "Change password",
     "password": "Password",
     "confirm_password": "Confirm Password",
-    "change_password": "Change Password"
+    "change_password": "Change Password",
+    "messages": {
+      "success": "Successfully changed password",
+      "error": "Error"
+    }
   },
   "setup_address": {
     "title": "Set Up Your Address",
@@ -501,6 +544,7 @@
         "title": "Sort",
         "placeholder": "Select...",
         "types": {
+          "none": "None",
           "1": "Price per person: Low to High",
           "2": "Price per person: High to Low",
           "3": "Previously Ordered"
@@ -514,12 +558,13 @@
         "title": "Categories",
         "placeholder": "Select...",
         "searchPlaceholder": "Search...",
+        "select_all": "Select All",
         "clearText": "Clear",
         "closeText": "Close"
       },
       "offers": {
         "title": "Offers",
-        "offer_item": "Upto {offer}% off"
+        "offer_item": "Upto {offer,number,percent} off"
       },
       "buttons": {
         "filters": "Filters",
@@ -721,8 +766,8 @@
         "title": " Activity & History",
         "points": "Points History",
         "no_points": "No points history available",
-        "gained_points": "+{points}",
-        "used_points": "-{points}",
+        "gained_points": "+ {points}",
+        "used_points": "- {points}",
         "usage": "Usage History",
         "no_usage": "You haven't used any points",
         "order_no": "Order No:{order_no}",
@@ -769,7 +814,11 @@
         "status": "Status",
         "order_no": "Order No",
         "placed_on": "Placed on",
-        "method": "Method",
+        "method": {
+          "title": "Method",
+          "cash_on_delivery": "Cash on Delivery",
+          "hesab_pay": "HesabPay"
+        },
         "amount": "Amount",
         "na": "N/A"
       }
@@ -892,6 +941,7 @@
       "chat": {
         "title": "Live chat",
         "description": "Connect with one of our support agents for immediate assistance.",
+        "placeholder": "Type a message...",
         "error": {
           "fetch_failed": "Failed to fetch message history"
         }

@@ -1,0 +1,981 @@
+{
+  "zod": {
+    "required": "این فیلد الزامی است",
+    "required_select": "باید یک گزینه را انتخاب کنید",
+    "required_location": "لطفاً یک موقعیت را از روی نقشه انتخاب کنید",
+    "required_dob": "تاریخ تولد الزامی است",
+    "invalid_phone": "شماره موبایل نامعتبر است",
+    "too_small_string": "باید حداقل {minimum, plural, =1 {# حرف} other {# حرف}} داشته باشد",
+    "too_big_string": "نمی تواند طولانی تر از {maximum, plural, =1 {# حرف} other {# حرف}} باشد",
+    "detailed_address_required": "لطفاً آدرس دقیق تری وارد کنید",
+    "otp_length": "رمز یکبار مصرف شما باید {length} حرف باشد",
+    "first_name_required": "نام الزامی است",
+    "last_name_required": "تخلص الزامی است",
+    "invalid_email": "ایمیل نامعتبر است",
+    "password_length_min": "رمز عبور باید حداقل {minimum} حرف داشته باشد",
+    "password_length_max": "رمز عبور نباید بیشتر از {maximum} حرف باشد",
+    "password_lowercase": "رمز عبور باید حداقل یک حرف کوچک داشته باشد",
+    "password_uppercase": "رمز عبور باید حداقل یک حرف بزرگ داشته باشد",
+    "password_number": "رمز عبور باید حداقل یک عدد داشته باشد",
+    "password_special": "رمز عبور باید حداقل یک نویسه خاص داشته باشد (مثلاً !@#$%^&*)",
+    "passwords_do_not_match": "رمزهای عبور مطابقت ندارند"
+  },
+  "time": {
+    "hoursAndMinutes": "{hours, number}س {minutes, number}د",
+    "hoursOnly": "{hours, number}س",
+    "minutesOnly": "{minutes, number}د",
+    "zeroMinutes": "0د"
+  },
+  "components": {
+    "menu_item_card": {
+      "cookTimeShort": "{duration, plural, one {# دقیقه} other {# دقیقه}}",
+      "see_restaurant": "مشاهده رستورانت",
+      "not_available": "موجود نیست"
+    },
+    "menu_item_detail": {
+      "available": "موجود",
+      "cook_time": "{minutes} دقیقه",
+      "description": "توضیحات",
+      "quantity": "مقدار",
+      "add_ons": "افزودنی ها",
+      "item_price": "قیمت غذا",
+      "add_on_price": "قیمت افزودنی",
+      "total_price": "قیمت مجموعی",
+      "login_to_order": "برای سفارش دادن وارد شوید",
+      "messages": {
+        "failed_fetch": "دریافت جزئیات غذای منو ناموفق بود",
+        "item_in_cart": "این مورد قبلاً در سبد خرید موجود است",
+        "failed_add_to_cart": "افزودن مورد به سبد خرید ناموفق بود",
+        "success_add_to_cart": "مورد با موفقیت به سبد خرید اضافه شد"
+      },
+      "clear_cart": {
+        "title": "پاک کردن سبد خرید",
+        "description": "اقلام موجود در سبد خرید شما از رستورانت دیگری است. اگر ادامه دهید، اقلام فعلی در سبد خرید شما پاک خواهند شد.",
+        "buttons": {
+          "cancel": "لغو",
+          "continue": "ادامه"
+        }
+      }
+    },
+    "restaurant_card": {
+      "delivery_time": "{}",
+      "closed": "بسته"
+    },
+    "profile_update_form": {
+      "first_name": "نام",
+      "last_name": "تخلص",
+      "mobile_number": "شماره موبایل",
+      "gender": "جنسیت",
+      "male": "مرد",
+      "female": "زن",
+      "other": "دیگر",
+      "date_of_birth": "تاریخ تولد",
+      "save_button": "ذخیره"
+    },
+    "add_address_form": {
+      "labels": {
+        "save_as": "*ذخیره آدرس به عنوان",
+        "title": "عنوان",
+        "address": "آدرس",
+        "floor": "منزل",
+        "landmark": "علامت نزدیک",
+        "mobile_number": "شماره موبایل",
+        "pincode": "کد پستی"
+      },
+      "placeholders": {
+        "title": "مثلاً خانه",
+        "address": "مثلاً نزدیک کلیسای سنت جورج",
+        "floor": "مثلاً منزل سوم، آپارتمان ۳۰۱",
+        "landmark": "(اختیاری)",
+        "pincode": "کد پستی را وارد کنید"
+      },
+      "address_types": {
+        "home": "خانه",
+        "office": "دفتر",
+        "hotel": "هتل",
+        "other": "دیگر"
+      },
+      "buttons": {
+        "save_address": "ذخیره آدرس",
+        "confirm_location": "تایید موقعیت",
+        "location_confirmed": "موقعیت تایید شد"
+      },
+      "messages": {
+        "save_success": "آدرس ذخیره شد!",
+        "save_error": "افزودن آدرس ناموفق بود، لطفاً دوباره امتحان کنید.",
+        "map_instruction": "برای انتخاب موقعیت، روی نقشه کلیک کنید یا جستجو کنید.",
+        "allow_location_permission": "لطفاً اجازه دسترسی به موقعیت را بدهید",
+        "location_confirmed_success": "✓ موقعیت تایید شد! حالا جزئیات آدرس خود را در سمت راست پر کنید.",
+        "select_location_error": "لطفاً یک موقعیت را روی نقشه انتخاب کنید."
+      }
+    },
+    "category_card": {
+      "explore": "جستجو",
+      "menu": "منو"
+    },
+    "pagination": {
+      "previous": "قبلی",
+      "next": "بعدی",
+      "more": "صفحات بیشتر",
+      "go_to_next": "رفتن به صفحه بعدی",
+      "go_to_previous": "رفتن به صفحه قبلی"
+    },
+    "checkout_sheet": {
+      "trigger": "پرداخت",
+      "title": "پرداخت",
+      "instruction": "دستورالعمل های خاص",
+      "delivery_address": {
+        "title": "آدرس تحویل",
+        "select_address": "انتخاب آدرس",
+        "select_address_desc": "یک آدرس برای سفارش خود انتخاب کنید",
+        "default": "پیش فرض",
+        "fetch_failed": "دریافت آدرس ها ناموفق بود",
+        "add_new_address": "افزودن آدرس جدید"
+      },
+      "offers": {
+        "apply_offer": "اعمال پیشنهاد",
+        "dialog_title": "اعمال یک پیشنهاد",
+        "dialog_description": "یک پیشنهاد را برای اعمال انتخاب کنید",
+        "no_offers": "هیچ پیشنهادی موجود نیست",
+        "fetch_error": "دریافت پیشنهادات ناموفق بود",
+        "discount": "-{discount} افغانی",
+        "min_order": "حداقل سفارش: <highlight></highlight>",
+        "below_min": "کمتر از حداقل سفارش",
+        "selected": "انتخاب شده"
+      },
+      "payment_methods": {
+        "title": "روش پرداخت",
+        "cash_on_delivery": "پرداخت هنگام تحویل",
+        "hesab_pay": "حساب پی"
+      },
+      "order_button": {
+        "item_total": "مجموع اقلام",
+        "delivery_fee": "هزینه تحویل",
+        "total_price": "قیمت مجموعی",
+        "discount": "تخفیف",
+        "order_now": "اکنون سفارش دهید",
+        "select_address": "انتخاب آدرس"
+      },
+      "messages": {
+        "select_address": "لطفاً یک آدرس انتخاب کنید",
+        "empty_cart": "سبد خرید خالی است",
+        "failed_order": "ثبت سفارش ناموفق بود",
+        "success_order": "سفارش با موفقیت ثبت شد",
+        "error": "خطا"
+      }
+    },
+    "copiable_text": {
+      "copy_success": "{title} در کلیپ بورد کاپی شد!",
+      "copy_failed": "کاپی کردن {title} ناموفق بود"
+    },
+    "favourite_button": {
+      "added_to_fav": "به موارد مورد علاقه اضافه شد",
+      "removed_from_fav": "از موارد مورد علاقه حذف شد",
+      "failed": "تغییر وضعیت مورد علاقه ناموفق بود"
+    }
+  },
+  "toast": {
+    "welcome": "خوش آمدید",
+    "welcome_back": "دوباره خوش آمدید",
+    "here_otp": "رمز یکبار مصرف شما این است",
+    "error": "خطا",
+    "success": "رمز عبور با موفقیت تغییر کرد"
+  },
+  "auth": {
+    "login": {
+      "welcome": "به شرکت تایم دلیوری خوش آمدید",
+      "mobile_number": "شماره موبایل",
+      "password": "رمز عبور",
+      "remember_me": "مرا به خاطر بسپار",
+      "forgot_password": "رمز عبور خود را فراموش کرده اید؟",
+      "login_button": "ورود",
+      "no_account": "حساب کاربری ندارید؟",
+      "sign_up_link": "ثبت نام کنید",
+      "or_divider": "یا",
+      "terms_guide": "با کلیک بر روی ادامه، شما با",
+      "terms_of_service": "شرایط خدمات",
+      "and": "و",
+      "privacy_policy": "سیاست حفظ حریم خصوصی",
+      "google_login": "ادامه با گوگل",
+      "facebook_login": "ادامه با فیسبوک",
+      "messages": {
+        "error": "خطا",
+        "welcome_back": "دوباره خوش آمدید {fullName}",
+        "success": "با موفقیت وارد شدید"
+      }
+    },
+    "signup": {
+      "title": "به تایم دلیوری بپیوندید",
+      "create_account": "حساب کاربری خود را ایجاد کنید",
+      "first_name": "نام",
+      "last_name": "تخلص",
+      "mobile_number": "شماره موبایل",
+      "password": "رمز عبور",
+      "confirm_password": "تکرار رمز عبور",
+      "agree": "من با تمام ",
+      "terms_of_service": "شرایط و ضوابط موافقم",
+      "signup_button": "ثبت نام",
+      "already_have_account": "قبلاً حساب کاربری دارید؟",
+      "login_link": "ورود",
+      "or_divider": "یا",
+      "referral-code": "کد ارجاع",
+      "john": "جان",
+      "doe": "دو",
+      "optional": "(اختیاری)",
+      "messages": {
+        "error": "خطا",
+        "here_otp": "رمز یکبار مصرف شما این است"
+      }
+    },
+    "verification": {
+      "title": "تایید",
+      "enter_code_prompt": "برای تایید شماره موبایل خود، کد ۴ رقمی را وارد کنید",
+      "verify_button": "تایید",
+      "no_code_received": "کد را دریافت نکرده اید؟",
+      "resend_link": "ارسال مجدد",
+      "otp_message": "رمز یکبار مصرف شما این است",
+      "messages": {
+        "error": "خطا",
+        "welcome": "خوش آمدید {fullName}",
+        "here_otp": "رمز یکبار مصرف شما این است"
+      }
+    },
+    "forgot_password": {
+      "title": "فراموشی رمز عبور",
+      "instruction": "شماره موبایل مرتبط با حساب خود را وارد کنید و ما برای شما یک لینک حاوی دستورالعمل برای بازنشانی رمز عبور ارسال خواهیم کرد.",
+      "mobile_number": "شماره موبایل",
+      "send_button": "ارسال"
+    },
+    "marketing": {
+      "headline": "غذای لذیذ، به درب منزل شما تحویل داده می شود",
+      "subheadline": "از رستورانت های مورد علاقه خود سفارش دهید و غذاهای تازه و گرم را در چند دقیقه تحویل بگیرید.",
+      "feature1": "تحویل سریع",
+      "feature2": "غذای تازه",
+      "feature3": "بهترین قیمت ها"
+    }
+  },
+  "header": {
+    "home": "صفحه اصلی",
+    "restaurants": "رستورانت ها",
+    "about_us": "درباره ما",
+    "contact_us": "تماس با ما",
+    "favourites": "مورد علاقه ها",
+    "orders": "سفارشات",
+    "profile": "پروفایل",
+    "language": "زبان",
+    "login": "ورود",
+    "signup": "ثبت نام",
+    "create_an_account": "ورود یا ایجاد حساب کاربری",
+    "logout": "خروج",
+    "logout_warning": "آیا مطمئن هستید که می خواهید خارج شوید؟",
+    "continue": "ادامه",
+    "cancel": "لغو",
+    "cart": {
+      "title": "سبد خرید من",
+      "add_ons": "افزودنی ها",
+      "subtotal": "مجموع فرعی",
+      "empty_cart_title": "سبد خرید شما خالی است",
+      "empty_cart_desc": "برای شروع، چند غذای لذیذ اضافه کنید!",
+      "messages": {
+        "failed_quantity_update": "به روز رسانی مقدار ناموفق بود",
+        "failed_remove_cart": "حذف مورد از سبد خرید ناموفق بود"
+      }
+    },
+    "notifications": {
+      "failed_fetch": "دریافت اعلان ها ناموفق بود",
+      "title": "اعلان ها",
+      "no_notifications": "شما هیچ اعلان جدیدی ندارید",
+      "view_all": "مشاهده همه اعلان ها"
+    },
+    "search": {
+      "search_placeholder": "جستجو",
+      "popular_searches": "جستجوهای محبوب",
+      "recent_searches": "جستجوهای اخیر"
+    },
+    "address": {
+      "failed_default": "تنظیم آدرس پیش فرض ناموفق بود",
+      "select_address": "انتخاب آدرس",
+      "select_default": "انتخاب آدرس پیش فرض",
+      "faild_fetch": "دریافت آدرس ها ناموفق بود",
+      "default": "پیش فرض",
+      "no_address": "هیچ آدرسی یافت نشد",
+      "add_new_address": "افزودن آدرس جدید",
+      "edit_addresses": "ویرایش آدرس ها"
+    }
+  },
+  "landing": {
+    "hero": {
+      "subtitle": "تحویل گرم و تازه.",
+      "title": "غذای مورد علاقه شما <span>گرم و تازه</span> تحویل داده می شود",
+      "description": "غذاهای گرم و تازه را از رستورانت های محلی مورد علاقه خود مستقیماً درب منزل تحویل بگیرید. اکنون آنلاین سفارش دهید!",
+      "order_now": "اکنون سفارش دهید",
+      "contact_us": "تماس با ما"
+    },
+    "popular_items": {
+      "popular_foods": {
+        "title": "غذاهای محبوب"
+      },
+      "best_selling_dishes": {
+        "title": "پرفروش ترین غذاها"
+      },
+      "categories": {
+        "title": "دسته بندی ها",
+        "see_all": "مشاهده همه"
+      }
+    },
+    "popular_restaurants": {
+      "title": "رستورانت های محبوب",
+      "view_all": "مشاهده همه رستورانت ها",
+      "per_person": "برای هر نفر"
+    },
+    "features": {
+      "feature1": {
+        "title": "بهترین کیفیت غذا",
+        "description": "غذای ما از مواد اولیه تازه تهیه شده و توسط آشپزهای با تجربه آماده می شود"
+      },
+      "feature2": {
+        "title": "تحویل سریعتر",
+        "description": "ما غذای شما را در عرض ۳۰ دقیقه تحویل می دهیم تا اطمینان حاصل شود که گرم و تازه به دست شما می رسد."
+      },
+      "feature3": {
+        "title": "طعم واقعی",
+        "description": "طعم های اصیلی را تجربه کنید که شما را برای بیشتر خواستن مشتاق می کند."
+      },
+      "feature4": {
+        "title": "پشتیبانی ۲۴/۷",
+        "description": "تیم پشتیبانی مشتریان ما ۲۴/۷ برای کمک به شما در دسترس است."
+      },
+      "app_promo": "غذای مورد علاقه خود را با اپلیکیشن سریع دریافت کنید"
+    },
+    "special_food": {
+      "off": "تخفیف",
+      "title": "غذای ویژه امروز",
+      "limited_offer": "پیشنهاد با زمان محدود",
+      "order_now": "اکنون سفارش دهید"
+    },
+    "testimonials": {
+      "title": "مشتریان ما چه می گویند"
+    }
+  },
+  "footer": {
+    "about": {
+      "brand_name": "تایم",
+      "description": "غذاهای مورد علاقه خود را گرم و تازه تحویل بگیرید. نیازی به ترک خانه نیست - ما غذا را برای شما می آوریم."
+    },
+    "explore": {
+      "title": "جستجو",
+      "links": {
+        "about_us": "درباره ما",
+        "contact_us": "تماس با ما",
+        "restaurant": "رستورانت",
+        "food_category": "دسته بندی غذا",
+        "help_center": "مرکزช่วยเหลือ"
+      }
+    },
+    "contact": {
+      "title": "اطلاعات تماس"
+    },
+    "newsletter": {
+      "title": "خبرنامه",
+      "description": "برای دریافت آخرین اخبار و پیشنهادات به لیست مشترکین ما بپیوندید.",
+      "placeholder": "ایمیل"
+    },
+    "bottom_bar": {
+      "copyright": "© ۲۰۲۵ <span>تایم</span> | تمام حقوق محفوظ است. طراحی شده توسط <a>گروزتک</a>",
+      "privacy_policy": "حریم خصوصی",
+      "terms_and_conditions": "شرایط و ضوابط"
+    }
+  },
+  "about_us": {
+    "header": {
+      "title": "درباره ما"
+    },
+    "services_section": {
+      "subtitle": "درباره ما",
+      "title": "ما بیشتر از چندین سرویس هستیم",
+      "description": "از رستورانت نزدیک خود غذا سفارش دهید و همچنین میزی برای شام در رستورانت مورد نظر خود رزرو کنید.",
+      "services": {
+        "online_order": "سفارش آنلاین",
+        "pre_reservation": "رزرو قبلی",
+        "24/7_service": "سرویس ۲۴/۷",
+        "organized": "مکان غذایی سازمان یافته",
+        "clean": "آشپزخانه تمیز",
+        "fast": "تحویل سریع"
+      }
+    },
+    "features": {
+      "subtitle": "ویژگی ها",
+      "title": "چگونه کار می کند",
+      "features": {
+        "easy": {
+          "title": "سفارش آسان",
+          "description": "شما فقط به چند مرحله برای سفارش غذا نیاز دارید."
+        },
+        "fastest": {
+          "title": "سریعترین تحویل",
+          "description": "تحویلی که همیشه به موقع و حتی سریعتر است."
+        },
+        "best": {
+          "title": "بهترین کیفیت",
+          "description": "نه تنها سرعت، برای ما کیفیت نیز شماره یک است."
+        }
+      }
+    }
+  },
+  "contact_us": {
+    "header": {
+      "title": "تماس با ما"
+    },
+    "contact_details": {
+      "phone": {
+        "name": "تلفن",
+        "value": "+1 234 567 8900"
+      },
+      "email": {
+        "name": "ایمیل",
+        "value": "support@time.com"
+      },
+      "location": {
+        "name": "موقعیت",
+        "value": "سرک ۱۲۳ غذا، شهر"
+      }
+    },
+    "contact_form": {
+      "labels": {
+        "full_name": "نام کامل",
+        "email": "ایمیل",
+        "message": "پیام"
+      },
+      "placeholders": {
+        "name": "جان دو"
+      },
+      "submit_button": "ارسال پیام"
+    }
+  },
+  "privacy": {
+    "header": {
+      "title": "حریم خصوصی"
+    }
+  },
+  "terms_and_conditions": {
+    "header": {
+      "title": "شرایط و ضوابط"
+    }
+  },
+  "home": {
+    "banners": {
+      "dynamic": {
+        "order_now": "اکنون سفارش دهید"
+      },
+      "static": {
+        "banner_1": {
+          "title": "غذای لذیذ، تحویل سریع",
+          "subtitle": "سفارشات را در یک دقیقه دریافت کنید",
+          "button": "اکنون تایم را امتحان کنید!"
+        },
+        "banner_2": {
+          "title": "لقمه های سریع، سفارشات سریعتر",
+          "subtitle": "تا ۳ سفارش به موقع.",
+          "button": "اکنون سفارش دهید!"
+        },
+        "banner_3": {
+          "title": "لقمه های سریع، سفارشات سریعتر",
+          "subtitle": "تا ۳ سفارش به موقع.",
+          "button": "اکنون سفارش دهید!"
+        }
+      }
+    },
+    "offers": {
+      "title": "پیشنهادات",
+      "see_detail": "مشاهده جزئیات"
+    },
+    "categories": {
+      "title": "دسته بندی ها",
+      "see_all": "مشاهده همه"
+    },
+    "popular_dishes": {
+      "title": "غذاهای محبوب"
+    },
+    "best_selling_dishes": {
+      "title": "پرفروش ترین غذاها"
+    },
+    "popular_restaurants": {
+      "title": "رستورانت های محبوب",
+      "see_all": "مشاهده همه"
+    }
+  },
+  "profile_setup": {
+    "title": "حساب خود را تنظیم کنید"
+  },
+  "change_password": {
+    "title": "تغییر رمز عبور",
+    "password": "رمز عبور",
+    "confirm_password": "تکرار رمز عبور",
+    "change_password": "تغییر رمز عبور",
+    "messages": {
+      "success": "رمز عبور با موفقیت تغییر کرد",
+      "error": "خطا"
+    }
+  },
+  "setup_address": {
+    "title": "آدرس خود را تنظیم کنید",
+    "subtitle": "غذای شما به کجا تحویل داده شود."
+  },
+  "categories": {
+    "title": "دسته بندی ها",
+    "messages": {
+      "something_went_wrong": "مشکلی پیش آمد",
+      "no_categories": "هیچ دسته بندی وجود ندارد",
+      "no_category_items": "هیچ موردی در این دسته بندی وجود ندارد"
+    }
+  },
+  "restaurants": {
+    "title": "رستورانت ها",
+    "filter": {
+      "title": "فیلتر رستورانت ها",
+      "price_per_person": "قیمت برای هر نفر",
+      "sort": {
+        "title": "مرتب سازی",
+        "placeholder": "انتخاب...",
+        "types": {
+          "none": "هیچکدام",
+          "1": "قیمت برای هر نفر: از کم به زیاد",
+          "2": "قیمت برای هر نفر: از زیاد به کم",
+          "3": "قبلاً سفارش داده شده"
+        }
+      },
+      "rating": {
+        "title": "امتیاز",
+        "placeholder": "انتخاب..."
+      },
+      "categories": {
+        "title": "دسته بندی ها",
+        "placeholder": "انتخاب...",
+        "searchPlaceholder": "جستجو...",
+        "select_all": "انتخاب همه",
+        "clearText": "پاک کردن",
+        "closeText": "بستن"
+      },
+      "offers": {
+        "title": "پیشنهادات",
+        "offer_item": "تا {offer,number,percent} تخفیف"
+      },
+      "buttons": {
+        "filters": "فیلترها",
+        "apply": "اعمال",
+        "clear": "پاک کردن"
+      }
+    },
+    "messages": {
+      "something_went_wrong": "مشکلی پیش آمد",
+      "no_results": "هیچ نتیجه ای یافت نشد",
+      "failed_categories": "دریافت دسته بندی ها ناموفق بود"
+    },
+    "restaurant_details": {
+      "tabs": {
+        "top": {
+          "short": "برتر",
+          "full": "دارای بالاترین امتیاز"
+        },
+        "menu": "منو",
+        "reviews": "نظرات",
+        "photos": "عکس ها",
+        "info": "اطلاعات",
+        "offers": "پیشنهادات"
+      },
+      "header": {
+        "closed": "بسته",
+        "delivery_fee": "هزینه تحویل",
+        "delivery_time": "زمان تحویل",
+        "delivered_by": "تحویل توسط",
+        "time_delivery": "تایم دلیوری"
+      },
+      "reviews": {
+        "title": "امتیاز و نظرات",
+        "rating_description": "امتیازات و نظرات تایید شده اند و از افرادی می آیند که خدمات مشابهی دریافت کرده اند و به مشتریان کمک می کند تا شهادت های واقعی دریافت کنند.",
+        "read_more": "بیشتر بخوانید",
+        "read_less": "کمتر بخوانید"
+      },
+      "error": {
+        "title": "اوه! مشکلی پیش آمد",
+        "description": "در حال حاضر نتوانستیم جزئیات رستورانت را بارگیری کنیم",
+        "details": {
+          "title": "چه اتفاقی افتاد؟",
+          "1": "رستورانت ممکن است به طور موقت در دسترس نباشد",
+          "2": "ممکن است مشکل اتصال به شبکه وجود داشته باشد",
+          "3": "اطلاعات رستورانت ممکن است به روز شده باشد"
+        },
+        "button": {
+          "try_again": "دوباره امتحان کنید",
+          "back": "بازگشت"
+        }
+      },
+      "info": {
+        "title": "اطلاعات رستورانت",
+        "about": "درباره",
+        "address": "آدرس",
+        "contact_info": "اطلاعات تماس",
+        "mobile": "موبایل",
+        "availability": {
+          "title": "دسترسی",
+          "subtitle": "در اینجا ساعات کاری ما آمده است",
+          "days": {
+            "opening_hours": "{startTime} - {endTime}",
+            "0": "دوشنبه",
+            "1": "سه شنبه",
+            "2": "چهارشنبه",
+            "3": "پنجشنبه",
+            "4": "جمعه",
+            "5": "شنبه",
+            "6": "یکشنبه"
+          },
+          "buttons": {
+            "trigger": "باز از <highlight>{startTime}</highlight> تا <highlight>{endTime}</highlight>",
+            "close": "بستن",
+            "closed": "بسته"
+          }
+        }
+      },
+      "offers": {
+        "no_offers": "هیچ پیشنهادی وجود ندارد",
+        "something_went_wrong": "مشکلی پیش آمد",
+        "min_order": "حداقل سفارش: <highlight></highlight>",
+        "expired": "منقضی شده",
+        "expires_today": "امروز منقضی می شود",
+        "days_left": "{days} روز باقی مانده است"
+      }
+    }
+  },
+  "profile": {
+    "sidebar": {
+      "title": "حساب کاربری",
+      "personal": "اطلاعات شخصی",
+      "favourites": "مورد علاقه ها",
+      "orders": "سفارشات",
+      "transactions": "تاریخچه معاملات",
+      "notifications": "اعلان ها",
+      "referrals": "ارجاعات",
+      "security": "امنیت",
+      "help": "راهنما و پشتیبانی"
+    },
+    "personal_info": {
+      "title": "پروفایل من",
+      "subtitle": "جزئیات شخصی و ترجیحات خود را مدیریت کنید.",
+      "personal_info": "اطلاعات شخصی",
+      "buttons": {
+        "edit": "ویرایش"
+      },
+      "na": "ناموجود",
+      "genders": {
+        "male": "مرد",
+        "female": "زن",
+        "other": "دیگر"
+      },
+      "labels": {
+        "first_name": "نام",
+        "last_name": "تخلص",
+        "gender": "جنسیت",
+        "date_of_birth": "تاریخ تولد",
+        "email": "ایمیل",
+        "phone_number": "شماره موبایل"
+      }
+    },
+    "delivery_info": {
+      "delivery_address": "آدرس تحویل",
+      "select_address": "آدرس پیش فرض را انتخاب کنید یا مکان تحویل دیگری اضافه کنید",
+      "address_list": {
+        "errors": {
+          "something_went_wrong": "مشکلی پیش آمد"
+        },
+        "messages": {
+          "failed_set_default": "تنظیم آدرس پیش فرض ناموفق بود",
+          "failed_delete": "حذف آدرس ناموفق بود",
+          "success_delete": "آدرس با موفقیت حذف شد"
+        },
+        "delete_dialog": {
+          "title": "آیا کاملاً مطمئن هستید؟",
+          "description": "این عمل قابل بازگشت نیست. این کار به طور دائم این آدرس شما را حذف کرده و داده ها را از سرورهای ما پاک می کند.",
+          "buttons": {
+            "cancel": "لغو",
+            "confirm": "تایید"
+          }
+        },
+        "default": "پیش فرض",
+        "set_default": "تنظیم به عنوان پیش فرض",
+        "add_new_address": "افزودن آدرس جدید"
+      }
+    },
+    "edit_profile": {
+      "title": "پروفایل خود را ویرایش کنید",
+      "description": "تغییرات را در جزئیات شخصی و اطلاعات حساب خود در زیر اعمال کنید."
+    },
+    "favourites": {
+      "title": "مورد علاقه ها",
+      "no_fav_title": "شما هنوز هیچ رستورانت مورد علاقه ای ندارید.",
+      "no_fav_desc": "روی نماد قلب در هر رستورانت ضربه بزنید تا آن را برای دسترسی آسان در اینجا ذخیره کنید.",
+      "errors": {
+        "failed_fetch": "دریافت رستورانت های مورد علاقه ناموفق بود"
+      }
+    },
+    "notifications": {
+      "title": "اعلان ها",
+      "no_notifs_title": "شما هنوز هیچ اعلانی ندارید.",
+      "no_notifs_desc": "اعلان های شما در اینجا ظاهر می شوند.",
+      "errors": {
+        "failed_fetch": "دریافت اعلان ها ناموفق بود"
+      },
+      "mark_read": "علامت گذاری به عنوان خوانده شده",
+      "view": "مشاهده"
+    },
+    "referrals": {
+      "title": "کد ارجاع شما",
+      "description": "کد ارجاع خود را با دوستان به اشتراک بگذارید و هنگامی که آنها ثبت نام می کنند، پاداش کسب کنید.",
+      "error": {
+        "title": "بارگیری جزئیات ارجاع ناموفق بود",
+        "desc": "هنگام تلاش برای بازیابی اطلاعات ارجاع شما با مشکلی مواجه شدیم. این ممکن است یک مشکل موقتی باشد. لطفاً چند لحظه دیگر دوباره امتحان کنید."
+      },
+      "points_overview": {
+        "available_points_title": "امتیازات موجود",
+        "max_discount": "{discount} حداکثر تخفیف موجود است",
+        "total_earned": "مجموع کسب شده",
+        "all_time_earning": "درآمد کل",
+        "referrals": "ارجاعات",
+        "friends_referred": "دوستان ارجاع شده",
+        "discount_earned": "تخفیف کسب شده",
+        "total_savings": "کل پس انداز"
+      },
+      "referral_sharing": {
+        "copied": "کاپی شد",
+        "code_copied": "کد ارجاع در کلیپ بورد کاپی شد",
+        "link_copied": "لینک ارجاع در کلیپ بورد کاپی شد",
+        "error": {
+          "failed_copy": "کاپی ناموفق بود"
+        },
+        "title": "به اشتراک بگذارید و کسب کنید",
+        "description": "کد یا لینک ارجاع خود را با دوستان به اشتراک بگذارید تا امتیاز کسب کنید",
+        "referral_code": "کد ارجاع",
+        "referral_link": "لینک ارجاع",
+        "copy": "کاپی کد",
+        "share": "اشتراک گذاری"
+      },
+      "history_tabs": {
+        "title": "فعالیت و تاریخچه",
+        "points": "تاریخچه امتیازات",
+        "no_points": "هیچ تاریخچه امتیازی موجود نیست",
+        "gained_points": "+ {points}",
+        "used_points": "- {points}",
+        "usage": "تاریخچه استفاده",
+        "no_usage": "شما از هیچ امتیازی استفاده نکرده اید",
+        "order_no": "شماره سفارش:{order_no}",
+        "status": "وضعیت: {status}",
+        "users": "کاربران ارجاع شده",
+        "no_users": "هیچ کاربری با کد ارجاع شما نپیوسته است",
+        "joined_at": "در {joined_at} پیوست",
+        "total_spent": "مجموع هزینه شده: <total_spent></total_spent>"
+      },
+      "redemption_rules": {
+        "title": "قوانین بازخرید",
+        "min_points": "حداقل برای بازخرید",
+        "points_per_percent": "امتیاز برای هر ۱٪ تخفیف",
+        "max_discount_per_order": "حداکثر تخفیف برای هر سفارش",
+        "max_discount_percent": "{discount}%",
+        "points": "{points} امتیاز",
+        "current_discount": "پتانسیل تخفیف فعلی"
+      },
+      "referral_stats_card": {
+        "title": "تاثیر شما",
+        "friends_joined": "دوستان پیوسته",
+        "orders_with_discount": "سفارشات با تخفیف",
+        "total_discount": "تخفیف مجموعی"
+      }
+    },
+    "transactions": {
+      "title": "تاریخچه معاملات",
+      "description": "تمام معاملات پرداخت و وضعیت آنها را مشاهده کنید.",
+      "error": {
+        "something_went_wrong": "مشکلی پیش آمد"
+      },
+      "no_transactions": "هیچ معامله ای یافت نشد",
+      "status": {
+        "pending": "در حال انتظار",
+        "success": "موفق",
+        "completed": "تکمیل شده",
+        "failed": "ناموفق"
+      },
+      "columns": {
+        "transaction_id": "شناسه معامله",
+        "restaurant": "رستورانت",
+        "status": "وضعیت",
+        "order_no": "شماره سفارش",
+        "placed_on": "ثبت شده در",
+        "method": {
+          "title": "روش",
+          "cash_on_delivery": "پرداخت هنگام تحویل",
+          "hesab_pay": "حساب پی"
+        },
+        "amount": "مبلغ",
+        "na": "ناموجود"
+      }
+    },
+    "orders": {
+      "title": "تاریخچه سفارشات",
+      "description": "سفارشات خود را مشاهده و پیگیری کنید.",
+      "filter": {
+        "placeholder": "فیلتر سفارشات",
+        "active": "سفارشات فعال",
+        "past": "سفارشات گذشته"
+      },
+      "columns": {
+        "restaurant": "رستورانت",
+        "order_no": "شماره سفارش",
+        "order_status": "وضعیت سفارش",
+        "amount": "مبلغ",
+        "placed_on": "ثبت شده در",
+        "view": "مشاهده"
+      },
+      "error": {
+        "something_went_wrong": "مشکلی پیش آمد"
+      },
+      "no_orders_title": "شما هنوز هیچ سفارشی ندارید.",
+      "no_orders_desc": "سفارشات شما در اینجا ظاهر می شوند.",
+      "order_detail": {
+        "title": "جزئیات سفارش",
+        "description": "جزئیات سفارش خود را پیگیری کنید.",
+        "order_no": "شماره سفارش",
+        "delivery_address": "آدرس تحویل",
+        "payment": "پرداخت",
+        "payment_method": "روش پرداخت",
+        "cash_on_delivery": "پرداخت هنگام تحویل",
+        "hesab_pay": "حساب پی",
+        "payment_status": {
+          "paid": "پرداخت شده",
+          "unpaid": "پرداخت نشده"
+        },
+        "item_total": "مجموع اقلام",
+        "delivery_charges": "هزینه های تحویل",
+        "total": "مجموع",
+        "order_item": "اقلام سفارش",
+        "quantity": "مقدار: {quantity}",
+        "add_ons": "افزودنی ها",
+        "track_order": {
+          "trigger": "پیگیری سفارش",
+          "status": "وضعیت",
+          "error": {
+            "failed_fetch": "دریافت وضعیت سفارش ناموفق بود"
+          },
+          "buttons": {
+            "close": "بستن",
+            "try_againt": "دوباره امتحان کنید"
+          },
+          "PENDING": "سفارش ثبت شد",
+          "ASSIGNED": "سفارش تایید شد",
+          "WAITING": "آماده برای تحویل",
+          "PICKED_UP": "تحویل گرفته شد",
+          "DELIVERED": "تحویل داده شد"
+        },
+        "order_status": {
+          "order_placed": "سفارش ثبت شد",
+          "order_confirmed": "سفارش تایید شد",
+          "ready_for_pickup": "آماده برای تحویل",
+          "picked_up": "تحویل گرفته شد",
+          "delivered": "تحویل داده شد",
+          "cancelled": "لغو شده",
+          "rejected": "رد شده"
+        },
+        "order_cancel_modal": {
+          "trigger": "لغو سفارش",
+          "title": "لغو سفارش",
+          "description": "آیا مطمئن هستید که می خواهید این سفارش را لغو کنید؟",
+          "reason": "دلیل شما برای لغو",
+          "cancel": "لغو",
+          "messages": {
+            "success": "سفارش با موفقیت لغو شد",
+            "error": "لغو سفارش ناموفق بود"
+          }
+        },
+        "review_modal": {
+          "trigger": "ثبت نظر",
+          "title": "تجربه شما چگونه بود",
+          "delivered_to": "سفارش به {address} تحویل داده شد",
+          "rate_restaurant": "به رستورانت امتیاز دهید",
+          "restaurant_placeholder": "غذا و سرویس چگونه بود؟",
+          "rate_rider": "به پیک خود امتیاز دهید",
+          "rider_placeholder": "تجربه تحویل چگونه بود؟",
+          "submit": "ارسال نظر",
+          "message": {
+            "no_review": "لطفاً برای رستورانت و پیک امتیاز بدهید.",
+            "success": "از نظر شما متشکریم!",
+            "error": "متاسفانه، نتوانستیم نظر شما را ثبت کنیم. لطفاً دوباره امتحان کنید."
+          }
+        },
+        "error": {
+          "title": "جزئیات سفارش بارگیری نشد",
+          "description": "به نظر می رسد در دریافت اطلاعات سفارش مشکلی وجود داشت."
+        },
+        "thanks_feedback": "از بازخورد شما متشکریم."
+      }
+    },
+    "help": {
+      "title": "راهنما و پشتیبانی",
+      "description": "کمک بگیرید و با تیم پشتیبانی ما تماس بگیرید.",
+      "faq": {
+        "title": "سوالات متداول",
+        "description": "پاسخ به سوالات رایج را بیابید",
+        "error": {
+          "failed_fetch": "دریافت سوالات متداول ناموفق بود"
+        }
+      },
+      "faq_card": {
+        "title": "سوالات متداول",
+        "description": "پاسخ به سوالات رایج را بیابید",
+        "button": "مرور سوالات متداول"
+      },
+      "chat": {
+        "title": "چت زنده",
+        "description": "برای کمک فوری با یکی از نمایندگان پشتیبانی ما ارتباط برقرار کنید.",
+        "placeholder": "یک پیام تایپ کنید...",
+        "error": {
+          "fetch_failed": "دریافت تاریخچه پیام ها ناموفق بود"
+        }
+      },
+      "chat_card": {
+        "title": "چت زنده",
+        "description": "با تیم پشتیبانی ما چت کنید",
+        "button": "شروع چت"
+      }
+    },
+    "security": {
+      "title": "امنیت",
+      "description": "تنظیمات امنیتی حساب خود را مدیریت کنید",
+      "change_password_card": {
+        "title": "رمز عبور خود را تغییر دهید",
+        "description": "رمز عبور خود را در زیر به روز کنید.",
+        "button": "تغییر رمز عبور"
+      },
+      "change_password": {
+        "title": "رمز عبور خود را تغییر دهید",
+        "description": "برای امنیت شما، توصیه می کنیم یک رمز عبور قوی انتخاب کنید که در جای دیگری استفاده نمی کنید.",
+        "password": "رمز عبور",
+        "confirm_password": "تکرار رمز عبور",
+        "change_password": "تغییر رمز عبور",
+        "success": "رمز عبور با موفقیت تغییر کرد",
+        "error": "خطا"
+      },
+      "delete_acc_card": {
+        "title": "حساب خود را حذف کنید",
+        "description": "حساب شما برای همیشه پاک خواهد شد.",
+        "button": "حذف حساب"
+      },
+      "delete-account": {
+        "title": "حساب خود را حذف کنید",
+        "description": "هنگامی که حساب خود را حذف می کنید، راه بازگشتی وجود ندارد. این عمل قابل بازگشت نیست و موارد زیر را انجام خواهد داد:",
+        "list-item-1": "• پروفایل و داده های حساب شما را به طور دائم حذف می کند",
+        "list-item-2": "• تمام تاریخچه و آمار ارجاع شما را حذف می کند",
+        "list-item-3": "• هرگونه پاداش یا پرداخت معلق را لغو می کند",
+        "list-item-4": "• دسترسی به تمام خدمات را لغو می کند",
+        "password-label": "رمز عبور",
+        "delete-account-button": "حذف حساب"
+      }
+    }
+  }
+}

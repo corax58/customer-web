@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 
+import { useTranslations } from "next-intl";
+
 import { Checkbox } from "@/components/ui/checkbox";
 import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -68,9 +70,11 @@ const AddOnList = ({
   selectedAddonIds,
   setSelectedAddonIds,
 }: AddOnListProps) => {
+  const t = useTranslations("components.menu_item_detail");
+
   return (
     <div className="space-y-2">
-      {addOns.length > 0 && <p className="font-medium">Add-ons</p>}
+      {addOns.length > 0 && <p className="font-medium">{t("add_ons")}</p>}
       <div className="space-y-4">
         {addOns.map((addOn) => (
           <AddOnListItem

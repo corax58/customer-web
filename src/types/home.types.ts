@@ -20,6 +20,8 @@ export interface BannerDetail {
     name: string;
     image: string;
     location: string;
+    average_rating: number;
+    total_ratings: number;
   };
   item: BannerFoodItem;
 }

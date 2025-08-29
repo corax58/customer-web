@@ -30,7 +30,6 @@ import SignupFormFields from "./SignupFormFields";
 
 const SignupForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   const signupSchema = useSignupSchema();
-  const toastTrans = useTranslations("toast");
   const t = useTranslations("auth.signup");
 
   const [country, setCountry] = useState<CountryCode | undefined>("ET");
@@ -88,12 +87,12 @@ const SignupForm = ({ className, ...props }: React.ComponentProps<"div">) => {
 
   useEffect(() => {
     if (error) {
-      toast.error(toastTrans("error"), { description: error });
+      toast.error(t("messages.error"), { description: error });
     }
     if (Otp) {
-      toast.message(toastTrans("here_otp"), { description: Otp });
+      toast.message(t("messages.here_otp"), { description: Otp });
     }
-  }, [error, Otp, toastTrans]);
+  }, [error, Otp, t]);
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Form {...form}>

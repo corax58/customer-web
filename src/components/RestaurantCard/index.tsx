@@ -1,7 +1,7 @@
 "use client";
 
 import { Bike, Star, User } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/contexts/AuthContext";
@@ -29,6 +29,7 @@ const RestaurantCard = ({
   const { user } = useAuth();
   const time = useTranslations("time");
   const t = useTranslations("components.restaurant_card");
+  const formatter = useFormatter();
 
   return (
     <Card
@@ -78,8 +79,14 @@ const RestaurantCard = ({
             <div className="text-muted-foreground flex items-center justify-between gap-2 text-sm">
               <div className="flex items-center gap-1">
                 <Star size={16} className="fill-primary text-primary" />
-                <p>{restaurant.average_rating}</p>
-                <p>({restaurant.rating_info.totalReviews})</p>
+                <p>{formatter.number(restaurant.average_rating)}</p>
+                <p>
+                  (
+                  {formatter.number(
+                    parseInt(restaurant.rating_info.totalReviews),
+                  )}
+                  )
+                </p>
               </div>
               {restaurant.delivery_info.delivery_time_minutes && (
                 <div className="flex items-center gap-2">

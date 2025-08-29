@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import { MapPin, Star } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 
 import CustomImage from "@/components/CustomImage";
 import CustomLink from "@/components/CustomLink";
@@ -18,6 +18,7 @@ interface BannerItemProps {
 
 const BannerItem = ({ bannerDetail }: BannerItemProps) => {
   const t = useTranslations("home.banners.dynamic");
+  const formatter = useFormatter();
   return (
     <Card className="dark:border-secondary relative flex h-full justify-end overflow-hidden rounded-3xl border-8 border-white bg-gradient-to-r from-orange-500 to-orange-600 p-0 shadow-xl dark:from-orange-600 dark:to-orange-700">
       <div className="absolute inset-0 bg-[url('/assets/images/banner_background.webp')] bg-[size:100%_100%] bg-repeat"></div>
@@ -50,7 +51,12 @@ const BannerItem = ({ bannerDetail }: BannerItemProps) => {
                 <div className="flex gap-4">
                   <div className="flex items-center space-x-1">
                     <Star className="h-4 w-4 fill-yellow-500 text-white" />
-                    <span>4.5</span>
+                    <span>
+                      {formatter.number(bannerDetail.restaurant.average_rating)}
+                      (
+                      {formatter.number(bannerDetail.restaurant.average_rating)}
+                      )
+                    </span>
                   </div>
                 </div>
                 <div className="flex w-fit items-center space-x-2 rounded-full text-sm font-semibold">
@@ -67,7 +73,10 @@ const BannerItem = ({ bannerDetail }: BannerItemProps) => {
               <div className="flex gap-4">
                 <div className="flex items-center space-x-1">
                   <Star className="h-4 w-4 fill-yellow-500 text-white" />
-                  <span>4.5</span>
+                  <span>
+                    {formatter.number(bannerDetail.restaurant.average_rating)}(
+                    {formatter.number(bannerDetail.restaurant.average_rating)})
+                  </span>
                 </div>
               </div>
               <div className="flex w-fit items-center space-x-2 rounded-full text-sm font-semibold">

@@ -50,6 +50,7 @@ const CategoryFilter = ({ filters, setFilters }: CategoryFilterProps) => {
           searchPlaceholder={t("searchPlaceholder")}
           clearText={t("clearText")}
           closeText={t("closeText")}
+          hideSelectAll
         />
       </>
     );

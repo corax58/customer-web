@@ -1,118 +1,336 @@
 {
-  "toast": {
-    "welcome": "ښه راغلاست",
-    "welcome_back": "بیا ښه راغلاست",
-    "here_otp": "دا ستاسو یو ځل کاریدونکی پټ نوم دی",
-    "error": "تېروتنه"
+  "zod": {
+    "required": "دا ځای اړین دی",
+    "required_select": "تاسو باید یو انتخاب وکړئ",
+    "required_location": "مهرباني وکړئ له نقشې څخه یو ځای وټاکئ",
+    "required_dob": "د زیږون نیټه اړینه ده",
+    "invalid_phone": "د تلیفون شمیره ناسمه ده",
+    "too_small_string": "باید لږ تر لږه {minimum, plural, =1 {# توری} other {# توري}} ولري",
+    "too_big_string": "له {maximum, plural, =1 {# توري} other {# تورو}} څخه اوږد نشي کیدای",
+    "detailed_address_required": "مهرباني وکړئ یوه ډیره مفصله پته ولیکئ",
+    "otp_length": "ستاسو یو ځلي پټنوم باید {length} توري وي",
+    "first_name_required": "لومړی نوم اړین دی",
+    "last_name_required": "تخلص اړین دی",
+    "invalid_email": "برېښنالیک ناسم دی",
+    "password_length_min": "پټنوم باید لږ تر لږه {minimum} توري اوږد وي",
+    "password_length_max": "پټنوم باید له {maximum} تورو څخه ډیر اوږد نه وي",
+    "password_lowercase": "پټنوم باید لږ تر لږه یو کوچنی توری ولري",
+    "password_uppercase": "پټنوم باید لږ تر لږه یو لوی توری ولري",
+    "password_number": "پټنوم باید لږ تر لږه یوه شمیره ولري",
+    "password_special": "پټنوم باید لږ تر لږه یوه ځانګړې نښه ولري (لکه، !@#$%^&*)",
+    "passwords_do_not_match": "پټنومونه سره سمون نه خوري"
   },
-  "auth": {
-    "login": {
-      "welcome": "د وخت رسولو شرکت ته ښه راغلاست",
-      "mobile_number": "د موبایل شمیره",
-      "password": "پټ نوم",
-      "remember_me": "ما په یاد وساته",
-      "forgot_password": "پټ نوم مو هیر شوی؟",
-      "login_button": "ننوتل",
-      "no_account": "حساب نه لرئ؟",
-      "sign_up_link": "نوم لیکنه",
-      "or_divider": "یا",
-      "terms_guide": "د دوام په کلیک کولو سره، تاسو زموږ سره موافق یاست",
-      "terms_of_service": "د خدمت شرطونه",
-      "and": "او",
-      "privacy_policy": "د محرمیت تګلاره",
-      "google_login": "د ګوګل سره دوام ورکړئ",
-      "facebook_login": "د فیسبوک سره دوام ورکړئ"
+  "time": {
+    "hoursAndMinutes": "{hours, number}س {minutes, number}د",
+    "hoursOnly": "{hours, number}س",
+    "minutesOnly": "{minutes, number}د",
+    "zeroMinutes": "0د"
+  },
+  "components": {
+    "menu_item_card": {
+      "cookTimeShort": "{duration, plural, one {# دقیقه} other {# دقیقې}}",
+      "see_restaurant": "رستورانت وګورئ",
+      "not_available": "شتون نلري"
     },
-    "signup": {
-      "title": "د وخت رسولو سره یوځای شئ",
-      "create_account": "خپل حساب جوړ کړئ",
+    "menu_item_detail": {
+      "available": "موجود",
+      "cook_time": "{minutes} دقیقې",
+      "description": "تفصیل",
+      "quantity": "مقدار",
+      "add_ons": "اضافات",
+      "item_price": "د توکي بیه",
+      "add_on_price": "د اضافاتو بیه",
+      "total_price": "ټولټال بیه",
+      "login_to_order": "د سپارښتنې لپاره ننوځئ",
+      "messages": {
+        "failed_fetch": "د مینو توکي توضیحاتو په راوړلو کې پاتې راغی",
+        "item_in_cart": "توکی لا دمخه په کارټ کې دی",
+        "failed_add_to_cart": "کارټ ته د توکي په اضافه کولو کې پاتې راغی",
+        "success_add_to_cart": "توکی په بریالیتوب سره کارټ ته اضافه شو"
+      },
+      "clear_cart": {
+        "title": "کارټ پاک کړئ",
+        "description": "ستاسو په کارټ کې توکي د بل رستورانت څخه دي. که تاسو دوام ورکړئ، ستاسو په کارټ کې اوسني توکي به پاک شي.",
+        "buttons": {
+          "cancel": "لغوه کول",
+          "continue": "دوام"
+        }
+      }
+    },
+    "restaurant_card": {
+      "delivery_time": "{}",
+      "closed": "تړلی"
+    },
+    "profile_update_form": {
       "first_name": "لومړی نوم",
-      "last_name": "وروستی نوم",
-      "mobile_number": "د موبایل شمیره",
-      "password": "پټ نوم",
-      "confirm_password": "پټ نوم تایید کړئ",
-      "agree": "زه د ټولو سره موافق یم",
-      "terms_of_service": "شرایط او مقررات",
-      "signup_button": "نوم لیکنه",
-      "already_have_account": "مخکې له مخکې حساب لرئ؟",
-      "login_link": "ننوتل",
-      "or_divider": "یا"
-    },
-    "verification": {
-      "title": "تایید",
-      "enter_code_prompt": "د خپل تلیفون شمیرې د تایید لپاره ۴ عددي کوډ دننه کړئ",
-      "verify_button": "تایید",
-      "no_code_received": "کوډ مو ترلاسه نه کړ؟",
-      "resend_link": "بیا واستوئ",
-      "otp_message": "دا ستاسو یو ځل کاریدونکی پټ نوم دی"
-    },
-    "forgot_password": {
-      "title": "پټ نوم مو هیر شوی",
-      "instruction": "هغه تلیفون شمیره دننه کړئ چې ستاسو د حساب سره تړاو لري او موږ به تاسو ته یو لینک واستوو چې ستاسو د پټ نوم د بیا تنظیمولو لپاره لارښوونې ولري.",
-      "mobile_number": "د موبایل شمیره",
-      "send_button": "واستوئ"
-    },
-    "account_update": {
-      "title": "خپل حساب تنظیم کړئ",
-      "first_name": "لومړی نوم",
-      "last_name": "وروستی نوم",
+      "last_name": "تخلص",
       "mobile_number": "د موبایل شمیره",
       "gender": "جنسیت",
       "male": "نارینه",
-      "female": "ښځينه",
+      "female": "ښځینه",
       "other": "نور",
-      "date_of_birth": "د زیږیدنې نیټه",
-      "save_button": "خوندي کړئ"
+      "date_of_birth": "د زیږون نیټه",
+      "save_button": "خوندي کول"
+    },
+    "add_address_form": {
+      "labels": {
+        "save_as": "پته د دې په توګه خوندي کړئ*",
+        "title": "عنوان",
+        "address": "پته",
+        "floor": "پوړ",
+        "landmark": "نږدې نښه",
+        "mobile_number": "د موبایل شمیره",
+        "pincode": "پوستي کوډ"
+      },
+      "placeholders": {
+        "title": "د مثال په توګه کور",
+        "address": "د مثال په توګه د سینټ جورج کلیسا ته نږدې",
+        "floor": "د مثال په توګه دریم پوړ، اپارتمان ۳۰۱",
+        "landmark": "(اختیاري)",
+        "pincode": "پوستي کوډ ولیکئ"
+      },
+      "address_types": {
+        "home": "کور",
+        "office": "دفتر",
+        "hotel": "هوټل",
+        "other": "نور"
+      },
+      "buttons": {
+        "save_address": "پته خوندي کړئ",
+        "confirm_location": "ځای تایید کړئ",
+        "location_confirmed": "ځای تایید شو"
+      },
+      "messages": {
+        "save_success": "پته خوندي شوه!",
+        "save_error": "د پتې په اضافه کولو کې پاتې راغی، مهرباني وکړئ بیا هڅه وکړئ.",
+        "map_instruction": "د ځای ټاکلو لپاره په نقشه کلیک وکړئ یا یې وپلټئ.",
+        "allow_location_permission": "مهرباني وکړئ د ځای اجازې ته اجازه ورکړئ",
+        "location_confirmed_success": "✓ ځای تایید شو! اوس په ښي خوا کې د خپلې پتې توضیحات ډک کړئ.",
+        "select_location_error": "مهرباني وکړئ په نقشه کې یو ځای وټاکئ."
+      }
+    },
+    "category_card": {
+      "explore": "پلټنه",
+      "menu": "مینو"
+    },
+    "pagination": {
+      "previous": "مخکینی",
+      "next": "بل",
+      "more": "نورې پاڼې",
+      "go_to_next": "بلې پاڼې ته لاړ شئ",
+      "go_to_previous": "مخکینۍ پاڼې ته لاړ شئ"
+    },
+    "checkout_sheet": {
+      "trigger": "پیسې ورکول",
+      "title": "پیسې ورکول",
+      "instruction": "ځانګړې لارښوونې",
+      "delivery_address": {
+        "title": "د رسولو پته",
+        "select_address": "پته وټاکئ",
+        "select_address_desc": "د خپل سپارښتنې لپاره یوه پته وټاکئ",
+        "default": "اصلي",
+        "fetch_failed": "د پتو په راوړلو کې پاتې راغی",
+        "add_new_address": "نوې پته اضافه کړئ"
+      },
+      "offers": {
+        "apply_offer": "وړاندیز پلي کړئ",
+        "dialog_title": "یو وړاندیز پلي کړئ",
+        "dialog_description": "د پلي کولو لپاره یو وړاندیز وټاکئ",
+        "no_offers": "هیڅ وړاندیز شتون نلري",
+        "fetch_error": "د وړاندیزونو په راوړلو کې پاتې راغی",
+        "discount": "-{discount} افغانۍ",
+        "min_order": "لږ تر لږه سپارښتنه: <highlight></highlight>",
+        "below_min": "له لږ تر لږه سپارښتنې څخه کم",
+        "selected": "ټاکل شوی"
+      },
+      "payment_methods": {
+        "title": "د تادیې طریقه",
+        "cash_on_delivery": "د سپارلو پر مهال نغدي پیسې",
+        "hesab_pay": "حساب پې"
+      },
+      "order_button": {
+        "item_total": "د توکو ټولټال",
+        "delivery_fee": "د رسولو فیس",
+        "total_price": "ټولټال بیه",
+        "discount": "تخفیف",
+        "order_now": "اوس سپارښتنه وکړئ",
+        "select_address": "پته وټاکئ"
+      },
+      "messages": {
+        "select_address": "مهرباني وکړئ یوه پته وټاکئ",
+        "empty_cart": "کارټ تش دی",
+        "failed_order": "د سپارښتنې په ورکولو کې پاتې راغی",
+        "success_order": "سپارښتنه په بریالیتوب سره ثبت شوه",
+        "error": "تېروتنه"
+      }
+    },
+    "copiable_text": {
+      "copy_success": "{title} کلیپ بورډ ته کاپي شو!",
+      "copy_failed": "د {title} په کاپي کولو کې پاتې راغی"
+    },
+    "favourite_button": {
+      "added_to_fav": "د خوښې وړ توکو کې اضافه شو",
+      "removed_from_fav": "د خوښې وړ توکو څخه لرې شو",
+      "failed": "د خوښې وړ حالت په بدلولو کې پاتې راغی"
+    }
+  },
+  "toast": {
+    "welcome": "ښه راغلاست",
+    "welcome_back": "بیا ښه راغلاست",
+    "here_otp": "ستاسو یو ځلي پټنوم دلته دی",
+    "error": "تېروتنه",
+    "success": "پټنوم په بریالیتوب سره بدل شو"
+  },
+  "auth": {
+    "login": {
+      "welcome": "ټایم ډیلیوري شرکت ته ښه راغلاست",
+      "mobile_number": "د موبایل شمیره",
+      "password": "پټنوم",
+      "remember_me": "ما په یاد وساته",
+      "forgot_password": "پټنوم مو هیر شوی؟",
+      "login_button": "ننوتل",
+      "no_account": "حساب نه لرئ؟",
+      "sign_up_link": "ګډون وکړئ",
+      "or_divider": "یا",
+      "terms_guide": "په دوام کلیک کولو سره، تاسو زموږ سره موافق یاست",
+      "terms_of_service": "د خدمت شرایط",
+      "and": "او",
+      "privacy_policy": "د محرمیت تګلاره",
+      "google_login": "د ګوګل سره دوام ورکړئ",
+      "facebook_login": "د فیسبوک سره دوام ورکړئ",
+      "messages": {
+        "error": "تېروتنه",
+        "welcome_back": "بیا ښه راغلاست {fullName}",
+        "success": "په بریالیتوب سره ننووتل"
+      }
+    },
+    "signup": {
+      "title": "د ټایم ډیلیوري سره یوځای شئ",
+      "create_account": "خپل حساب جوړ کړئ",
+      "first_name": "لومړی نوم",
+      "last_name": "تخلص",
+      "mobile_number": "د موبایل شمیره",
+      "password": "پټنوم",
+      "confirm_password": "پټنوم بیا ولیکئ",
+      "agree": "زه د ټولو سره موافق یم ",
+      "terms_of_service": "شرایط او مقررات",
+      "signup_button": "ګډون",
+      "already_have_account": "مخکې له دې حساب لرئ؟",
+      "login_link": "ننوتل",
+      "or_divider": "یا",
+      "referral-code": "د راجع کولو کوډ",
+      "john": "جان",
+      "doe": "ډو",
+      "optional": "(اختیاري)",
+      "messages": {
+        "error": "تېروتنه",
+        "here_otp": "ستاسو یو ځلي پټنوم دلته دی"
+      }
+    },
+    "verification": {
+      "title": "تایید",
+      "enter_code_prompt": "د خپل تلیفون شمیرې تاییدولو لپاره ۴ عددي کوډ دننه کړئ",
+      "verify_button": "تایید",
+      "no_code_received": "کوډ مو ترلاسه نه کړ؟",
+      "resend_link": "بیا لیږل",
+      "otp_message": "ستاسو یو ځلي پټنوم دلته دی",
+      "messages": {
+        "error": "تېروتنه",
+        "welcome": "ښه راغلاست {fullName}",
+        "here_otp": "ستاسو یو ځلي پټنوم دلته دی"
+      }
+    },
+    "forgot_password": {
+      "title": "پټنوم هیر شوی",
+      "instruction": "د خپل حساب سره تړلې د تلیفون شمیره دننه کړئ او موږ به تاسو ته د خپل پټنوم بیا تنظیمولو لپاره د لارښوونو سره یو لینک واستوو.",
+      "mobile_number": "د موبایل شمیره",
+      "send_button": "لیږل"
     },
     "marketing": {
-      "headline": "خوندور خواړه، ستاسو دروازې ته رسول کیږي",
-      "subheadline": "له خپلو غوره رستورانتونو څخه غوښتنه وکړئ او په څو دقیقو کې تازه، ګرم خواړه ترلاسه کړئ.",
+      "headline": "خوندور خواړه، ستاسو تر ور پورې رسول کیږي",
+      "subheadline": "له خپلو غوره رستورانتونو څخه سپارښتنه وکړئ او په څو دقیقو کې تازه، ګرم خواړه ترلاسه کړئ.",
       "feature1": "ګړندی رسول",
       "feature2": "تازه خواړه",
       "feature3": "غوره بیې"
     }
   },
   "header": {
-    "home": "کور",
+    "home": "کورپاڼه",
     "restaurants": "رستورانتونه",
     "about_us": "زموږ په اړه",
     "contact_us": "له موږ سره اړیکه",
-    "offers": "وړاندیزونه",
-    "orders": "غوښتنې",
+    "favourites": "خوښې",
+    "orders": "سپارښتنې",
     "profile": "پروفایل",
+    "language": "ژبه",
     "login": "ننوتل",
-    "signup": "نوم لیکنه",
-    "create_an_account": "ننوتل یا حساب جوړ کړئ",
+    "signup": "ګډون",
+    "create_an_account": "ننوځئ یا حساب جوړ کړئ",
     "logout": "وتل",
     "logout_warning": "ایا تاسو ډاډه یاست چې وتل غواړئ؟",
     "continue": "دوام",
     "cancel": "لغوه کول",
+    "cart": {
+      "title": "زما کارټ",
+      "add_ons": "اضافات",
+      "subtotal": "فرعي مجموعه",
+      "empty_cart_title": "ستاسو کارټ تش دی",
+      "empty_cart_desc": "د پیل کولو لپاره ځینې خوندور خواړه اضافه کړئ!",
+      "messages": {
+        "failed_quantity_update": "د مقدار په نوي کولو کې پاتې راغی",
+        "failed_remove_cart": "له کارټ څخه د توکي په لرې کولو کې پاتې راغی"
+      }
+    },
     "notifications": {
+      "failed_fetch": "د خبرتیاوو په راوړلو کې پاتې راغی",
       "title": "خبرتیاوې",
-      "no_notifications": "تاسو کومه نوې خبرتیا نه لرئ",
+      "no_notifications": "تاسو نوې خبرتیاوې نلرئ",
       "view_all": "ټولې خبرتیاوې وګورئ"
     },
-    "search_placeholder": "خواړه، رستورانتونه او نور وپلټئ ..."
+    "search": {
+      "search_placeholder": "لټون",
+      "popular_searches": "مشهور لټونونه",
+      "recent_searches": "وروستي لټونونه"
+    },
+    "address": {
+      "failed_default": "د اصلي پتې په ټاکلو کې پاتې راغی",
+      "select_address": "پته وټاکئ",
+      "select_default": "اصلي پته وټاکئ",
+      "faild_fetch": "د پتو په راوړلو کې پاتې راغی",
+      "default": "اصلي",
+      "no_address": "هیڅ پته ونه موندل شوه",
+      "add_new_address": "نوې پته اضافه کړئ",
+      "edit_addresses": "پتې سمول"
+    }
   },
   "landing": {
     "hero": {
-      "title": "ستاسو د خوښې <span>خواړه ګرم او تازه</span> رسول کیږي",
-      "description": "هرچیرې چې ځئ، د کور د خوند تجربه وکړئ. زموږ پلیټ فارم تاسو د ځایی رستورانتونو سره نښلوي چې ګرم، تازه خواړه وړاندې کوي. نن آنلاین غوښتنه وکړئ!"
+      "subtitle": "ګرم او تازه رسول.",
+      "title": "ستاسو د خوښې خواړه <span>ګرم او تازه</span> رسول کیږي",
+      "description": "له خپلو غوره ځایی رستورانتونو څخه ګرم، تازه خواړه مستقیم ستاسو تر ور پورې ترلاسه کړئ. همدا اوس آنلاین سپارښتنه وکړئ!",
+      "order_now": "اوس سپارښتنه وکړئ",
+      "contact_us": "له موږ سره اړیکه"
     },
-    "popular_food_items": {
-      "title": "مشهور خواړه",
-      "start_from": "پیل له",
-      "order_button": "اوس غوښتنه وکړئ",
-      "this_week": "په دې اونۍ کې",
-      "limited_offer": "د محدود وخت لپاره وړاندیز"
+    "popular_items": {
+      "popular_foods": {
+        "title": "مشهور خواړه"
+      },
+      "best_selling_dishes": {
+        "title": "تر ټولو ډیر پلورل شوي خواړه"
+      },
+      "categories": {
+        "title": "کټګورۍ",
+        "see_all": "ټول وګورئ"
+      }
     },
     "popular_restaurants": {
       "title": "مشهور رستورانتونه",
-      "view_all": "ټول رستورانتونه وګورئ"
+      "view_all": "ټول رستورانتونه وګورئ",
+      "per_person": "د هر شخص لپاره"
     },
     "features": {
       "feature1": {
-        "title": "غوره کیفیت خواړه",
+        "title": "د غوره کیفیت خواړه",
         "description": "زموږ خواړه له تازه موادو څخه جوړیږي او د تجربه لرونکو پخونکو لخوا چمتو کیږي"
       },
       "feature2": {
@@ -121,19 +339,19 @@
       },
       "feature3": {
         "title": "اصلي خوند",
-        "description": "داسې مستند خوندونه تجربه کړئ چې تاسو به یې بیا وغواړئ."
+        "description": "اصلي خوندونه تجربه کړئ چې تاسو به یې د لا زیاتو لپاره لیواله کړي."
       },
       "feature4": {
         "title": "۲۴/۷ ملاتړ",
-        "description": "زموږ د پیرودونکو د ملاتړ ټیم ستاسو د مرستې لپاره ۲۴/۷ شتون لري."
+        "description": "زموږ د پیرودونکو ملاتړ ټیم ۲۴/۷ ستاسو سره د مرستې لپاره شتون لري."
       },
-      "app_promo": "د اپلیکیشن سره خپل د خوښې خواړه ژر ترلاسه کړئ"
+      "app_promo": "د اپلیکیشن سره خپل د خوښې خواړه په چټکۍ سره ترلاسه کړئ"
     },
     "special_food": {
       "off": "تخفیف",
       "title": "د نن ورځې ځانګړي خواړه",
       "limited_offer": "د محدود وخت لپاره وړاندیز",
-      "order_now": "اوس غوښتنه وکړئ"
+      "order_now": "اوس سپارښتنه وکړئ"
     },
     "testimonials": {
       "title": "زموږ پیرودونکي څه وايي"
@@ -141,8 +359,8 @@
   },
   "footer": {
     "about": {
-      "brand_name": "وخت",
-      "description": "خپل د خوښې خواړه ګرم او تازه ترلاسه کړئ. له کوره د وتلو اړتیا نشته - موږ خواړه تاسو ته راوړو."
+      "brand_name": "ټایم",
+      "description": "خپل د خوښې خواړه ګرم او تازه ترلاسه کړئ. له کوره وتلو ته اړتیا نشته - موږ خواړه تاسو ته راوړو."
     },
     "explore": {
       "title": "پلټنه",
@@ -158,12 +376,12 @@
       "title": "د اړیکو معلومات"
     },
     "newsletter": {
-      "title": "خبر پاڼه",
-      "description": "زموږ د ګډون کوونکو لیست سره یوځای شئ ترڅو وروستي خبرونه او وړاندیزونه ترلاسه کړئ.",
-      "placeholder": "بریښنالیک"
+      "title": "خبرپاڼه",
+      "description": "زموږ د ګډونوالو لیست سره یوځای شئ ترڅو وروستي خبرونه او وړاندیزونه ترلاسه کړئ.",
+      "placeholder": "برېښنالیک"
     },
     "bottom_bar": {
-      "copyright": "© ۲۰۲۵ <span>وخت</span> | ټول حقونه خوندي دي. د <a>GrowzTech</a> لخوا پرمخ وړل کیږي",
+      "copyright": "© ۲۰۲۵ <span>ټایم</span> | ټول حقونه خوندي دي. د <a>ګروزټیک</a> لخوا جوړ شوی",
       "privacy_policy": "محرمیت",
       "terms_and_conditions": "شرایط او مقررات"
     }
@@ -174,13 +392,13 @@
     },
     "services_section": {
       "subtitle": "زموږ په اړه",
-      "title": "موږ له څو خدمتونو څخه ډیر یو",
-      "description": "له خپل نږدې رستورانت څخه خواړه وغواړئ او همداشان د خپلې خوښې په رستورانت کې د ماښام ډوډۍ لپاره میز خوندي کړئ.",
+      "title": "موږ له څو خدماتو څخه ډیر یو",
+      "description": "له خپل نږدې رستورانت څخه خواړه سپارښتنه کړئ او همدارنګه د خپلې خوښې رستورانت کې د ماښامنۍ لپاره میز خوندي کړئ.",
       "services": {
-        "online_order": "آنلاین غوښتنه",
-        "pre_reservation": "مخکینۍ خوندي کول",
+        "online_order": "آنلاین سپارښتنه",
+        "pre_reservation": "مخکینۍ ریزرویشن",
         "24/7_service": "۲۴/۷ خدمت",
-        "organized": "منظم خواړه ځای",
+        "organized": "منظم د خوړو ځای",
         "clean": "پاکه پخلنځی",
         "fast": "ګړندی رسول"
       }
@@ -190,16 +408,16 @@
       "title": "دا څنګه کار کوي",
       "features": {
         "easy": {
-          "title": "د غوښتنې اسانتیا",
-          "description": "تاسو یوازې د خوړو په غوښتنه کې څو ګامونو ته اړتیا لرئ."
+          "title": "د سپارښتنې لپاره اسانه",
+          "description": "تاسو د خوړو سپارښتنې لپاره یوازې څو ګامونو ته اړتیا لرئ."
         },
         "fastest": {
-          "title": "ګړندی رسول",
-          "description": "هغه رسول چې تل په وخت او حتی ګړندی وي."
+          "title": "تر ټولو ګړندی رسول",
+          "description": "رسول چې تل پر وخت وي، حتی ګړندی."
         },
         "best": {
           "title": "غوره کیفیت",
-          "description": "زموږ لپاره یوازې ګړندیتوب نه، بلکې کیفیت هم لومړیتوب دی."
+          "description": "نه یوازې زموږ لپاره چټکتیا، بلکې کیفیت هم لومړی نمبر دی."
         }
       }
     }
@@ -211,10 +429,10 @@
     "contact_details": {
       "phone": {
         "name": "تلیفون",
-        "value": "+۱ ۲۳۴ ۵۶۷ ۸۹۰۰"
+        "value": "+1 234 567 8900"
       },
       "email": {
-        "name": "بریښنالیک",
+        "name": "برېښنالیک",
         "value": "support@time.com"
       },
       "location": {
@@ -225,11 +443,11 @@
     "contact_form": {
       "labels": {
         "full_name": "بشپړ نوم",
-        "email": "بریښنالیک",
+        "email": "برېښنالیک",
         "message": "پیغام"
       },
       "placeholders": {
-        "name": "جان دو"
+        "name": "جان ډو"
       },
       "submit_button": "پیغام واستوئ"
     }
@@ -242,6 +460,522 @@
   "terms_and_conditions": {
     "header": {
       "title": "شرایط او مقررات"
+    }
+  },
+  "home": {
+    "banners": {
+      "dynamic": {
+        "order_now": "اوس سپارښتنه وکړئ"
+      },
+      "static": {
+        "banner_1": {
+          "title": "خوندور خواړه، ګړندی رسول",
+          "subtitle": "په یوه دقیقه کې سپارښتنې ترلاسه کړئ",
+          "button": "اوس ټایم هڅه وکړئ!"
+        },
+        "banner_2": {
+          "title": "چټک خواړه، ګړندۍ سپارښتنې",
+          "subtitle": "په وخت کې تر ۳ سپارښتنو پورې.",
+          "button": "اوس سپارښتنه وکړئ!"
+        },
+        "banner_3": {
+          "title": "چټک خواړه، ګړندۍ سپارښتنې",
+          "subtitle": "په وخت کې تر ۳ سپارښتنو پورې.",
+          "button": "اوس سپارښتنه وکړئ!"
+        }
+      }
+    },
+    "offers": {
+      "title": "وړاندیزونه",
+      "see_detail": "تفصیل وګورئ"
+    },
+    "categories": {
+      "title": "کټګورۍ",
+      "see_all": "ټول وګورئ"
+    },
+    "popular_dishes": {
+      "title": "مشهور خواړه"
+    },
+    "best_selling_dishes": {
+      "title": "تر ټولو ډیر پلورل شوي خواړه"
+    },
+    "popular_restaurants": {
+      "title": "مشهور رستورانتونه",
+      "see_all": "ټول وګورئ"
+    }
+  },
+  "profile_setup": {
+    "title": "خپل حساب تنظیم کړئ"
+  },
+  "change_password": {
+    "title": "پټنوم بدل کړئ",
+    "password": "پټنوم",
+    "confirm_password": "پټنوم بیا ولیکئ",
+    "change_password": "پټنوم بدل کړئ",
+    "messages": {
+      "success": "پټنوم په بریالیتوب سره بدل شو",
+      "error": "تېروتنه"
+    }
+  },
+  "setup_address": {
+    "title": "خپله پته تنظیم کړئ",
+    "subtitle": "ستاسو خواړه چیرته ورسول شي."
+  },
+  "categories": {
+    "title": "کټګورۍ",
+    "messages": {
+      "something_went_wrong": "یو څه ستونزه وشوه",
+      "no_categories": "هیڅ کټګوري نشته",
+      "no_category_items": "په دې کټګورۍ کې هیڅ توکی نشته"
+    }
+  },
+  "restaurants": {
+    "title": "رستورانتونه",
+    "filter": {
+      "title": "د رستورانتونو فلټر",
+      "price_per_person": "د هر شخص لپاره بیه",
+      "sort": {
+        "title": "ترتیب",
+        "placeholder": "انتخاب کړئ...",
+        "types": {
+          "none": "هیڅ یو",
+          "1": "د هر شخص بیه: له کم څخه ډیر ته",
+          "2": "د هر شخص بیه: له ډیر څخه کم ته",
+          "3": "پخوا سپارښتنه شوي"
+        }
+      },
+      "rating": {
+        "title": "درجه بندي",
+        "placeholder": "انتخاب کړئ..."
+      },
+      "categories": {
+        "title": "کټګورۍ",
+        "placeholder": "انتخاب کړئ...",
+        "searchPlaceholder": "لټون...",
+        "select_all": "ټول وټاکئ",
+        "clearText": "پاکول",
+        "closeText": "تړل"
+      },
+      "offers": {
+        "title": "وړاندیزونه",
+        "offer_item": "تر {offer,number,percent} پورې تخفیف"
+      },
+      "buttons": {
+        "filters": "فلټرونه",
+        "apply": "پلي کول",
+        "clear": "پاکول"
+      }
+    },
+    "messages": {
+      "something_went_wrong": "یو څه ستونزه وشوه",
+      "no_results": "هیڅ پایله نشته",
+      "failed_categories": "د کټګوریو په ترلاسه کولو کې پاتې راغی"
+    },
+    "restaurant_details": {
+      "tabs": {
+        "top": {
+          "short": "غوره",
+          "full": "غوره درجه بندي شوي"
+        },
+        "menu": "مینو",
+        "reviews": "بیاکتنې",
+        "photos": "عکسونه",
+        "info": "معلومات",
+        "offers": "وړاندیزونه"
+      },
+      "header": {
+        "closed": "تړلی",
+        "delivery_fee": "د رسولو فیس",
+        "delivery_time": "د رسولو وخت",
+        "delivered_by": "د دې لخوا رسول کیږي",
+        "time_delivery": "ټایم ډیلیوري"
+      },
+      "reviews": {
+        "title": "درجه بندي او بیاکتنې",
+        "rating_description": "درجه بندي او بیاکتنې تایید شوي او د هغو خلکو څخه راځي چې ورته خدمات یې ترلاسه کړي دي، کوم چې د پیرودونکو سره د ریښتیني شهادتونو په ترلاسه کولو کې مرسته کوي.",
+        "read_more": "نور ولولئ",
+        "read_less": "لږ ولولئ"
+      },
+      "error": {
+        "title": "اوه! یو څه ستونزه وشوه",
+        "description": "موږ همدا اوس د رستورانت توضیحات نشو پورته کولی",
+        "details": {
+          "title": "څه وشول؟",
+          "1": "رستورانت ممکن په موقتي توګه شتون ونلري",
+          "2": "کیدای شي د شبکې اتصال ستونزه وي",
+          "3": "د رستورانت معلومات ممکن تازه شوي وي"
+        },
+        "button": {
+          "try_again": "بیا هڅه وکړئ",
+          "back": "بیرته لاړ شئ"
+        }
+      },
+      "info": {
+        "title": "د رستورانت معلومات",
+        "about": "په اړه",
+        "address": "پته",
+        "contact_info": "د اړیکو معلومات",
+        "mobile": "موبایل",
+        "availability": {
+          "title": "شتون",
+          "subtitle": "دلته زموږ کاري ساعتونه دي",
+          "days": {
+            "opening_hours": "{startTime} - {endTime}",
+            "0": "دوشنبه",
+            "1": "سه شنبه",
+            "2": "چهارشنبه",
+            "3": "پنجشنبه",
+            "4": "جمعه",
+            "5": "شنبه",
+            "6": "یکشنبه"
+          },
+          "buttons": {
+            "trigger": "له <highlight>{startTime}</highlight> څخه تر <highlight>{endTime}</highlight> پورې خلاص",
+            "close": "تړل",
+            "closed": "تړلی"
+          }
+        }
+      },
+      "offers": {
+        "no_offers": "هیڅ وړاندیز نشته",
+        "something_went_wrong": "یو څه ستونزه وشوه",
+        "min_order": "لږ تر لږه سپارښتنه: <highlight></highlight>",
+        "expired": "پای ته رسیدلی",
+        "expires_today": "نن پای ته رسیږي",
+        "days_left": "{days} ورځې پاتې دي"
+      }
+    }
+  },
+  "profile": {
+    "sidebar": {
+      "title": "حساب",
+      "personal": "شخصي معلومات",
+      "favourites": "خوښې",
+      "orders": "سپارښتنې",
+      "transactions": "د راکړې ورکړې تاریخچه",
+      "notifications": "خبرتیاوې",
+      "referrals": "راجعات",
+      "security": "امنیت",
+      "help": "مرسته او ملاتړ"
+    },
+    "personal_info": {
+      "title": "زما پروفایل",
+      "subtitle": "خپل شخصي توضیحات او غوره توبونه اداره کړئ.",
+      "personal_info": "شخصي معلومات",
+      "buttons": {
+        "edit": "سمول"
+      },
+      "na": "نشته",
+      "genders": {
+        "male": "نارینه",
+        "female": "ښځینه",
+        "other": "نور"
+      },
+      "labels": {
+        "first_name": "لومړی نوم",
+        "last_name": "تخلص",
+        "gender": "جنسیت",
+        "date_of_birth": "د زیږون نیټه",
+        "email": "برېښنالیک",
+        "phone_number": "د تلیفون شمیره"
+      }
+    },
+    "delivery_info": {
+      "delivery_address": "د رسولو پته",
+      "select_address": "اصلي پته وټاکئ یا د رسولو بل ځای اضافه کړئ",
+      "address_list": {
+        "errors": {
+          "something_went_wrong": "یو څه ستونزه وشوه"
+        },
+        "messages": {
+          "failed_set_default": "د اصلي پتې په ټاکلو کې پاتې راغی",
+          "failed_delete": "د پتې په حذف کولو کې پاتې راغی",
+          "success_delete": "پته په بریالیتوب سره حذف شوه"
+        },
+        "delete_dialog": {
+          "title": "ایا تاسو په بشپړه توګه ډاډه یاست؟",
+          "description": "دا عمل بیرته نشي اخیستل کیدی. دا به ستاسو دا پته د تل لپاره حذف کړي او زموږ له سرورونو څخه به ډاټا لرې کړي.",
+          "buttons": {
+            "cancel": "لغوه کول",
+            "confirm": "تایید"
+          }
+        },
+        "default": "اصلي",
+        "set_default": "اصلي وټاکئ",
+        "add_new_address": "نوې پته اضافه کړئ"
+      }
+    },
+    "edit_profile": {
+      "title": "خپل پروفایل سم کړئ",
+      "description": "لاندې خپل شخصي توضیحاتو او د حساب معلوماتو کې بدلونونه راولئ."
+    },
+    "favourites": {
+      "title": "خوښې",
+      "no_fav_title": "تاسو تر اوسه کوم د خوښې رستورانت نلرئ.",
+      "no_fav_desc": "په هر رستورانت کې د زړه نښه ټایپ کړئ ترڅو دلته یې د اسانه لاسرسي لپاره خوندي کړئ.",
+      "errors": {
+        "failed_fetch": "د خوښې رستورانتونو په راوړلو کې پاتې راغی"
+      }
+    },
+    "notifications": {
+      "title": "خبرتیاوې",
+      "no_notifs_title": "تاسو تر اوسه کومه خبرتیا نلرئ.",
+      "no_notifs_desc": "ستاسو خبرتیاوې به دلته ښکاره شي.",
+      "errors": {
+        "failed_fetch": "د خبرتیاوو په راوړلو کې پاتې راغی"
+      },
+      "mark_read": "لوستل شوی په نښه کړئ",
+      "view": "وګورئ"
+    },
+    "referrals": {
+      "title": "ستاسو د راجع کولو کوډ",
+      "description": "خپل د راجع کولو کوډ له ملګرو سره شریک کړئ او کله چې دوی ګډون کوي، انعامونه ترلاسه کړئ.",
+      "error": {
+        "title": "د راجع کولو توضیحاتو په پورته کولو کې پاتې راغی",
+        "desc": "موږ ستاسو د راجع کولو معلوماتو د ترلاسه کولو هڅه کولو پرمهال له یوې ستونزې سره مخ شو. دا ممکن یوه لنډمهاله ستونزه وي. مهرباني وکړئ په څو شیبو کې بیا هڅه وکړئ."
+      },
+      "points_overview": {
+        "available_points_title": "موجود ټکي",
+        "max_discount": "{discount} اعظمي تخفیف شتون لري",
+        "total_earned": "ټول ترلاسه شوي",
+        "all_time_earning": "د ټول وخت لاسته راوړنه",
+        "referrals": "راجعات",
+        "friends_referred": "راجع شوي ملګري",
+        "discount_earned": "ترلاسه شوی تخفیف",
+        "total_savings": "ټول سپما"
+      },
+      "referral_sharing": {
+        "copied": "کاپي شو",
+        "code_copied": "د راجع کولو کوډ کلیپ بورډ ته کاپي شو",
+        "link_copied": "د راجع کولو لینک کلیپ بورډ ته کاپي شو",
+        "error": {
+          "failed_copy": "په کاپي کولو کې پاتې راغی"
+        },
+        "title": "شریک کړئ او وګټئ",
+        "description": "د ټکو ګټلو لپاره خپل د راجع کولو کوډ یا لینک له ملګرو سره شریک کړئ",
+        "referral_code": "د راجع کولو کوډ",
+        "referral_link": "د راجع کولو لینک",
+        "copy": "کوډ کاپي کړئ",
+        "share": "شریکول"
+      },
+      "history_tabs": {
+        "title": "فعالیت او تاریخچه",
+        "points": "د ټکو تاریخچه",
+        "no_points": "د ټکو تاریخچه شتون نلري",
+        "gained_points": "+ {points}",
+        "used_points": "- {points}",
+        "usage": "د کارونې تاریخچه",
+        "no_usage": "تاسو کوم ټکي نه دي کارولي",
+        "order_no": "د سپارښتنې شمیره:{order_no}",
+        "status": "حالت: {status}",
+        "users": "راجع شوي کاروونکي",
+        "no_users": "هیڅ کاروونکي ستاسو د راجع کولو کوډ سره یوځای شوي ندي",
+        "joined_at": "په {joined_at} کې یوځای شوی",
+        "total_spent": "ټول مصرف: <total_spent></total_spent>"
+      },
+      "redemption_rules": {
+        "title": "د خلاصون قواعد",
+        "min_points": "د خلاصون لپاره لږ تر لږه",
+        "points_per_percent": "د هر ۱٪ تخفیف لپاره ټکي",
+        "max_discount_per_order": "د هر سپارښتنې لپاره اعظمي تخفیف",
+        "max_discount_percent": "{discount}%",
+        "points": "{points} ټکي",
+        "current_discount": "د اوسني تخفیف وړتیا"
+      },
+      "referral_stats_card": {
+        "title": "ستاسو اغیز",
+        "friends_joined": "یوځای شوي ملګري",
+        "orders_with_discount": "د تخفیف سره سپارښتنې",
+        "total_discount": "ټول تخفیف"
+      }
+    },
+    "transactions": {
+      "title": "د راکړې ورکړې تاریخچه",
+      "description": "خپل ټول د تادیې معاملې او د هغوی حالت وګورئ.",
+      "error": {
+        "something_went_wrong": "یو څه ستونزه وشوه"
+      },
+      "no_transactions": "هیڅ معامله ونه موندل شوه",
+      "status": {
+        "pending": "په تمه",
+        "success": "بریالی",
+        "completed": "بشپړ شوی",
+        "failed": "ناکام"
+      },
+      "columns": {
+        "transaction_id": "د معاملې ID",
+        "restaurant": "رستورانت",
+        "status": "حالت",
+        "order_no": "د سپارښتنې شمیره",
+        "placed_on": "ثبت شوی په",
+        "method": {
+          "title": "طریقه",
+          "cash_on_delivery": "د سپارلو پر مهال نغدي پیسې",
+          "hesab_pay": "حساب پې"
+        },
+        "amount": "مقدار",
+        "na": "نشته"
+      }
+    },
+    "orders": {
+      "title": "د سپارښتنو تاریخچه",
+      "description": "خپلې سپارښتنې وګورئ او تعقیب یې کړئ.",
+      "filter": {
+        "placeholder": "سپارښتنې فلټر کړئ",
+        "active": "فعالې سپارښتنې",
+        "past": "تیرې سپارښتنې"
+      },
+      "columns": {
+        "restaurant": "رستورانت",
+        "order_no": "د سپارښتنې شمیره",
+        "order_status": "د سپارښتنې حالت",
+        "amount": "مقدار",
+        "placed_on": "ثبت شوی په",
+        "view": "وګورئ"
+      },
+      "error": {
+        "something_went_wrong": "یو څه ستونزه وشوه"
+      },
+      "no_orders_title": "تاسو تر اوسه کومه سپارښتنه نلرئ.",
+      "no_orders_desc": "ستاسو سپارښتنې به دلته ښکاره شي.",
+      "order_detail": {
+        "title": "د سپارښتنې تفصیل",
+        "description": "د خپلې سپارښتنې تفصیل تعقیب کړئ.",
+        "order_no": "د سپارښتنې شمیره",
+        "delivery_address": "د رسولو پته",
+        "payment": "تادیه",
+        "payment_method": "د تادیې طریقه",
+        "cash_on_delivery": "د سپارلو پر مهال نغدي پیسې",
+        "hesab_pay": "حساب پې",
+        "payment_status": {
+          "paid": "تادیه شوی",
+          "unpaid": "تادیه شوی نه دی"
+        },
+        "item_total": "د توکو ټولټال",
+        "delivery_charges": "د رسولو لګښتونه",
+        "total": "ټولټال",
+        "order_item": "د سپارښتنې توکي",
+        "quantity": "مقدار: {quantity}",
+        "add_ons": "اضافات",
+        "track_order": {
+          "trigger": "سپارښتنه تعقیب کړئ",
+          "status": "حالت",
+          "error": {
+            "failed_fetch": "د سپارښتنې حالت په ترلاسه کولو کې پاتې راغی"
+          },
+          "buttons": {
+            "close": "تړل",
+            "try_againt": "بیا هڅه وکړئ"
+          },
+          "PENDING": "سپارښتنه ثبت شوه",
+          "ASSIGNED": "سپارښتنه تایید شوه",
+          "WAITING": "د اخیستلو لپاره چمتو دی",
+          "PICKED_UP": "واخیستل شو",
+          "DELIVERED": "وروسول شو"
+        },
+        "order_status": {
+          "order_placed": "سپارښتنه ثبت شوه",
+          "order_confirmed": "سپارښتنه تایید شوه",
+          "ready_for_pickup": "د اخیستلو لپاره چمتو دی",
+          "picked_up": "واخیستل شو",
+          "delivered": "وروسول شو",
+          "cancelled": "لغوه شوی",
+          "rejected": "رد شوی"
+        },
+        "order_cancel_modal": {
+          "trigger": "سپارښتنه لغوه کړئ",
+          "title": "سپارښتنه لغوه کړئ",
+          "description": "ایا تاسو ډاډه یاست چې دا سپارښتنه لغوه کول غواړئ؟",
+          "reason": "ستاسو د لغوه کولو دلیل",
+          "cancel": "لغوه کول",
+          "messages": {
+            "success": "سپارښتنه په بریالیتوب سره لغوه شوه",
+            "error": "د سپارښتنې په لغوه کولو کې پاتې راغی"
+          }
+        },
+        "review_modal": {
+          "trigger": "بیاکتنه پریږدئ",
+          "title": "ستاسو تجربه څنګه وه",
+          "delivered_to": "سپارښتنه {address} ته ورسول شوه",
+          "rate_restaurant": "رستورانت ته درجه ورکړئ",
+          "restaurant_placeholder": "خواړه او خدمت څنګه وو؟",
+          "rate_rider": "خپل سپارونکی ته درجه ورکړئ",
+          "rider_placeholder": "د رسولو تجربه څنګه وه؟",
+          "submit": "بیاکتنه وسپارئ",
+          "message": {
+            "no_review": "مهرباني وکړئ د رستورانت او سپارونکي لپاره درجه بندي چمتو کړئ.",
+            "success": "ستاسو د بیاکتنې څخه مننه!",
+            "error": "بخښنه غواړو، موږ ستاسو بیاکتنه نشو سپارلی. مهرباني وکړئ بیا هڅه وکړئ."
+          }
+        },
+        "error": {
+          "title": "د سپارښتنې توضیحات نشي پورته کیدی",
+          "description": "داسې ښکاري چې د سپارښتنې معلوماتو په ترلاسه کولو کې ستونزه وه."
+        },
+        "thanks_feedback": "ستاسو د نظر څخه مننه."
+      }
+    },
+    "help": {
+      "title": "مرسته او ملاتړ",
+      "description": "مرسته ترلاسه کړئ او زموږ د ملاتړ ټیم سره اړیکه ونیسئ.",
+      "faq": {
+        "title": "ډیرې پوښتل شوې پوښتنې",
+        "description": "عامو پوښتنو ته ځوابونه ومومئ",
+        "error": {
+          "failed_fetch": "د ډیرو پوښتل شویو پوښتنو په راوړلو کې پاتې راغی"
+        }
+      },
+      "faq_card": {
+        "title": "ډیرې پوښتل شوې پوښتنې",
+        "description": "عامو پوښتنو ته ځوابونه ومومئ",
+        "button": "FAQ وپلټئ"
+      },
+      "chat": {
+        "title": "ژوندۍ خبرې",
+        "description": "د فوري مرستې لپاره زموږ د ملاتړ له یوه استازي سره اړیکه ونیسئ.",
+        "placeholder": "یو پیغام ولیکئ...",
+        "error": {
+          "fetch_failed": "د پیغام تاریخچې په راوړلو کې پاتې راغی"
+        }
+      },
+      "chat_card": {
+        "title": "ژوندۍ خبرې",
+        "description": "زموږ د ملاتړ ټیم سره خبرې وکړئ",
+        "button": "خبرې پیل کړئ"
+      }
+    },
+    "security": {
+      "title": "امنیت",
+      "description": "د خپل حساب امنیتي تنظیمات اداره کړئ",
+      "change_password_card": {
+        "title": "خپل پټنوم بدل کړئ",
+        "description": "لاندې خپل پټنوم تازه کړئ.",
+        "button": "پټنوم بدل کړئ"
+      },
+      "change_password": {
+        "title": "خپل پټنوم بدل کړئ",
+        "description": "ستاسو د امنیت لپاره، موږ د یو قوي پټنوم غوره کولو وړاندیز کوو چې تاسو یې بل چیرې نه کاروئ.",
+        "password": "پټنوم",
+        "confirm_password": "پټنوم بیا ولیکئ",
+        "change_password": "پټنوم بدل کړئ",
+        "success": "پټنوم په بریالیتوب سره بدل شو",
+        "error": "تېروتنه"
+      },
+      "delete_acc_card": {
+        "title": "خپل حساب حذف کړئ",
+        "description": "ستاسو حساب به د تل لپاره حذف شي.",
+        "button": "حساب حذف کړئ"
+      },
+      "delete-account": {
+        "title": "خپل حساب حذف کړئ",
+        "description": "کله چې تاسو خپل حساب حذف کړئ، بیرته راګرځیدل نشته. دا عمل بیرته نشي اخیستل کیدی او وبه کړي:",
+        "list-item-1": "• ستاسو پروفایل او د حساب ډاټا به د تل لپاره حذف کړي",
+        "list-item-2": "• ستاسو ټول د راجع کولو تاریخچه او احصایې به لرې کړي",
+        "list-item-3": "• هر ډول پاتې انعامونه یا تادیات به لغوه کړي",
+        "list-item-4": "• ټولو خدماتو ته به لاسرسی لغوه کړي",
+        "password-label": "پټنوم",
+        "delete-account-button": "حساب حذف کړئ"
+      }
     }
   }
 }

@@ -110,7 +110,7 @@ const UserDropdown = ({ className }: React.ComponentProps<"button">) => {
 
         <DropdownMenuSeparator className="" />
         <div className="px-2 py-1">
-          {dropdownItems.map(({ label, key, icon: Icon, link }) => (
+          {dropdownItems.map(({ key, icon: Icon, link }) => (
             <DropdownMenuItem
               key={link}
               className="flex cursor-pointer items-center gap-3 px-2 py-3"

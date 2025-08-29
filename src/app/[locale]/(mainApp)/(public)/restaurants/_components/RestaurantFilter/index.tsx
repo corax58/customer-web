@@ -185,7 +185,7 @@ const RestaurantFilter = ({ className, setOpen }: RestaurantFilterProps) => {
                 onClick={() => handleOfferChange(offer.toString())}
               />
               <Label htmlFor={`offer_${offer}`}>
-                {t("offers.offer_item", { offer })}
+                {t("offers.offer_item", { offer: offer / 100 })}
               </Label>
             </div>
           ))}

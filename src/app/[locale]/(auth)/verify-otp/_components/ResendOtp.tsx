@@ -12,7 +12,6 @@ interface ResendOtpProps {
   country_code: string;
 }
 const ResendOtp = ({ contact_no, country_code }: ResendOtpProps) => {
-  const toastTrans = useTranslations("toast");
   const t = useTranslations("auth.verification");
 
   const { Otp, error, isLoading, resendOtp } = useResendOtp();
@@ -28,14 +27,14 @@ const ResendOtp = ({ contact_no, country_code }: ResendOtpProps) => {
 
   useEffect(() => {
     if (error) {
-      toast.error(toastTrans("error"), { description: error });
+      toast.error(t("messages.error"), { description: error });
     }
     if (Otp) {
-      toast.message(toastTrans("here_otp"), {
+      toast.message(t("messages.here_otp"), {
         description: Otp,
       });
     }
-  }, [error, Otp, toastTrans]);
+  }, [error, Otp, t]);
   return (
     <Button
       type="button"
