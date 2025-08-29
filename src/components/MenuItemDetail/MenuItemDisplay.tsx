@@ -55,7 +55,7 @@ const MenuItemDisplay = ({
         <div className="text-muted-foreground flex items-center gap-1">
           <CookingPot size={16} />{" "}
           {t("cook_time", {
-            cook_time: formatter.number(parseInt(menuItem.cook_time)),
+            minutes: formatter.number(parseInt(menuItem.cook_time)),
           })}
         </div>
       </div>

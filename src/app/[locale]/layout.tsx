@@ -1,4 +1,5 @@
 import { Poppins, Sigmar } from "next/font/google";
+import { Vazirmatn } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import type { Metadata } from "next";
@@ -21,12 +22,12 @@ const sigmar = Sigmar({
   weight: ["400"],
   variable: "--font-sigmar",
 });
+const vazirmatn = Vazirmatn({
+  subsets: ["arabic", "latin"],
+  variable: "--font-vazirmatn",
+});
 
-export const metadata: Metadata = {
-  title: "Time delivery: Your Favourite Food Delivered Hot & Fresh",
-  description:
-    "Get your favorite meals from top local restaurants in delivered to your door. With Time delivery, browse menus, place orders online, and enjoy food quickly!",
-};
+const RTL_LOCALES = ["ps-AF", "fa-AF"];
 
 export default async function RootLayout({
   children,
@@ -39,9 +40,14 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+  const direction = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";
+
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={` ${poppins.variable} ${sigmar.variable} antialiased`}>
+      <body
+        className={` ${poppins.variable} ${sigmar.variable} ${vazirmatn.variable} antialiased`}
+        dir={direction}
+      >
         <NextIntlClientProvider>
           <AuthProvider>
             <ThemeProvider
@@ -59,3 +65,9 @@ export default async function RootLayout({
     </html>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Time delivery: Your Favourite Food Delivered Hot & Fresh",
+  description:
+    "Get your favorite meals from top local restaurants in delivered to your door. With Time delivery, browse menus, place orders online, and enjoy food quickly!",
+};

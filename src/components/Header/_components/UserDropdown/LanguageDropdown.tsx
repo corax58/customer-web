@@ -26,12 +26,12 @@ const languages: Language[] = [
     nativeName: "English",
   },
   {
-    code: "ps",
+    code: "ps-AF",
     name: "Pashto",
     nativeName: "پښتو",
   },
   {
-    code: "prs",
+    code: "fa-AF",
     name: "Dari",
     nativeName: "دری",
   },
