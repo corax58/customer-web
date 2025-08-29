@@ -67,11 +67,11 @@ const SearchBar = ({ className }: React.ComponentProps<"div">) => {
             className={cn("relative flex w-full items-center", className)}
             ref={inputRef}
           >
-            <Search className="text-muted-foreground absolute left-3 z-10 size-5" />
+            <Search className="text-muted-foreground absolute start-3 z-10 size-5" />
             <Input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="bg-background dark:bg-secondary w-full rounded-lg pl-10 shadow-none"
+              className="bg-background dark:bg-secondary w-full rounded-lg ps-10 shadow-none"
               placeholder={t("search_placeholder")}
             />
             {search !== "" && (
@@ -79,10 +79,10 @@ const SearchBar = ({ className }: React.ComponentProps<"div">) => {
                 size={"icon"}
                 variant={"ghost"}
                 type="button"
-                className="text-muted-foreground absolute right-0 z-20 cursor-pointer"
+                className="text-muted-foreground absolute end-0 z-20 cursor-pointer"
                 onClick={handleClear}
               >
-                <X className="text-muted-foreground absolute right-3 z-10 size-5" />
+                <X className="text-muted-foreground absolute end-3 z-10 size-5" />
               </Button>
             )}
           </div>

@@ -16,7 +16,7 @@ const OffersCard = ({ offer }: OffersCardProps) => {
     <Card className="group dark:bg-card dark:border-border w-full overflow-hidden border border-orange-200 p-0 shadow-none transition-all duration-300">
       <CardContent className="p-0">
         <div className="relative">
-          <div className="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-orange-400 to-amber-400" />
+          <div className="absolute start-0 end-0 top-0 h-1 bg-gradient-to-r from-orange-400 to-amber-400" />
 
           <div className="p-4">
             <div className="mb-2 flex items-start justify-between">

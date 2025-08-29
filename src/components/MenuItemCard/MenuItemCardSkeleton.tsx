@@ -25,7 +25,7 @@ const MenuItemCardSkeleton = () => {
         </div>
       </div>
 
-      <div className="absolute top-0 left-5 h-28 w-36 overflow-hidden rounded-3xl shadow-lg sm:w-44">
+      <div className="absolute start-5 top-0 h-28 w-36 overflow-hidden rounded-3xl shadow-lg sm:w-44">
         <Skeleton className="h-full w-full" />
       </div>
     </div>

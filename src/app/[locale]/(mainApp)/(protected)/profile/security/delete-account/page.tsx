@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import BackButton from "@/components/BackButton";
+import { Icon } from "@/components/Icon";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -45,12 +46,12 @@ const DeleteAccountPage = () => {
     <div className="w-full space-y-5 px-1 py-5 md:px-5">
       <div className="flex gap-2">
         <BackButton>
-          <ArrowLeft />
+          <Icon as={ArrowLeft} isDirectional />
         </BackButton>
         <div>
           <h2 className="text-3xl font-bold text-red-500">{t("title")}</h2>
           <p className="text-muted-foreground mt-2 mb-2">{t("description")}</p>
-          <ul className="text-muted-foreground mb-4 ml-4 space-y-1 text-sm">
+          <ul className="text-muted-foreground ms-4 mb-4 space-y-1 text-sm">
             <li>{t("list-item-1")}</li>
             <li>{t("list-item-2")}</li>
             <li>{t("list-item-3")}</li>
@@ -62,7 +63,7 @@ const DeleteAccountPage = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="max-w-md space-y-5 pl-14"
+          className="max-w-md space-y-5 ps-14"
         >
           <FormField
             control={form.control}
@@ -95,7 +96,7 @@ const DeleteAccountPage = () => {
           <Button
             type="submit"
             variant={"outline"}
-            className="w-full border-red-500 bg-transparent text-red-500 dark:border-red-500"
+            className="border-eed-500 dark:border-eed-500 w-full bg-transparent text-red-500"
           >
             {t("delete-account-button")}
           </Button>

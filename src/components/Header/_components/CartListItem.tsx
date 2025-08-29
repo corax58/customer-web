@@ -88,7 +88,7 @@ const CartListItem = ({ cartItem }: CartListItemProps) => {
             </p>
           </div>
         </div>
-        <div className="flex w-1/2 flex-col items-end pl-2 md:w-min md:flex-row-reverse md:items-center md:gap-1">
+        <div className="flex w-1/2 flex-col items-end ps-2 md:w-min md:flex-row-reverse md:items-center md:gap-1">
           <Button
             variant="ghost"
             size="icon"
@@ -111,14 +111,14 @@ const CartListItem = ({ cartItem }: CartListItemProps) => {
       </div>
 
       {cartItem.additional_items && cartItem.additional_items.length > 0 && (
-        <div className="flex w-full flex-col gap-2 pl-4">
+        <div className="flex w-full flex-col gap-2 ps-4">
           <div className="text-muted-foreground flex items-center text-sm font-medium">
             <Dot size={20} />
             {t("add_ons")}
           </div>
           <div className="flex flex-col gap-4">
             {getAddOns(cartItem).map((addOn) => (
-              <div key={addOn.id} className="flex items-center gap-2 pl-6">
+              <div key={addOn.id} className="flex items-center gap-2 ps-6">
                 <div className="bg-primary h-10 w-1 rounded-full" />
                 <div className="flex flex-col gap-3">
                   <p className="line-he leading-1 font-medium">{addOn.title}</p>

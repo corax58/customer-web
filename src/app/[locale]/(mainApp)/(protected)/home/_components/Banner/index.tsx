@@ -39,11 +39,11 @@ const Banner = ({ personalized }: BannerProps) => {
         plugins={[Autoplay({ delay: 10000, stopOnInteraction: true })]}
         opts={{ loop: true, align: "start" }}
       >
-        <CarouselContent className="-ml-4 h-80 pb-10">
+        <CarouselContent className="-ms-4 h-80 pb-10">
           <DefaultBannerItems currentBanners={0} />
         </CarouselContent>
-        <CarouselPrevious className="bg-secondary dark:bg-secondary ml-12 border max-md:opacity-60 md:ml-8" />
-        <CarouselNext className="bg-secondary dark:bg-secondary mr-12 border max-md:opacity-60 md:mr-8" />
+        <CarouselPrevious className="bg-secondary dark:bg-secondary ms-12 border max-md:opacity-60 md:ms-8" />
+        <CarouselNext className="bg-secondary dark:bg-secondary me-12 border max-md:opacity-60 md:me-8" />
         <CarouselDots />
       </Carousel>
     );
@@ -55,7 +55,7 @@ const Banner = ({ personalized }: BannerProps) => {
         plugins={[Autoplay({ delay: 10000, stopOnInteraction: true })]}
         opts={{ loop: true, align: "start" }}
       >
-        <CarouselContent className="-ml-4 h-80 pb-10">
+        <CarouselContent className="-ms-4 h-80 pb-10">
           {data?.map((item, index) => (
             <CarouselItem key={index} className={cn("lg:basis-1/2")}>
               <BannerItem bannerDetail={item} />
@@ -63,8 +63,8 @@ const Banner = ({ personalized }: BannerProps) => {
           ))}
           <DefaultBannerItems currentBanners={data ? data.length : 0} />
         </CarouselContent>
-        <CarouselPrevious className="bg-secondary dark:bg-secondary ml-12 border max-md:opacity-60 md:ml-8" />
-        <CarouselNext className="bg-secondary dark:bg-secondary mr-12 border max-md:opacity-60 md:mr-8" />
+        <CarouselPrevious className="bg-secondary dark:bg-secondary ms-12 border max-md:opacity-60 md:ms-8" />
+        <CarouselNext className="bg-secondary dark:bg-secondary me-12 border max-md:opacity-60 md:me-8" />
         <CarouselDots />
       </Carousel>
     );

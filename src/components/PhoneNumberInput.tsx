@@ -104,7 +104,7 @@ const CountrySelect = ({
         <Button
           type="button"
           variant="outline"
-          className="flex gap-1 rounded-s-md rounded-e-none border-r-0 px-3 focus:z-10"
+          className="flex gap-1 rounded-s-md rounded-e-none border-e-0 px-3 focus:z-10"
           disabled={disabled}
         >
           <FlagComponent
@@ -113,7 +113,7 @@ const CountrySelect = ({
           />
           <ChevronsUpDown
             className={cn(
-              "-mr-2 size-4 opacity-50",
+              "-me-2 size-4 opacity-50",
               disabled ? "hidden" : "opacity-100",
             )}
           />
@@ -189,7 +189,7 @@ const CountrySelectOption = ({
         country,
       )}`}</span>
       <CheckIcon
-        className={`ml-auto size-4 ${
+        className={`ms-auto size-4 ${
           country === selectedCountry ? "opacity-100" : "opacity-0"
         }`}
       />

@@ -32,7 +32,7 @@ const LandingDishCard = ({ menuItem }: LandingDishCardCardProps) => {
               placeholderImage={PLACEHOLDER_IMAGES.FOOD_ITEM}
             />
 
-            <div className="absolute bottom-2 left-2 flex items-center gap-1 rounded-full bg-white px-2 py-1 text-black">
+            <div className="absolute start-2 bottom-2 flex items-center gap-1 rounded-full bg-white px-2 py-1 text-black">
               <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
               <span className="text-xs font-medium">
                 {menuItem.avg_rating.toFixed(1)}

@@ -17,7 +17,7 @@ const RestaurantInfo = async ({ restaurant }: RestaurantInfoProps) => {
     USE_PROFILES: { html: true },
   });
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 rtl:[direction:rtl]">
       <div className="space-y-4">
         <p className="mb-6 text-lg font-semibold">{t("title")}</p>
         <p className="font-bold">{t("about")}</p>

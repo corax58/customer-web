@@ -64,7 +64,7 @@ const ReferredUsers = ({ referredUsers }: ReferredUsers) => {
                 </p>
               )}
             </div>
-            <div className="text-right">
+            <div className="text-end">
               <Badge
                 variant={user.status === "active" ? "default" : "secondary"}
                 className={

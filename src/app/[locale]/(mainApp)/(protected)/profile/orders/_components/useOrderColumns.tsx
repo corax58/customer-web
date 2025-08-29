@@ -6,6 +6,7 @@ import { useFormatter, useTranslations } from "next-intl";
 
 import CustomLink from "@/components/CustomLink";
 import FormattedAfghani from "@/components/FormattedAfghani";
+import { Icon } from "@/components/Icon";
 import { Badge } from "@/components/ui/badge";
 import { Order } from "@/types/profile.types";
 
@@ -39,10 +40,10 @@ const useOrderColumns = () => {
       cell: ({ row }) => {
         return (
           <span>
-            {formatter.dateTime(
-              new Date(row.original.created_on),
-              "dd MMM yy 'at' hh:mm aa",
-            )}
+            {formatter.dateTime(new Date(row.original.created_on), {
+              dateStyle: "short",
+              timeStyle: "short",
+            })}
           </span>
         );
       },
@@ -64,7 +65,9 @@ const useOrderColumns = () => {
             href={`/profile/orders/${row.original.id}`}
             className="text-secondary-foreground flex items-center underline"
           >
-            {t("view")} <MoveUpRight size={12} />
+            {t("view")}
+
+            <Icon as={MoveUpRight} size={12} isDirectional />
           </CustomLink>
         );
       },

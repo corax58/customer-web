@@ -93,7 +93,7 @@ const ProfileSidebar = () => {
               <CustomLink
                 href={item.href}
                 className={cn(
-                  "hover:bg-primary/50 hover:text-foreground text-muted-foreground flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left transition-colors duration-200",
+                  "hover:bg-primary/50 hover:text-foreground text-muted-foreground flex w-full items-center gap-3 rounded-lg px-3 py-2 text-start transition-colors duration-200",
                   item.href === pathname &&
                     "bg-secondary text-foreground font-semibold",
                 )}

@@ -61,7 +61,7 @@ const OrderStatusMapping: Record<
     key: "rejected",
     label: "Rejected",
     className:
-      "border border-red-200 dark:border-red-700 bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300",
+      "border border-eed-200 dark:border-eed-700 bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300",
   },
 };
 

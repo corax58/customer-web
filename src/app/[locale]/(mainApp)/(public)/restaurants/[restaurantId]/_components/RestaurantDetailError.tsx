@@ -3,6 +3,7 @@
 import { AlertTriangle, ArrowLeft, RefreshCw } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+import { Icon } from "@/components/Icon";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useRouter } from "@/i18n/navigation";
@@ -26,7 +27,7 @@ const RestaurantDetailError = () => {
 
           {/* Error Details Card */}
           <Card className="bg-secondary mb-8 border p-6 shadow-none">
-            <div className="space-y-4 text-left">
+            <div className="space-y-4 text-start">
               <h2 className="text-xl font-semibold">{t("details.title")}</h2>
               <ul className="text-muted-foreground space-y-2">
                 {Array.from({ length: 3 }).map((_, index) => (
@@ -48,12 +49,12 @@ const RestaurantDetailError = () => {
               size={"lg"}
               className="flex items-center justify-center"
             >
-              <RefreshCw className="mr-2 h-4 w-4" />
+              <RefreshCw className="me-2 h-4 w-4" />
               {t("button.try_again")}
             </Button>
 
             <Button onClick={() => router.back()} variant="outline" size={"lg"}>
-              <ArrowLeft className="mr-2 h-4 w-4" />
+              <Icon as={ArrowLeft} className="me-2 h-4 w-4" />
               {t("button.back")}
             </Button>
           </div>

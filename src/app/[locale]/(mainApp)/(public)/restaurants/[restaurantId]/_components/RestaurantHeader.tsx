@@ -26,7 +26,7 @@ const RestaurantHeader = async ({
             {restaurant.title}
           </p>
           {!isOpen && (
-            <Badge className="h-fit rounded-full border-red-700 bg-red-500/90 text-white">
+            <Badge className="border-eed-700 h-fit rounded-full bg-red-500/90 text-white">
               {t("closed")}
             </Badge>
           )}

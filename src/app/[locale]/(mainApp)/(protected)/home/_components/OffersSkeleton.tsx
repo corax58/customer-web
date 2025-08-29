@@ -22,11 +22,11 @@ export const OffersSkeleton = () => {
       </div>
 
       <Carousel>
-        <CarouselContent className="-ml-4 overflow-visible">
+        <CarouselContent className="-ms-4 overflow-visible">
           {Array.from({ length: 4 }).map((_, index) => (
             <CarouselItem
               key={index}
-              className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+              className="ps-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
             >
               <OffersCardSkeleton />
             </CarouselItem>

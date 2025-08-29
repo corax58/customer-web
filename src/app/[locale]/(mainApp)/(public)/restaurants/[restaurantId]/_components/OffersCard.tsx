@@ -30,7 +30,7 @@ const OffersCard = async ({ offer }: OffersCardProps) => {
     <Card className="group border-primary dark:border-primary/50 w-full min-w-72 overflow-hidden rounded-lg border-2 border-dashed p-0">
       <CardContent className="rounded-none p-0">
         <div className="flex">
-          <div className="from-primary flex w-20 flex-col items-center justify-center border-r-2 border-dashed border-orange-300 bg-gradient-to-b to-amber-500 text-white dark:border-orange-700 dark:from-orange-600 dark:to-amber-600">
+          <div className="from-primary flex w-20 flex-col items-center justify-center border-e-2 border-dashed border-orange-300 bg-gradient-to-b to-amber-500 text-white dark:border-orange-700 dark:from-orange-600 dark:to-amber-600">
             <div className="flex flex-nowrap items-center justify-center gap-1 px-2 text-sm font-semibold">
               <span>-</span> <FormattedAfghani amount={offer.discount} />
             </div>

@@ -65,7 +65,7 @@ const PointsHistory = ({ pointsHistory }: PointsHistoryProps) => {
                 className={
                   entry.type === "earned"
                     ? "border border-green-500 bg-green-500/10 text-green-500 hover:bg-green-500/10"
-                    : "border border-red-500 bg-red-500/10 text-red-500 hover:bg-red-500/10"
+                    : "border-eed-500 border bg-red-500/10 text-red-500 hover:bg-red-500/10"
                 }
               >
                 {entry.type === "earned"

@@ -33,7 +33,7 @@ const PersonalInfo = () => {
               </Avatar>
               <Button variant="outline" size="lg" asChild>
                 <CustomLink href={"/profile/edit"}>
-                  <Edit className="mr-2 h-4 w-4" />
+                  <Edit className="me-2 h-4 w-4" />
                   {t("buttons.edit")}
                 </CustomLink>
               </Button>

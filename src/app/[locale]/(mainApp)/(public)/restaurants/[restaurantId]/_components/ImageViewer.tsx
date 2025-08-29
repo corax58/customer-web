@@ -71,7 +71,7 @@ export default function ImageViewer({
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-4 right-4 z-10 text-white hover:bg-white/20"
+            className="absolute end-4 top-4 z-10 text-white hover:bg-white/20"
             onClick={closeFullScreen}
           >
             <X className="h-6 w-6" />
@@ -88,7 +88,7 @@ export default function ImageViewer({
           />
 
           {/* Instructions */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 transform text-sm text-white/70">
+          <div className="absolute start-1/2 bottom-4 -translate-x-1/2 transform text-sm text-white/70">
             Press ESC or click outside to close
           </div>
         </div>

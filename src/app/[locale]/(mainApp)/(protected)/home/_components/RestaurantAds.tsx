@@ -29,7 +29,7 @@ const RestaurantAds = ({ personalized }: RestaurantAdsProps) => {
         plugins={[Autoplay({ delay: 2000, stopOnInteraction: true })]}
         className="space-y-5 overflow-visible"
       >
-        <CarouselContent className="-ml-4 overflow-visible">
+        <CarouselContent className="-ms-4 overflow-visible">
           {ads?.map((ad, index) => <RestaurantAdItem key={index} ad={ad} />)}
         </CarouselContent>
       </Carousel>

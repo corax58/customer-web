@@ -62,9 +62,9 @@ const OrderDetailSkeleton = () => {
               <Skeleton className="h-5 w-12" />
             </div>
             {i === 1 && (
-              <div className="space-y-3 pl-8">
+              <div className="space-y-3 ps-8">
                 <Skeleton className="h-4 w-20" />
-                <div className="grid grid-cols-2 gap-x-4 pl-8 max-sm:grid-cols-1 max-sm:px-4">
+                <div className="grid grid-cols-2 gap-x-4 ps-8 max-sm:grid-cols-1 max-sm:px-4">
                   <div className="flex items-center gap-3 py-1">
                     <Skeleton className="h-10 w-1 rounded-full" />
                     <div className="w-full space-y-1.5">

@@ -36,13 +36,13 @@ export function CartSheet() {
         >
           <ShoppingCart size={18} />
           {totalItems > 0 && (
-            <span className="bg-primary text-primary-foreground absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full text-xs">
+            <span className="bg-primary text-primary-foreground absolute end-0 top-0 flex h-4 w-4 items-center justify-center rounded-full text-xs">
               {formatter.number(totalItems)}
             </span>
           )}
         </Button>
       </SheetTrigger>
-      <SheetContent className="flex w-full flex-col rounded-l-2xl border-0 px-2 md:px-6">
+      <SheetContent className="flex w-full flex-col rounded-s-2xl border-0 px-2 md:px-6">
         <SheetHeader className="px-0">
           <SheetTitle className="text-lg font-semibold">
             {t("title")}

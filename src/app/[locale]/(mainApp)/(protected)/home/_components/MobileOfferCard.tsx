@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import CustomLink from "@/components/CustomLink";
+import { Icon } from "@/components/Icon";
 import { Card, CardContent } from "@/components/ui/card";
 import { Offer } from "@/types/restaurant.types";
 
@@ -31,9 +32,9 @@ const MobileOfferCard = async ({ offer }: MobileOfferCardProps) => {
         </div>
         <CardContent className="h-full p-0">
           <div className="flex h-full w-full items-center gap-2">
-            {/* <div className="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-orange-400 to-amber-400" /> */}
+            {/* <div className="absolute top-0 end-0 start-0 h-1 bg-gradient-to-r from-orange-400 to-amber-400" /> */}
 
-            <div className="w-4/5 p-4 pr-0">
+            <div className="w-4/5 p-4 pe-0">
               <div className="mb-2 flex flex-col items-start justify-between">
                 <h3 className="mb-1 text-xl font-bold text-white transition-colors dark:text-gray-100 dark:group-hover:text-orange-400">
                   {offer.title}
@@ -45,8 +46,10 @@ const MobileOfferCard = async ({ offer }: MobileOfferCardProps) => {
 
               <div className="flex items-center gap-2 py-2 text-sm font-semibold text-orange-400">
                 {t("see_detail")}
-                <ArrowRight
+                <Icon
                   size={16}
+                  as={ArrowRight}
+                  isDirectional
                   className="transition group-hover:translate-x-2"
                 />
               </div>

@@ -11,6 +11,8 @@ import { useTranslations } from "next-intl";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+import { Icon } from "../Icon";
+
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
     <nav
@@ -77,10 +79,11 @@ function PaginationPrevious({
     <PaginationLink
       aria-label={t("go_to_previous")}
       size="default"
-      className={cn("gap-1 px-2.5 sm:pl-2.5", className)}
+      className={cn("gap-1 px-2.5 sm:ps-2.5", className)}
       {...props}
     >
-      <ChevronLeftIcon />
+      <Icon as={ChevronLeftIcon} isDirectional />
+
       <span className="hidden sm:block">{t("previous")}</span>
     </PaginationLink>
   );
@@ -96,11 +99,11 @@ function PaginationNext({
     <PaginationLink
       aria-label={t("go_to_next")}
       size="default"
-      className={cn("gap-1 px-2.5 sm:pr-2.5", className)}
+      className={cn("gap-1 px-2.5 sm:pe-2.5", className)}
       {...props}
     >
       <span className="hidden sm:block">{t("next")}</span>
-      <ChevronRightIcon />
+      <Icon as={ChevronRightIcon} isDirectional />
     </PaginationLink>
   );
 }

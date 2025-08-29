@@ -56,7 +56,7 @@ const AddToCartForm = ({
                 <p>{t("item_price")}</p>
                 <p>{t("add_on_price")}</p>
               </div>
-              <div className="text-right">
+              <div className="text-end">
                 <p>
                   <FormattedAfghani amount={basePrice} />
                 </p>

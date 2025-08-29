@@ -185,7 +185,7 @@ export function LocationPicker({
         >
           {locationSelected ? (
             <>
-              <CheckCircle2 className="mr-2 h-4 w-4" />
+              <CheckCircle2 className="me-2 h-4 w-4" />
               {t("buttons.location_confirmed")}
             </>
           ) : (

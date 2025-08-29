@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import BackButton from "@/components/BackButton";
+import { Icon } from "@/components/Icon";
 
 import FaqList from "./_components/FaqList";
 
@@ -13,7 +14,7 @@ const FaqPage = async () => {
     <div className="w-full px-1 py-5 md:px-10">
       <div className="flex gap-2">
         <BackButton>
-          <ArrowLeft />
+          <Icon as={ArrowLeft} isDirectional />
         </BackButton>
         <div className="mb-5">
           <h2 className="text-3xl font-bold">{t("title")}</h2>

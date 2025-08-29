@@ -38,7 +38,7 @@ const PopularRestaurantCard = ({ restaurant }: PopularRestaurantCardProps) => {
                 {restaurant.title}
               </h3>
               <div className="mb-3 flex items-center text-gray-300">
-                <MapPin className="mr-1 h-4 w-4" />
+                <MapPin className="me-1 h-4 w-4" />
                 <span className="text-sm">{restaurant.location}</span>
               </div>
             </div>

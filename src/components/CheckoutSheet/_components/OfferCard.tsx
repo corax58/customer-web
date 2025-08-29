@@ -39,13 +39,13 @@ const OfferCard = ({
         className={cn(
           "group border-primary dark:border-primary/50 cursor-pointer overflow-hidden rounded-xl border-2 border-dashed p-0",
           !reachMinPrice &&
-            "cursor-not-allowed border-red-500 dark:border-red-500",
+            "border-eed-500 dark:border-eed-500 cursor-not-allowed",
         )}
       >
         <CardContent className="rounded-none p-0">
           <div className="flex">
             {/* Left side - Discount stub */}
-            <div className="flex w-fit flex-col items-center justify-center border-r-2 border-dashed border-orange-300 bg-gradient-to-b from-orange-500 to-amber-500 text-white dark:border-orange-700 dark:from-orange-600 dark:to-amber-600">
+            <div className="flex w-fit flex-col items-center justify-center border-e-2 border-dashed border-orange-300 bg-gradient-to-b from-orange-500 to-amber-500 text-white dark:border-orange-700 dark:from-orange-600 dark:to-amber-600">
               <div className="py-4 text-center">
                 <div className="flex flex-col items-center justify-center px-2 font-semibold">
                   <p className="text-nowrap">
@@ -94,14 +94,14 @@ const OfferCard = ({
       {!reachMinPrice && (
         <Badge
           variant={"destructive"}
-          className="absolute top-2 left-2 border border-red-700 bg-red-500 text-white"
+          className="border-eed-700 absolute start-2 top-2 border bg-red-500 text-white"
         >
           {t("below_min")}
         </Badge>
       )}
 
       {offer.id == selectedOffer?.id && (
-        <Badge className="absolute top-2 left-2 rounded-full border border-green-900 bg-green-600 px-2 text-white">
+        <Badge className="absolute start-2 top-2 rounded-full border border-green-900 bg-green-600 px-2 text-white">
           {t("selected")}
         </Badge>
       )}

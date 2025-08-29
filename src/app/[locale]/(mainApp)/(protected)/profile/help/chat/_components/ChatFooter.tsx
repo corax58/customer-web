@@ -60,7 +60,7 @@ const ChatFooter = ({ fetchMessages }: ChatFooterProps) => {
       <Button
         size={"icon"}
         type="submit"
-        className="absolute right-6 flex items-center justify-center rounded-full"
+        className="absolute end-6 flex items-center justify-center rounded-full"
         disabled={!user}
       >
         <SendHorizontal />

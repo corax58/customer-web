@@ -62,7 +62,6 @@ const MenuItemDetailSkeleton = () => {
           </div>
         </div>
 
-
         <div className="bg-secondary !mt-8 space-y-4 border-t p-4">
           <div className="flex w-full flex-col gap-2">
             {/* Price breakdown */}
@@ -71,7 +70,7 @@ const MenuItemDetailSkeleton = () => {
                 <Skeleton className="h-4 w-20" />
                 <Skeleton className="h-4 w-24" />
               </div>
-              <div className="space-y-2 text-right">
+              <div className="space-y-2 text-end">
                 <Skeleton className="h-4 w-16" />
                 <Skeleton className="h-4 w-12" />
               </div>

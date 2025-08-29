@@ -8,6 +8,7 @@ import { Category } from "@/types/restaurant.types";
 import { Card, CardContent } from "./ui/card";
 import CustomImage from "./CustomImage";
 import CustomLink from "./CustomLink";
+import { Icon } from "./Icon";
 
 interface CategoryCard {
   category: Category;
@@ -48,11 +49,15 @@ const CategoryCard = ({ category, className }: CategoryCard) => {
               </div>
 
               <div className="flex h-10 w-10 translate-x-2 transform items-center justify-center rounded-full bg-orange-500 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-                <ArrowRight className="h-5 w-5 text-white" />
+                <Icon
+                  as={ArrowRight}
+                  className="h-5 w-5 text-white"
+                  isDirectional
+                />
               </div>
             </div>
 
-            <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-orange-500 to-orange-400 transition-all duration-500 ease-out group-hover:w-full" />
+            <div className="absolute start-0 bottom-0 h-1 w-0 bg-gradient-to-r from-orange-500 to-orange-400 transition-all duration-500 ease-out group-hover:w-full" />
           </div>
         </CardContent>
       </Card>

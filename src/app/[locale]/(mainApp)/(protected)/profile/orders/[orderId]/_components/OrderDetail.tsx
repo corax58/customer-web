@@ -6,6 +6,7 @@ import CustomImage from "@/components/CustomImage";
 import CustomLink from "@/components/CustomLink";
 import FadingDivider from "@/components/FadingDivider";
 import FormattedAfghani from "@/components/FormattedAfghani";
+import { Icon } from "@/components/Icon";
 import { PLACEHOLDER_IMAGES } from "@/lib/constants";
 
 import OrderCancelModal from "./OrderCancelModal";
@@ -110,7 +111,11 @@ const OrderDetail = async ({ orderId }: OrderDetailProps) => {
                 </p>
               </div>
             </div>
-            <ChevronRight className="transition-all group-hover:translate-x-4" />
+            <Icon
+              as={ChevronRight}
+              isDirectional
+              className="transition-all group-hover:translate-x-4"
+            />
           </div>
         </CustomLink>
         <FadingDivider />

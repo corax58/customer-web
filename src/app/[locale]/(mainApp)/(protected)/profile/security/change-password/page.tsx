@@ -9,6 +9,7 @@ import { toast } from "sonner";
 
 import { changePassword } from "@/actions/profile.actions";
 import BackButton from "@/components/BackButton";
+import { Icon } from "@/components/Icon";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -50,7 +51,7 @@ const ChangePasswordPage = () => {
     <div className="w-full space-y-6 px-1 py-5 md:px-5">
       <div className="flex gap-2">
         <BackButton>
-          <ArrowLeft />
+          <Icon as={ArrowLeft} isDirectional />
         </BackButton>
         <div>
           <h2 className="text-3xl font-bold">{t("title")}</h2>
@@ -61,7 +62,7 @@ const ChangePasswordPage = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="ml-10 max-w-xs space-y-8"
+          className="ms-10 max-w-xs space-y-8"
         >
           <FormField
             control={form.control}

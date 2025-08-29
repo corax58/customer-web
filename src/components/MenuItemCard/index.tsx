@@ -75,7 +75,7 @@ const MenuItemCard = ({
           </div>
         </div>
       </div>
-      <div className="absolute top-0 left-5 h-28 w-36 overflow-hidden rounded-2xl shadow-lg sm:w-[155px] lg:w-40">
+      <div className="absolute start-5 top-0 h-28 w-36 overflow-hidden rounded-2xl shadow-lg sm:w-[155px] lg:w-40">
         <div className="relative h-full w-full">
           <CustomImage
             placeholderImage={PLACEHOLDER_IMAGES.FOOD_ITEM}
@@ -88,11 +88,11 @@ const MenuItemCard = ({
             is_favorite={menuItem.is_favourite === 1}
             itemId={menuItem.id.toString()}
             type="menu_item"
-            className="bg-card absolute top-2.5 left-2.5 z-10 size-7 rounded-full"
+            className="bg-card absolute start-2.5 top-2.5 z-10 size-7 rounded-full"
           />
         )}
         {!isAvailable && (
-          <Badge className="absolute bottom-2.5 left-2.5 z-10 border-red-700 bg-red-500/80">
+          <Badge className="border-eed-700 absolute start-2.5 bottom-2.5 z-10 bg-red-500/80">
             {t("not_available")}
           </Badge>
         )}

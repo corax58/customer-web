@@ -46,8 +46,8 @@ const RestaurantDetail = async ({
       title: t("top.full"),
       value: "top",
       display: (
-        <div className="flex items-center">
-          <Star className="mr-2 h-4 w-4 fill-yellow-400 text-yellow-400 max-md:hidden" />
+        <div className="flex items-center gap-2 rtl:flex-row-reverse">
+          <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 max-md:hidden" />
           <span className="md:hidden">{t("top.short")}</span>
           <span className="max-md:hidden">{t("top.full")}</span>
         </div>
@@ -80,9 +80,9 @@ const RestaurantDetail = async ({
     const isOpen = isRestaurantOpenNow(restaurant.availability);
 
     return (
-      <div>
+      <div className="lg:container lg:mx-auto lg:px-10 xl:px-16">
         <RestaurantBanner restaurant={restaurant} />
-        <div className="mx-auto sm:px-6 lg:container lg:px-8">
+        <div className="mx-auto sm:px-6 lg:px-8">
           <RestaurantHeader
             className="max-md:px-4"
             restaurant={restaurant}
@@ -90,14 +90,14 @@ const RestaurantDetail = async ({
           />
           <Tabs
             defaultValue={"top"}
-            className="flex w-full py-5 lg:flex-row lg:gap-10"
+            className="flex w-full py-5 lg:flex-row lg:gap-10 lg:rtl:flex-row-reverse"
           >
             <TabsList className="lg:bg-background text-muted-foreground mb-6 grid h-fit w-full grid-cols-5 max-md:rounded-none lg:flex lg:w-1/5 lg:flex-col">
               {tabs.map((tab) => (
                 <TabsTrigger
                   key={tab.value}
                   value={tab.value}
-                  className="lg:data-[state=active]:bg-secondary lg:data-[state=inactive]:text-muted-foreground data-[state=active]:text-foreground w-full p-3 font-semibold lg:flex lg:justify-start lg:rounded-2xl lg:data-[state=active]:shadow-none"
+                  className="lg:data-[state=active]:bg-secondary lg:data-[state=inactive]:text-muted-foreground data-[state=active]:text-foreground w-full p-3 font-semibold lg:flex lg:justify-start lg:rounded-2xl lg:data-[state=active]:shadow-none lg:rtl:justify-end"
                 >
                   {tab.display || tab.title}
                 </TabsTrigger>

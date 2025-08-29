@@ -43,7 +43,7 @@ const MobileSheet = ({ isAuthenticated }: MobileSheetProps) => {
         <span className="sr-only">Open sheet</span>
       </SheetTrigger>
       <SheetContent
-        side="left"
+        side="start"
         className="max-sm:w-full"
         hasCloseButton={false}
       >

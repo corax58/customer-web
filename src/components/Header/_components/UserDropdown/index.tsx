@@ -97,7 +97,7 @@ const UserDropdown = ({ className }: React.ComponentProps<"button">) => {
             </div>
           </div>
         </div>
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <LanguageDropDown />
         </div>
 
@@ -116,7 +116,7 @@ const UserDropdown = ({ className }: React.ComponentProps<"button">) => {
               className="flex cursor-pointer items-center gap-3 px-2 py-3"
               onClick={() => handleNav(link)}
             >
-              <Icon className="mr-2 h-4 w-4" />
+              <Icon className="me-2 h-4 w-4" />
               <span>{t(key)}</span>
             </DropdownMenuItem>
           ))}

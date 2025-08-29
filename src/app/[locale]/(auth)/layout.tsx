@@ -8,7 +8,7 @@ const AuthPagesLayout = ({ children }: PropsWithChildren) => {
   return (
     <div className="flex min-h-svh items-center justify-start">
       <div className="flex w-full justify-center lg:w-2/5">{children}</div>
-      <div className="fixed top-0 right-0 -z-10 h-svh w-full overflow-hidden lg:w-3/5">
+      <div className="fixed end-0 top-0 -z-10 h-svh w-full overflow-hidden lg:w-3/5">
         <div className="relative h-full w-full">
           <Image
             fill
@@ -27,16 +27,16 @@ const AuthPagesLayout = ({ children }: PropsWithChildren) => {
                 <p className="tex mb-6 text-lg text-white/90">
                   {t("subheadline")}
                 </p>
-                <div className="flex items-center justify-end space-x-6 text-sm">
-                  <div className="flex items-center space-x-2">
+                <div className="flex items-center justify-end gap-6 text-sm">
+                  <div className="flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-green-400"></div>
                     <span>{t("feature1")}</span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-blue-400"></div>
                     <span>{t("feature2")}</span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-purple-400"></div>
                     <span>{t("feature3")}</span>
                   </div>

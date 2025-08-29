@@ -70,7 +70,7 @@ function UsageHistroy({ usageHistory }: UsageHistroyProps) {
               )}
             </div>
             {usage.discount_amount && (
-              <div className="text-right">
+              <div className="text-end">
                 <p className="text-sm font-medium text-green-600">
                   <FormattedAfghani amount={usage.discount_amount} />
                 </p>

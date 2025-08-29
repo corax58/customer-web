@@ -21,7 +21,7 @@ const BannerItem = ({ bannerDetail }: BannerItemProps) => {
   const formatter = useFormatter();
   return (
     <Card className="dark:border-secondary relative flex h-full justify-end overflow-hidden rounded-3xl border-8 border-white bg-gradient-to-r from-orange-500 to-orange-600 p-0 shadow-xl dark:from-orange-600 dark:to-orange-700">
-      <div className="absolute inset-0 bg-[url('/assets/images/banner_background.webp')] bg-[size:100%_100%] bg-repeat"></div>
+      <div className="absolute inset-0 bg-[url('/assets/images/banner_background.webp')] bg-[size:100%_100%] bg-repeat rtl:-scale-x-100 rtl:transition-transform"></div>
 
       <CardContent className="z-10 flex h-full w-full flex-col-reverse justify-between gap-2 py-2 text-white max-md:px-4 md:flex-row md:py-6">
         <div className="flex h-full justify-between md:w-1/2 md:flex-col md:px-8">
@@ -49,7 +49,7 @@ const BannerItem = ({ bannerDetail }: BannerItemProps) => {
               )}
               <div className="flex h-min flex-col gap-2 text-sm md:hidden">
                 <div className="flex gap-4">
-                  <div className="flex items-center space-x-1">
+                  <div className="flex items-center gap-1">
                     <Star className="h-4 w-4 fill-yellow-500 text-white" />
                     <span>
                       {formatter.number(bannerDetail.restaurant.average_rating)}
@@ -59,7 +59,7 @@ const BannerItem = ({ bannerDetail }: BannerItemProps) => {
                     </span>
                   </div>
                 </div>
-                <div className="flex w-fit items-center space-x-2 rounded-full text-sm font-semibold">
+                <div className="flex w-fit items-center gap-2 rounded-full text-sm font-semibold">
                   <MapPin className="h-4 w-4" />
                   <span className="text-sm">
                     {bannerDetail.restaurant.location}
@@ -71,7 +71,7 @@ const BannerItem = ({ bannerDetail }: BannerItemProps) => {
           <div className="flex gap-2 max-md:flex-col max-md:justify-end md:items-end md:gap-5">
             <div className="hidden h-full flex-col justify-between gap-2 text-sm md:flex">
               <div className="flex gap-4">
-                <div className="flex items-center space-x-1">
+                <div className="flex items-center gap-1">
                   <Star className="h-4 w-4 fill-yellow-500 text-white" />
                   <span>
                     {formatter.number(bannerDetail.restaurant.average_rating)}(
@@ -79,7 +79,7 @@ const BannerItem = ({ bannerDetail }: BannerItemProps) => {
                   </span>
                 </div>
               </div>
-              <div className="flex w-fit items-center space-x-2 rounded-full text-sm font-semibold">
+              <div className="flex w-fit items-center gap-2 rounded-full text-sm font-semibold">
                 <MapPin className="h-4 min-h-4 w-4 min-w-4" />
                 <span className="line-clamp-2 text-sm">
                   {bannerDetail.restaurant.location}

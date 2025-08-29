@@ -3,6 +3,7 @@
 import { Loader2, LogOut } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+import { Icon } from "@/components/Icon";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -39,7 +40,7 @@ const LogoutButton = ({ className }: LogoutButtonProps) => {
             <Loader2 className="animate-spin" />
           ) : (
             <>
-              <LogOut className="mr-2 h-4 w-4" />
+              <Icon as={LogOut} isDirectional className="me-2 h-4 w-4" />
             </>
           )}
           <span>{t("logout")}</span>

@@ -31,7 +31,7 @@ const MenuItemHeader = ({ menuItem }: MenuItemHeaderProps) => {
   return (
     <div className="relative">
       {menuItem.is_available && (
-        <Badge className="absolute bottom-6 left-8 z-10 border-green-700 bg-green-500/50">
+        <Badge className="absolute start-8 bottom-6 z-10 border-green-700 bg-green-500/50">
           {t("available")}
         </Badge>
       )}
@@ -40,7 +40,7 @@ const MenuItemHeader = ({ menuItem }: MenuItemHeaderProps) => {
           is_favorite={menuItem.is_favourite === 1}
           itemId={menuItem.id.toString()}
           type="menu_item"
-          className="bg-card absolute top-6 left-8 z-10 rounded-full"
+          className="bg-card absolute start-8 top-6 z-10 rounded-full"
         />
       )}
       <DialogClose asChild>
@@ -48,15 +48,15 @@ const MenuItemHeader = ({ menuItem }: MenuItemHeaderProps) => {
           type="button"
           variant="secondary"
           size={"icon"}
-          className="bg-card absolute top-6 right-8 z-10 rounded-full"
+          className="bg-card absolute end-8 top-6 z-10 rounded-full"
         >
           <X />
         </Button>
       </DialogClose>
       <Carousel opts={{ loop: true }} className="w-full pt-0">
-        <CarouselContent className="-ml-0 h-48 w-full sm:h-56">
+        <CarouselContent className="-ms-0 h-48 w-full sm:h-56">
           {menuItem.menuImages.map((img) => (
-            <CarouselItem key={img.id} className="w-full pl-0">
+            <CarouselItem key={img.id} className="w-full ps-0">
               <div className="relative h-48 w-full overflow-hidden rounded-t-lg sm:h-56">
                 <CustomImage
                   imgUrl={img.url}
@@ -67,8 +67,8 @@ const MenuItemHeader = ({ menuItem }: MenuItemHeaderProps) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="ml-14" />
-        <CarouselNext className="mr-14" />
+        <CarouselPrevious className="ms-14" />
+        <CarouselNext className="me-14" />
       </Carousel>
     </div>
   );

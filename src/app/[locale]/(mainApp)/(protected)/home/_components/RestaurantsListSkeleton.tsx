@@ -8,11 +8,11 @@ const RestaurantCardSkeleton = () => {
           {/* Image Placeholder */}
           <div className="relative mb-2 aspect-video w-full overflow-hidden rounded-xl bg-gray-200 md:aspect-square md:w-2/5 dark:bg-gray-700">
             {/* Heart Button Placeholder */}
-            <div className="absolute top-2 right-2 h-9 w-9 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+            <div className="absolute end-2 top-2 h-9 w-9 rounded-full bg-gray-300 dark:bg-gray-600"></div>
           </div>
 
           {/* Text Content Placeholder */}
-          <div className="flex w-full flex-col justify-between pl-2 md:col-span-2">
+          <div className="flex w-full flex-col justify-between ps-2 md:col-span-2">
             <div className="mb-4 flex items-start justify-between">
               <div className="flex w-full flex-col gap-2">
                 {/* Title Placeholder */}
@@ -24,7 +24,7 @@ const RestaurantCardSkeleton = () => {
                 <div className="h-4 w-11/12 rounded-md bg-gray-200 dark:bg-gray-700"></div>
 
                 {/* Rating and Delivery Time Placeholders */}
-                <div className="mt-2 flex items-center space-x-6 text-sm">
+                <div className="mt-2 flex items-center gap-6 text-sm">
                   {/* Rating Placeholder */}
                   <div className="h-6 w-20 rounded-full bg-gray-200 dark:bg-gray-700"></div>
                   {/* Delivery Time Placeholder */}

@@ -108,7 +108,7 @@ const AboutUsPage = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 {services.map((service, index) => (
-                  <div key={index} className="flex items-center space-x-3">
+                  <div key={index} className="flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-900/30">
                       <service.icon className="text-primary h-6 w-6" />
                     </div>

@@ -13,7 +13,7 @@ const RestaurantAdItem = ({ ad }: RestaurantAdItemProps) => {
 
   if (!error)
     return (
-      <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3">
+      <CarouselItem className="ps-4 md:basis-1/2 lg:basis-1/3">
         <CustomLink href={`/restaurants/${ad.model_id}`}>
           <div className="relative h-40 w-full overflow-hidden rounded-2xl">
             <Image

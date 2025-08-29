@@ -80,13 +80,13 @@ export default function LanguageSelector({
           size={size}
           id={"language_selector"}
           className={cn(
-            "border-border w-[100px] border pl-9 shadow-none",
+            "border-border w-[100px] border ps-9 shadow-none",
             className,
           )}
           title={"Language selector"}
         >
           <Languages
-            className={"text-muted-foreground absolute left-2.5 h-4 w-4"}
+            className={"text-muted-foreground absolute start-2.5 h-4 w-4"}
           />
           {isPending ? (
             <Loader2 size={15} className={"animate-spin"} />
@@ -99,7 +99,7 @@ export default function LanguageSelector({
             <SelectItem key={lang.code} value={lang.code}>
               <div className={"flex items-center justify-between"}>
                 <span>{lang.code}</span>
-                <span className={"text-muted-foreground ml-2"}>
+                <span className={"text-muted-foreground ms-2"}>
                   {lang.nativeName !== lang.name && lang.nativeName}
                 </span>
               </div>

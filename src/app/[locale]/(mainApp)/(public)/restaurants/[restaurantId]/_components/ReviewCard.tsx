@@ -59,7 +59,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
             variant="link"
             size="sm"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="ml-1 h-auto p-0 font-medium text-orange-600 hover:text-orange-700"
+            className="ms-1 h-auto p-0 font-medium text-orange-600 hover:text-orange-700"
           >
             {isExpanded ? t("read_less") : t("read_more")}
           </Button>

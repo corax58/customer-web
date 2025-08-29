@@ -486,7 +486,7 @@ const MultipleSelector = React.forwardRef<
                   <button
                     type="button"
                     className={cn(
-                      "ring-offset-background focus:ring-ring ml-1 rounded-full outline-none focus:ring-2 focus:ring-offset-2",
+                      "ring-offset-background focus:ring-ring ms-1 rounded-full outline-none focus:ring-2 focus:ring-offset-2",
                       (disabled || option.fixed) && "hidden",
                     )}
                     onKeyDown={(e) => {
@@ -534,7 +534,7 @@ const MultipleSelector = React.forwardRef<
                 "placeholder:text-muted-foreground flex-1 self-baseline bg-transparent outline-none",
                 {
                   "w-full": hidePlaceholderWhenSelected,
-                  "ml-1": selected.length !== 0,
+                  "ms-1": selected.length !== 0,
                 },
                 inputProps?.className,
               )}

@@ -45,7 +45,7 @@ const Features = () => {
             <div
               key={index}
               className={cn(
-                "bg-card dark:border-border relative z-10 flex h-fit w-full max-w-sm flex-col items-center justify-center gap-3 rounded-tr-4xl rounded-bl-4xl border p-3 md:gap-5 md:p-4 lg:max-w-none xl:p-8",
+                "bg-card dark:border-border relative z-10 flex h-fit w-full max-w-sm flex-col items-center justify-center gap-3 rounded-se-4xl rounded-es-4xl border p-3 md:gap-5 md:p-4 lg:max-w-none xl:p-8",
                 index == 1 && "flex-col-reverse lg:mt-10",
                 index == 3 && "flex-col-reverse lg:mt-10",
               )}
@@ -66,15 +66,15 @@ const Features = () => {
                 </p>
               </div>
               <div className="absolute -top-4 flex w-full justify-center">
-                <div className="before:conten-[' '] border-card before:bg-card size-8 rounded-full border-8 bg-gray-800 before:absolute before:z-0 before:h-40 before:w-1 before:translate-x-1.5 before:-translate-y-full before:max-lg:hidden" />
+                <div className="before:conten-[' '] border-card before:bg-card size-8 rounded-full border-8 bg-gray-800 before:absolute before:z-0 before:h-40 before:w-1 before:translate-x-1.5 before:-translate-y-full before:max-lg:hidden rtl:before:-translate-x-1.5" />
               </div>
             </div>
           ))}
         </div>
 
-        <div className="flex h-auto min-h-72 w-full flex-col overflow-visible rounded-tr-4xl rounded-bl-4xl bg-gradient-to-r from-orange-500 to-orange-600 max-sm:gap-10 md:h-96 md:flex-row">
-          <div className="order-2 flex h-full w-full flex-col justify-center gap-6 p-6 max-md:items-center md:order-1 md:w-1/2 md:gap-10 md:pl-10">
-            <div className="text-center text-2xl font-bold text-white md:text-left md:text-3xl lg:text-5xl">
+        <div className="flex h-auto min-h-72 w-full flex-col overflow-visible rounded-se-4xl rounded-es-4xl bg-gradient-to-r from-orange-500 to-orange-600 max-sm:gap-10 md:h-96 md:flex-row">
+          <div className="order-2 flex h-full w-full flex-col justify-center gap-6 p-6 max-md:items-center md:order-1 md:w-1/2 md:gap-10 md:ps-10">
+            <div className="text-center text-2xl font-bold text-white md:text-start md:text-3xl lg:text-5xl">
               {t("app_promo")}
             </div>
             <div className="flex w-full max-w-md justify-center gap-3 md:justify-start md:gap-5">

@@ -350,7 +350,7 @@ export const MultiAsyncSelect = React.forwardRef<MultiAsyncSelectRef, Props>(
                     <Badge variant="outline">
                       <span>{`+ ${selectedValues.length - maxCount}`}</span>
                       <X
-                        className="hover:text-primary ml-2 box-content h-3 w-3 shrink-0 cursor-pointer rounded-full p-1 text-zinc-300 hover:bg-zinc-100 dark:text-zinc-500 dark:hover:bg-zinc-800"
+                        className="hover:text-primary ms-2 box-content h-3 w-3 shrink-0 cursor-pointer rounded-full p-1 text-zinc-300 hover:bg-zinc-100 dark:text-zinc-500 dark:hover:bg-zinc-800"
                         onClick={(event) => {
                           event.stopPropagation();
                           clearExtraOptions();
@@ -361,7 +361,7 @@ export const MultiAsyncSelect = React.forwardRef<MultiAsyncSelectRef, Props>(
                 </div>
                 <div className="flex items-center justify-between">
                   <X
-                    className="hover:text-primary ml-2 box-content h-4 w-4 shrink-0 cursor-pointer rounded-full p-1 text-zinc-300 hover:bg-zinc-100 dark:text-zinc-500 dark:hover:bg-zinc-800"
+                    className="hover:text-primary ms-2 box-content h-4 w-4 shrink-0 cursor-pointer rounded-full p-1 text-zinc-300 hover:bg-zinc-100 dark:text-zinc-500 dark:hover:bg-zinc-800"
                     onClick={(event) => {
                       event.stopPropagation();
                       handleClear();
@@ -443,7 +443,7 @@ export const MultiAsyncSelect = React.forwardRef<MultiAsyncSelectRef, Props>(
                   >
                     <div
                       className={cn(
-                        "border-primary mr-1 flex size-4 items-center justify-center rounded-[4px] border shadow-xs transition-shadow outline-none",
+                        "border-primary me-1 flex size-4 items-center justify-center rounded-[4px] border shadow-xs transition-shadow outline-none",
                         selectedValues.length === options.length
                           ? "bg-primary text-primary-foreground border-primary"
                           : "opacity-50 [&_svg]:invisible",
@@ -464,7 +464,7 @@ export const MultiAsyncSelect = React.forwardRef<MultiAsyncSelectRef, Props>(
                     >
                       <div
                         className={cn(
-                          "border-primary mr-1 flex size-4 items-center justify-center rounded-[4px] border shadow-xs transition-shadow outline-none",
+                          "border-primary me-1 flex size-4 items-center justify-center rounded-[4px] border shadow-xs transition-shadow outline-none",
                           isSelected
                             ? "bg-primary text-primary-foreground border-primary"
                             : "opacity-50 [&_svg]:invisible",

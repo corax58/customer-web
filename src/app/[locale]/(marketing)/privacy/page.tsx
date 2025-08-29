@@ -105,7 +105,7 @@ const PrivacyPage = () => {
             Sed ac sollicitudin ipsum varius vulputate enim sit amet aliquet
             lacinia mauris aliquam elit:
           </p>
-          <ol className="text-muted-foreground ml-4 list-inside list-decimal space-y-2">
+          <ol className="text-muted-foreground ms-4 list-inside list-decimal space-y-2">
             <li>Ut scelerisque hendrerit venenatis</li>
             <li>Proin fermentum lacus nec augue blandit placerat</li>
             <li>Ut vestibulum elit justo suscipit sem ultrices</li>

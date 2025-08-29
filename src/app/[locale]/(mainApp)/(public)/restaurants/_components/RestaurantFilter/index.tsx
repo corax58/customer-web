@@ -177,7 +177,10 @@ const RestaurantFilter = ({ className, setOpen }: RestaurantFilterProps) => {
         <Label className="mb-4">{t("offers.title")}</Label>
         <RadioGroup value={filters.offer}>
           {offers.map((offer) => (
-            <div key={offer} className="flex items-center space-x-2">
+            <div
+              key={offer}
+              className="flex items-center gap-2 rtl:flex-row-reverse"
+            >
               <RadioGroupItem
                 value={offer.toString()}
                 id={`offer_${offer}`}

@@ -6,7 +6,7 @@ const OffersCardSkeleton = () => {
     <Card className="w-full overflow-hidden border p-0 shadow-none">
       <CardContent className="p-0">
         <div className="relative">
-          <div className="bg-secondary absolute top-0 right-0 left-0 h-1" />
+          <div className="bg-secondary absolute start-0 end-0 top-0 h-1" />
           <div className="p-4">
             <div className="mb-2 flex items-start justify-between">
               <div className="flex-1 space-y-2">

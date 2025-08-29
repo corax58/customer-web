@@ -17,7 +17,7 @@ const Hero = () => {
       />
       <div className="absolute top-0 flex h-full w-full items-center justify-center bg-black/85">
         <div className="content-container flex h-full w-full items-center justify-center gap-5 pt-20 pb-5 max-lg:flex-col">
-          <div className="flex w-full flex-col text-white max-lg:text-center lg:w-1/2 xl:pr-20">
+          <div className="flex w-full flex-col text-white max-lg:text-center lg:w-1/2 xl:pe-20">
             <div className="mb-2 flex items-end gap-2 max-lg:justify-center">
               <p className="text-lg font-semibold">{t("subtitle")}</p>
               <div className="bg-primary mb-2 h-0.5 w-8"></div>

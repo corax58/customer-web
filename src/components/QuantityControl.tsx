@@ -26,7 +26,7 @@ const QuantityControl = ({
         <Minus />
       </Button>
       <Input
-        className="bg-secondary text-foreground -z-10 -mr-4 -ml-1 h-8 w-14 rounded-none border-0 pl-2 text-center"
+        className="bg-secondary text-foreground -z-10 -ms-1 -me-4 h-8 w-14 rounded-none border-0 ps-2 text-center"
         type="number"
         min={1}
         max={10}

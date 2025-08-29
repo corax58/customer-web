@@ -22,7 +22,7 @@ const NotificationDetail = async ({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant={"outline"} size={"sm"} className="ml-1">
+        <Button variant={"outline"} size={"sm"} className="ms-1">
           {t("view")}
         </Button>
       </DialogTrigger>

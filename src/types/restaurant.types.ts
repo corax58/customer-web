@@ -160,6 +160,7 @@ export interface MenuItem {
   addOnsList: AddOn[];
   item_prices: ItemPrice[];
   itemPrice: ItemPrice[];
+  item_price: string;
   availability: Availability[];
 }
 

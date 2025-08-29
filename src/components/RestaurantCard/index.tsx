@@ -52,16 +52,16 @@ const RestaurantCard = ({
               is_favorite={restaurant.is_favourite === 1}
               itemId={restaurant.id.toString()}
               type="restaurant"
-              className="bg-card absolute top-4 left-4 z-10 rounded-full"
+              className="bg-card absolute start-4 top-4 z-10 rounded-full"
             />
           )}
           {!isOpen && (
-            <Badge className="absolute top-4 right-4 z-10 border-red-700 bg-red-500/90 text-white">
+            <Badge className="border-eed-700 absolute end-4 top-4 z-10 bg-red-500/90 text-white">
               {t("closed")}
             </Badge>
           )}
           {restaurant.price_per_person && (
-            <div className="bg-background absolute -right-1 -bottom-1 z-10 flex w-fit items-center justify-center gap-1 rounded-tl-2xl px-4 py-1 pr-4 pb-2">
+            <div className="bg-background absolute -end-1 -bottom-1 z-10 flex w-fit items-center justify-center gap-1 rounded-ss-2xl px-4 py-1 pe-4 pb-2">
               <span className="text-foreground font-semibold">
                 <FormattedAfghani amount={restaurant.price_per_person} />
               </span>
@@ -80,13 +80,15 @@ const RestaurantCard = ({
               <div className="flex items-center gap-1">
                 <Star size={16} className="fill-primary text-primary" />
                 <p>{formatter.number(restaurant.average_rating)}</p>
-                <p>
-                  (
-                  {formatter.number(
-                    parseInt(restaurant.rating_info.totalReviews),
-                  )}
-                  )
-                </p>
+                {restaurant.rating_info && (
+                  <p>
+                    (
+                    {formatter.number(
+                      parseInt(restaurant.rating_info.totalReviews),
+                    )}
+                    )
+                  </p>
+                )}
               </div>
               {restaurant.delivery_info.delivery_time_minutes && (
                 <div className="flex items-center gap-2">

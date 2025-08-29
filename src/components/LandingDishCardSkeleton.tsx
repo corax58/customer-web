@@ -10,7 +10,7 @@ export const LandingDishCardSkeleton = () => {
           <Skeleton className="h-40 w-full rounded-t-lg" />
 
           {/* Rating Skeleton */}
-          <Skeleton className="absolute bottom-2 left-2 h-5 w-12 rounded-full" />
+          <Skeleton className="absolute start-2 bottom-2 h-5 w-12 rounded-full" />
         </div>
 
         <div className="space-y-3 px-4 py-2">

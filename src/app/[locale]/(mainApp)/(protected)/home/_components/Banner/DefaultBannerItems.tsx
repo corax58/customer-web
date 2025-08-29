@@ -61,10 +61,10 @@ const DefaultBannerItems = ({ currentBanners }: DefaultBannerItemsProps) => {
               src={banner.img}
               alt={`default banner ${1}`}
               fill
-              className="max-md:object-cover"
+              className="max-md:object-cover rtl:-scale-x-100 rtl:transition-transform"
             />
           </div>
-          <div className="absolute flex h-full w-2/3 flex-col justify-between py-8 pl-6 md:w-1/2 md:py-8 md:pl-12">
+          <div className="absolute flex h-full w-2/3 flex-col justify-between py-8 ps-6 md:w-1/2 md:py-8 md:ps-12">
             <div className="flex flex-col gap-2">
               <p className="font-sigmar text-2xl text-white md:text-3xl">
                 {t(`${banner.key}.title`)}

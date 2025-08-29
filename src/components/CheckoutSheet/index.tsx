@@ -149,7 +149,7 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
           {t("trigger")}
         </Button>
       </SheetTrigger>
-      <SheetContent className="h-dvh gap-0 overflow-y-auto rounded-l-2xl max-sm:w-dvw">
+      <SheetContent className="h-dvh gap-0 overflow-y-auto rounded-s-2xl max-sm:w-dvw">
         <SheetHeader>
           <SheetTitle className="text-xl font-semibold">
             {t("title")}

@@ -116,6 +116,9 @@ export const getMenuItemPrice = (menuItem: MenuItem): number => {
   if (menuItem.item_prices) {
     price = menuItem.item_prices[0].price;
   }
+  if (menuItem.item_price) {
+    price = menuItem.item_price;
+  }
   const value = parseFloat(price);
   return value;
 };

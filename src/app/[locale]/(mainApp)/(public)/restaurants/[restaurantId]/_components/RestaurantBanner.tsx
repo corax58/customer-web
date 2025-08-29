@@ -20,7 +20,7 @@ const RestaurantBanner = ({ restaurant }: RestaurantBannerProps) => {
           />
         </div>
 
-        <div className="absolute -bottom-12 max-lg:flex max-lg:w-full max-lg:justify-center lg:left-12">
+        <div className="absolute -bottom-12 max-lg:flex max-lg:w-full max-lg:justify-center lg:start-12">
           <div className="border-card relative size-24 overflow-hidden rounded-full border-4 shadow-xl">
             <CustomImage
               title={restaurant.title + " image"}

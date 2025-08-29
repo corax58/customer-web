@@ -7,7 +7,7 @@ const OffersCardSkeleton = () => {
       <CardContent className="rounded-none p-0">
         <div className="flex">
           {/* Left Side Skeleton */}
-          <Skeleton className="h-auto w-20 rounded-none border-r-2 border-dashed border-gray-200 dark:border-gray-700" />
+          <Skeleton className="h-auto w-20 rounded-none border-e-2 border-dashed border-gray-200 dark:border-gray-700" />
 
           {/* Right Side Skeleton */}
           <div className="flex-1 p-4">

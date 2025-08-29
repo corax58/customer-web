@@ -132,7 +132,7 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button>
-          <MapPin className="mr-2 h-4 w-4" />
+          <MapPin className="me-2 h-4 w-4" />
           {t("trigger")}
         </Button>
       </DialogTrigger>
@@ -191,7 +191,7 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
             className="relative flex w-full flex-col justify-between"
             style={{ height: "22rem" }}
           >
-            <div className="absolute top-0 left-1/2 h-full w-1 -translate-x-1/2 rounded-full bg-gray-200">
+            <div className="absolute top-0 h-full w-1 -translate-x-1/2 rounded-full bg-gray-200 ltr:start-1/2 rtl:end-1/2">
               <div
                 className={cn(
                   "bg-primary h-0 w-full rounded-full transition-all",
@@ -210,7 +210,7 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
                 )}
               >
                 {state.stage % 2 === 1 ? (
-                  <div className={cn("-ml-px w-1/2 pr-6 text-right")}>
+                  <div className={cn("-ms-px w-1/2 pe-6 text-end")}>
                     <p className="text-muted-foreground text-sm">
                       {t("status")}
                     </p>
@@ -234,7 +234,7 @@ export function TrackOrder({ order_id, restaurant }: TrackOrderProps) {
                 </div>
 
                 {state.stage % 2 === 0 ? (
-                  <div className="-mr-px w-1/2 pl-5 text-left">
+                  <div className="-me-px w-1/2 ps-5 text-start">
                     <p className="text-muted-foreground text-sm">
                       {t("status")}
                     </p>

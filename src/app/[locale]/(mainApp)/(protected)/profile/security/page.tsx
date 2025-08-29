@@ -46,7 +46,7 @@ const SecurityPage = async () => {
           <CardContent>
             <Button
               variant="outline"
-              className="w-full border-red-500 bg-transparent text-red-500 dark:border-red-500"
+              className="border-eed-500 dark:border-eed-500 w-full bg-transparent text-red-500"
               asChild
             >
               <CustomLink href={"/profile/security/delete-account"}>

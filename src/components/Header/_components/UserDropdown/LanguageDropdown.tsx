@@ -75,7 +75,7 @@ const LanguageDropDown = () => {
               <span>{t("language")}</span>
             </div>
             {isPending ? (
-              <Loader className="mr-2 h-10 w-32 animate-spin" />
+              <Loader className="me-2 h-10 w-32 animate-spin" />
             ) : (
               <div className="flex items-center gap-2">
                 <span className="text-sm">{currentLanguage?.name}</span>

@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import Logo from "@/components/Logo";
 import { useAuth } from "@/contexts/AuthContext";
 
+import { Icon } from "../Icon";
 import LocationLink from "../LocationLink";
 
 import AccountMenu from "./_components/AccountMenu";
@@ -24,10 +25,15 @@ const Header = () => {
           </LocationLink>
           <LocationLink
             href="/restaurants"
-            className="hover:text-primary flex items-center gap-1 font-medium max-md:text-sm"
+            className="hover:text-primary flex min-w-fit items-center gap-1 font-medium text-nowrap max-md:text-sm"
           >
             {t("restaurants")}
-            <MoveUpRight size={10} className="lg:hidden" />
+            <Icon
+              as={MoveUpRight}
+              size={10}
+              className="lg:hidden"
+              isDirectional
+            />
           </LocationLink>
           <MobileMenu isAuthenticated={isAuthenticated} isLoading={isLoading} />
         </div>

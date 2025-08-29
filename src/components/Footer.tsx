@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import CustomLink from "./CustomLink";
+import { Icon } from "./Icon";
 import Logo from "./Logo";
 
 export default function Footer() {
@@ -26,7 +27,7 @@ export default function Footer() {
             <p className="text-muted-foreground text-sm leading-relaxed">
               {t("about.description")}
             </p>
-            <div className="flex space-x-3">
+            <div className="flex items-center gap-2">
               <CustomLink
                 href="#"
                 className="hover:border-primary hover:text-primary flex h-8 w-8 items-center justify-center rounded-full border border-gray-600 transition-colors"
@@ -92,17 +93,17 @@ export default function Footer() {
               {t("contact.title")}
             </h3>
             <div className="space-y-4">
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center gap-3">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-600">
                   <MapPin className="text-muted-foreground h-4 w-4" />
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center gap-3">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-600">
                   <Phone className="text-muted-foreground h-4 w-4" />
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center gap-3">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-600">
                   <Mail className="text-muted-foreground h-4 w-4" />
                 </div>
@@ -120,13 +121,13 @@ export default function Footer() {
               <Input
                 type="email"
                 placeholder={t("newsletter.placeholder")}
-                className="focus:border-primary rounded-none border-t-0 border-r-0 border-b border-l-0 border-gray-600 bg-transparent px-0 text-white placeholder:text-gray-400 focus-visible:ring-0"
+                className="focus:border-primary rounded-none border-s-0 border-e-0 border-t-0 border-b border-gray-600 bg-transparent px-0 text-white placeholder:text-gray-400 focus-visible:ring-0"
               />
               <Button
                 size="sm"
-                className="bg-primary ml-2 rounded px-4 text-white hover:bg-orange-600"
+                className="bg-primary ms-2 rounded px-4 text-white hover:bg-orange-600"
               >
-                <ArrowRight className="h-4 w-4" />
+                <Icon as={ArrowRight} className="h-4 w-4" isDirectional />
                 <span className="sr-only">Subscribe</span>
               </Button>
             </div>
@@ -134,7 +135,7 @@ export default function Footer() {
         </div>
         <div className="mt-12 border-t border-gray-800 pt-6">
           <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
-            <p className="text-center text-sm text-gray-400 md:text-left">
+            <p className="text-center text-sm text-gray-400 md:text-start">
               {t.rich("bottom_bar.copyright", {
                 span: (chunk) => <span className="text-primary">{chunk}</span>,
                 a: (chunk) => (
@@ -148,7 +149,7 @@ export default function Footer() {
                 ),
               })}
             </p>
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center gap-6">
               <CustomLink
                 href="/privacy"
                 className="hover:text-primary text-sm text-gray-400 transition-colors"

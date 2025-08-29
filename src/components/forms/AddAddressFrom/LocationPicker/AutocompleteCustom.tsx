@@ -55,20 +55,20 @@ export const AutocompleteCustom = ({ onPlaceSelect, className }: Props) => {
   return (
     <div className={cn("relative w-full", className)}>
       <div className="relative">
-        <Search className="text-muted-foreground absolute top-1/2 left-3 z-10 h-4 w-4 -translate-y-1/2" />
+        <Search className="text-muted-foreground absolute start-3 top-1/2 z-10 h-4 w-4 -translate-y-1/2" />
         <Input
           value={inputValue}
           onInput={(event) => handleInput(event)}
           placeholder="Search for a place"
-          className="h-10 bg-white pr-4 pl-10 text-sm dark:bg-white"
+          className="h-10 bg-white ps-10 pe-4 text-sm dark:bg-white"
         />
         {showLoading && (
-          <Loader2 className="text-muted-foreground absolute top-1/2 right-3 z-10 h-4 w-4 -translate-y-1/2 animate-spin" />
+          <Loader2 className="text-muted-foreground absolute end-3 top-1/2 z-10 h-4 w-4 -translate-y-1/2 animate-spin" />
         )}
       </div>
 
       {suggestions.length > 0 && (
-        <div className="bg-popover text-popover-foreground absolute top-full right-0 left-0 z-50 mt-1 max-h-60 overflow-hidden rounded-md border shadow-md">
+        <div className="bg-popover text-popover-foreground absolute start-0 end-0 top-full z-50 mt-1 max-h-60 overflow-hidden rounded-md border shadow-md">
           <ul className="max-h-60 overflow-y-auto">
             {suggestions.map((suggestion, index) => {
               return (

@@ -10,7 +10,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { isRestaurantOpenNow } from "@/lib/utils";
 
 import PopularRestaurantsSkeleton from "./PopularRestaurantsSkeleton";
 
@@ -58,16 +57,16 @@ const PopularRestaurants = async ({
           </div>
         </div>
 
-        <CarouselContent className="-ml-4 overflow-visible">
+        <CarouselContent className="-ms-4 overflow-visible">
           {restaurants?.map((restaurant) => {
-            const isOpen = isRestaurantOpenNow(restaurant.availability);
+            // const isOpen = isRestaurantOpenNow(restaurant.availability);
 
             return (
               <CarouselItem
                 key={restaurant.id}
-                className="pl-4 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
+                className="ps-4 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
               >
-                <RestaurantCard restaurant={restaurant} isOpen={isOpen} />
+                <RestaurantCard restaurant={restaurant} isOpen={true} />
               </CarouselItem>
             );
           })}

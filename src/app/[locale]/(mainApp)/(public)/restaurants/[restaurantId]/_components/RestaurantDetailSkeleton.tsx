@@ -10,7 +10,7 @@ const RestaurantDetailSkeleton = () => {
       <div className="mx-auto mb-12 w-full lg:container lg:px-8">
         <div className="dark:bg-card relative h-72 w-full border sm:rounded-3xl sm:p-2">
           <Skeleton className="h-full w-full sm:rounded-2xl" />
-          <div className="absolute -bottom-12 max-sm:flex max-sm:w-full max-sm:justify-center sm:left-12">
+          <div className="absolute -bottom-12 max-sm:flex max-sm:w-full max-sm:justify-center sm:start-12">
             <Skeleton className="size-24 rounded-full" />
           </div>
         </div>
