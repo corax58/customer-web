@@ -5,7 +5,7 @@ import { MenuListSkeleton } from "./MenuListSkeleton";
 
 const RestaurantDetailSkeleton = () => {
   return (
-    <div>
+    <div className="lg:container lg:mx-auto lg:px-10 xl:px-16">
       {/* Banner Skeleton */}
       <div className="mx-auto mb-12 w-full lg:container lg:px-8">
         <div className="dark:bg-card relative h-72 w-full border sm:rounded-3xl sm:p-2">
@@ -16,7 +16,7 @@ const RestaurantDetailSkeleton = () => {
         </div>
       </div>
 
-      <div className="mx-auto sm:px-6 lg:container lg:px-8">
+      <div className="mx-auto sm:px-6 lg:px-8">
         {/* Header Skeleton */}
         <div className="max-md:px-4">
           <div className="flex w-full items-center justify-between gap-5 py-6 pt-3 max-lg:flex-col">

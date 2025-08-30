@@ -61,7 +61,7 @@ const BannerItem = ({ bannerDetail }: BannerItemProps) => {
                 </div>
                 <div className="flex w-fit items-center gap-2 rounded-full text-sm font-semibold">
                   <MapPin className="h-4 w-4" />
-                  <span className="text-sm">
+                  <span className="line-clamp-2 text-sm">
                     {bannerDetail.restaurant.location}
                   </span>
                 </div>
