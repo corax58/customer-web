@@ -68,18 +68,23 @@ export function NotificationPopover({
     } else {
       return (
         <div className="flex h-full flex-col">
-          {notifications?.slice(0, 3).map((notification) => (
-            <div
+          {notifications?.slice(0, 4).map((notification) => (
+            <CustomLink
+              href={`/profile/notifications?id=${notification.id} `}
               key={notification.id}
-              className="flex items-start gap-4 border-b pb-2"
             >
-              <div className="grid gap-1">
-                <p className="font-semibold">{notification.title}</p>
-                <p className="text-muted-foreground text-sm">
-                  {notification.description}
-                </p>
+              <div className="flex h-20 items-center justify-between gap-4 border-b px-3 py-2">
+                <div className="flex h-full w-full flex-col justify-between">
+                  <p className="font-semibold">{notification.title}</p>
+                  <p className="text-muted-foreground line-clamp-2 text-sm">
+                    {notification.description}
+                  </p>
+                </div>
+                {notification.is_read == 1 && (
+                  <div className="size-2 min-w-2 animate-pulse rounded-full bg-blue-600" />
+                )}
               </div>
-            </div>
+            </CustomLink>
           ))}
         </div>
       );
@@ -107,7 +112,7 @@ export function NotificationPopover({
           </div>
           <Separator />
 
-          <div className="flex h-72 items-center justify-center space-y-4 overflow-y-auto p-4 pb-0">
+          <div className="flex h-80 items-center justify-center space-y-4 overflow-y-auto pb-0">
             {renderNotifications()}
           </div>
 

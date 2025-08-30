@@ -184,20 +184,21 @@ export interface Transaction {
   admin_owes_restaurant: string;
 }
 
+type NotificationState = 0 | 1;
 export interface Notification {
   id: number;
   title: string;
   description: string;
-  modelId: number | null;
-  modelType: string | null;
-  isRead: boolean;
-  stateId: number;
-  typeId: number;
-  createdOn: string; // ISO 8601 string for date/time
-  toUserId: number;
-  createdById: number;
-  fullName: string;
-  imageFile: string | null;
+  model_id: number | null;
+  model_type: string | null;
+  is_read: NotificationState;
+  state_id: number;
+  type_id: number;
+  created_on: string; // ISO 8601 string for date/time
+  to_user_id: number;
+  created_by_id: number;
+  full_name: string;
+  image_file: string | null;
 }
 
 export interface FAQ {
@@ -261,9 +262,11 @@ export interface GetNotificationListResults extends ActionResult {
 export interface NotificationListResponse {
   list: Notification[];
 }
+
 export interface GetFavoritesListResult extends ActionResult {
   data?: { model_detail: Restaurant }[];
 }
+
 export interface FavoritesListResponse {
   list: { model_detail: Restaurant }[];
 }

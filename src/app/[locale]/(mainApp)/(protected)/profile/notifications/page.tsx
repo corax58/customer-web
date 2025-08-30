@@ -3,6 +3,7 @@ import { Metadata } from "next";
 
 import { getTranslations } from "next-intl/server";
 
+import MarkAllRead from "./_components/MarkAllRead";
 import NotificationList from "./_components/NotificationList";
 import NotificationListSkeleton from "./_components/NotificationListSkeleton";
 
@@ -16,18 +17,13 @@ const NotificationsPage = async () => {
   const t = await getTranslations("profile.notifications");
 
   return (
-    <div className="w-full space-y-6 px-10 py-5">
+    <div className="w-full space-y-6 py-5 lg:px-10">
       <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <h2 className="text-3xl font-bold">{t("title")}</h2>
         </div>
         <div className="flex gap-2">
-          {/* <Button variant="outline" size="sm">
-            Mark All Read
-          </Button>
-          <Button variant="outline" size="sm">
-            Settings
-          </Button> */}
+          <MarkAllRead />
         </div>
       </div>
       <Suspense fallback={<NotificationListSkeleton />}>

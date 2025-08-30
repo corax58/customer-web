@@ -71,7 +71,7 @@ const OrderDetail = async ({ orderId }: OrderDetailProps) => {
           <p className="text-muted-foreground text-sm">{t("order_no")}</p>
           <p className="text-lg font-medium">#{order.order_no}</p>
         </div>
-        {order.state_id > 5 && (
+        {order.state_id > 5 && order.state_id < 8 && (
           <div className="flex w-full justify-end">
             <OrderStatusBadge stateId={order.state_id} />
           </div>

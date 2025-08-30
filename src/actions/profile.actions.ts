@@ -113,6 +113,40 @@ export async function getNotificationList(): Promise<GetNotificationListResults>
     else return { success: false, error: "Failed to fetch notication list" };
   }
 }
+export async function MarkAllNotificationsRead(): Promise<ActionResult> {
+  try {
+    await fetchWithAuth(`/api/notification/mark-all-as-read`, {
+      retry: { retries: 3, delay: 1000 },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    if (typeof error === "string") return { success: false, error };
+    else return { success: false, error: "Failed to mark all read" };
+  }
+}
+export async function MarkNotificationAsRead(
+  notification_id: number,
+): Promise<ActionResult> {
+  const body = JSON.stringify({ notification_id });
+  try {
+    await fetchWithAuth(`/api/notification/mark-as-read`, {
+      method: "POST",
+      body,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      retry: { retries: 3, delay: 1000 },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    if (typeof error === "string") return { success: false, error };
+    else return { success: false, error: "Failed to mark read" };
+  }
+}
 export async function getFavoritesList(): Promise<GetFavoritesListResult> {
   try {
     const responseData: FavoritesListResponse =

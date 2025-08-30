@@ -72,13 +72,16 @@ interface OrderStatusBadgeProps {
 const OrderStatusBadge = ({ stateId }: OrderStatusBadgeProps) => {
   const t = useTranslations("profile.orders.order_detail.order_status");
   const defaultState = {
+    key: "unknown",
     label: "Unknown",
     className:
       "bg-gray-100 text-gray-800 dark:bg-gray-900/50 dark:text-gray-400",
   };
+  console.log(stateId);
 
   const { className, key } = OrderStatusMapping[stateId] || defaultState;
 
+  console.log(key);
   return <Badge className={cn("", className)}>{t(key)}</Badge>;
 };
 

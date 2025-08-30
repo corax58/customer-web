@@ -726,8 +726,13 @@
       "title": "Notifications",
       "no_notifs_title": " You have no notifications yet.",
       "no_notifs_desc": "Your notifications will appear here.",
-      "errors": { "failed_fetch": " Failed to fetch notifications" },
+      "errors": {
+        "failed_fetch": " Failed to fetch notifications",
+        "failed_mark_all": "Failed to mark all read",
+        "failed_mark_read": "Failed to mark notification read"
+      },
       "mark_read": "Mark Read",
+      "mark_all_read": "Mark All Read",
       "view": "View"
     },
     "referrals": {
