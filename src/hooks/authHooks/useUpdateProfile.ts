@@ -14,8 +14,14 @@ export const useUpdateProfile = () => {
     setIsSuccess(false);
     setIsLoading(true);
     setError(null);
-    const body = JSON.stringify(data);
-    const result = await updateProfileAction(body);
+    const formData = new FormData();
+
+    for (const user in data.User) {
+      if (data.User[user]) {
+        formData.append(`User[${user}]`, data.User[user]);
+      }
+    }
+    const result = await updateProfileAction(formData);
 
     if (result.error) {
       setError(result.error);

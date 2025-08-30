@@ -26,15 +26,13 @@ import {
 } from "@/types/restaurant.types";
 import { ActionResult } from "@/types/shared.types";
 
-export async function updateProfileAction(body: string) {
+export async function updateProfileAction(body: FormData) {
   try {
     const responseData = await fetchWithAuth<LoginResponse>(
       "/api/user/profile-update",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+
         body,
       },
     );

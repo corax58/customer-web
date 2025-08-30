@@ -22,6 +22,7 @@ import {
 } from "@/lib/schemas/auth.schema";
 import { cn, formatYYYYMMDD } from "@/lib/utils";
 
+import AvatarUpload from "./AvatarUpload";
 import ProfileUpdateFormFields from "./ProfileUpdateFormFields";
 
 interface ProfileUpdateFormProps {
@@ -37,6 +38,16 @@ const ProfileUpdateForm = ({
   const { user } = useAuth();
   const [country, setCountry] = useState<CountryCode | undefined>("ET");
 
+  const initialImageData = user?.profile_file
+    ? {
+        imageUrl: user.profile_file,
+        imageBlob: undefined,
+      }
+    : null;
+  const [ImageData, setImageData] = useState<{
+    imageBlob?: Blob;
+    imageUrl: string;
+  } | null>(initialImageData);
   const { error, isLoading, updateProfile, isSuccess } = useUpdateProfile();
 
   const form = useForm<ProfileUpdateValues>({
@@ -58,6 +69,7 @@ const ProfileUpdateForm = ({
 
     updateProfile({
       User: {
+        profile_file: ImageData?.imageBlob && ImageData.imageBlob,
         first_name: values.first_name,
         last_name: values.last_name,
         country_code: "+" + country_code,
@@ -83,6 +95,7 @@ const ProfileUpdateForm = ({
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-10">
+            <AvatarUpload setImageData={setImageData} imageData={ImageData} />
             <div className="flex flex-col gap-6">
               <ProfileUpdateFormFields form={form} setCountry={setCountry} />
 

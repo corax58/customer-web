@@ -27,6 +27,9 @@ export interface SignupPayload {
 
 export interface UpdateProfilePayload {
   User: {
+    [key: string]: string | Blob | undefined;
+
+    profile_file?: Blob;
     first_name?: string;
     last_name?: string;
     country_code?: string;
