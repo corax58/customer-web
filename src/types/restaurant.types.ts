@@ -271,6 +271,10 @@ export interface OrderItem {
 }
 
 export interface OrderPayload {
+  coupon_id?: string;
+  description?: string;
+  offer_discount?: string;
+  payment_status: number;
   type_id: number;
   store_id: number;
   total_price: string;

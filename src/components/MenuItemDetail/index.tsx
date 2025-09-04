@@ -92,7 +92,7 @@ const MenuItemDetail = ({
       return menuItem.addOnsList
         .filter((item) => selectedAddonIds.includes(item.id))
         .map((item) => ({
-          add_on_id: item.id.toString(),
+          add_on_id: item.id,
           price: item.price.toString(),
         }));
     };

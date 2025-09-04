@@ -70,15 +70,23 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
 
   const getItemArray = () => {
     if (!cartItems || cartItems.length === 0) return [];
-    return cartItems.map((item: CartItem) => ({
-      item_price: item.selected_rest_price.price,
-      price_id: item.price_id,
-      product_id: item.product_id,
-      quantity: item.quantity,
-      add_on: item.additional_items,
-      type_id: item.type_id,
-      store_type: item.store_type,
-    }));
+
+    return cartItems.map((item: CartItem) => {
+      const simplifiedAddOns = item.additional_items.map((addOn) => ({
+        add_on_id: addOn.add_on_id, // Assuming the full object has 'add_on_id'
+        price: addOn.price,
+      }));
+
+      return {
+        item_price: item.selected_rest_price.price,
+        price_id: item.price_id,
+        product_id: item.product_id,
+        quantity: item.quantity,
+        add_on: simplifiedAddOns, // Use the new simplified array
+        type_id: 3,
+        store_type: 3,
+      };
+    });
   };
 
   const handleOrder = () => {
@@ -99,16 +107,21 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
         Detail: {
           store_id: currentRestaurantId,
           address: selectedAddress.id.toString(),
-          payable_amount: (totalPrice - discount + deliveryInfo.fee).toString(),
-          delivery_charge: deliveryInfo.fee?.toString(),
+          payable_amount: (totalPrice - discount + deliveryInfo.fee).toFixed(1),
+          delivery_charge: deliveryInfo.fee?.toFixed(1),
           delivery_time: deliveryInfo.time?.toString(),
-          delivery_distance: deliveryInfo.distance?.toString(),
-          total_price: totalPrice.toString(),
+          delivery_distance: deliveryInfo.distance
+            ? deliveryInfo.distance.toString()
+            : "",
+          total_price: totalPrice.toFixed(1),
           type_id: parseInt(selectedPaymentMethod!),
           item: JSON.stringify(orderItems),
+          coupon_id: selectedOffer ? selectedOffer.id.toString() : "",
+          description: additionalInstructions,
+          offer_discount: discount.toFixed(1),
+          payment_status: 1,
         },
       };
-
       const results = await placeOrder(JSON.stringify(rawData));
 
       if (results.error) {
