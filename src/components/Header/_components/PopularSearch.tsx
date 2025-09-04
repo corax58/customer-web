@@ -4,7 +4,6 @@ import { TrendingUp } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { getPopularSearches } from "@/actions/actions";
-import { useAuth } from "@/contexts/AuthContext";
 import { SearchTerm } from "@/types/restaurant.types";
 
 interface PopularSearches {
@@ -20,23 +19,20 @@ const PopularSearch = ({
   setSearch,
   setPopularSearchesLength,
 }: PopularSearches) => {
-  const { user } = useAuth();
   const [popularSearches, setPopularSearch] = useState<SearchTerm[]>([]);
   const t = useTranslations("header.search");
 
   const fetchPopularSearch = useCallback(async () => {
-    if (!user) return;
     const { data } = await getPopularSearches();
     if (data) {
       setPopularSearch(data);
       setPopularSearchesLength(data.length);
     }
-  }, [user, setPopularSearchesLength]);
+  }, [setPopularSearchesLength]);
 
   useEffect(() => {
-    if (!user) return;
     fetchPopularSearch();
-  }, [user, fetchPopularSearch]);
+  }, [fetchPopularSearch]);
   return (
     <>
       {popularSearches.length > 0 && (
