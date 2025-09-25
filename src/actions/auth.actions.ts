@@ -4,12 +4,12 @@ import { cookies } from "next/headers";
 
 import { isAuthenticated } from "@/lib/auth";
 import { fetchOnCondition, fetchWithAuth } from "@/lib/fetchWrappers";
-import { ActionResult } from "@/types/shared.types";
 import {
   ForgotPasswordPayload,
-  ForgotPasswordResult,
   ForgotPasswordResponse,
+  ForgotPasswordResult,
 } from "@/types/auth.types";
+import { ActionResult } from "@/types/shared.types";
 
 export async function logoutAction(): Promise<ActionResult> {
   try {
