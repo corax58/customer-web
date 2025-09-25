@@ -14,7 +14,6 @@ const gender = ["male", "female", "other"];
 const PersonalInfo = () => {
   const { user } = useAuth();
   const t = useTranslations("profile.personal_info");
-
   if (user)
     return (
       <div className="space-y-4">
@@ -24,17 +23,25 @@ const PersonalInfo = () => {
         </div>
         <div className="space-y-6">
           <Card className="p-0 shadow-none">
-            <CardContent className="flex items-center justify-between px-6 py-6">
-              <Avatar className="h-20 w-20">
-                <AvatarImage src={user.profile_file} />
-                <AvatarFallback className="text-lg">
-                  {user.first_name[0] + user.last_name[0]}
-                </AvatarFallback>
-              </Avatar>
+            <CardContent className="flex items-center justify-between p-3 md:p-6">
+              <div className="flex items-center gap-4">
+                <Avatar className="h-20 w-20">
+                  <AvatarImage src={user.profile_file} />
+                  <AvatarFallback className="text-lg">
+                    {user.first_name[0] + user.last_name[0]}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col">
+                  <p>{user.full_name}</p>
+                  <p className="text-muted-foreground text-sm">
+                    {user.email || `${user.country_code}${user.contact_no}`}
+                  </p>
+                </div>
+              </div>
               <Button variant="outline" size="lg" asChild>
                 <CustomLink href={"/profile/edit"}>
-                  <Edit className="me-2 h-4 w-4" />
-                  {t("buttons.edit")}
+                  <Edit className="h-4 w-4 sm:me-2" />
+                  <span className="max-sm:hidden">{t("buttons.edit")}</span>
                 </CustomLink>
               </Button>
             </CardContent>
