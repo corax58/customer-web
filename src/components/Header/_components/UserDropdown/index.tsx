@@ -74,14 +74,17 @@ const UserDropdown = ({ className }: React.ComponentProps<"button">) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-80" align="end" sideOffset={8}>
-        <div className="border-b px-4 py-3">
-          <div className="flex items-center gap-3">
+        <button
+          className="group w-full border-b p-1 transition-colors"
+          onClick={() => handleNav("/profile")}
+        >
+          <div className="group-hover:bg-muted flex items-center gap-3 rounded-lg p-2 transition-all duration-300">
             <Avatar className="h-10 w-10">
               <AvatarImage
                 src={user?.profile_file}
                 alt={`@${user?.full_name}`}
               />
-              <AvatarFallback>
+              <AvatarFallback className="group-hover:bg-popover">
                 {user?.full_name
                   .split(" ")
                   .map((n) => n[0])
@@ -96,7 +99,7 @@ const UserDropdown = ({ className }: React.ComponentProps<"button">) => {
               </p>
             </div>
           </div>
-        </div>
+        </button>
         <div className="lg:hidden">
           <LanguageDropDown />
         </div>
