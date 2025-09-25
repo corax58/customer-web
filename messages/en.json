@@ -5,13 +5,10 @@
     "required_location": "Please select a location from the map",
     "required_dob": "A date of birth is required",
     "invalid_phone": "Invalid phone number",
-
     "too_small_string": "Must contain at least {minimum, plural, =1 {# character} other {# characters}}",
     "too_big_string": "Cannot be longer than {maximum, plural, =1 {# character} other {# characters}}",
     "detailed_address_required": "Please enter a more detailed address",
-
     "otp_length": "Your one-time password must be {length} characters",
-
     "first_name_required": "First name is required",
     "last_name_required": "Last name is required",
     "invalid_email": "Invalid email",
@@ -23,7 +20,6 @@
     "password_special": "Password must contain at least one special character (e.g., !@#$%^&*)",
     "passwords_do_not_match": "Passwords do not match"
   },
-
   "time": {
     "hoursAndMinutes": "{hours, number}h {minutes, number}m",
     "hoursOnly": "{hours, number}h",
@@ -250,7 +246,6 @@
       "mobile_number": "Mobile Number",
       "send_button": "Send"
     },
-
     "marketing": {
       "headline": "Delicious food, delivered to your door",
       "subheadline": "Order from your favorite restaurants and get fresh, hot meals delivered in minutes.",
@@ -275,7 +270,6 @@
     "logout_warning": "Are you sure you want to logout?",
     "continue": "Continue",
     "cancel": "cancel",
-
     "cart": {
       "title": "My Cart",
       "add_ons": "Add-ons",
@@ -544,10 +538,10 @@
         "title": "Sort",
         "placeholder": "Select...",
         "types": {
-          "none": "None",
           "1": "Price per person: Low to High",
           "2": "Price per person: High to Low",
-          "3": "Previously Ordered"
+          "3": "Previously Ordered",
+          "none": "None"
         }
       },
       "rating": {
@@ -606,12 +600,11 @@
         "title": "Oops! Something went wrong",
         "description": "We couldn`t load the restaurant details right now",
         "details": {
-          "title": "What happened?",
           "1": "The restaurant might be temporarily unavailable",
           "2": "There could be a network connection issue",
-          "3": "The restaurant information might have been updated"
+          "3": "The restaurant information might have been updated",
+          "title": "What happened?"
         },
-
         "button": {
           "try_again": "Try Again",
           "back": "Go Back"
@@ -627,14 +620,14 @@
           "title": "Availability",
           "subtitle": "Here are our working hours",
           "days": {
-            "opening_hours": "{startTime} - {endTime} ",
             "0": "Monday",
             "1": "Tuesday",
             "2": "Wednesday",
             "3": "Thursday",
             "4": "Friday",
             "5": "Saturday",
-            "6": "Sunday"
+            "6": "Sunday",
+            "opening_hours": "{startTime} - {endTime} "
           },
           "buttons": {
             "trigger": "Open from <highlight>{startTime}</highlight> to <highlight>{endTime}</highlight>",
@@ -669,7 +662,9 @@
       "title": "My Profile",
       "subtitle": "Manage your personal details and preferences.",
       "personal_info": "Personal Information",
-      "buttons": { "edit": "Edit" },
+      "buttons": {
+        "edit": "Edit"
+      },
       "na": "N/A",
       "genders": {
         "male": "Male",
@@ -698,8 +693,8 @@
           "success_delete": "Successfully deleted address"
         },
         "delete_dialog": {
-          "title": "Are you absolutely sure?",
-          "description": "This action cannot be undone. This will permanently delete your this address. and remove the data from our servers.",
+          "title": "Are you sure?",
+          "description": "This action cannot be undone. This will permanently delete your address, and remove the data from our servers.",
           "buttons": {
             "cancel": "Cancel",
             "confirm": "Confirm"
@@ -738,7 +733,6 @@
     "referrals": {
       "title": "Your Referral Code",
       "description": " Share your referral code with friends and earn rewards when they sign up.",
-
       "error": {
         "title": "Failed to Load Referral Details",
         "desc": "We encountered an issue while trying to retrieve your referral information. This might be a temporary problem. Please try again in a few moments."
@@ -801,7 +795,6 @@
     "transactions": {
       "title": "Transaction History",
       "description": " View all your payment transactions and their status. ",
-
       "error": {
         "something_went_wrong": "Something went wrong"
       },
@@ -812,7 +805,6 @@
         "completed": "Completed",
         "failed": "Failed"
       },
-
       "columns": {
         "transaction_id": "Transaction ID",
         "restaurant": "Restaurant",
@@ -870,7 +862,6 @@
         "add_ons": "Add-ons",
         "track_order": {
           "trigger": "Track Order",
-
           "status": "Status",
           "error": {
             "failed_fetch": "Failed to get order status"
@@ -913,7 +904,6 @@
           "restaurant_placeholder": "How was the food and the service?",
           "rate_rider": "Rate Your Rider",
           "rider_placeholder": "How was the delivery experience?",
-
           "submit": "Submit review",
           "message": {
             "no_review": "Please provide a rating for the restaurant and the rider.",

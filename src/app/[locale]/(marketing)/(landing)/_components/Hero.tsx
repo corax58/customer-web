@@ -9,15 +9,9 @@ import { Link } from "@/i18n/navigation";
 const Hero = () => {
   const t = useTranslations("landing.hero");
   return (
-    <section className="relative h-dvh w-full">
-      <Image
-        fill
-        src={"/assets/images/landing/banner.jpg"}
-        alt={"hero section banner"}
-        className="object-cover"
-      />
-      <div className="absolute top-0 flex h-full w-full items-center justify-center bg-black/85">
-        <div className="content-container flex h-full w-full items-center justify-center gap-5 pt-20 pb-5 max-lg:flex-col">
+    <section className="h-full min-h-dvh w-full bg-[url('/assets/images/landing/banner.webp')] bg-cover bg-center bg-no-repeat">
+      <div className="flex h-full min-h-dvh w-full items-center justify-center bg-black/85">
+        <div className="content-container flex h-full w-full items-center justify-center pt-20 pb-5 max-lg:flex-col lg:gap-5">
           <div className="flex w-full flex-col text-white max-lg:text-center lg:w-1/2 xl:pe-20">
             <div className="mb-2 flex items-end gap-2 max-lg:justify-center">
               <p className="text-lg font-semibold">{t("subtitle")}</p>
@@ -47,8 +41,8 @@ const Hero = () => {
               </Button>
             </div>
           </div>
-          <div className="flex h-full w-full items-center lg:w-1/2">
-            <div className="relative h-full w-full">
+          <div className="flex h-full w-full flex-1 items-center lg:w-1/2">
+            <div className="relative aspect-square h-full w-full max-lg:max-h-96">
               <Image
                 fill
                 src={"/assets/images/landing/heroimage.webp"}

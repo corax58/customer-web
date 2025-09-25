@@ -90,17 +90,18 @@ const RestaurantCard = ({
                   </p>
                 )}
               </div>
-              {restaurant.delivery_info.delivery_time_minutes && (
-                <div className="flex items-center gap-2">
-                  <Bike size={20} />
-                  <p>
-                    {formatTimeHM(
-                      restaurant.delivery_info.delivery_time_minutes,
-                      time,
-                    )}
-                  </p>
-                </div>
-              )}
+              {restaurant.delivery_info &&
+                restaurant.delivery_info.delivery_time_minutes && (
+                  <div className="flex items-center gap-2">
+                    <Bike size={20} />
+                    <p>
+                      {formatTimeHM(
+                        restaurant.delivery_info.delivery_time_minutes,
+                        time,
+                      )}
+                    </p>
+                  </div>
+                )}
             </div>
           </div>
         </RestaurantDetailsLink>
