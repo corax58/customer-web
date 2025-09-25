@@ -91,10 +91,11 @@ const UserDropdown = ({ className }: React.ComponentProps<"button">) => {
                   .join("")}
               </AvatarFallback>
             </Avatar>
-            <div>
-              <p className="font-semibold">{user?.full_name}</p>
+            <div className="flex flex-col items-start">
+              <p className="line-clamp-1 font-semibold">
+                {user?.full_name.trim()}
+              </p>
               <p className="text-muted-foreground text-sm">
-                {" "}
                 {user?.email || `${user?.country_code}${user?.contact_no}`}
               </p>
             </div>
