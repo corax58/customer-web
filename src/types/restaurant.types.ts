@@ -59,7 +59,7 @@ export interface Restaurant {
   estimated_delivery_fees: number;
   estimated_delivery_distance: string;
   estimated_delivery_time: string;
-  delivery_info: DeliveryInfo;
+  delivery_info?: DeliveryInfo;
   price_per_person: string;
   is_favourite: number;
   availability: Availability[];

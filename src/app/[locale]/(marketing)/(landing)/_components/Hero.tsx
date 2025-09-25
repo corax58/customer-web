@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
 
 const Hero = () => {
   const t = useTranslations("landing.hero");
@@ -34,14 +35,15 @@ const Hero = () => {
               {t("description")}
             </p>
             <div className="mb-8 flex items-center gap-4 max-lg:justify-center lg:mb-12">
-              <Button className="rounded-full" size={"lg"}>
-                {t("order_now")}
+              <Button className="rounded-full" size={"lg"} asChild>
+                <Link href={"/restaurants"}>{t("order_now")}</Link>
               </Button>
               <Button
                 className="text-primary border-primary rounded-full border bg-white hover:text-white"
                 size={"lg"}
+                asChild
               >
-                {t("contact_us")}
+                <Link href={"/contact-us"}>{t("contact_us")}</Link>
               </Button>
             </div>
           </div>
