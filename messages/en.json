@@ -1,4 +1,9 @@
 {
+  "not-found": {
+    "title": "Oops! Page Not Found",
+    "description": " The page you're looking for might have been moved, deleted, or maybe the URL was mistyped.",
+    "button": "Go Home"
+  },
   "zod": {
     "required": "This field is required",
     "required_select": "You must select an option",
