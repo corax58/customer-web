@@ -80,7 +80,7 @@ const RestaurantDetail = async ({
     const isOpen = isRestaurantOpenNow(restaurant.availability);
 
     return (
-      <div className="lg:container lg:mx-auto lg:px-10 xl:px-16">
+      <div className="lg:container lg:mx-auto lg:px-10 xl:px-14">
         <RestaurantBanner restaurant={restaurant} />
         <div className="mx-auto sm:px-6 lg:px-8">
           <RestaurantHeader
@@ -92,7 +92,7 @@ const RestaurantDetail = async ({
             defaultValue={"top"}
             className="flex w-full py-5 lg:flex-row lg:gap-10 lg:rtl:flex-row-reverse"
           >
-            <TabsList className="lg:bg-background text-muted-foreground mb-6 grid h-fit w-full grid-cols-5 max-md:rounded-none lg:flex lg:w-1/5 lg:flex-col">
+            <TabsList className="lg:bg-background text-muted-foreground mb-6 grid h-fit w-full grid-cols-5 max-md:rounded-none lg:flex lg:w-1/5 lg:flex-col lg:gap-2">
               {tabs.map((tab) => (
                 <TabsTrigger
                   key={tab.value}
@@ -104,7 +104,7 @@ const RestaurantDetail = async ({
               ))}
               <FadingDivider className="max-lg:hidden" />
             </TabsList>
-            <div className="content-container max-md:px-4">
+            <div className="max-md:px-4">
               <TabsContent value="top" className="space-y-6">
                 <Suspense fallback={<TopRatedItemsSkeleton />}>
                   <TopRatedItems restaurantId={restaurantId} isOpen={isOpen} />

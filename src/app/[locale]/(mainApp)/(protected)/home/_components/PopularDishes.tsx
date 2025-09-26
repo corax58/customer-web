@@ -47,11 +47,11 @@ export async function PopularDishes({ personalized }: PopularDishesProps) {
           </div>
         </div>
 
-        <CarouselContent className="-ms-4 overflow-visible">
+        <CarouselContent className="-ms-4 overflow-visible xl:-ms-50">
           {dishes?.map((dish) => (
             <CarouselItem
               key={dish.id}
-              className="ps-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+              className="ps-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4 xl:ps-50"
             >
               <MenuItemCard menuItem={dish} isInRestaurant={false} isOpen />
             </CarouselItem>

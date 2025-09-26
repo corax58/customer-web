@@ -5,7 +5,7 @@ import { MenuListSkeleton } from "./MenuListSkeleton";
 
 const RestaurantDetailSkeleton = () => {
   return (
-    <div className="lg:container lg:mx-auto lg:px-10 xl:px-16">
+    <div className="lg:container lg:mx-auto lg:px-10 xl:px-14">
       {/* Banner Skeleton */}
       <div className="mx-auto mb-12 w-full lg:container lg:px-8">
         <div className="dark:bg-card relative h-72 w-full border sm:rounded-3xl sm:p-2">

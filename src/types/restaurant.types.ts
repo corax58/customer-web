@@ -234,18 +234,18 @@ export interface Offer {
   id: number;
   title: string;
   code: string;
-  discount: string; // String, but represents a number. Consider 'number' if you convert.
-  image_file: string; // URL for the offer image
-  description: string; // Contains HTML, will need sanitization
-  minimum_amount: string; // String, but represents a number. Consider 'number' if you convert.
-  item_id: number | null; // Can be null
+  discount: string;
+  image_file: string;
+  description: string;
+  minimum_amount: string;
+  item_id: number | null;
   restaurant_id: number;
-  end_time: string; // Consider Date if you'll parse it
+  end_time: string;
   state_id: number;
   type_id: number;
-  created_on: string; // Consider Date if you'll parse it
+  created_on: string;
   created_by_id: number;
-  restaruentDetail: Restaurant; // Note: Typo in backend 'restaruentDetail' instead of 'restaurantDetail'
+  restaruentDetail: Restaurant;
 }
 
 export interface Category {
