@@ -1,4 +1,9 @@
 {
+  "errors": {
+    "globalTitle": "Something went wrong!",
+    "globalDescription": "An unexpected error occurred. Please try reloading the page.",
+    "retryButton": "Try Again"
+  },
   "not-found": {
     "title": "Oops! Page Not Found",
     "description": " The page you're looking for might have been moved, deleted, or maybe the URL was mistyped.",
