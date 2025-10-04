@@ -5,7 +5,9 @@ import { Location } from "@/types/shared.types";
 export default function useGeolocation() {
   const [guestLocation, setGuestLocation] = useState<Location | null>(null);
 
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<{ code: number; message: string } | null>(
+    null,
+  );
 
   const getGuestUserLocation = useCallback(() => {
     if (navigator.geolocation) {
@@ -18,7 +20,7 @@ export default function useGeolocation() {
           setError(null);
         },
         (err) => {
-          setError(err.message);
+          setError(err);
           setGuestLocation({
             latitude: 0,
             longitude: 0,
@@ -26,7 +28,10 @@ export default function useGeolocation() {
         },
       );
     } else {
-      setError("Geolocation is not supported by this browser.");
+      setError({
+        code: 0,
+        message: "Geolocation is not supported by this browser.",
+      });
     }
   }, []);
 

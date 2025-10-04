@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import {
   APIProvider,
@@ -13,6 +13,7 @@ import { CheckCircle2, MapPin } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import useGeolocation from "@/hooks/useGeolocation";
 import { cn } from "@/lib/utils";
 
@@ -36,12 +37,20 @@ export function LocationPicker({
   const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API!;
   const t = useTranslations("components.add_address_form");
 
-  const { getGuestUserLocation, guestLocation } = useGeolocation();
+  const {
+    getGuestUserLocation,
+    guestLocation,
+    error: guestLocationError,
+  } = useGeolocation();
   const [currentLocation, setCurrentLocation] =
     useState<google.maps.LatLngLiteral>({
       lat: guestLocation?.latitude as number,
       lng: guestLocation?.longitude as number,
     });
+  const hasCurrentLocation =
+    currentLocation.lat !== undefined && currentLocation.lng !== undefined
+      ? currentLocation.lat !== 0 && currentLocation.lng !== 0
+      : false;
 
   const [selectedMapLocation, setSelectedMapLocation] =
     useState<google.maps.LatLngLiteral | null>(null);
@@ -122,46 +131,45 @@ export function LocationPicker({
 
       <div className="h-96 w-full overflow-hidden rounded-lg">
         {/* Only show tha map when the currentLocation is available */}
-        {currentLocation.lat && currentLocation.lng ? (
-          <>
-            <APIProvider apiKey={API_KEY} libraries={["places", "marker"]}>
-              <Map
-                style={{ width: "full" }}
-                defaultCenter={{
+        {hasCurrentLocation && (
+          <APIProvider apiKey={API_KEY} libraries={["places", "marker"]}>
+            <Map
+              style={{ width: "full" }}
+              defaultCenter={{
+                lat: currentLocation.lat,
+                lng: currentLocation.lng,
+              }}
+              defaultZoom={15}
+              gestureHandling={"greedy"}
+              disableDefaultUI={false}
+              onClick={handleMapClick}
+            />
+            <Marker
+              position={
+                selectedMapLocation || {
                   lat: currentLocation.lat,
                   lng: currentLocation.lng,
-                }}
-                defaultZoom={15}
-                gestureHandling={"greedy"}
-                disableDefaultUI={false}
-                onClick={handleMapClick}
-              />
-              <Marker
-                position={
-                  selectedMapLocation || {
-                    lat: currentLocation.lat,
-                    lng: currentLocation.lng,
-                  }
                 }
-                clickable
-              />
-              <AutocompleteControl
-                controlPosition={ControlPosition.LEFT_TOP}
-                onPlaceSelect={(value) => {
-                  setSelectedPlace(value);
-                  const newPosition = JSON.parse(JSON.stringify(value));
-                  setLocationSelected(false);
-                  setSelectedMapLocation({
-                    lat: newPosition?.location?.lat as number,
-                    lng: newPosition?.location?.lng as number,
-                  });
-                }}
-              />
+              }
+              clickable
+            />
+            <AutocompleteControl
+              controlPosition={ControlPosition.LEFT_TOP}
+              onPlaceSelect={(value) => {
+                setSelectedPlace(value);
+                const newPosition = JSON.parse(JSON.stringify(value));
+                setLocationSelected(false);
+                setSelectedMapLocation({
+                  lat: newPosition?.location?.lat as number,
+                  lng: newPosition?.location?.lng as number,
+                });
+              }}
+            />
 
-              <AutocompleteResult place={selectedPlace} />
-            </APIProvider>
-          </>
-        ) : (
+            <AutocompleteResult place={selectedPlace} />
+          </APIProvider>
+        )}
+        {guestLocationError?.code == 1 && (
           <div className="flex h-full w-full items-center justify-center gap-2">
             <MapPin size={16} className="text-muted-foreground" />
             <p className="text-muted-foreground text-lg">
@@ -169,6 +177,9 @@ export function LocationPicker({
             </p>
           </div>
         )}
+        {!currentLocation.lat &&
+          !currentLocation.lng &&
+          !guestLocationError && <Skeleton className="h-full w-full" />}
       </div>
 
       <div
