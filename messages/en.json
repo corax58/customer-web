@@ -86,7 +86,7 @@
       "labels": {
         "save_as": "Save address as*",
         "title": "Title",
-        "address": "Address",
+        "address": "Location",
         "floor": "Floor",
         "landmark": "Nearby Landmark",
         "mobile_number": "Mobile Number",
@@ -116,7 +116,8 @@
         "map_instruction": "Click on the map or search to select a location.",
         "allow_location_permission": "Please allow location permission",
         "location_confirmed_success": "✓ Location confirmed! Now fill in your address details on the right.",
-        "select_location_error": "Please select a location on the map."
+        "select_location_error": "Please select a location on the map.",
+        "geocoding_error": "Failed to get the address"
       }
     },
     "category_card": {
@@ -990,5 +991,8 @@
         "delete-account-button": "Delete Account"
       }
     }
+  },
+  "messages": {
+    "geocoding_error": "Failed to get address"
   }
 }

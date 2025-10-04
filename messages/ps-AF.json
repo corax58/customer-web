@@ -86,7 +86,7 @@
       "labels": {
         "save_as": "پته د دې په توګه خوندي کړئ*",
         "title": "عنوان",
-        "address": "پته",
+        "address": "ځای",
         "floor": "پوړ",
         "landmark": "نږدې نښه",
         "mobile_number": "د موبایل شمیره",
@@ -116,7 +116,8 @@
         "map_instruction": "د ځای ټاکلو لپاره په نقشه کلیک وکړئ یا یې وپلټئ.",
         "allow_location_permission": "مهرباني وکړئ د ځای اجازې ته اجازه ورکړئ",
         "location_confirmed_success": "✓ ځای تایید شو! اوس په ښي خوا کې د خپلې پتې توضیحات ډک کړئ.",
-        "select_location_error": "مهرباني وکړئ په نقشه کې یو ځای وټاکئ."
+        "select_location_error": "مهرباني وکړئ په نقشه کې یو ځای وټاکئ.",
+        "geocoding_error": "د پتې په ترلاسه کولو کې پاتې راغی"
       }
     },
     "category_card": {

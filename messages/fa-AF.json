@@ -86,7 +86,7 @@
       "labels": {
         "save_as": "*ذخیره آدرس به عنوان",
         "title": "عنوان",
-        "address": "آدرس",
+        "address": "محل",
         "floor": "منزل",
         "landmark": "علامت نزدیک",
         "mobile_number": "شماره موبایل",
@@ -116,7 +116,8 @@
         "map_instruction": "برای انتخاب موقعیت، روی نقشه کلیک کنید یا جستجو کنید.",
         "allow_location_permission": "لطفاً اجازه دسترسی به موقعیت را بدهید",
         "location_confirmed_success": "✓ موقعیت تایید شد! حالا جزئیات آدرس خود را در سمت راست پر کنید.",
-        "select_location_error": "لطفاً یک موقعیت را روی نقشه انتخاب کنید."
+        "select_location_error": "لطفاً یک موقعیت را روی نقشه انتخاب کنید.",
+        "geocoding_error": "در گرفتن آدرس ناکام شد"
       }
     },
     "category_card": {

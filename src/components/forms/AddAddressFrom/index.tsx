@@ -3,6 +3,7 @@ import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { APIProvider } from "@vis.gl/react-google-maps";
 import parsePhoneNumberFromString, {
   CountryCode,
   getCountryCallingCode,
@@ -24,6 +25,8 @@ interface AddAddressFormProps {
   onCreate: () => void;
 }
 const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
+  const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API!;
+
   const addressSchema = useAddressSchema();
 
   const t = useTranslations("components.add_address_form");
@@ -44,12 +47,14 @@ const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
   });
 
   function onLocationSelect({
+    address,
     position: { lat, lng },
   }: {
     address: string;
     position: { lat: number; lng: number };
   }) {
     form.clearErrors("address");
+    form.setValue("address", address);
     form.setValue("latitude", lat.toString());
     form.setValue("longitude", lng.toString());
   }
@@ -93,25 +98,27 @@ const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
     });
   }
   return (
-    <div className="flex gap-5 max-md:flex-col">
-      <LocationPicker
-        onLocationSelect={onLocationSelect}
-        className="md:w-1/2"
-        noAddressError={form.formState.errors.latitude ? true : false}
-      />
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-6 md:w-1/2"
-        >
-          <AddressFormFields form={form} setCountry={setCountry} />
+    <APIProvider apiKey={API_KEY} libraries={["places", "marker", "geocoding"]}>
+      <div className="flex gap-5 max-md:flex-col">
+        <LocationPicker
+          onLocationSelect={onLocationSelect}
+          className="md:w-1/2"
+          noAddressError={form.formState.errors.latitude ? true : false}
+        />
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-6 md:w-1/2"
+          >
+            <AddressFormFields form={form} setCountry={setCountry} />
 
-          <Button type="submit" className="!mt-8 w-full" disabled={isPending}>
-            {t("buttons.save_address")}
-          </Button>
-        </form>
-      </Form>
-    </div>
+            <Button type="submit" className="!mt-8 w-full" disabled={isPending}>
+              {t("buttons.save_address")}
+            </Button>
+          </form>
+        </Form>
+      </div>
+    </APIProvider>
   );
 };
 
