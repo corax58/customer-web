@@ -24,6 +24,26 @@ import { LocationPicker } from "./LocationPicker";
 interface AddAddressFormProps {
   onCreate: () => void;
 }
+
+export const addressTypes = [
+  {
+    key: "home",
+    value: "1",
+  },
+  {
+    key: "office",
+    value: "2",
+  },
+  {
+    key: "hotel",
+    value: "3",
+  },
+  {
+    key: "other",
+    value: "4",
+  },
+];
+
 const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
   const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API!;
 
@@ -36,13 +56,12 @@ const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
   const form = useForm<z.infer<typeof addressSchema>>({
     resolver: zodResolver(addressSchema),
     defaultValues: {
-      title: "",
       addressType: "1",
       address: "",
       landmark: "",
       floor: "",
-      pinCode: "",
       contact_no: "",
+      apt_no: "",
     },
   });
 
@@ -66,18 +85,23 @@ const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
     const contact_no = phoneNumberObj?.nationalNumber || "";
     const country_code = country ? getCountryCallingCode(country) : "";
 
+    const selectedType = addressTypes.find(
+      (addressType) => addressType.value == values.addressType,
+    ) || { key: "", value: 0 };
+
     const data = {
       AddressManagement: {
-        title: values.title,
+        title: selectedType.key,
         address: values.address,
-        country_code: "+" + country_code,
-        contact_no: contact_no,
         latitude: values.latitude,
         longitude: values.longitude,
         type_id: parseInt(values.addressType),
         description: values.landmark,
+        pincode: 10001,
+        contact_no: contact_no,
+        country_code: "+" + country_code,
         floor: values.floor,
-        pincode: values.pinCode,
+        apt_no: values.apt_no,
       },
     };
 

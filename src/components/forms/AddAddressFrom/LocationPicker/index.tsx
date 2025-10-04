@@ -202,7 +202,10 @@ export function LocationPicker({
         <Button
           onClick={handleConfirmLocation}
           disabled={!selectedMapLocation}
-          className={locationSelected ? "bg-green-600 hover:bg-green-700" : ""}
+          className={cn(
+            "w-44",
+            locationSelected && "bg-green-600 hover:bg-green-700",
+          )}
         >
           {locationSelected ? (
             <>
@@ -210,7 +213,7 @@ export function LocationPicker({
               {t("buttons.location_confirmed")}
             </>
           ) : geocoderLoading ? (
-            <Loader2 className="me-2 h-4 w-4" />
+            <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
             t("buttons.confirm_location")
           )}

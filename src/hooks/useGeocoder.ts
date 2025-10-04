@@ -13,14 +13,8 @@ export function useGeocoder() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  console.log(geocodingLib);
-  // Initialize the Geocoder once the library is loaded
   useEffect(() => {
-    console.log("starting geocoding init effect");
-    console.log("geocodingLib", geocodingLib);
-    console.log("geocoder", geocoder);
     if (geocodingLib && !geocoder) {
-      console.log("geocoder initialized");
       setGeocoder(new geocodingLib.Geocoder());
     }
   }, [geocodingLib, geocoder]);
@@ -28,7 +22,6 @@ export function useGeocoder() {
   const reverseGeocode = useCallback(
     async (position: google.maps.LatLngLiteral): Promise<GeocodeResult> => {
       if (!geocoder) {
-        console.error("Geocoder not initialized.");
         setError("Geocoder not initialized.");
         return { address: "", success: false };
       }

@@ -90,14 +90,16 @@
         "floor": "Floor",
         "landmark": "Nearby Landmark",
         "mobile_number": "Mobile Number",
-        "pincode": "Pincode"
+        "pincode": "Pincode",
+        "apt_no": "Apartment No."
       },
       "placeholders": {
         "title": "e.g. Home",
         "address": "e.g. Near St. George's Church",
         "floor": "e.g. 3rd Floor, Apt 301",
         "landmark": "(Optional)",
-        "pincode": "Enter pin code"
+        "pincode": "Enter pin code",
+        "apt_no": "Enter apartment number"
       },
       "address_types": {
         "home": "Home",
