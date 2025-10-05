@@ -77,7 +77,6 @@ const OrderStatusBadge = ({ stateId }: OrderStatusBadgeProps) => {
     className:
       "bg-gray-100 text-gray-800 dark:bg-gray-900/50 dark:text-gray-400",
   };
-  console.log(stateId);
 
   const { className, key } = OrderStatusMapping[stateId] || defaultState;
 

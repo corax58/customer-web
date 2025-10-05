@@ -3,6 +3,7 @@ import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { APIProvider } from "@vis.gl/react-google-maps";
 import parsePhoneNumberFromString, {
   CountryCode,
   getCountryCallingCode,
@@ -23,7 +24,29 @@ import { LocationPicker } from "./LocationPicker";
 interface AddAddressFormProps {
   onCreate: () => void;
 }
+
+export const addressTypes = [
+  {
+    key: "home",
+    value: "1",
+  },
+  {
+    key: "office",
+    value: "2",
+  },
+  {
+    key: "hotel",
+    value: "3",
+  },
+  {
+    key: "other",
+    value: "4",
+  },
+];
+
 const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
+  const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API!;
+
   const addressSchema = useAddressSchema();
 
   const t = useTranslations("components.add_address_form");
@@ -33,23 +56,24 @@ const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
   const form = useForm<z.infer<typeof addressSchema>>({
     resolver: zodResolver(addressSchema),
     defaultValues: {
-      title: "",
       addressType: "1",
       address: "",
       landmark: "",
       floor: "",
-      pinCode: "",
       contact_no: "",
+      apt_no: "",
     },
   });
 
   function onLocationSelect({
+    address,
     position: { lat, lng },
   }: {
     address: string;
     position: { lat: number; lng: number };
   }) {
     form.clearErrors("address");
+    form.setValue("address", address);
     form.setValue("latitude", lat.toString());
     form.setValue("longitude", lng.toString());
   }
@@ -61,18 +85,23 @@ const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
     const contact_no = phoneNumberObj?.nationalNumber || "";
     const country_code = country ? getCountryCallingCode(country) : "";
 
+    const selectedType = addressTypes.find(
+      (addressType) => addressType.value == values.addressType,
+    ) || { key: "", value: 0 };
+
     const data = {
       AddressManagement: {
-        title: values.title,
+        title: selectedType.key,
         address: values.address,
-        country_code: "+" + country_code,
-        contact_no: contact_no,
         latitude: values.latitude,
         longitude: values.longitude,
         type_id: parseInt(values.addressType),
         description: values.landmark,
+        pincode: 10001,
+        contact_no: contact_no,
+        country_code: "+" + country_code,
         floor: values.floor,
-        pincode: values.pinCode,
+        apt_no: values.apt_no,
       },
     };
 
@@ -93,25 +122,27 @@ const AddAddressForm = ({ onCreate }: AddAddressFormProps) => {
     });
   }
   return (
-    <div className="flex gap-5 max-md:flex-col">
-      <LocationPicker
-        onLocationSelect={onLocationSelect}
-        className="md:w-1/2"
-        noAddressError={form.formState.errors.latitude ? true : false}
-      />
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-6 md:w-1/2"
-        >
-          <AddressFormFields form={form} setCountry={setCountry} />
+    <APIProvider apiKey={API_KEY} libraries={["places", "marker", "geocoding"]}>
+      <div className="flex gap-5 max-md:flex-col">
+        <LocationPicker
+          onLocationSelect={onLocationSelect}
+          className="md:w-1/2"
+          noAddressError={form.formState.errors.latitude ? true : false}
+        />
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-6 md:w-1/2"
+          >
+            <AddressFormFields form={form} setCountry={setCountry} />
 
-          <Button type="submit" className="!mt-8 w-full" disabled={isPending}>
-            {t("buttons.save_address")}
-          </Button>
-        </form>
-      </Form>
-    </div>
+            <Button type="submit" className="!mt-8 w-full" disabled={isPending}>
+              {t("buttons.save_address")}
+            </Button>
+          </form>
+        </Form>
+      </div>
+    </APIProvider>
   );
 };
 

@@ -16,28 +16,13 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { AddressFormValues } from "@/lib/schemas/address.schema";
 
+import { addressTypes } from ".";
+
 interface AddressFormFieldsProps {
   form: UseFormReturn<AddressFormValues>;
   setCountry: React.Dispatch<React.SetStateAction<CountryCode | undefined>>;
 }
-const addressTypes = [
-  {
-    key: "home",
-    value: "1",
-  },
-  {
-    key: "office",
-    value: "2",
-  },
-  {
-    key: "hotel",
-    value: "3",
-  },
-  {
-    key: "other",
-    value: "4",
-  },
-];
+
 const AddressFormFields = ({ form, setCountry }: AddressFormFieldsProps) => {
   const t = useTranslations("components.add_address_form");
 
@@ -75,7 +60,7 @@ const AddressFormFields = ({ form, setCountry }: AddressFormFieldsProps) => {
         )}
       />
 
-      <FormField
+      {/* <FormField
         control={form.control}
         name="title"
         render={({ field }) => (
@@ -87,7 +72,7 @@ const AddressFormFields = ({ form, setCountry }: AddressFormFieldsProps) => {
             <FormMessage />
           </FormItem>
         )}
-      />
+      /> */}
       <FormField
         control={form.control}
         name="address"
@@ -131,7 +116,19 @@ const AddressFormFields = ({ form, setCountry }: AddressFormFieldsProps) => {
           )}
         />
       </div>
-
+      <FormField
+        control={form.control}
+        name="apt_no"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{t("labels.apt_no")}</FormLabel>
+            <FormControl>
+              <Input placeholder={t("placeholders.apt_no")} {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
       <FormField
         control={form.control}
         name="contact_no"
@@ -144,20 +141,6 @@ const AddressFormFields = ({ form, setCountry }: AddressFormFieldsProps) => {
               {...field}
               onCountryChange={setCountry}
             />
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-
-      <FormField
-        control={form.control}
-        name="pinCode"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>{t("labels.pincode")}</FormLabel>
-            <FormControl>
-              <Input placeholder={t("placeholders.pincode")} {...field} />
-            </FormControl>
             <FormMessage />
           </FormItem>
         )}

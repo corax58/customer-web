@@ -1,18 +1,19 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import {
-  APIProvider,
   ControlPosition,
   Map,
   MapMouseEvent,
   Marker,
 } from "@vis.gl/react-google-maps";
-import { CheckCircle2, MapPin } from "lucide-react";
+import { CheckCircle2, Loader2, MapPin } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useGeocoder } from "@/hooks/useGeocoder";
 import useGeolocation from "@/hooks/useGeolocation";
 import { cn } from "@/lib/utils";
 
@@ -33,18 +34,31 @@ export function LocationPicker({
   className,
   noAddressError,
 }: LocationPickerProps) {
-  const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API!;
   const t = useTranslations("components.add_address_form");
 
-  const { getGuestUserLocation, guestLocation } = useGeolocation();
+  const {
+    getGuestUserLocation,
+    guestLocation,
+    error: guestLocationError,
+  } = useGeolocation();
   const [currentLocation, setCurrentLocation] =
     useState<google.maps.LatLngLiteral>({
       lat: guestLocation?.latitude as number,
       lng: guestLocation?.longitude as number,
     });
+  const hasCurrentLocation =
+    currentLocation.lat !== undefined && currentLocation.lng !== undefined
+      ? currentLocation.lat !== 0 && currentLocation.lng !== 0
+      : false;
 
   const [selectedMapLocation, setSelectedMapLocation] =
     useState<google.maps.LatLngLiteral | null>(null);
+
+  const {
+    error: geocoderError,
+    loading: geocoderLoading,
+    reverseGeocode,
+  } = useGeocoder();
 
   // For the autocomplete result
   const [selectedPlace, setSelectedPlace] =
@@ -104,13 +118,18 @@ export function LocationPicker({
 
   const [locationSelected, setLocationSelected] = useState(false);
 
-  const handleConfirmLocation = () => {
+  const handleConfirmLocation = async () => {
     if (selectedMapLocation) {
-      setLocationSelected(true);
+      const results = await reverseGeocode({
+        lat: selectedMapLocation.lat,
+        lng: selectedMapLocation.lng,
+      });
+      if (!results.success) return;
       onLocationSelect({
-        address: selectedPlace?.displayName || "",
+        address: results.address || "",
         position: selectedMapLocation as google.maps.LatLngLiteral,
       });
+      setLocationSelected(true);
     }
   };
 
@@ -122,46 +141,45 @@ export function LocationPicker({
 
       <div className="h-96 w-full overflow-hidden rounded-lg">
         {/* Only show tha map when the currentLocation is available */}
-        {currentLocation.lat && currentLocation.lng ? (
+        {hasCurrentLocation && (
           <>
-            <APIProvider apiKey={API_KEY} libraries={["places", "marker"]}>
-              <Map
-                style={{ width: "full" }}
-                defaultCenter={{
+            <Map
+              style={{ width: "full" }}
+              defaultCenter={{
+                lat: currentLocation.lat,
+                lng: currentLocation.lng,
+              }}
+              defaultZoom={15}
+              gestureHandling={"greedy"}
+              disableDefaultUI={false}
+              onClick={handleMapClick}
+            />
+            <Marker
+              position={
+                selectedMapLocation || {
                   lat: currentLocation.lat,
                   lng: currentLocation.lng,
-                }}
-                defaultZoom={15}
-                gestureHandling={"greedy"}
-                disableDefaultUI={false}
-                onClick={handleMapClick}
-              />
-              <Marker
-                position={
-                  selectedMapLocation || {
-                    lat: currentLocation.lat,
-                    lng: currentLocation.lng,
-                  }
                 }
-                clickable
-              />
-              <AutocompleteControl
-                controlPosition={ControlPosition.LEFT_TOP}
-                onPlaceSelect={(value) => {
-                  setSelectedPlace(value);
-                  const newPosition = JSON.parse(JSON.stringify(value));
-                  setLocationSelected(false);
-                  setSelectedMapLocation({
-                    lat: newPosition?.location?.lat as number,
-                    lng: newPosition?.location?.lng as number,
-                  });
-                }}
-              />
+              }
+              clickable
+            />
+            <AutocompleteControl
+              controlPosition={ControlPosition.LEFT_TOP}
+              onPlaceSelect={(value) => {
+                setSelectedPlace(value);
+                const newPosition = JSON.parse(JSON.stringify(value));
+                setLocationSelected(false);
+                setSelectedMapLocation({
+                  lat: newPosition?.location?.lat as number,
+                  lng: newPosition?.location?.lng as number,
+                });
+              }}
+            />
 
-              <AutocompleteResult place={selectedPlace} />
-            </APIProvider>
+            <AutocompleteResult place={selectedPlace} />
           </>
-        ) : (
+        )}
+        {guestLocationError?.code == 1 && (
           <div className="flex h-full w-full items-center justify-center gap-2">
             <MapPin size={16} className="text-muted-foreground" />
             <p className="text-muted-foreground text-lg">
@@ -169,42 +187,57 @@ export function LocationPicker({
             </p>
           </div>
         )}
+        {!currentLocation.lat &&
+          !currentLocation.lng &&
+          !guestLocationError && <Skeleton className="h-full w-full" />}
       </div>
 
       <div
         className={cn(
           "bg-secondary mt-4 rounded-lg border p-4",
-          noAddressError && "ring-2 ring-red-400",
+          (noAddressError || geocoderError) && "ring-2 ring-red-400",
           locationSelected && "bg-green-500/10 ring-2 ring-green-500",
         )}
       >
         <Button
           onClick={handleConfirmLocation}
           disabled={!selectedMapLocation}
-          className={locationSelected ? "bg-green-600 hover:bg-green-700" : ""}
+          className={cn(
+            "min-w-44 transition-all",
+            locationSelected && "bg-green-600 hover:bg-green-700",
+          )}
         >
           {locationSelected ? (
             <>
               <CheckCircle2 className="me-2 h-4 w-4" />
               {t("buttons.location_confirmed")}
             </>
+          ) : geocoderLoading ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
             t("buttons.confirm_location")
           )}
         </Button>
+
+        <div className="mt-2 text-sm">
+          {locationSelected && (
+            <span className="text-green-600">
+              {t("messages.location_confirmed_success")}
+            </span>
+          )}
+
+          {noAddressError && !locationSelected && (
+            <span className="text-red-400">
+              {t("messages.select_location_error")}
+            </span>
+          )}
+          {geocoderError && (
+            <span className="text-red-400">
+              {t("messages.geocoding_error")}
+            </span>
+          )}
+        </div>
       </div>
-
-      {locationSelected && (
-        <div className="mt-2 text-sm text-green-600">
-          {t("messages.location_confirmed_success")}
-        </div>
-      )}
-
-      {noAddressError && !locationSelected && (
-        <div className="text-red-400">
-          {t("messages.select_location_error")}
-        </div>
-      )}
     </div>
   );
 }
