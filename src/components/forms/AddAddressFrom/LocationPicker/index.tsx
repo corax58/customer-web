@@ -203,7 +203,7 @@ export function LocationPicker({
           onClick={handleConfirmLocation}
           disabled={!selectedMapLocation}
           className={cn(
-            "w-44",
+            "min-w-44 transition-all",
             locationSelected && "bg-green-600 hover:bg-green-700",
           )}
         >
