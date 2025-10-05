@@ -200,3 +200,9 @@ export const buildApiUrl = (endPoint: string, values?: UrlValues) => {
 
   return `${endPoint}${queryString ? `?${queryString}` : ""}`;
 };
+
+export const isOfferExpired = (endTime: string): boolean => {
+  const date = new Date(endTime);
+  if (isNaN(date.getTime())) return false;
+  return Date.now() > date.getTime();
+};

@@ -15,6 +15,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useCart } from "@/contexts/CartContext";
+import { isOfferExpired } from "@/lib/utils";
 import { Offer } from "@/types/restaurant.types";
 
 import OfferCard from "./OfferCard";
@@ -31,6 +32,9 @@ const Offers = ({ selectedOffer, setSelectedOffer }: OffersProps) => {
   const [error, setError] = useState("");
   const [isPending, startTransition] = useTransition();
 
+  const filteredOffers = offersList
+    ? offersList.filter((offer) => !isOfferExpired(offer.end_time))
+    : [];
   useEffect(() => {
     if (!offersList && !isPending) {
       startTransition(async () => {
@@ -95,21 +99,23 @@ const Offers = ({ selectedOffer, setSelectedOffer }: OffersProps) => {
             <DialogDescription>{t("dialog_description")}</DialogDescription>
           </DialogHeader>
           <div className="flex flex-col gap-4">
-            {offersList && offersList.length === 0 ? (
+            {filteredOffers.length === 0 ? (
               <div className="flex h-full w-full items-center justify-center gap-4">
                 <BadgePercent size={25} />
                 <p className="">{t("no_offers")}</p>
               </div>
             ) : (
-              offersList &&
-              offersList.map((offer) => (
-                <OfferCard
-                  selectedOffer={selectedOffer}
-                  setSelectedOffer={setSelectedOffer}
-                  key={offer.id}
-                  offer={offer}
-                />
-              ))
+              filteredOffers.map((offer) => {
+                if (isOfferExpired(offer.end_time)) return;
+                return (
+                  <OfferCard
+                    selectedOffer={selectedOffer}
+                    setSelectedOffer={setSelectedOffer}
+                    key={offer.id}
+                    offer={offer}
+                  />
+                );
+              })
             )}
 
             {error && <p>{t("fetch_error")}</p>}

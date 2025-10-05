@@ -8,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { isOfferExpired } from "@/lib/utils";
 
 import MobileOfferCard from "./MobileOfferCard";
 import { OffersSkeleton } from "./OffersSkeleton";
@@ -22,7 +23,11 @@ const Offers = async ({ personalized }: OffersProps) => {
   }
   const { data } = await getOffersList({});
 
-  if (data && data.length > 0)
+  const filteredOffers = data
+    ? data.filter((offer) => !isOfferExpired(offer.end_time))
+    : [];
+
+  if (filteredOffers.length > 0)
     return (
       <Carousel
         opts={{
@@ -51,14 +56,17 @@ const Offers = async ({ personalized }: OffersProps) => {
         </div>
 
         <CarouselContent className="-ms-4 overflow-visible">
-          {data?.map((offer) => (
-            <CarouselItem
-              key={offer.id}
-              className="ps-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-            >
-              <MobileOfferCard offer={offer} />
-            </CarouselItem>
-          ))}
+          {data?.map((offer) => {
+            if (isOfferExpired(offer.end_time)) return;
+            return (
+              <CarouselItem
+                key={offer.id}
+                className="ps-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+              >
+                <MobileOfferCard offer={offer} />
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
       </Carousel>
     );

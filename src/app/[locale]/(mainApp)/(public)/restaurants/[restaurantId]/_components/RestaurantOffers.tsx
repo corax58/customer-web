@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
 import { getRestaurantOffers } from "@/actions/restaurants.actions";
+import { isOfferExpired } from "@/lib/utils";
 
 import { OfferCard } from "./OfferCard";
 
@@ -14,19 +15,24 @@ const RestaurantOffers = async ({ restaurantId }: RestaurantOffersProps) => {
     return <div> {t("something_went_wrong")} </div>;
   }
 
-  if (offers && offers.length == 0)
+  const filteredOffers = offers
+    ? offers.filter((offer) => !isOfferExpired(offer.end_time))
+    : [];
+
+  if (filteredOffers.length == 0)
     return (
       <div className="flex h-52 w-full items-center justify-center rtl:[direction:rtl]">
         <p>{t("no_offers")}</p>
       </div>
     );
 
-  if (offers && offers.length > 0)
+  if (filteredOffers.length > 0)
     return (
       <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 rtl:[direction:rtl]">
-        {offers.map((offer) => (
-          <OfferCard key={offer.id} offer={offer} />
-        ))}
+        {filteredOffers.map((offer) => {
+          if (isOfferExpired(offer.end_time)) return;
+          return <OfferCard key={offer.id} offer={offer} />;
+        })}
       </div>
     );
 };

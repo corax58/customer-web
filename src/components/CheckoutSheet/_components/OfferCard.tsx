@@ -1,4 +1,4 @@
-import { useFormatter, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
 import FormattedAfghani from "@/components/FormattedAfghani";
 import { Badge } from "@/components/ui/badge";
@@ -19,8 +19,6 @@ const OfferCard = ({
 }: OfferCardProps) => {
   const { totalPrice } = useCart();
   const t = useTranslations("components.checkout_sheet.offers");
-  const formatter = useFormatter();
-
   const reachMinPrice = totalPrice >= parseInt(offer.minimum_amount);
 
   return (
@@ -47,19 +45,8 @@ const OfferCard = ({
             {/* Left side - Discount stub */}
             <div className="flex w-fit flex-col items-center justify-center border-e-2 border-dashed border-orange-300 bg-gradient-to-b from-orange-500 to-amber-500 text-white dark:border-orange-700 dark:from-orange-600 dark:to-amber-600">
               <div className="py-4 text-center">
-                <div className="flex flex-col items-center justify-center px-2 font-semibold">
-                  <p className="text-nowrap">
-                    - {parseFloat(offer.discount).toFixed(2)}
-                  </p>
-                  <p>AFN</p>
-
-                  <p>
-                    {t("discount", {
-                      discoount: formatter.number(parseFloat(offer.discount), {
-                        minimumFractionDigits: 2,
-                      }),
-                    })}
-                  </p>
+                <div className="flex items-center justify-center px-2 font-semibold">
+                  <span>-</span> <FormattedAfghani amount={offer.discount} />
                 </div>
               </div>
             </div>
