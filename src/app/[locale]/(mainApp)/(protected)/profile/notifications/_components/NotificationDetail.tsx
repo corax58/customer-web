@@ -28,6 +28,7 @@ const NotificationDetail = ({ notification }: NotificationDetailProps) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
+  const [manualClosed, setManualClosed] = useState(false);
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
@@ -48,15 +49,24 @@ const NotificationDetail = ({ notification }: NotificationDetailProps) => {
     if (searchParams.get("id") !== notification.id.toString()) {
       return;
     }
-    setOpen(true);
+    if (!manualClosed) {
+      setOpen(true);
+    }
     const params = new URLSearchParams(searchParams.toString());
 
     params.delete("id");
     router.replace(`${pathname}?${params.toString()}`);
-  }, [notification.id, open, pathname, router, searchParams]);
+  }, [notification.id, open, pathname, router, searchParams, manualClosed]);
+
+  const handleOpenChange = (open: boolean) => {
+    if (!open) {
+      setManualClosed(true);
+    }
+    setOpen(open);
+  };
 
   return (
-    <Dialog onOpenChange={setOpen} open={open}>
+    <Dialog onOpenChange={handleOpenChange} open={open}>
       <DialogTrigger asChild>
         <Button variant={"outline"} size={"sm"} className="w-24">
           <Eye className="me-2 h-4 w-4" /> {t("view")}
