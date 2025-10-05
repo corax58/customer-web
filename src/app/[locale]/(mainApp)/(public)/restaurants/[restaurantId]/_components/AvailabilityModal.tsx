@@ -20,8 +20,7 @@ interface AvailabilityModalProps {
 
 function getTodayIndex() {
   const today = new Date();
-  const day = today.getDay();
-  return day === 0 ? 7 : day;
+  return today.getDay();
 }
 const AvailabilityModal = async ({ availability }: AvailabilityModalProps) => {
   const today = getTodayIndex();
@@ -30,7 +29,7 @@ const AvailabilityModal = async ({ availability }: AvailabilityModalProps) => {
   );
   const formatter = await getFormatter();
   const currentDayAvailabilty = availability.find(
-    (day) => day.day_id === today - 1,
+    (day) => day.day_id === today,
   );
 
   return (
@@ -50,7 +49,7 @@ const AvailabilityModal = async ({ availability }: AvailabilityModalProps) => {
                   { timeStyle: "short" },
                 ),
                 endTime: formatter.dateTime(
-                  new Date(currentDayAvailabilty.start_time),
+                  new Date(currentDayAvailabilty.end_time),
                   { timeStyle: "short" },
                 ),
 
