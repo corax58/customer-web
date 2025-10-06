@@ -78,7 +78,6 @@ const RestaurantDetail = async ({
   if (error) return <RestaurantDetailError />;
   if (restaurant) {
     const isOpen = isRestaurantOpenNow(restaurant.availability);
-
     return (
       <div className="lg:container lg:mx-auto lg:px-10 xl:px-14">
         <RestaurantBanner restaurant={restaurant} />

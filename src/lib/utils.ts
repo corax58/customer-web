@@ -153,16 +153,25 @@ export const formatTimeHM = (
   return t("minutesOnly", { minutes });
 };
 
-function extractMinutesFromTime(time: string): number {
-  if (!time) return 0;
-  const hours = +(time[11] + time[12]);
-  const minutes = +(time[14] + time[15]);
-  return hours * 60 + minutes;
+export function toLocalDate(dateString: string) {
+  if (dateString.includes("T") && dateString.match(/Z|\+\d{2}:\d{2}$/)) {
+    return new Date(dateString);
+  }
+
+  if (dateString.includes(" ")) {
+    const isoString = dateString.replace(" ", "T") + "Z";
+    return new Date(isoString);
+  }
+
+  // Fallback
+  return new Date(dateString);
 }
 
-/**
- * Returns true if the restaurant is currently open.
- */
+function extractMinutesFromDateString(dateString: string): number {
+  const localDate = toLocalDate(dateString);
+  return localDate.getHours() * 60 + localDate.getMinutes();
+}
+
 export function isRestaurantOpenNow(
   availability: Availability[],
   now: Date = new Date(),
@@ -173,12 +182,16 @@ export function isRestaurantOpenNow(
   for (const slot of availability) {
     if (slot.day_id !== today) continue;
 
-    const startMinutes = extractMinutesFromTime(slot.start_time);
-    const endMinutes = extractMinutesFromTime(slot.end_time);
+    const startMinutes = extractMinutesFromDateString(slot.start_time);
+    const endMinutes = extractMinutesFromDateString(slot.end_time);
 
-    const isOpen =
-      currentMinutes >= startMinutes && currentMinutes <= endMinutes;
-    if (isOpen) return true;
+    if (
+      (currentMinutes >= startMinutes && currentMinutes <= endMinutes) ||
+      (endMinutes < startMinutes &&
+        (currentMinutes >= startMinutes || currentMinutes <= endMinutes))
+    ) {
+      return true;
+    }
   }
 
   return false;
@@ -202,7 +215,7 @@ export const buildApiUrl = (endPoint: string, values?: UrlValues) => {
 };
 
 export const isOfferExpired = (endTime: string): boolean => {
-  const date = new Date(endTime);
+  const date = toLocalDate(endTime);
   if (isNaN(date.getTime())) return false;
   return Date.now() > date.getTime();
 };

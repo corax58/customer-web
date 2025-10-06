@@ -3,6 +3,7 @@ import { getFormatter, getTranslations } from "next-intl/server";
 
 import FormattedAfghani from "@/components/FormattedAfghani";
 import { Offer } from "@/types/restaurant.types";
+import { toLocalDate } from "@/lib/utils";
 
 interface OfferCardProps {
   offer: Offer;
@@ -15,7 +16,7 @@ export async function OfferCard({ offer, className = "" }: OfferCardProps) {
   const t = await getTranslations("restaurants.restaurant_details.offers");
 
   const formatEndTime = (endTime: string) => {
-    const date = new Date(endTime);
+    const date = toLocalDate(endTime);
     const now = new Date();
     const diffTime = date.getTime() - now.getTime();
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));

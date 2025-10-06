@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
+import { cn, toLocalDate } from "@/lib/utils";
 import { Availability } from "@/types/restaurant.types";
 
 interface AvailabilityModalProps {
@@ -45,11 +45,11 @@ const AvailabilityModal = async ({ availability }: AvailabilityModalProps) => {
 
               {t.rich("buttons.trigger", {
                 startTime: formatter.dateTime(
-                  new Date(currentDayAvailabilty.start_time),
+                  toLocalDate(currentDayAvailabilty.start_time),
                   { timeStyle: "short" },
                 ),
                 endTime: formatter.dateTime(
-                  new Date(currentDayAvailabilty.end_time),
+                  toLocalDate(currentDayAvailabilty.end_time),
                   { timeStyle: "short" },
                 ),
 
@@ -82,10 +82,10 @@ const AvailabilityModal = async ({ availability }: AvailabilityModalProps) => {
               <p>{t(`days.${day.day_id}`)}</p>
               <div className="flex items-center gap-2 font-medium">
                 {t("days.opening_hours", {
-                  startTime: formatter.dateTime(new Date(day.start_time), {
+                  startTime: formatter.dateTime(toLocalDate(day.start_time), {
                     timeStyle: "short",
                   }),
-                  endTime: formatter.dateTime(new Date(day.end_time), {
+                  endTime: formatter.dateTime(toLocalDate(day.end_time), {
                     timeStyle: "short",
                   }),
                 })}
