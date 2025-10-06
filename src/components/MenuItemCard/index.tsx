@@ -32,7 +32,9 @@ const MenuItemCard = ({
 
   const currentPrice = getMenuItemPrice(menuItem);
 
-  const isAvailable = menuItem.is_available == 1 && isOpen;
+  const isAvailable =
+    menuItem.is_available == 1 && menuItem.out_of_stock == 0 && isOpen;
+
   return (
     <div className="relative flex h-56 w-full items-end">
       <div className="bg-card flex h-48 w-full flex-col justify-between rounded-3xl border p-3 pt-4 max-sm:p-5 sm:min-w-72">
