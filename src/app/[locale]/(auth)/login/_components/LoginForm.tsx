@@ -28,14 +28,15 @@ import TermsAndConditions from "../../_components/TermsAndConditions";
 import LoginFormFields from "./LoginFormFields";
 
 export function LoginForm({
+  redirect_url,
   className,
   ...props
-}: React.ComponentProps<"div">) {
+}: React.ComponentProps<"div"> & { redirect_url?: string }) {
   const loginSchema = useLoginSchema();
   const t = useTranslations("auth.login");
   const [country, setCountry] = useState<CountryCode | undefined>("ET");
 
-  const { error, isLoading, isSuccess, login, user } = useLogin();
+  const { error, isLoading, isSuccess, login, user } = useLogin(redirect_url);
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -117,7 +118,7 @@ export function LoginForm({
               <div className="text-center text-sm">
                 {t("no_account")}{" "}
                 <CustomLink
-                  href="/signup"
+                  href={`/signup${redirect_url ? `?redirect_url=${encodeURIComponent(redirect_url)}` : ""}`}
                   className="text-primary font-semibold underline-offset-4 hover:underline"
                 >
                   {t("sign_up_link")}
@@ -130,7 +131,7 @@ export function LoginForm({
               </span>
             </div>
             <div className="">
-              <GoogleLoginButton />
+              <GoogleLoginButton redirect_url={redirect_url} />
             </div>
           </div>
         </form>

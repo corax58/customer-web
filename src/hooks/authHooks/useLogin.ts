@@ -6,7 +6,7 @@ import { HttpError } from "@/lib/HttpError";
 import { processError } from "@/lib/utils";
 import { LoginPayload, LoginResponse, UserDetail } from "@/types/auth.types";
 
-export const useLogin = () => {
+export const useLogin = (redirect_url?: string) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<null | string>();
   const [isSuccess, setIsSuccess] = useState(false);
@@ -40,11 +40,9 @@ export const useLogin = () => {
       setIsLoading(false);
       setIsSuccess(true);
 
-      const previousPath = localStorage.getItem("previousPath");
-
-      if (previousPath) {
-        router.push(previousPath);
-        localStorage.removeItem(previousPath);
+      if (redirect_url) {
+        const parsedUrl = decodeURIComponent(redirect_url);
+        router.push(parsedUrl);
       } else {
         router.push("/home");
       }

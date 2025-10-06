@@ -19,7 +19,6 @@ interface AddToCartFormProps {
   handleSubmit: (e: FormEvent) => void;
   isPending: boolean;
   selectedAddonIds: number[];
-  setPreviousPath: () => void;
 }
 
 const AddToCartForm = ({
@@ -28,7 +27,6 @@ const AddToCartForm = ({
   handleSubmit,
   isPending,
   selectedAddonIds,
-  setPreviousPath,
 }: AddToCartFormProps) => {
   const { user } = useAuth();
 
@@ -46,6 +44,9 @@ const AddToCartForm = ({
   const basePrice = parseInt(menuItem.itemPrice[0].price);
   const totalPrice = (basePrice + addOnPrice) * itemQuantity;
 
+  const redirect_url = encodeURIComponent(
+    `/restaurants/${menuItem.restaurant_id}`,
+  );
   return (
     <>
       <DialogFooter className="bg-secondary border-t p-4 sm:px-6">
@@ -81,8 +82,10 @@ const AddToCartForm = ({
             </Button>
           </form>
         ) : (
-          <Button className="w-full" asChild onClick={setPreviousPath}>
-            <CustomLink href="/login">{t("login_to_order")}</CustomLink>
+          <Button className="w-full" asChild>
+            <CustomLink href={`/login?redirect_url=${redirect_url}`}>
+              {t("login_to_order")}
+            </CustomLink>
           </Button>
         )}
       </DialogFooter>

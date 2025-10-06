@@ -1,5 +1,4 @@
 "use client";
-
 import { useTranslations } from "next-intl";
 
 import AddAddressForm from "@/components/forms/AddAddressFrom";
@@ -8,12 +7,12 @@ import { useRouter } from "@/i18n/navigation";
 const SetupAddress = () => {
   const t = useTranslations("setup_address");
   const router = useRouter();
-  const previousPath = localStorage.getItem("previousPath");
+  const redirect_url = sessionStorage.getItem("redirect_url");
 
   const onCreate = () => {
-    if (previousPath) {
-      router.push(previousPath);
-      localStorage.removeItem("previousPath");
+    if (redirect_url) {
+      const parsedUrl = decodeURIComponent(redirect_url);
+      router.push(parsedUrl);
     } else {
       router.push("/home");
     }

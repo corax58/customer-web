@@ -17,9 +17,11 @@ import { LoginResponse, UserDetail } from "@/types/auth.types";
 export function useSocialSSO({
   providerName,
   referral_code,
+  redirect_url,
 }: {
   providerName: "google" | "facebook";
   referral_code?: string;
+  redirect_url?: string;
 }) {
   const [error, setError] = useState<null | string>();
   const [isSuccess, setIsSuccess] = useState(false);
@@ -82,11 +84,10 @@ export function useSocialSSO({
         contextLogin(responseData.detail);
         setUser(responseData.detail);
         setIsSuccess(true);
-        const previousPath = localStorage.getItem("previousPath");
 
-        if (previousPath) {
-          router.push(previousPath);
-          localStorage.removeItem(previousPath);
+        if (redirect_url) {
+          const parsedUrl = decodeURIComponent(redirect_url);
+          router.push(parsedUrl);
         } else {
           router.push("/home");
         }

@@ -28,7 +28,11 @@ import TermsAndConditions from "../../_components/TermsAndConditions";
 
 import SignupFormFields from "./SignupFormFields";
 
-const SignupForm = ({ className, ...props }: React.ComponentProps<"div">) => {
+const SignupForm = ({
+  redirect_url,
+  className,
+  ...props
+}: React.ComponentProps<"div"> & { redirect_url?: string }) => {
   const signupSchema = useSignupSchema();
   const t = useTranslations("auth.signup");
 
@@ -93,6 +97,12 @@ const SignupForm = ({ className, ...props }: React.ComponentProps<"div">) => {
       toast.message(t("messages.here_otp"), { description: Otp });
     }
   }, [error, Otp, t]);
+
+  useEffect(() => {
+    if (redirect_url) {
+      sessionStorage.setItem("redirect_url", redirect_url);
+    }
+  }, [redirect_url]);
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Form {...form}>

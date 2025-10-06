@@ -24,7 +24,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useCart } from "@/contexts/CartContext";
-import { usePathname } from "@/i18n/navigation";
 import { MenuItem } from "@/types/restaurant.types";
 
 import AddToCartForm from "./AddToCartForm";
@@ -49,7 +48,6 @@ const MenuItemDetail = ({
   const [selectedAddonIds, setSelectedAddonIds] = useState<number[]>([]);
   const [isClearCartOpen, setClearCartOpen] = useState(false);
 
-  const currentPath = usePathname();
   const [isPending, startTransition] = useTransition();
   const [isLoadingItem, startLoadingItem] = useTransition();
 
@@ -191,9 +189,6 @@ const MenuItemDetail = ({
                     handleSubmit={handleSubmit}
                     isPending={isPending}
                     selectedAddonIds={selectedAddonIds}
-                    setPreviousPath={() =>
-                      localStorage.setItem("previousPath", currentPath)
-                    }
                   />
                 </div>
               </>

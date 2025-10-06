@@ -12,11 +12,16 @@ import { useSocialSSO } from "@/hooks/authHooks/useSocialSSO";
 
 interface GoogleLoginButtonProps {
   referral_code?: string;
+  redirect_url?: string;
 }
-export function GoogleLoginButton({ referral_code }: GoogleLoginButtonProps) {
+export function GoogleLoginButton({
+  referral_code,
+  redirect_url,
+}: GoogleLoginButtonProps) {
   const { error, isLoading, isSuccess, login, user } = useSocialSSO({
     providerName: "google",
     referral_code,
+    redirect_url,
   });
 
   useEffect(() => {
