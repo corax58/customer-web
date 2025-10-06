@@ -124,3 +124,7 @@ export interface ForgotPasswordResponse {
 export interface ForgotPasswordResult extends ActionResult {
   detail?: UserDetail;
 }
+
+export interface LoginResults extends ActionResult {
+  user?: UserDetail;
+}

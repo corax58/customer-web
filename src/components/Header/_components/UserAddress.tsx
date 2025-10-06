@@ -44,7 +44,6 @@ const UserAddress = ({ className, skeletonClassName }: UserAddressProps) => {
     startUpdate(async () => {
       const results = await setDefaultAddressAction(address.id.toString());
       if (results.success) {
-        localStorage.removeItem("defaultAddress");
         refreshAddress();
         setIsOpen(false);
       }

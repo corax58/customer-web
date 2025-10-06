@@ -51,7 +51,6 @@ const AddressListItem = ({ address }: AddressListItemProps) => {
     startUpdate(async () => {
       const results = await setDefaultAddress(address.id.toString());
       if (results.success) {
-        localStorage.removeItem("defaultAddress");
         refreshAddress();
         router.refresh();
       }

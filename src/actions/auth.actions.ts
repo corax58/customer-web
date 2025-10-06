@@ -8,6 +8,8 @@ import {
   ForgotPasswordPayload,
   ForgotPasswordResponse,
   ForgotPasswordResult,
+  LoginResponse,
+  LoginResults,
 } from "@/types/auth.types";
 import { ActionResult } from "@/types/shared.types";
 
@@ -20,11 +22,26 @@ export async function logoutAction(): Promise<ActionResult> {
   } catch (error) {
     console.error(error);
     if (typeof error === "string") return { success: false, error: error };
-    else return { success: false, error: "Failed to delete item from cart" };
+    else return { success: false, error: "Failed to logout" };
   }
 }
 export async function checkAuth() {
   return await isAuthenticated();
+}
+
+export async function getUser(): Promise<LoginResults> {
+  try {
+    const response = await fetchWithAuth<LoginResponse>("/tailor/profile/me", {
+      method: "GET",
+      retry: { retries: 3 },
+    });
+
+    return { success: true, user: response.detail };
+  } catch (error) {
+    console.error(error);
+    if (typeof error === "string") return { success: false, error };
+    else return { success: false, error: "Failed to fetch user data" };
+  }
 }
 
 export async function clearTokenCookie() {

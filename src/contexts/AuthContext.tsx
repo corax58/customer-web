@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import {
   checkAuth,
   clearTokenCookie,
+  getUser,
   logoutAction,
 } from "@/actions/auth.actions";
 import { useRouter } from "@/i18n/navigation";
@@ -43,6 +44,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("user", JSON.stringify(userData));
   }, []);
 
+  const refreshUser = useCallback(async () => {
+    if (!isAuthenticated) return;
+    const result = await getUser();
+
+    if (result.success && result.user) {
+      login(result.user);
+    }
+  }, [isAuthenticated, login]);
+
   const logout = useCallback(
     async (pathname: string) => {
       const { success, error } = await logoutAction();
@@ -50,7 +60,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setIsAuthenticated(false);
         setUser(null);
         localStorage.removeItem("user");
-        localStorage.removeItem("defaultAddress");
 
         await clearTokenCookie();
         // If the user is in the restaurant page refresh the same page, otherwise redirect to the restaurants page
@@ -103,15 +112,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setUser(null);
           await clearTokenCookie();
           localStorage.removeItem("user");
-          localStorage.removeItem("defaultAddress");
         }
       }
 
       setIsLoading(false);
+      await refreshUser();
     };
 
     initializeAuth();
-  }, []);
+  }, [refreshUser]);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
