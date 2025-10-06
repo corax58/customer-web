@@ -6,6 +6,7 @@ import { useFormatter, useTranslations } from "next-intl";
 import ReviewStars from "@/components/ReviewStars";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { toLocalDate } from "@/lib/utils";
 import { ReviewItem } from "@/types/restaurant.types";
 
 interface ReviewCardProps {
@@ -41,7 +42,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
 
             <span className="text-muted-foreground text-xs whitespace-nowrap">
               {review.created_on &&
-                formatter.dateTime(new Date(review.created_on), {
+                formatter.dateTime(toLocalDate(review.created_on), {
                   dateStyle: "medium",
                 })}
             </span>

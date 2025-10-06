@@ -198,7 +198,7 @@ export function isRestaurantOpenNow(
 }
 
 export function formateDateMDYT(dateString: string) {
-  const date = new Date(dateString);
+  const date = toLocalDate(dateString);
   if (!date) return;
   return format(date, "MMM dd',' yyyy',' hh:mm aa");
 }

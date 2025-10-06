@@ -6,6 +6,7 @@ import CustomLink from "@/components/CustomLink";
 import FormattedAfghani from "@/components/FormattedAfghani";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { toLocalDate } from "@/lib/utils";
 import { Order } from "@/types/profile.types";
 
 interface OrderCardProps {
@@ -34,7 +35,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
               <span className="text-foreground font-semibold max-md:hidden">
                 Placed on :
               </span>
-              {format(new Date(order.created_on), "dd MMM yy 'at' HH:mm")}
+              {format(toLocalDate(order.created_on), "dd MMM yy 'at' HH:mm")}
             </p>
             <div className="flex items-center gap-2 max-md:hidden">
               <p className="font-semibold">Delivered to : </p>

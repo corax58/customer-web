@@ -16,6 +16,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { usePathname, useRouter } from "@/i18n/navigation";
+import { toLocalDate } from "@/lib/utils";
 import { Notification } from "@/types/profile.types";
 
 interface NotificationDetailProps {
@@ -80,7 +81,7 @@ const NotificationDetail = ({ notification }: NotificationDetailProps) => {
           </DialogTitle>
           <DialogDescription className="text-muted-foreground text-sm">
             {notification.created_on &&
-              formatter.dateTime(new Date(notification.created_on), {
+              formatter.dateTime(toLocalDate(notification.created_on), {
                 dateStyle: "medium",
                 timeStyle: "short",
               })}

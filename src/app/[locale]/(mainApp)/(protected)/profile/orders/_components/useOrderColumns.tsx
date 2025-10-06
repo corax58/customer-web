@@ -8,6 +8,7 @@ import CustomLink from "@/components/CustomLink";
 import FormattedAfghani from "@/components/FormattedAfghani";
 import { Icon } from "@/components/Icon";
 import { Badge } from "@/components/ui/badge";
+import { toLocalDate } from "@/lib/utils";
 import { Order } from "@/types/profile.types";
 
 const useOrderColumns = () => {
@@ -40,7 +41,7 @@ const useOrderColumns = () => {
       cell: ({ row }) => {
         return (
           <span>
-            {formatter.dateTime(new Date(row.original.created_on), {
+            {formatter.dateTime(toLocalDate(row.original.created_on), {
               dateStyle: "short",
               timeStyle: "short",
             })}

@@ -6,6 +6,7 @@ import FormattedAfghani from "@/components/FormattedAfghani";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { toLocalDate } from "@/lib/utils";
 import { Offer } from "@/types/restaurant.types";
 
 interface OffersCardProps {
@@ -39,7 +40,7 @@ const OffersCard = ({ offer }: OffersCardProps) => {
               <div className="flex items-center gap-1">
                 <Clock className="h-3 w-3" />
                 <span>
-                  Expires {format(new Date(offer.end_time), "MMM dd','yyyy")}
+                  Expires {format(toLocalDate(offer.end_time), "MMM dd','yyyy")}
                 </span>
               </div>
             </div>

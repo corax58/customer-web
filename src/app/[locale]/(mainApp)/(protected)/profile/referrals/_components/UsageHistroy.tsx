@@ -12,7 +12,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import usePagination from "@/hooks/usePagination";
-import { cn } from "@/lib/utils";
+import { cn, toLocalDate } from "@/lib/utils";
 import { UsageHistoryEntry } from "@/types/profile.types";
 
 interface UsageHistroyProps {
@@ -58,7 +58,7 @@ function UsageHistroy({ usageHistory }: UsageHistroyProps) {
               {usage.used_at && (
                 <p className="text-muted-foreground text-xs">
                   {formatter.dateTime(
-                    new Date(usage.used_at),
+                    toLocalDate(usage.used_at),
                     "MMM dd',' yyyy',' hh:mm aa",
                   )}
                 </p>

@@ -1,7 +1,7 @@
 import { getFormatter } from "next-intl/server";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { cn, toLocalDate } from "@/lib/utils";
 import { Notification } from "@/types/profile.types";
 
 import MarkRead from "./MarkRead";
@@ -44,10 +44,13 @@ const NotificationListItem = async ({
                 <div className="text-muted-foreground flex items-center gap-2 text-xs">
                   {notification.created_on && (
                     <time dateTime={notification.created_on}>
-                      {formatter.dateTime(new Date(notification.created_on), {
-                        dateStyle: "short",
-                        timeStyle: "short",
-                      })}
+                      {formatter.dateTime(
+                        toLocalDate(notification.created_on),
+                        {
+                          dateStyle: "short",
+                          timeStyle: "short",
+                        },
+                      )}
                     </time>
                   )}
                   {notification.full_name && (

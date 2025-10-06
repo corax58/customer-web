@@ -12,7 +12,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import usePagination from "@/hooks/usePagination";
-import { cn } from "@/lib/utils";
+import { cn, toLocalDate } from "@/lib/utils";
 import { PointsHistoryEntry } from "@/types/profile.types";
 interface PointsHistoryProps {
   pointsHistory: PointsHistoryEntry[];
@@ -52,7 +52,7 @@ const PointsHistory = ({ pointsHistory }: PointsHistoryProps) => {
               <p className="text-sm font-medium">{entry.reason}</p>
               {entry.created_at && (
                 <p className="text-muted-foreground text-xs">
-                  {formatter.dateTime(new Date(entry.created_at), {
+                  {formatter.dateTime(toLocalDate(entry.created_at), {
                     dateStyle: "medium",
                     timeStyle: "short",
                   })}

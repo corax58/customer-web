@@ -5,6 +5,7 @@ import { useFormatter, useTranslations } from "next-intl";
 import CopiableText from "@/components/CopiableText";
 import FormattedAfghani from "@/components/FormattedAfghani";
 import { Badge } from "@/components/ui/badge";
+import { toLocalDate } from "@/lib/utils";
 import { Transaction } from "@/types/profile.types";
 
 import TransactionStatusBadge from "./TransactionStatusBadge";
@@ -63,7 +64,7 @@ const useTransactionColumns = () => {
           <span>
             {row.original.created_at
               ? formatter.dateTime(
-                  new Date(row.original.created_at),
+                  toLocalDate(row.original.created_at),
                   "dd MMM yy 'at' hh:mm aa",
                 )
               : t("na")}

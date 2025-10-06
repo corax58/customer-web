@@ -13,7 +13,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import usePagination from "@/hooks/usePagination";
-import { cn } from "@/lib/utils";
+import { cn, toLocalDate } from "@/lib/utils";
 import { ReferredUserEntry } from "@/types/profile.types";
 interface ReferredUsers {
   referredUsers: ReferredUserEntry[];
@@ -57,7 +57,7 @@ const ReferredUsers = ({ referredUsers }: ReferredUsers) => {
                 <p className="text-secondary-foreground text-xs">
                   {t("joined_at", {
                     joined_at: formatter.dateTime(
-                      new Date(user.joined_at),
+                      toLocalDate(user.joined_at),
                       "MMM dd',' yyyy',' hh:mm aa",
                     ),
                   })}

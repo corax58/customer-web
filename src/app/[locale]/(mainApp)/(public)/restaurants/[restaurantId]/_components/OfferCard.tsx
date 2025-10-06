@@ -2,8 +2,8 @@ import { Clock, DollarSign } from "lucide-react";
 import { getFormatter, getTranslations } from "next-intl/server";
 
 import FormattedAfghani from "@/components/FormattedAfghani";
-import { Offer } from "@/types/restaurant.types";
 import { toLocalDate } from "@/lib/utils";
+import { Offer } from "@/types/restaurant.types";
 
 interface OfferCardProps {
   offer: Offer;
@@ -25,7 +25,10 @@ export async function OfferCard({ offer, className = "" }: OfferCardProps) {
     if (diffDays === 1) return t("expires_today");
     if (diffDays <= 7) return t("days_left", { days: diffDays });
 
-    return formatter.dateTime(date, { dateStyle: "short", timeStyle: "short" });
+    return formatter.dateTime(date, {
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
   };
 
   return (
@@ -33,18 +36,17 @@ export async function OfferCard({ offer, className = "" }: OfferCardProps) {
       <div className="bg-card relative rounded-lg border-2 border-orange-500/30">
         <div className="ticket-perforation text-background pointer-events-none absolute inset-0 opacity-10" />
 
-        <div className="from-primary text-primary-foreground relative rounded-md bg-gradient-to-l to-amber-600 px-6 py-4 dark:border-orange-700 dark:from-orange-600 dark:to-amber-600">
+        <div className="from-primary text-primary-foreground relative rounded-md bg-gradient-to-l to-amber-600 px-3 py-4 dark:border-orange-700 dark:from-orange-600 dark:to-amber-600">
           <div className="flex items-center justify-between">
-            <div className="text-muted-foreground flex items-center gap-3">
-              <Clock className="h-4 w-4 text-white" />
-              <span className="font-medium text-white">
-                {formatEndTime(offer.end_time)}
-              </span>
-            </div>
-
             <div className="flex items-center gap-1 text-end text-xl font-bold">
               <span>-</span>
               <FormattedAfghani amount={offer.discount} />
+            </div>
+            <div className="text-muted-foreground flex items-center gap-2">
+              <Clock className="h-4 w-4 text-white" />
+              <span className="text-sm text-white">
+                {formatEndTime(offer.end_time)}
+              </span>
             </div>
           </div>
         </div>
