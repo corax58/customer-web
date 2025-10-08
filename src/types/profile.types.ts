@@ -146,6 +146,8 @@ export interface ItemDetail {
   store_id: number;
   product_id: number;
   price_detail: object;
+  item_title: string;
+  ready_time: string;
   product_detail: string;
   product_image: string;
   quantity: number;

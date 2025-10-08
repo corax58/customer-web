@@ -19,15 +19,17 @@ const OrderedItems = async ({ items }: OrderedItemsProps) => {
         <div key={item.id}>
           <div className="flex w-full items-center justify-between gap-5 rounded-2xl px-4 py-3">
             <div className="flex items-center gap-2">
-              <div className="relative size-14 overflow-hidden rounded-xl">
-                <CustomImage
+              <div className="bg-primary relative h-12 w-2 overflow-hidden rounded-full">
+                {/* <CustomImage
                   imgUrl={item.product_image}
-                  title={item.product_detail}
+                  title={item.item_title||item.product_detail}
                   placeholderImage={PLACEHOLDER_IMAGES.FOOD_ITEM}
-                />
+                /> */}
               </div>
               <div className="flex flex-col gap-2">
-                <p className="font-medium">{item.product_detail}</p>
+                <p className="font-medium">
+                  {item.item_title || item.product_detail}
+                </p>
                 <p className="text-muted-foreground text-sm">
                   {t("quantity", {
                     quantity: item.quantity,
