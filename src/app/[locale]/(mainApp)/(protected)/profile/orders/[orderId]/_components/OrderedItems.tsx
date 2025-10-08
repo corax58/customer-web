@@ -58,7 +58,7 @@ const OrderedItems = async ({ items }: OrderedItemsProps) => {
                       <div className="bg-primary relative h-10 w-1 min-w-1 overflow-hidden rounded-full"></div>
                       <div className="flex h-full flex-col justify-between gap-1">
                         <p className="line-clamp-1 font-medium">
-                          {addOn.title}
+                          {addOn.name || addOn.title}
                         </p>
                         <p className="text-muted-foreground text-sm">
                           <FormattedAfghani amount={parseFloat(addOn.price)} />

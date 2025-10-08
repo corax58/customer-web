@@ -105,6 +105,7 @@ interface AddOnCategory {
 export interface AddOn {
   id: number;
   title: string;
+  name: string;
   price: string;
   limit: number;
   item_id: number;
