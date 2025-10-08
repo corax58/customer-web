@@ -15,7 +15,6 @@ import { toast } from "sonner";
 import {
   checkAuth,
   clearTokenCookie,
-  getUser,
   logoutAction,
 } from "@/actions/auth.actions";
 import { useRouter } from "@/i18n/navigation";
@@ -44,14 +43,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("user", JSON.stringify(userData));
   }, []);
 
-  const refreshUser = useCallback(async () => {
-    if (!isAuthenticated) return;
-    const result = await getUser();
+  // const refreshUser = useCallback(async () => {
+  //   if (!isAuthenticated) return;
+  //   const result = await getUser();
 
-    if (result.success && result.user) {
-      login(result.user);
-    }
-  }, [isAuthenticated, login]);
+  //   if (result.success && result.user) {
+  //     login(result.user);
+  //   }
+  // }, [isAuthenticated, login]);
 
   const logout = useCallback(
     async (pathname: string) => {
@@ -116,11 +115,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
 
       setIsLoading(false);
-      await refreshUser();
+      // await refreshUser();
     };
 
     initializeAuth();
-  }, [refreshUser]);
+  }, []);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
