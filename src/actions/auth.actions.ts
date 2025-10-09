@@ -31,7 +31,7 @@ export async function checkAuth() {
 
 export async function getUser(): Promise<LoginResults> {
   try {
-    const response = await fetchWithAuth<LoginResponse>("/tailor/profile/me", {
+    const response = await fetchWithAuth<LoginResponse>("/api/user/check", {
       method: "GET",
       retry: { retries: 3 },
     });
