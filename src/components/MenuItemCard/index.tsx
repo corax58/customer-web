@@ -67,8 +67,11 @@ const MenuItemCard = ({
                 </MenuItemDetail>
               )
             ) : (
-              <Button size={"icon"} asChild>
-                <RestaurantDetailsLink restaurantId={menuItem.restaurant_id}>
+              <Button size={"icon"} className="shrink-0" asChild>
+                <RestaurantDetailsLink
+                  className="shrink-0"
+                  restaurantId={menuItem.restaurant_id}
+                >
                   <Eye />
                   <span className="sr-only">{t("see_restaurant")}</span>
                 </RestaurantDetailsLink>
