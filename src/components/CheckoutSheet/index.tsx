@@ -119,7 +119,6 @@ const CheckoutSheet = ({ className, disabled = false }: CheckoutSheetProps) => {
           coupon_id: selectedOffer ? selectedOffer.id.toString() : "",
           description: additionalInstructions,
           offer_discount: discount.toFixed(1),
-          payment_status: 1,
         },
       };
       const results = await placeOrder(JSON.stringify(rawData));

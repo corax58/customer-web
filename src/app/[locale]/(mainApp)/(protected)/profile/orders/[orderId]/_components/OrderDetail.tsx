@@ -82,9 +82,9 @@ const OrderDetail = async ({ orderId }: OrderDetailProps) => {
         <div className="bg-card flex w-full items-center gap-5 rounded-2xl border px-4 py-3">
           <Layers2 className="text-primary" />
           <div>
-            <p className="text-lg font-medium">
+            {/* <p className="text-lg font-medium">
               {order.customer_address_deatil.title}
-            </p>
+            </p> */}
             <p className="text-muted-foreground text-sm">
               {order.customer_address_deatil.address}
             </p>
@@ -93,22 +93,19 @@ const OrderDetail = async ({ orderId }: OrderDetailProps) => {
       </div>
 
       <div className="flex flex-col gap-7">
-        <CustomLink href={`/restaurants/${order.store_id}`}>
+        <CustomLink href={`/restaurants/${order.storeDetail.id}`}>
           <div className="group flex w-full items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="relative size-14 overflow-hidden rounded-full">
                 <CustomImage
                   imgUrl={order.storeDetail.image_file}
-                  title={order.store_title}
+                  title={order.storeDetail.title}
                   placeholderImage={PLACEHOLDER_IMAGES.RESTAURANT}
                   className="object-cover"
                 />
               </div>
-              <div className="flex h-full flex-col justify-between gap-2">
+              <div className="flex h-full flex-col justify-center gap-2">
                 <p className="text-lg font-medium">{order.storeDetail.title}</p>
-                <p className="text-muted-foreground text-sm">
-                  {order.storeDetail.location}
-                </p>
               </div>
             </div>
             <Icon
@@ -136,8 +133,8 @@ const OrderDetail = async ({ orderId }: OrderDetailProps) => {
               {t("payment_method")}
             </p>
             <p className="font-medium sm:text-lg">
-              {order.payment_type == 1 && t("cash_on_delivery")}
-              {order.payment_type == 4 && t("hesab_pay")}
+              {order.payment_type == "cash" && t("cash_on_delivery")}
+              {order.payment_type == "card" && t("hesab_pay")}
             </p>
           </div>
           {(order.payment_status === 1 || order.payment_status == 0) && (
@@ -159,15 +156,19 @@ const OrderDetail = async ({ orderId }: OrderDetailProps) => {
           <span className="text-secondary-foreground">
             {t("delivery_charges")}
           </span>
-          <span className="font-medium">
-            <FormattedAfghani amount={parseFloat(order.delivery_charge)} />
-          </span>
+          {order.storeDetail.delivery_info && (
+            <span className="font-medium">
+              <FormattedAfghani
+                amount={order.storeDetail.delivery_info?.delivery_fee}
+              />
+            </span>
+          )}
         </div>
         <FadingDivider />
         <div className="flex justify-between text-lg font-bold">
           <span className="">{t("total")}</span>
           <span className="">
-            <FormattedAfghani amount={parseFloat(order.payable_amount)} />
+            <FormattedAfghani amount={order.payable_amount} />
           </span>
         </div>
       </div>

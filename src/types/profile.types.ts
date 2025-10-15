@@ -114,7 +114,7 @@ export interface OrderDetail {
   description: null | string;
   payment_status: number;
   total_price: string;
-  payment_type: number;
+  payment_type: string;
   state_id: number;
   updated_on: null | string;
   created_on: string;

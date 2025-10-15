@@ -17,7 +17,7 @@ const PaymentStates = {
     color: "red",
     key: "unpaid",
     className:
-      "bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300 border border-green-500",
+      "bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300 border border-red-500",
   },
 };
 
